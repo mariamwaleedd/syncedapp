@@ -137,7 +137,7 @@ const Login = () => {
               <a href="#" className="forgot-link" onClick={() => navigate('/forgetpass')}>Forget Password?</a>
             </div>
 
-            <button type="submit" className="login-action-btn">Log In</button>
+            <button type="submit" className="login-action-btn" onClick={() => navigate('/registration')}>Log In</button>
           </form>
         </div>
 
