@@ -66,7 +66,7 @@ const AllSet = () => {
             <ArrowLeft size={18} />
             <span>Back</span>
           </button>
-          <button className="as-btn-hub" onClick={() => navigate('/home')}>
+          <button className="as-btn-hub" onClick={() => navigate('/healthid')}>
             <span>Enter My Health Hub</span>
             <Sparkles size={18} />
           </button>

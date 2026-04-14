@@ -15,12 +15,15 @@ import Lifestyle from './pages/QuizHero/Lifestyle';
 import GeneticInfo from './pages/QuizHero/GeneticInfo';
 import EmergencyContact from './pages/QuizHero/EmergencyContacts';
 import AllSet from './pages/QuizHero/AllSet';
+import HealthID from './pages/HealthID';
 
 const Routing = () => {
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/home" element={<Home />} />
+      <Route path="/healthid" element={<HealthID/>} />
+
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/forgetpass" element={<ForgetPass />} />
