@@ -108,6 +108,19 @@
   box-shadow: 0 0 10px rgba(100, 181, 246, 0.2);
 }
 
+.otp-error-field {
+  border-color: #ff4d4d !important;
+  background: rgba(255, 77, 77, 0.1) !important;
+}
+
+.otp-error-msg {
+  color: #ff4d4d;
+  font-size: 14px;
+  margin-top: -20px;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
 .otp-resend-info {
   font-size: 15px;
   opacity: 0.9;

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import StatusBar from '../common/StatusBar';
@@ -10,13 +10,33 @@ const Confirmation = () => {
   const rawPhone = location.state?.phone || "+20123456789";
   
   const [otpCodes, setOtpCodes] = useState(['', '', '', '']);
+  const [correctCode, setCorrectCode] = useState(null);
+  const [error, setError] = useState(false);
   const codeRefs = [useRef(), useRef(), useRef(), useRef()];
+
+  useEffect(() => {
+    generateAndSendCode();
+  }, []);
+
+  const generateAndSendCode = () => {
+    const newCode = Math.floor(1000 + Math.random() * 9000).toString();
+    setCorrectCode(newCode);
+    
+    setError(false);
+    setOtpCodes(['', '', '', '']);
+    
+    const destination = rawPhone.replace(/[^\d+]/g, '');
+    const encodedMsg = encodeURIComponent(`Your synced verification code is: ${newCode}`);
+    const whatsappLink = `https://api.whatsapp.com/send?phone=${destination}&text=${encodedMsg}`;
+    window.open(whatsappLink, '_blank');
+  };
 
   const onBoxInput = (idx, val) => {
     if (!/^\d*$/.test(val)) return;
     const updated = [...otpCodes];
     updated[idx] = val.slice(-1);
     setOtpCodes(updated);
+    setError(false);
 
     if (val && idx < 3) {
       codeRefs[idx + 1].current.focus();
@@ -29,12 +49,15 @@ const Confirmation = () => {
     }
   };
 
-  const sendWaCode = () => {
-    const randomCode = Math.floor(1000 + Math.random() * 9000);
-    const destination = rawPhone.replace(/[^\d+]/g, '');
-    const encodedMsg = encodeURIComponent(`Your synced verification code is: ${randomCode}`);
-    const whatsappLink = `https://api.whatsapp.com/send?phone=${destination}&text=${encodedMsg}`;
-    window.open(whatsappLink, '_blank');
+  const verifyOtp = () => {
+    const entered = otpCodes.join('');
+    if (entered.length < 4) return;
+    
+    if (entered === correctCode) {
+      navigate('/home');
+    } else {
+      setError(true);
+    }
   };
 
   return (
@@ -68,20 +91,22 @@ const Confirmation = () => {
                 value={val}
                 onChange={(e) => onBoxInput(i, e.target.value)}
                 onKeyDown={(e) => onKeyClick(i, e)}
-                className="otp-square-field"
+                className={`otp-square-field ${error ? 'otp-error-field' : ''}`}
               />
             ))}
           </div>
 
+          {error && <p className="otp-error-msg">Incorrect code. Please try again.</p>}
+
           <p className="otp-resend-info">
-            Didn’t receive code? <span className="otp-resend-trigger" onClick={sendWaCode}>Resend Code</span>
+            Didn’t receive code? <span className="otp-resend-trigger" onClick={generateAndSendCode}>Resend Code</span>
           </p>
         </div>
 
         <div className="otp-footer-action">
           <button 
             className={`otp-submit-btn ${otpCodes.join('').length === 4 ? 'otp-ready' : ''}`}
-            onClick={() => otpCodes.join('').length === 4 && navigate('/home')}
+            onClick={verifyOtp}
           >
             Verify
           </button>
