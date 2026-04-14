@@ -95,7 +95,7 @@ const EmergencyContact = () => {
             <ArrowLeft size={18} />
             <span>Back</span>
           </button>
-          <button className="ec-next-btn" onClick={() => navigate('/step-8')}>
+          <button className="ec-next-btn" onClick={() => navigate('/allset')}>
             <span>Continue</span>
             <ArrowRight size={18} />
           </button>

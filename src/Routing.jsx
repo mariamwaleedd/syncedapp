@@ -14,6 +14,7 @@ import MedicalHistory from './pages/QuizHero/MedicalHistory';
 import Lifestyle from './pages/QuizHero/Lifestyle';
 import GeneticInfo from './pages/QuizHero/GeneticInfo';
 import EmergencyContact from './pages/QuizHero/EmergencyContacts';
+import AllSet from './pages/QuizHero/AllSet';
 
 const Routing = () => {
   return (
@@ -34,6 +35,7 @@ const Routing = () => {
       <Route path="/lifestyle" element={<Lifestyle/>} />
       <Route path="/geneticinfo" element={<GeneticInfo/>} />
       <Route path="/emergencycontacts" element={<EmergencyContact/>} />
+      <Route path="/allset" element={<AllSet/>} />
 
     </Routes>
   );
