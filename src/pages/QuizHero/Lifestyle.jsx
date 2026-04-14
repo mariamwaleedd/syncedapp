@@ -139,7 +139,7 @@ const Lifestyle = () => {
             <ArrowLeft size={18} />
             <span>Back</span>
           </button>
-          <button className="ls-continue-btn" onClick={() => navigate('/step-6')}>
+          <button className="ls-continue-btn" onClick={() => navigate('/geneticinfo')}>
             <span>Continue</span>
             <ArrowRight size={18} />
           </button>
