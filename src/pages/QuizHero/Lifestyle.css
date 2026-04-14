@@ -1,13 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
-@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
-
 .ls-screen {
   width: 100%;
   min-height: 100vh;
   background-color: #010422;
   position: relative;
   color: #FFFFFF;
-  font-family: 'General Sans', sans-serif;
+  font-family: var(--font-main);
   display: flex;
   flex-direction: column;
 }
@@ -84,6 +81,7 @@
   font-size: 14px;
   opacity: 0.5;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .ls-hero {
@@ -107,7 +105,7 @@
 }
 
 .ls-title {
-  font-family: 'Instrument Serif', serif;
+  font-family: var(--font-title);
   font-size: 44px;
   font-weight: 400;
   margin-bottom: 8px;
@@ -163,9 +161,9 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 14px;
   color: rgba(255, 255, 255, 0.8);
-  font-family: 'General Sans', sans-serif;
+  font-family: var(--font-main);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
@@ -185,7 +183,6 @@
   border-color: #64B5F6;
   color: #64B5F6;
   box-shadow: 0 0 15px rgba(100, 181, 246, 0.15);
-  font-weight: 600;
 }
 
 .ls-input-wrap {
@@ -200,7 +197,7 @@
   border-radius: 14px;
   padding: 0 18px;
   color: white;
-  font-family: 'General Sans', sans-serif;
+  font-family: var(--font-main);
   font-size: 15px;
   outline: none;
 }
@@ -262,7 +259,7 @@
   align-items: center;
   gap: 10px;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
   box-shadow: 0 8px 20px rgba(100, 181, 246, 0.25);
 }
@@ -273,4 +270,4 @@
   background: rgba(255, 255, 255, 0.25);
   border-radius: 10px;
   margin: 15px auto 5px;
-}
+}

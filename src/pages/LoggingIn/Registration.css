@@ -1,13 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
-@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
-
 .reg-screen-container {
   width: 100%;
   background-color: #010422;
   position: relative;
   overflow: hidden;
   color: #FFFFFF;
-  font-family: 'General Sans', sans-serif;
+  font-family: var(--font-main);
 }
 
 .reg-gradient-bg {
@@ -60,7 +57,7 @@
 }
 
 .reg-main-title {
-  font-family: 'Instrument Serif', serif;
+  font-family: var(--font-title);
   font-size: 64px;
   font-weight: 400;
   margin-bottom: 8px;
@@ -237,7 +234,7 @@
 .reg-key-num-label {
   font-size: 24px;
   font-weight: 500;
-  font-family: 'General Sans', sans-serif;
+  font-family: var(--font-main);
 }
 
 .reg-submit-wrap {
@@ -256,9 +253,9 @@
   color: white;
   border: none;
   border-radius: 14px;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 18px;
-  font-family: 'General Sans', sans-serif;
+  font-family: var(--font-main);
   cursor: pointer;
   box-shadow: 0 8px 25px rgba(100, 181, 246, 0.3);
 }
@@ -269,4 +266,4 @@
   background: rgba(255, 255, 255, 0.3);
   border-radius: 10px;
   margin-bottom: 5px;
-}
+}

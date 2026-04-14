@@ -1,13 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
-@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
-
 .ps-screen {
   width: 100%;
   min-height: 100vh;
   background-color: #010422;
   position: relative;
   color: #FFFFFF;
-  font-family: 'General Sans', sans-serif;
+  font-family: var(--font-main);
   display: flex;
   flex-direction: column;
 }
@@ -82,6 +79,7 @@
   font-size: 14px;
   opacity: 0.5;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .ps-hero {
@@ -105,7 +103,7 @@
 }
 
 .ps-main-title {
-  font-family: 'Instrument Serif', serif;
+  font-family: var(--font-title);
   font-size: 40px;
   font-weight: 400;
   margin-bottom: 8px;
@@ -245,7 +243,7 @@
   align-items: center;
   gap: 10px;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
   box-shadow: 0 8px 20px rgba(100, 181, 246, 0.25);
 }

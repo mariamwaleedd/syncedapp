@@ -1,13 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
-@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
-
 .pi-screen {
   width: 100%;
   min-height: 100vh;
   background-color: #010422;
   position: relative;
   color: #FFFFFF;
-  font-family: 'General Sans', sans-serif;
+  font-family: var(--font-main);
   display: flex;
   flex-direction: column;
 }
@@ -18,11 +15,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgba(100, 181, 246, 0.22) 0%, rgba(1, 4, 34, 0) 100%);
+  background: linear-gradient(180deg, rgba(100, 181, 246, 0.2) 0%, rgba(1, 4, 34, 0) 100%);
   z-index: 1;
 }
 
-.pi-grid-overlay {
+.pi-grid-layer {
   position: absolute;
   top: 0;
   left: 0;
@@ -34,7 +31,7 @@
   z-index: 2;
 }
 
-.pi-content-wrapper {
+.pi-scroll-content {
   position: relative;
   z-index: 3;
   padding: 20px 24px;
@@ -43,38 +40,36 @@
   flex-grow: 1;
 }
 
-.pi-progress-section {
-  width: 100%;
+.pi-nav-section {
   margin-top: 10px;
 }
 
-.pi-progress-stats {
+.pi-progress-header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
 }
 
-.pi-step-label, .pi-percent-label {
+.pi-step-txt, .pi-percent-txt {
   font-size: 13px;
-  font-weight: 500;
   opacity: 0.5;
+  font-weight: 500;
 }
 
-.pi-track {
+.pi-progress-track {
   width: 100%;
   height: 6px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  overflow: hidden;
 }
 
-.pi-fill {
+.pi-progress-fill {
   height: 100%;
   background: #64B5F6;
   border-radius: 10px;
 }
 
-.pi-skip-link {
+.pi-skip-btn {
   display: block;
   margin-left: auto;
   margin-top: 10px;
@@ -83,6 +78,8 @@
   color: white;
   font-size: 14px;
   opacity: 0.5;
+  cursor: pointer;
+  font-weight: 600;
 }
 
 .pi-hero {
@@ -93,21 +90,21 @@
   margin-top: 20px;
 }
 
-.pi-user-box {
+.pi-avatar-box {
   width: 100px;
   height: 100px;
-  background: linear-gradient(135deg, #3A7BD5 0%, #003399 100%);
+  background: linear-gradient(135deg, #64B5F6 0%, #357ABD 100%);
   border-radius: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 24px;
-  box-shadow: 0 10px 30px rgba(0, 51, 153, 0.3);
+  box-shadow: 0 10px 30px rgba(100, 181, 246, 0.3);
 }
 
-.pi-title {
-  font-family: 'Instrument Serif', serif;
-  font-size: 40px;
+.pi-main-title {
+  font-family: var(--font-title);
+  font-size: 44px;
   font-weight: 400;
   margin-bottom: 8px;
 }
@@ -118,7 +115,7 @@
 }
 
 .pi-form-card {
-  margin-top: 30px;
+  margin-top: 35px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 24px;
@@ -129,10 +126,10 @@
   backdrop-filter: blur(15px);
 }
 
-.pi-input-group {
+.pi-input-group, .pi-gender-section {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .pi-input-group label, .pi-gender-section label {
@@ -141,77 +138,76 @@
   opacity: 0.9;
 }
 
-.pi-input-group input, .pi-dob-select {
+.pi-input-wrapper {
+  position: relative;
+}
+
+.pi-input-wrapper input {
   width: 100%;
-  height: 54px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  height: 56px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 14px;
   padding: 0 16px;
   color: white;
-  font-family: 'General Sans', sans-serif;
+  font-family: var(--font-main);
   font-size: 15px;
   outline: none;
-  backdrop-filter: blur(10px);
 }
 
-.pi-dob-row {
+.pi-dob-entry {
   display: flex;
   gap: 10px;
-  width: 100%;
 }
 
 .pi-dob-select {
   flex: 1;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  padding-right: 35px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  cursor: pointer;
+  font-size: 14px;
 }
 
-.pi-dob-select option {
-  background-color: #010422;
-  color: white;
-}
-
-.pi-input-group input::placeholder {
-  color: rgba(255, 255, 255, 0.25);
-}
-
-.pi-gender-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 10px;
+.pi-gender-options {
+  display: flex;
+  gap: 12px;
 }
 
 .pi-gender-btn {
-  height: 50px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  color: white;
-  font-size: 14px;
-  font-weight: 500;
+  flex: 1;
+  height: 54px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
   transition: all 0.2s;
 }
 
 .pi-gender-btn.active {
-  background: rgba(100, 181, 246, 0.2);
+  background: rgba(100, 181, 246, 0.15);
   border-color: #64B5F6;
+  color: #64B5F6;
 }
 
-.pi-footer-spacer {
-  height: 60px;
-}
-
-.pi-actions-row {
+.pi-actions {
+  margin-top: 80px;
+  padding-top: 60px;
   display: flex;
   gap: 12px;
   width: 100%;
-  margin-top: auto;
   padding-bottom: 10px;
 }
 
@@ -243,7 +239,7 @@
   align-items: center;
   gap: 10px;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
   box-shadow: 0 8px 20px rgba(100, 181, 246, 0.25);
 }

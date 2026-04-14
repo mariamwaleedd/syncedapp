@@ -62,7 +62,7 @@ const AllSet = () => {
         </div>
 
         <div className="as-actions">
-          <button className="as-btn-back" onClick={() => navigate(-1)}>
+          <button className="as-btn-back" onClick={() => navigate('/emergencycontacts')}>
             <ArrowLeft size={18} />
             <span>Back</span>
           </button>

@@ -1,13 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
-@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
-
-.health-id-screen {
+.chi-screen {
   width: 100%;
+  min-height: 100vh;
   background-color: #010422;
   position: relative;
-  overflow: hidden;
   color: #FFFFFF;
-  font-family: 'General Sans', sans-serif;
+  font-family: var(--font-main);
+  display: flex;
+  flex-direction: column;
 }
 
 .health-id-gradient {
@@ -36,140 +35,85 @@
   position: relative;
   z-index: 3;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 20px 24px;
-}
-
-.top-nav-area {
-  margin-top: 10px;
-  width: 100%;
-}
-
-.step-info-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-
-.step-text, .percent-text {
-  font-size: 13px;
-  font-weight: 500;
-  opacity: 0.6;
-  font-family: 'General Sans', sans-serif;
-}
-
-.progress-bar-track {
-  width: 100%;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.progress-bar-fill {
-  height: 100%;
-  background: #64B5F6;
-  border-radius: 10px;
-}
-
-.skip-btn {
-  display: block;
-  margin-left: auto;
-  margin-top: 10px;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 14px;
-  opacity: 0.6;
-  cursor: pointer;
-}
-
-.hero-section {
+  padding: 60px 24px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-top: 20px;
+  min-height: 100vh;
 }
 
-.hero-icon-box {
-  width: 130px;
-  height: 130px;
-  background: linear-gradient(135deg, #3A7BD5 0%, #003399 100%);
+.ch-logo-glow {
+  width: 100px;
+  height: 100px;
+  background: rgba(100, 181, 246, 0.15);
   border-radius: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30px;
-  box-shadow: 0 15px 35px rgba(0, 51, 153, 0.4);
+  margin-bottom: 40px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(100, 181, 246, 0.3);
+  box-shadow: 0 0 40px rgba(100, 181, 246, 0.2);
 }
 
-.hero-star {
-  width: 70px;
-  height: auto;
-}
-
-.health-id-title {
-  font-family: 'Instrument Serif', serif;
-  font-size: 42px;
+.ch-title {
+  font-family: var(--font-title);
+  font-size: 56px;
   font-weight: 400;
-  margin-bottom: 12px;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  max-width: 320px;
 }
 
-.health-id-desc {
-  font-size: 15px;
-  line-height: 1.5;
+.ch-desc {
+  font-size: 18px;
   opacity: 0.8;
-  max-width: 300px;
+  line-height: 1.5;
+  margin-bottom: 50px;
+  max-width: 280px;
 }
 
-.features-card {
-  margin-top: 35px;
-  background: rgba(255, 255, 255, 0.08);
+.ch-info-card {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 24px;
   padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  backdrop-filter: blur(10px);
+  gap: 20px;
+  backdrop-filter: blur(15px);
+  margin-bottom: auto;
 }
 
-.feature-item {
+.info-item {
   display: flex;
   align-items: center;
   gap: 16px;
+  text-align: left;
 }
 
-.feature-icon-circle {
+.item-icon-box {
   width: 44px;
   height: 44px;
-  background: rgba(100, 181, 246, 0.15);
+  background: rgba(100, 181, 246, 0.1);
   border-radius: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-shrink: 0;
+  color: #64B5F6;
 }
 
-.feature-text h3 {
+.item-text h4 {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 2px;
 }
 
-.feature-text p {
+.item-text p {
   font-size: 13px;
   opacity: 0.6;
-}
-
-.bottom-action {
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
 }
 
 .begin-btn {
@@ -187,15 +131,18 @@
   gap: 10px;
   cursor: pointer;
   margin-top: 80px;
-  font-family: 'General Sans', sans-serif;
+  font-family: var(--font-main);
   box-shadow: 0 8px 25px rgba(100, 181, 246, 0.3);
 }
 
-.ios-indicator {
+.begin-btn:active {
+  transform: scale(0.98);
+}
+
+.home-bar {
   width: 130px;
   height: 5px;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 10px;
-  margin-top: 25px;
-  margin-bottom: 5px;
+  margin: 30px auto 0;
 }

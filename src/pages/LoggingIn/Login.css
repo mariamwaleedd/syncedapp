@@ -1,20 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
-@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 .login-screen {
   width: 100%;
   background-color: #010422;
   overflow: hidden;
   color: #FFFFFF;
-  font-family: 'General Sans', sans-serif;
+  font-family: var(--font-main);
 }
 
 .bg-lines {
@@ -95,7 +84,7 @@
 }
 
 .main-heading {
-  font-family: 'Instrument Serif', serif;
+  font-family: var(--font-title);
   font-size: 64px;
   font-weight: 400;
   line-height: 1;
@@ -103,7 +92,7 @@
 }
 
 .sub-heading {
-  font-family: 'Instrument Serif', serif;
+  font-family: var(--font-title);
   font-size: 22px;
   font-style: italic;
   opacity: 0.9;
@@ -150,7 +139,7 @@ form {
   padding-left: 14px;
   color: #FFFFFF;
   font-size: 16px;
-  font-family: 'General Sans', sans-serif;
+  font-family: var(--font-main);
   outline: none;
 }
 
@@ -230,7 +219,7 @@ form {
   border-radius: 14px;
   height: 60px;
   font-size: 18px;
-  font-family: genera;
+  font-family: var(--font-main);
   font-weight: 600;
   margin-top: 60px;
   cursor: pointer;
@@ -258,4 +247,4 @@ form {
   text-decoration: none;
   font-weight: 700;
   margin-left: 4px;
-}
+}
