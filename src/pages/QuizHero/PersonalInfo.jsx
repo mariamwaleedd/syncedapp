@@ -119,7 +119,7 @@ const PersonalInfo = () => {
             <ArrowLeft size={18} />
             <span>Back</span>
           </button>
-          <button className="pi-continue-btn" onClick={() => navigate('/step-3')}>
+          <button className="pi-continue-btn" onClick={() => navigate('/physicalstats')}>
             <span>Continue</span>
             <ArrowRight size={18} />
           </button>

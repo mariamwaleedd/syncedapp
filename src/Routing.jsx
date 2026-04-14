@@ -9,6 +9,7 @@ import Confirmation from './pages/LoggingIn/Confirmation';
 import Confirmed from './pages/LoggingIn/Confirmed';
 import CreateHealthID from './pages/QuizHero/CreateHealthID';
 import PersonalInfo from './pages/QuizHero/PersonalInfo';
+import PhysicalStats from './pages/QuizHero/PhysicalStats';
 
 const Routing = () => {
   return (
@@ -24,6 +25,7 @@ const Routing = () => {
 
       <Route path="/createhealth" element={<CreateHealthID />} />
       <Route path="/personalinfo" element={<PersonalInfo />} />
+      <Route path="/physicalstats" element={<PhysicalStats />} />
 
     </Routes>
   );
