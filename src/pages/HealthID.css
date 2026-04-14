@@ -155,11 +155,14 @@
   justify-content: center;
 }
 
-.hid-score-grade {
+.hid-score-icon-center {
   position: absolute;
-  font-family: var(--font-title);
-  font-size: 28px;
-  color: #00E676;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hid-section-header {
@@ -225,7 +228,7 @@
   gap: 14px;
 }
 
-.hid-vital-data { font-size: 24px; font-weight: 700; }
+.hid-vital-data { font-size: 24px; font-weight: 700; font-family: var(--font-title); }
 .hid-vital-data span { font-size: 12px; opacity: 0.5; margin-left: 4px; }
 .hid-vital-item p { margin: 0; font-size: 13px; opacity: 0.5; }
 

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { 
   ChevronLeft, Share2, Bell, CheckCircle2, User,
   Edit3, Calendar, Users, Droplets, Ruler, Weight, 
-  Heart, Activity, Thermometer, Wind, 
+  Heart, Activity, Thermometer, Wind, Shield,
   ClipboardList, Pill, ShieldAlert, 
   Dna, Phone, FileText, Upload, Check 
 } from 'lucide-react';
@@ -78,14 +78,24 @@ const HealthID = () => {
           <div className="hid-score-info">
             <p>Overall Health Score</p>
             <div className="hid-score-val">92</div>
-            <span className="hid-score-trend">Excellent Growth</span>
+            <span className="hid-score-trend" style={{ color: '#00E676' }}>Excellent Health</span>
           </div>
           <div className="hid-score-visual">
             <svg width="80" height="80" viewBox="0 0 80 80">
-              <circle cx="40" cy="40" r="35" stroke="rgba(255,255,255,0.1)" strokeWidth="6" fill="none" />
-              <circle cx="40" cy="40" r="35" stroke="#00E676" strokeWidth="6" fill="none" strokeDasharray="220" strokeDashoffset="20" strokeLinecap="round" />
+              <circle cx="40" cy="40" r="35" stroke="rgba(255,255,255,0.05)" strokeWidth="4" fill="none" />
+              <circle 
+                cx="40" cy="40" r="35" 
+                stroke="#00E676" 
+                strokeWidth="6" 
+                fill="none" 
+                strokeDasharray="48 7" 
+                strokeLinecap="round"
+                transform="rotate(-90 40 40)"
+              />
             </svg>
-            <span className="hid-score-grade">C</span>
+            <div className="hid-score-icon-center">
+              <Shield size={24} color="#00E676" strokeWidth={1.5} />
+            </div>
           </div>
         </motion.div>
 
