@@ -198,9 +198,104 @@
 .ha-mood-name { font-size: 10px; opacity: 0.5; font-weight: 600; }
 .ha-mood-unit.active .ha-mood-name { color: #64B5F6; opacity: 1; }
 
-.ha-quick-nav { display: flex; gap: 24px; margin-bottom: 35px; padding: 4px; }
-.ha-quick-nav span { font-size: 16px; font-weight: 500; opacity: 0.4; }
-.ha-quick-nav .active { opacity: 1; color: #64B5F6; }
+.ha-section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.ha-section-title h2 {
+  font-family: var(--font-title);
+  font-size: 28px;
+  margin: 0;
+}
+
+.ha-view-link {
+  color: #64B5F6;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.ha-family-card {
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.ha-family-grid {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.ha-family-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.ha-family-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ha-family-avatar-wrap {
+  position: relative;
+}
+
+.ha-family-avatar {
+  width: 64px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.ha-family-status {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: white;
+  border: 2px solid #010422;
+}
+
+.ha-family-status.ok { background: #00E676; }
+.ha-family-status.warn { background: #FF8A00; }
+
+.ha-family-add {
+  width: 64px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ha-family-member span {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.8;
+}
 
 .ha-main-menu {
   display: grid;
@@ -210,19 +305,18 @@
   justify-items: center;
 }
 
-.ha-menu-cell { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-
-.ha-cell-card {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: 22px;
-  background: #162040;
+.ha-menu-cell { display: flex; flex-direction: column; 
+  background: #ffffff20;
   border: 1.5px solid rgba(100, 181, 246, 0.12);
   display: flex;
   align-items: center;
+  padding: 20px;
+  width: 85%;
+  aspect-ratio: 1;
   justify-content: center;
   position: relative;
-}
+  border-radius: 22px;
+  align-items: center; gap: 10px; }
 
 .ha-sq-box {
   width: 54px;
@@ -268,10 +362,16 @@
 .ha-goal-track { height: 6px; background: rgba(255,255,255,0.06); border-radius: 10px; overflow: hidden; }
 .ha-goal-fill { height: 100%; border-radius: 10px; }
 
-.ha-weekly-card { padding: 20px; }
-.ha-week-grid { display: flex; justify-content: space-between; }
-.ha-week-day { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.ha-weekly-card { padding: 20px 16px; }
+.ha-week-grid { display: flex; justify-content: space-between; align-items: flex-end; }
+.ha-week-day { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 40px; }
+.ha-week-emoji { font-size: 22px; }
 .ha-week-label { font-size: 11px; opacity: 0.4; font-weight: 600; }
+.ha-week-day.current { position: relative; }
+.ha-week-active-name { font-size: 13px; font-weight: 700; color: #FFF; }
+.ha-week-dot { width: 7px; height: 7px; background: #05FF91; border-radius: 50%; box-shadow: 0 0 8px #05FF91; }
+.ha-week-legend { display: flex; justify-content: center; gap: 24px; margin-top: 16px; }
+.ha-legend-item { display: flex; align-items: center; gap: 6px; font-size: 13px; opacity: 0.6; font-weight: 600; }
 
 .ha-achieve-flex { display: flex; gap: 12px; }
 .ha-ach-box { flex: 1; padding: 15px; display: flex; flex-direction: column; align-items: center; gap: 10px; }

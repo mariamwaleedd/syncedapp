@@ -105,6 +105,38 @@ const Home = () => {
           </div>
         </section>
 
+        <section className="ha-section">
+          <div className="ha-section-title">
+            <h2>Family Health</h2>
+            <span className="ha-view-link">View All <ChevronRight size={14} /></span>
+          </div>
+          <div className="ha-family-card ha-glass">
+            <div className="ha-family-grid">
+              {[
+                { name: 'Mona', emoji: '👩', status: 'ok' },
+                { name: 'Maya', emoji: '👧', status: 'ok' },
+                { name: 'Abdo', emoji: '👦', status: 'warn' },
+              ].map((m) => (
+                <div key={m.name} className="ha-family-member">
+                  <div className="ha-family-avatar-wrap">
+                    <div className="ha-family-avatar">{m.emoji}</div>
+                    <div className={`ha-family-status ${m.status}`}>
+                      {m.status === 'ok' ? '✓' : '!'}
+                    </div>
+                  </div>
+                  <span>{m.name}</span>
+                </div>
+              ))}
+              <div className="ha-family-member">
+                <div className="ha-family-add">
+                  <Plus size={20} color="#64B5F6" />
+                </div>
+                <span>Add</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <div className="ha-section">
           <h2 className="ha-sec-lbl">Quick Actions</h2>
         </div>
@@ -147,13 +179,28 @@ const Home = () => {
           <h2 className="ha-sec-lbl">Weekly Health Score</h2>
           <div className="ha-weekly-card ha-glass">
             <div className="ha-week-grid">
-              {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, idx) => (
-                <div key={day} className="ha-week-day">
-                  <span className="ha-week-emoji">{['🤩', '😊', '🔥', '😐', '🔥', '🤩', '😊'][idx]}</span>
-                  <span className="ha-week-label">{day}</span>
+              {[
+                { day: 'Mon', emoji: '😁', active: false },
+                { day: 'Tue', emoji: '😁', active: false },
+                { day: 'Wed', emoji: '🔥', active: true },
+                { day: 'Thu', emoji: '😁', active: false },
+                { day: 'Fri', emoji: '🔥', active: false },
+                { day: 'Sat', emoji: '😊', active: false },
+                { day: 'Sun', emoji: '🔥', active: false },
+              ].map((d) => (
+                <div key={d.day} className={`ha-week-day ${d.active ? 'current' : ''}`}>
+                  <span className="ha-week-emoji">{d.emoji}</span>
+                  {d.active && <span className="ha-week-active-name">{d.day}</span>}
+                  {d.active && <span className="ha-week-dot" />}
+                  {!d.active && <span className="ha-week-label">{d.day}</span>}
                 </div>
               ))}
             </div>
+          </div>
+          <div className="ha-week-legend">
+            <div className="ha-legend-item"><span>🔥</span><span>Excellent</span></div>
+            <div className="ha-legend-item"><span>😁</span><span>Great</span></div>
+            <div className="ha-legend-item"><span>😊</span><span>Good</span></div>
           </div>
         </section>
 
