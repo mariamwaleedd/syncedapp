@@ -100,7 +100,7 @@ const PhysicalStats = () => {
             <ArrowLeft size={18} />
             <span>Back</span>
           </button>
-          <button className="ps-continue-btn" onClick={() => navigate('/step-4')}>
+          <button className="ps-continue-btn" onClick={() => navigate('/medicalhistory')}>
             <span>Continue</span>
             <ArrowRight size={18} />
           </button>
