@@ -1,5 +1,5 @@
 :root {
-  --navy: #1a365d;
+  --navy: #010422;
   --blue: #2c5282;
   --light-blue: #ebf8ff;
   --text: #2d3748;
@@ -12,22 +12,18 @@
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  height: 100dvh;
+  min-height: 100vh;
   width: 100vw;
-  overflow: hidden; /* Lock core body scroll */
-  background-color: #000; /* Backdrop for desktop preview */
-  color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  user-select: none; /* Make it feel like an app */
-  overscroll-behavior: none;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Ensure the phone starts from top */
+  padding: 40px 0; /* Vertical space for browser scrolling */
+  background: var(--navy); 
+  overflow-y: auto; /* Allow browser scroll */
 }
 
 #root {
-  height: 100%;
   width: 100%;
 }
 

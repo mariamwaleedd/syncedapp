@@ -1,6 +1,6 @@
-import React from 'react';
 import { useLanguage } from '../common/LanguageContext';
 import { useNavigate } from 'react-router-dom';
+import StatusBar from '../common/StatusBar';
 
 const Home = () => {
   const { t, toggleLanguage, lang } = useLanguage();
@@ -10,10 +10,18 @@ const Home = () => {
     { id: 1, title: 'Checkup', provider: 'Dr. Smith', date: 'Oct 12', status: 'Ready' },
     { id: 2, title: 'Lab Results', provider: 'Central Lab', date: 'Sep 28', status: 'Viewed' },
     { id: 3, title: 'Vaccination', provider: 'Health Clinic', date: 'Aug 15', status: 'Old' },
+    { id: 4, title: 'Dental Check', provider: 'Smile Dental', date: 'Jul 20', status: 'Ready' },
+    { id: 5, title: 'Eye Test', provider: 'Vision Center', date: 'Jun 05', status: 'Viewed' },
+    { id: 6, title: 'Blood Work', provider: 'Central Lab', date: 'May 12', status: 'Old' },
+    { id: 7, title: 'Physical Therapy', provider: 'Rehab Inc', date: 'Apr 30', status: 'Ready' },
+    { id: 8, title: 'X-Ray', provider: 'Imaging Dept', date: 'Mar 15', status: 'Viewed' },
+    { id: 9, title: 'Consultation', provider: 'Dr. Jones', date: 'Feb 10', status: 'Old' },
+    { id: 10, title: 'Skin Screening', provider: 'Derma Clinic', date: 'Jan 05', status: 'Ready' },
   ];
 
   return (
     <div className="home-screen">
+      <StatusBar />
       <header className="app-header">
         <div className="user-profile">
           <div className="avatar">MW</div>
@@ -82,179 +90,6 @@ const Home = () => {
         </div>
       </nav>
 
-      <style>{`
-        .home-screen {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          background: #fff;
-          padding-bottom: 90px; /* Space for bottom nav */
-        }
-        .app-header {
-          padding: 40px 25px 20px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-        .user-profile {
-          display: flex;
-          gap: 12px;
-          align-items: center;
-        }
-        .avatar {
-          width: 45px;
-          height: 45px;
-          background: var(--blue);
-          color: white;
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: 800;
-          font-size: 14px;
-        }
-        .greeting {
-          display: flex;
-          flex-direction: column;
-        }
-        .greeting span {
-          font-size: 12px;
-          color: #718096;
-        }
-        .greeting strong {
-          font-size: 18px;
-          color: var(--navy);
-        }
-        .lang-icon {
-          background: var(--light-blue);
-          border: none;
-          color: var(--blue);
-          padding: 8px 12px;
-          border-radius: 10px;
-          font-size: 12px;
-          font-weight: 700;
-        }
-        .stats-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 15px;
-          padding: 0 25px;
-          margin-bottom: 30px;
-        }
-        .stat-card {
-          padding: 20px;
-          border-radius: 20px;
-          color: white;
-          display: flex;
-          flex-direction: column;
-          gap: 5px;
-        }
-        .stat-card.blue { background: var(--blue); }
-        .stat-card.navy { background: var(--navy); }
-        .stat-card .label { font-size: 12px; opacity: 0.8; }
-        .stat-card .value { font-size: 18px; font-weight: 800; }
-
-        .records-section {
-          padding: 0 25px;
-        }
-        .section-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: baseline;
-          margin-bottom: 15px;
-        }
-        .section-header h2 {
-          font-size: 20px;
-          color: var(--navy);
-          margin: 0;
-        }
-        .see-all {
-          background: none;
-          border: none;
-          color: var(--blue);
-          font-weight: 700;
-          font-size: 14px;
-        }
-        .records-feed {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
-        .record-item {
-          display: flex;
-          align-items: center;
-          gap: 15px;
-          padding: 15px;
-          background: var(--bg);
-          border-radius: 18px;
-          cursor: pointer;
-        }
-        .record-icon {
-          width: 45px;
-          height: 45px;
-          background: white;
-          color: var(--blue);
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .record-icon svg { width: 22px; height: 22px; }
-        .record-info { flex: 1; }
-        .record-info h3 { font-size: 16px; margin: 0 0 4px 0; color: var(--navy); }
-        .record-info p { font-size: 12px; margin: 0; color: #718096; }
-        .status-pill {
-          font-size: 10px;
-          font-weight: 800;
-          padding: 4px 8px;
-          border-radius: 6px;
-          text-transform: uppercase;
-        }
-        .status-pill.ready { background: #c6f6d5; color: #22543d; }
-        .status-pill.viewed { background: #ebf8ff; color: #2a4365; }
-        .status-pill.old { background: #edf2f7; color: #4a5568; }
-
-        .bottom-nav {
-          position: fixed;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 100%;
-          max-width: 500px;
-          height: 80px;
-          background: white;
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          border-top: 1px solid #edf2f7;
-          border-radius: 20px 20px 0 0;
-          box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
-        }
-        .nav-item {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 4px;
-          color: #a0aec0;
-          cursor: pointer;
-        }
-        .nav-item.active { color: var(--navy); }
-        .nav-item svg { width: 24px; height: 24px; }
-        .nav-item span { font-size: 10px; font-weight: 700; }
-        .nav-circle {
-          background: var(--navy);
-          color: white;
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-top: -30px;
-          border: 4px solid white;
-          box-shadow: 0 5px 15px rgba(26, 54, 93, 0.3);
-        }
-      `}</style>
     </div>
   );
 };

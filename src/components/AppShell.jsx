@@ -14,40 +14,54 @@ const AppShell = ({ children }) => {
 
       <style>{`
         .app-shell {
-          height: 100dvh;
-          width: 100vw;
+          width: 100%;
           display: flex;
           justify-content: center;
-          align-items: center;
-          background: #111; /* Dark background for desktop simulator */
+          align-items: flex-start;
+          background: transparent;
         }
+
         .mobile-container {
-          background: #fff;
-          width: 100%;
-          height: 100%;
-          max-width: 500px; /* Standard phone-ish width on desktop */
+          width: 428px;
+          height: 928px; /* Strict fixed height */
           position: relative;
           display: flex;
           flex-direction: column;
-          overflow: hidden;
-          box-shadow: 0 0 100px rgba(0,0,0,0.5);
-          /* Handle safe areas (notches) */
-          padding-top: env(safe-area-inset-top);
-          padding-bottom: env(safe-area-inset-bottom);
-        }
-        .app-content {
-          flex: 1;
-          overflow-y: auto;
-          -webkit-overflow-scrolling: touch;
-          display: flex;
-          flex-direction: column;
+          box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+          border-radius: 40px; 
+          overflow: hidden; 
         }
 
-        /* Portrait styling logic for desktop */
-        @media (max-width: 500px) {
+        .app-content {
+          flex: 1;
+          display: block; 
+          overflow-y: auto; 
+          -webkit-overflow-scrolling: touch;
+        }
+
+        /* Custom Scrollbar */
+        .app-content::-webkit-scrollbar {
+          width: 6px;
+        }
+        .app-content::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .app-content::-webkit-scrollbar-thumb {
+          background: rgba(0, 0, 0, 0.1);
+          border-radius: 10px;
+        }
+        .app-content::-webkit-scrollbar-thumb:hover {
+          background: rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 428px) {
+          .app-shell {
+            align-items: stretch;
+          }
           .mobile-container {
-            max-width: 100%;
-            height: 100%;
+            width: 100%;
+            height: 100vh;
+            border-radius: 0;
             box-shadow: none;
           }
         }

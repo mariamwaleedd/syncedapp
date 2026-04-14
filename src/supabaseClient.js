@@ -1,6 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Replace with your actual Supabase URL
 const supabaseUrl = 'https://your-project-url.supabase.co';
 const supabaseAnonKey = 'sb_publishable_qzM2c6A6fQCMcbOgUN7kVg_T5GdRxrp';
 
