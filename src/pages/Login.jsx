@@ -134,7 +134,7 @@ const Login = () => {
             {errors.password && <span className="error-text">{errors.password}</span>}
 
             <div className="forgot-row">
-              <a href="#" className="forgot-link">Forget Password?</a>
+              <a href="#" className="forgot-link" onClick={() => navigate('/forgetpass')}>Forget Password?</a>
             </div>
 
             <button type="submit" className="login-action-btn">Log In</button>

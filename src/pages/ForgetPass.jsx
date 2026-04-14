@@ -61,10 +61,7 @@ const ForgetPass = () => {
           <button className="nav-icon-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={28} color="#FFFFFF" strokeWidth={2.5} />
           </button>
-          <button className="lang-pill" onClick={toggleLanguage}>
-            <Globe size={18} />
-            <span>{lang === 'en' ? 'Ar' : 'En'}</span>
-          </button>
+         
         </div>
 
         <div className="form-container">
