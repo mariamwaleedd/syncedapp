@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
+
+.ls-screen {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #010422;
+  position: relative;
+  color: #FFFFFF;
+  font-family: 'General Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.ls-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(100, 181, 246, 0.2) 0%, rgba(1, 4, 34, 0) 100%);
+  z-index: 1;
+}
+
+.ls-grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../imgs/bg.png');
+  background-size: cover;
+  opacity: 0.35;
+  z-index: 2;
+}
+
+.ls-content-wrapper {
+  position: relative;
+  z-index: 3;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.ls-progress-container {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.ls-progress-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.ls-step-info, .ls-percent-info {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.5;
+}
+
+.ls-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.ls-fill {
+  height: 100%;
+  background: #64B5F6;
+  border-radius: 10px;
+}
+
+.ls-skip-btn {
+  display: block;
+  margin-left: auto;
+  margin-top: 10px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 14px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.ls-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.ls-icon-box {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #00B4DB 0%, #0083B0 100%);
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 30px rgba(0, 180, 219, 0.3);
+}
+
+.ls-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 44px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.ls-subtitle {
+  font-size: 16px;
+  opacity: 0.6;
+}
+
+.ls-form-card {
+  margin-top: 30px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  backdrop-filter: blur(15px);
+}
+
+.ls-input-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ls-label-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ls-label-row label {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.ls-input-wrap {
+  position: relative;
+}
+
+.ls-input-wrap input {
+  width: 100%;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 0 16px;
+  color: white;
+  font-family: 'General Sans', sans-serif;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+}
+
+.ls-input-wrap input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.ls-dropdown {
+  position: absolute;
+  top: 62px;
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.ls-glass-panel {
+  background: rgba(13, 22, 53, 0.98);
+  backdrop-filter: blur(25px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+}
+
+.ls-drop-item {
+  padding: 14px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.2s;
+}
+
+.ls-drop-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ls-info-box {
+  margin-top: 20px;
+  background: rgba(100, 181, 246, 0.05);
+  border: 1px solid rgba(100, 181, 246, 0.2);
+  border-radius: 18px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ls-info-box p {
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+.ls-footer-spacer {
+  height: 50px;
+}
+
+.ls-actions-row {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-top: auto;
+  padding-bottom: 10px;
+}
+
+.ls-back-btn {
+  flex: 0.8;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 18px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ls-continue-btn {
+  flex: 1.2;
+  height: 60px;
+  background: #64B5F6;
+  border: none;
+  border-radius: 18px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(100, 181, 246, 0.25);
+}
+
+.ls-home-indicator {
+  width: 130px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  margin: 15px auto 5px;
+}

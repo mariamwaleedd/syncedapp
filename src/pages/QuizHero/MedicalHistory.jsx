@@ -143,7 +143,7 @@ const MedicalHistory = () => {
             <ArrowLeft size={18} />
             <span>Back</span>
           </button>
-          <button className="mh-continue-btn" onClick={() => navigate('/step-5')}>
+          <button className="mh-continue-btn" onClick={() => navigate('/lifestyle')}>
             <span>Continue</span>
             <ArrowRight size={18} />
           </button>
