@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Mail, Lock, Eye, EyeOff, ChevronLeft, Globe, User } from 'lucide-react';
-import { useLanguage } from '../common/LanguageContext';
-import StatusBar from '../common/StatusBar';
-import './SignUp.css';
-import logo from '../imgs/logoblue.png';
+import { Mail, Lock, Eye, EyeOff, ChevronLeft, Globe } from 'lucide-react';
+import { useLanguage } from '../../common/LanguageContext';
+import StatusBar from '../../common/StatusBar';
+import './Login.css';
+import logo from '../../imgs/logoblue.png';
 
-const SignUp = () => {
+const Login = () => {
   const { t, toggleLanguage, lang } = useLanguage();
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: ''
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [strength, setStrength] = useState({
@@ -25,10 +21,9 @@ const SignUp = () => {
   });
 
   useEffect(() => {
-    const pass = formData.password;
-    const hasLength = pass.length >= 8;
-    const hasNumber = /\d/.test(pass);
-    const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(pass);
+    const hasLength = password.length >= 8;
+    const hasNumber = /\d/.test(password);
+    const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
     
     let count = 0;
     if (hasLength) count++;
@@ -41,31 +36,27 @@ const SignUp = () => {
       hasNumber,
       hasSpecial
     });
-  }, [formData.password]);
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  }, [password]);
 
   const validate = () => {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     
-    if (!formData.firstName.trim()) newErrors.firstName = "First name is required";
-    if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
-    if (!emailRegex.test(formData.email)) newErrors.email = "Invalid email address";
+    if (!emailRegex.test(email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
     
-    if (formData.password.length < 8) {
+    if (password.length < 8) {
       newErrors.password = "Minimum 8 characters required";
     } else if (!strength.hasNumber || !strength.hasSpecial) {
-      newErrors.password = "Include a number and a symbol";
+      newErrors.password = "Include at least one number and symbol";
     }
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSignUp = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     if (validate()) {
       navigate('/home');
@@ -73,11 +64,11 @@ const SignUp = () => {
   };
 
   return (
-    <div className="signup-screen">
-      <div className="gradient-layer"></div>
-      <div className="bg-lines-layer"></div>
+    <div className="login-screen">
+      <div className="bg-lines"></div>
+      <div className="gradient-overlay"></div>
       
-      <div className="signup-content">
+      <div className="login-content">
         <StatusBar dark={true} />
 
         <div className="header-nav">
@@ -89,54 +80,28 @@ const SignUp = () => {
         <div className="form-container">
           <img src={logo} alt="Logo" className="app-logo" />
           
-          <h1 className="main-heading">Sign Up</h1>
-          <p className="sub-heading">Please Sign Up to Log In</p>
+          <h1 className="main-heading">Log In</h1>
+          <p className="sub-heading">Let’s get started</p>
 
-          <form onSubmit={handleSignUp} noValidate>
-            <div className={`field-box glass-effect ${errors.firstName ? 'field-error' : ''}`}>
-              <User size={20} className="field-icon" strokeWidth={2} />
-              <input 
-                name="firstName"
-                type="text" 
-                placeholder="First Name"
-                value={formData.firstName}
-                onChange={handleChange}
-              />
-            </div>
-            {errors.firstName && <span className="error-text">{errors.firstName}</span>}
-
-            <div className={`field-box glass-effect ${errors.lastName ? 'field-error' : ''}`}>
-              <User size={20} className="field-icon" strokeWidth={2} />
-              <input 
-                name="lastName"
-                type="text" 
-                placeholder="Last Name"
-                value={formData.lastName}
-                onChange={handleChange}
-              />
-            </div>
-            {errors.lastName && <span className="error-text">{errors.lastName}</span>}
-
-            <div className={`field-box glass-effect ${errors.email ? 'field-error' : ''}`}>
+          <form onSubmit={handleLogin} noValidate>
+            <div className={`field-box ${errors.email ? 'field-error' : ''}`}>
               <Mail size={20} className="field-icon" strokeWidth={2} />
               <input 
-                name="email"
                 type="email" 
                 placeholder="Email Address"
-                value={formData.email}
-                onChange={handleChange}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             {errors.email && <span className="error-text">{errors.email}</span>}
 
-            <div className={`field-box glass-effect ${errors.password ? 'field-error' : ''}`}>
+            <div className={`field-box ${errors.password ? 'field-error' : ''}`}>
               <Lock size={20} className="field-icon" strokeWidth={2} />
               <input 
-                name="password"
                 type={showPassword ? "text" : "password"} 
                 placeholder="Password"
-                value={formData.password}
-                onChange={handleChange}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <button 
                 type="button" 
@@ -147,7 +112,7 @@ const SignUp = () => {
               </button>
             </div>
 
-            {formData.password.length > 0 && (
+            {password.length > 0 && (
               <div className="strength-module">
                 <div className="meter-bg">
                   <div 
@@ -165,22 +130,23 @@ const SignUp = () => {
                 </div>
               </div>
             )}
+            
             {errors.password && <span className="error-text">{errors.password}</span>}
 
             <div className="forgot-row">
-              <a href="#" className="forgot-link">Forget Password?</a>
+              <a href="#" className="forgot-link" onClick={() => navigate('/forgetpass')}>Forget Password?</a>
             </div>
 
-            <button type="submit" className="action-btn">Sign Up</button>
+            <button type="submit" className="login-action-btn" onClick={() => navigate('/registration')}>Log In</button>
           </form>
         </div>
 
         <div className="footer-links">
-          <p>Already have an account? <a href="#" onClick={() => navigate('/login')}>Log In</a></p>
+          <p>Don’t have an account? <a href="#" onClick={() => navigate('/signup')}>Sign Up</a></p>
         </div>
       </div>
     </div>
   );
 };
 
-export default SignUp;
+export default Login;

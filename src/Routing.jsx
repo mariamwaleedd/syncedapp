@@ -1,12 +1,12 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
-import ForgetPass from './pages/ForgetPass';
-import Registration from './pages/Registration';
-import Confirmation from './pages/Confirmation';
-import Confirmed from './pages/Confirmed';
+import Login from './pages/LoggingIn/Login';
+import SignUp from './pages/LoggingIn/SignUp';
+import ForgetPass from './pages/LoggingIn/ForgetPass';
+import Registration from './pages/LoggingIn/Registration';
+import Confirmation from './pages/LoggingIn/Confirmation';
+import Confirmed from './pages/LoggingIn/Confirmed';
 import CreateHealthID from './pages/QuizHero/CreateHealthID';
 
 const Routing = () => {

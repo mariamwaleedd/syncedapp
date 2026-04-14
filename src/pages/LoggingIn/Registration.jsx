@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Delete, ChevronDown } from 'lucide-react';
-import StatusBar from '../common/StatusBar';
+import StatusBar from '../../common/StatusBar';
 import './Registration.css';
 
 const Registration = () => {

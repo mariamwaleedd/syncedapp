@@ -5,45 +5,44 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.forget-screen {
+.login-screen {
   width: 100%;
-  min-height: 100vh;
   background-color: #010422;
-  position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
   color: #FFFFFF;
   font-family: 'General Sans', sans-serif;
 }
 
-.gradient-layer {
+.bg-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../imgs/bg.png');
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+.gradient-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: linear-gradient(180deg, rgba(100, 181, 246, 0.28) 0%, rgba(1, 4, 34, 0) 100%);
-  z-index: 1;
-}
-
-.bg-lines-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('../imgs/bg.png');
-  background-size: cover;
-  background-position: center;
   z-index: 2;
-  opacity: 0.5;
 }
 
-.forget-content {
+.login-content {
   position: relative;
   z-index: 3;
-  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -60,7 +59,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: #FFF;
+  padding: 5px;
 }
 
 .lang-pill {
@@ -83,43 +82,32 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 30px;
+  padding-top: 40px;
   width: 100%;
   max-width: 360px;
   margin: 0 auto;
 }
 
 .app-logo {
-  width: 64px;
+  width: 52px;
   height: auto;
   margin-bottom: 30px;
 }
 
 .main-heading {
   font-family: 'Instrument Serif', serif;
-  font-size: 50px;
+  font-size: 64px;
   font-weight: 400;
-  text-align: center;
+  line-height: 1;
+  margin-bottom: 4px;
 }
 
 .sub-heading {
-  font-family: 'General Sans', sans-serif;
-  font-size: 16px;
+  font-family: 'Instrument Serif', serif;
+  font-size: 22px;
+  font-style: italic;
   opacity: 0.9;
-  margin-top: 15px;
-  margin-bottom: 35px;
-  text-align: center;
-  max-width: 280px;
-  line-height: 1.4;
-}
-
-.section-label {
-  font-size: 16px;
-  font-weight: 500;
-  margin-top: 25px;
-  margin-bottom: 2px;
-  text-align: left;
-  width: 100%;
+  margin-bottom: 50px;
 }
 
 form {
@@ -127,34 +115,30 @@ form {
 }
 
 .field-box {
+  background: rgba(13, 22, 53, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
   display: flex;
   align-items: center;
   padding: 0 18px;
-  margin-top: 14px;
-  height: 60px;
-  border-radius: 14px;
-  transition: all 0.3s ease;
-}
-
-.glass-effect {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  margin-top: 16px;
+  height: 62px;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(15px);
 }
 
 .field-box:focus-within {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(100, 181, 246, 0.5);
+  border-color: #64B5F6;
+  background: rgba(13, 22, 53, 0.8);
 }
 
 .field-error {
-  border-color: rgba(255, 77, 77, 0.5) !important;
+  border-color: #ff4d4d !important;
 }
 
 .field-icon {
   color: #FFFFFF;
-  opacity: 0.95;
+  opacity: 0.9;
   flex-shrink: 0;
 }
 
@@ -179,12 +163,16 @@ form {
   border: none;
   color: #FFFFFF;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 5px;
 }
 
 .error-text {
   color: #ffb3b3;
-  font-size: 11px;
+  font-size: 12px;
   margin-top: 4px;
+  display: block;
   padding-left: 4px;
 }
 
@@ -202,7 +190,7 @@ form {
 
 .meter-fill {
   height: 100%;
-  transition: width 0.4s ease;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .meter-labels {
@@ -214,13 +202,27 @@ form {
 .meter-labels span {
   font-size: 11px;
   color: rgba(255, 255, 255, 0.3);
+  font-weight: 500;
 }
 
 .meter-labels span.met {
   color: #64B5F6;
 }
 
-.action-btn {
+.forgot-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.forgot-link {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.login-action-btn {
   width: 100%;
   background-color: #64B5F6;
   color: #FFFFFF;
@@ -228,19 +230,26 @@ form {
   border-radius: 14px;
   height: 60px;
   font-size: 18px;
-  font-weight: 700;
-  margin-top: 40px;
+  font-family: genera;
+  font-weight: 600;
+  margin-top: 60px;
   cursor: pointer;
   box-shadow: 0 8px 24px rgba(100, 181, 246, 0.3);
+  transition: transform 0.1s;
+}
+
+.login-action-btn:active {
+  transform: scale(0.98);
 }
 
 .footer-links {
   text-align: center;
-  padding: 40px 0;
+  margin-bottom: 30px;
 }
 
 .footer-links p {
   font-size: 14px;
+  margin-top: 100px;
   color: rgba(255, 255, 255, 0.7);
 }
 

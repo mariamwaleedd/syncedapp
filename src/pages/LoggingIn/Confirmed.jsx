@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Check } from 'lucide-react';
-import StatusBar from '../common/StatusBar';
+import StatusBar from '../../common/StatusBar';
 import './Confirmed.css';
 
 const Confirmed = () => {

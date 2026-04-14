@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Lock, Eye, EyeOff, ChevronLeft, Globe, UserCheck } from 'lucide-react';
-import { useLanguage } from '../common/LanguageContext';
-import StatusBar from '../common/StatusBar';
+import { useLanguage } from '../../common/LanguageContext';
+import StatusBar from '../../common/StatusBar';
 import './ForgetPass.css';
-import logo from '../imgs/logoblue.png';
+import logo from '../../imgs/logoblue.png';
 
 const ForgetPass = () => {
   const { t, toggleLanguage, lang } = useLanguage();

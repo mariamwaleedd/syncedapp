@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import StatusBar from '../common/StatusBar';
+import StatusBar from '../../common/StatusBar';
 import './Confirmation.css';
 
 const Confirmation = () => {
