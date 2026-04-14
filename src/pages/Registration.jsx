@@ -1,157 +1,121 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, Delete, ChevronDown, ArrowRight } from 'lucide-react';
+import { ChevronLeft, Delete, ChevronDown } from 'lucide-react';
 import StatusBar from '../common/StatusBar';
 import './Registration.css';
 
 const Registration = () => {
   const navigate = useNavigate();
-  const dropdownRef = useRef(null);
-  const [phone, setPhone] = useState('');
-  const [error, setError] = useState('');
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const menuRef = useRef(null);
+  const [phoneDigits, setPhoneDigits] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   
-  const countries = [
-    { name: 'Egypt', code: 'EG', prefix: '+20', length: 11, flag: 'https://flagcdn.com/w40/eg.png' },
-    { name: 'Saudi Arabia', code: 'SA', prefix: '+966', length: 9, flag: 'https://flagcdn.com/w40/sa.png' },
-    { name: 'UAE', code: 'AE', prefix: '+971', length: 9, flag: 'https://flagcdn.com/w40/ae.png' },
-    { name: 'USA', code: 'US', prefix: '+1', length: 10, flag: 'https://flagcdn.com/w40/us.png' }
+  const countryData = [
+    { name: 'Egypt', pref: '+20', size: 11, flag: 'https://flagcdn.com/w40/eg.png' },
+    { name: 'Saudi', pref: '+966', size: 9, flag: 'https://flagcdn.com/w40/sa.png' },
+    { name: 'UAE', pref: '+971', size: 9, flag: 'https://flagcdn.com/w40/ae.png' }
   ];
 
-  const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+  const [activeCountry, setActiveCountry] = useState(countryData[0]);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
+    const closeMenu = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) setIsMenuOpen(false);
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', closeMenu);
+    return () => document.removeEventListener('mousedown', closeMenu);
   }, []);
 
-  const handleNumberClick = (num) => {
-    if (phone.length < selectedCountry.length) {
-      setPhone(prev => prev + num);
-      setError('');
-    } else {
-      setError(`Maximum digits reached for ${selectedCountry.name}`);
+  const pressKey = (digit) => {
+    if (phoneDigits.length < activeCountry.size) {
+      setPhoneDigits(prev => prev + digit);
+      setErrorMsg('');
     }
   };
 
-  const handleDelete = () => {
-    setPhone(prev => prev.slice(0, -1));
-    setError('');
+  const backspace = () => {
+    setPhoneDigits(prev => prev.slice(0, -1));
+    setErrorMsg('');
   };
 
-  const selectCountry = (country) => {
-    setSelectedCountry(country);
-    setPhone('');
-    setError('');
-    setIsDropdownOpen(false);
-  };
-
-  const keys = [
-    { num: '1', letters: '' }, { num: '2', letters: 'ABC' }, { num: '3', letters: 'DEF' },
-    { num: '4', letters: 'GHI' }, { num: '5', letters: 'JKL' }, { num: '6', letters: 'MNO' },
-    { num: '7', letters: 'PQRS' }, { num: '8', letters: 'TUV' }, { num: '9', letters: 'WXYZ' },
-    { type: 'empty' }, { num: '0', letters: '' }, { type: 'delete' }
-  ];
-
-  const progress = (phone.length / selectedCountry.length) * 100;
+  const buttons = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '', '0', 'del'];
+  const fillWidth = (phoneDigits.length / activeCountry.size) * 100;
 
   return (
-    <div className="registration-screen">
-      <div className="gradient-layer"></div>
-      <div className="bg-lines-layer"></div>
+    <div className="reg-screen-container">
+      <div className="reg-gradient-bg"></div>
+      <div className="reg-lines-bg"></div>
       
-      <div className="reg-content">
+      <div className="reg-inner-content">
         <StatusBar dark={true} />
-
-        <div className="header-nav">
-          <button className="nav-icon-btn" onClick={() => navigate(-1)}>
+        
+        <div className="reg-nav-header">
+          <button className="reg-back-arrow" onClick={() => navigate(-1)}>
             <ChevronLeft size={32} color="#FFFFFF" strokeWidth={2.5} />
           </button>
         </div>
 
-        <div className="top-section">
-          <h1 className="main-heading">Registration</h1>
-          <p className="sub-heading">Enter your phone number to verify your account.</p>
+        <div className="reg-top-layout">
+          <h1 className="reg-main-title">Registration</h1>
+          <p className="reg-description">Enter your phone number to verify your account.</p>
 
-          <div className="input-wrapper-container" ref={dropdownRef}>
-            <div className={`phone-input-container glass-input ${error ? 'field-error' : ''}`}>
-              <div className="country-selector" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-                <img src={selectedCountry.flag} alt={selectedCountry.name} />
-                <span>({selectedCountry.prefix})</span>
-                <ChevronDown size={16} className={`arrow ${isDropdownOpen ? 'open' : ''}`} />
+          <div className="reg-input-area" ref={menuRef}>
+            <div className="reg-field-container reg-glass">
+              <div className="reg-selector-trigger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                <img src={activeCountry.flag} alt="" className="reg-flag-img" />
+                <span className="reg-prefix-text">({activeCountry.pref})</span>
+                <ChevronDown size={16} className={`reg-chevron ${isMenuOpen ? 'open' : ''}`} />
               </div>
-              <div className="vertical-divider"></div>
-              <div className="number-display">
-                {phone || <span className="placeholder">Phone Number</span>}
+              <div className="reg-field-divider"></div>
+              <div className="reg-input-display">
+                {phoneDigits || <span className="reg-input-placeholder">Phone Number</span>}
               </div>
             </div>
 
-            {isDropdownOpen && (
-              <div className="country-dropdown glass-effect">
-                {countries.map((c) => (
-                  <div key={c.code} className="country-item" onClick={() => selectCountry(c)}>
-                    <img src={c.flag} alt={c.name} />
-                    <span className="c-name">{c.name}</span>
-                    <span className="c-prefix">{c.prefix}</span>
+            {isMenuOpen && (
+              <div className="reg-dropdown-list reg-glass-panel">
+                {countryData.map((c) => (
+                  <div key={c.pref} className="reg-dropdown-item" onClick={() => { setActiveCountry(c); setPhoneDigits(''); setIsMenuOpen(false); }}>
+                    <img src={c.flag} alt="" />
+                    <span>{c.name} ({c.pref})</span>
                   </div>
                 ))}
               </div>
             )}
           </div>
 
-          <div className="progress-container">
-            <div className="progress-track">
-              <div className="progress-fill" style={{ width: `${progress}%` }}></div>
+          <div className="reg-progress-module">
+            <div className="reg-track-bar">
+              <div className="reg-fill-bar" style={{ width: `${fillWidth}%` }}></div>
             </div>
-            <div className="progress-info">
-              <span>{phone.length === selectedCountry.length ? 'Ready' : `Missing ${selectedCountry.length - phone.length} digits`}</span>
-              <span>{phone.length}/{selectedCountry.length}</span>
+            <div className="reg-status-info">
+              <span>{phoneDigits.length === activeCountry.size ? 'Ready' : `Missing ${activeCountry.size - phoneDigits.length} digits`}</span>
+              <span>{phoneDigits.length}/{activeCountry.size}</span>
             </div>
           </div>
-
-          {error && (
-            <div className="error-warning-box">
-              <span className="warning-icon">!</span>
-              <p>{error}</p>
-            </div>
-          )}
         </div>
 
-        <div className="bottom-controls">
-          <div className="keypad-grid">
-            {keys.map((key, index) => {
-              if (key.type === 'empty') return <div key={index} className="key-spacer" />;
-              if (key.type === 'delete') {
-                return (
-                  <button key={index} className="key-btn glass-key" onClick={handleDelete}>
-                    <Delete size={26} color="#FFFFFF" />
-                  </button>
-                );
-              }
-              return (
-                <button key={index} className="key-btn glass-key" onClick={() => handleNumberClick(key.num)}>
-                  <span className="key-num">{key.num}</span>
-                  {key.letters && <span className="key-letters">{key.letters}</span>}
-                </button>
-              );
-            })}
+        <div className="reg-bottom-layout">
+          <div className="reg-number-keypad">
+            {buttons.map((b, i) => (
+              b === 'del' ? 
+              <button key={i} className="reg-key-item reg-glass-key" onClick={backspace}><Delete size={26} /></button> :
+              b === '' ? <div key={i} /> :
+              <button key={i} className="reg-key-item reg-glass-key" onClick={() => pressKey(b)}>
+                <span className="reg-key-num-label">{b}</span>
+              </button>
+            ))}
           </div>
 
-          <div className="button-wrapper">
-             {phone.length === selectedCountry.length && (
-              <button className="next-step-btn" onClick={() => navigate('/otp')}>
-                <span>Continue</span>
-                <ArrowRight size={20} />
+          <div className="reg-submit-wrap">
+            {phoneDigits.length === activeCountry.size && (
+              <button className="reg-continue-button" onClick={() => navigate('/confirmation', { state: { phone: activeCountry.pref + phoneDigits } })}>
+                Continue
               </button>
             )}
           </div>
-          
-          <div className="home-indicator"></div>
+          <div className="reg-iphone-bar"></div>
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import ForgetPass from './pages/ForgetPass';
 import Registration from './pages/Registration';
+import Confirmation from './pages/Confirmation';
 
 const Routing = () => {
   return (
@@ -15,6 +16,7 @@ const Routing = () => {
       <Route path="/signup" element={<SignUp />} />
       <Route path="/forgetpass" element={<ForgetPass />} />
       <Route path="/registration" element={<Registration />} />
+      <Route path="/confirmation" element={<Confirmation />} />
 
     </Routes>
   );
