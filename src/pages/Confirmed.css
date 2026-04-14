@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
+
+.confirmed-root {
+  width: 100%;
+  height: 100vh;
+  background-color: #010422;
+  position: relative;
+  overflow: hidden;
+  color: #FFFFFF;
+  font-family: 'General Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.conf-layer-grad {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(100, 181, 246, 0.28) 0%, rgba(1, 4, 34, 0) 100%);
+  z-index: 1;
+}
+
+.conf-layer-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../imgs/bg.png');
+  background-size: cover;
+  opacity: 0.45;
+  z-index: 2;
+}
+
+.conf-page-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 24px;
+}
+
+.conf-success-module {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: -50px;
+}
+
+.conf-icon-glow {
+  width: 120px;
+  height: 120px;
+  background: rgba(100, 181, 246, 0.15);
+  border-radius: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(100, 181, 246, 0.3);
+  margin-bottom: 40px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 40px rgba(100, 181, 246, 0.2);
+}
+
+.conf-main-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 64px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.conf-sub-desc {
+  font-size: 20px;
+  line-height: 1.4;
+  opacity: 0.85;
+  max-width: 300px;
+}
+
+.conf-footer-action {
+  width: 100%;
+  padding-bottom: 30px;
+}
+
+.conf-primary-btn {
+  width: 100%;
+  height: 60px;
+  background-color: #64B5F6;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 14px;
+  font-family: 'General Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 35px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(100, 181, 246, 0.25);
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.conf-primary-btn:active {
+  transform: scale(0.98);
+  background-color: #42a5f5;
+}
+
+.conf-bottom-bar {
+  width: 120px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  margin: 0 auto 10px;
+}

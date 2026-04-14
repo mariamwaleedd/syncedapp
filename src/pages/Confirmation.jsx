@@ -54,7 +54,7 @@ const Confirmation = () => {
     if (entered.length < 4) return;
     
     if (entered === correctCode) {
-      navigate('/home');
+      navigate('/confirmed');
     } else {
       setError(true);
     }
