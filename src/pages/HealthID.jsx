@@ -48,7 +48,7 @@ const HealthID = () => {
         <div className="hid-nav-actions">
           <button className="hid-circle-btn"><ChevronLeft size={22} /></button>
           <div className="hid-verified-pill">
-            <Check size={14} color="#00E676" strokeWidth={3} />
+            <Check size={14} color="#05FF91" strokeWidth={3} />
             <span>Verified</span>
           </div>
           <div className="hid-right-stack">
@@ -78,15 +78,15 @@ const HealthID = () => {
           <div className="hid-score-info">
             <p>Overall Health Score</p>
             <div className="hid-score-val">92</div>
-            <span className="hid-score-trend" style={{ color: '#00E676' }}>Excellent Health</span>
+            <span className="hid-score-trend">Excellent Health</span>
           </div>
           <div className="hid-score-visual">
             <svg width="80" height="80" viewBox="0 0 80 80">
               <circle cx="40" cy="40" r="35" stroke="rgba(255,255,255,0.05)" strokeWidth="4" fill="none" />
               <circle 
                 cx="40" cy="40" r="35" 
-                stroke="#00E676" 
-                strokeWidth="6" 
+                stroke="#05FF91" 
+                strokeWidth={6} 
                 fill="none" 
                 strokeDasharray="48 7" 
                 strokeLinecap="round"
@@ -94,7 +94,7 @@ const HealthID = () => {
               />
             </svg>
             <div className="hid-score-icon-center">
-              <Shield size={24} color="#00E676" strokeWidth={1.5} />
+              <Shield size={24} color="#05FF91" strokeWidth={1.5} />
             </div>
           </div>
         </motion.div>
@@ -120,7 +120,7 @@ const HealthID = () => {
               <p>Heart Rate</p>
             </div>
             <div className="hid-vital-item hid-glass">
-              <Activity size={18} color="#00E676" />
+              <Activity size={18} color="#05FF91" />
               <div className="hid-vital-data">120/80</div>
               <p>Blood Pressure</p>
             </div>
@@ -275,7 +275,7 @@ const HealthID = () => {
 
         <div className="hid-footer-status hid-glass">
           <div className="hid-foot-l">
-            <Check size={16} color="#00E676" />
+            <Check size={16} color="#05FF91" />
             <div className="hid-foot-meta">
               <h5>Profile Complete</h5>
               <p>Updated yesterday at 08:30 PM</p>
