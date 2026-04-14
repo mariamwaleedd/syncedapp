@@ -13,6 +13,7 @@ import PhysicalStats from './pages/QuizHero/PhysicalStats';
 import MedicalHistory from './pages/QuizHero/MedicalHistory';
 import Lifestyle from './pages/QuizHero/Lifestyle';
 import GeneticInfo from './pages/QuizHero/GeneticInfo';
+import EmergencyContact from './pages/QuizHero/EmergencyContacts';
 
 const Routing = () => {
   return (
@@ -32,6 +33,7 @@ const Routing = () => {
       <Route path="/medicalhistory" element={<MedicalHistory/>} />
       <Route path="/lifestyle" element={<Lifestyle/>} />
       <Route path="/geneticinfo" element={<GeneticInfo/>} />
+      <Route path="/emergencycontacts" element={<EmergencyContact/>} />
 
     </Routes>
   );

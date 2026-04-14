@@ -70,7 +70,7 @@ const GeneticInfo = () => {
             <ArrowLeft size={18} />
             <span>Back</span>
           </button>
-          <button className="gi-next-btn" onClick={() => navigate('/step-7')}>
+          <button className="gi-next-btn" onClick={() => navigate('/emergencycontacts')}>
             <span>Continue</span>
             <ArrowRight size={18} />
           </button>
