@@ -7,6 +7,7 @@ import ForgetPass from './pages/ForgetPass';
 import Registration from './pages/Registration';
 import Confirmation from './pages/Confirmation';
 import Confirmed from './pages/Confirmed';
+import CreateHealthID from './pages/QuizHero/CreateHealthID';
 
 const Routing = () => {
   return (
@@ -19,6 +20,7 @@ const Routing = () => {
       <Route path="/registration" element={<Registration />} />
       <Route path="/confirmation" element={<Confirmation />} />
       <Route path="/confirmed" element={<Confirmed />} />
+      <Route path="/createhealth" element={<CreateHealthID />} />
 
     </Routes>
   );

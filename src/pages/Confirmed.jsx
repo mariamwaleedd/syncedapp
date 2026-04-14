@@ -29,7 +29,7 @@ const Confirmed = () => {
         <div className="conf-footer-action">
           <button 
             className="conf-primary-btn"
-            onClick={() => navigate('/home')}
+            onClick={() => navigate('/createhealth')}
           >
             Get Started
           </button>
