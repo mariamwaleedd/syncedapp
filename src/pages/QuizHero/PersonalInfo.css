@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
+
+.pi-screen {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #010422;
+  position: relative;
+  color: #FFFFFF;
+  font-family: 'General Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.pi-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(100, 181, 246, 0.22) 0%, rgba(1, 4, 34, 0) 100%);
+  z-index: 1;
+}
+
+.pi-grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../imgs/bg.png');
+  background-size: cover;
+  opacity: 0.35;
+  z-index: 2;
+}
+
+.pi-content-wrapper {
+  position: relative;
+  z-index: 3;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.pi-progress-section {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.pi-progress-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.pi-step-label, .pi-percent-label {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.5;
+}
+
+.pi-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.pi-fill {
+  height: 100%;
+  background: #64B5F6;
+  border-radius: 10px;
+}
+
+.pi-skip-link {
+  display: block;
+  margin-left: auto;
+  margin-top: 10px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 14px;
+  opacity: 0.5;
+}
+
+.pi-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pi-user-box {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #3A7BD5 0%, #003399 100%);
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 30px rgba(0, 51, 153, 0.3);
+}
+
+.pi-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 40px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.pi-subtitle {
+  font-size: 16px;
+  opacity: 0.6;
+}
+
+.pi-form-card {
+  margin-top: 30px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  backdrop-filter: blur(15px);
+}
+
+.pi-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pi-input-group label, .pi-gender-section label {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.pi-input-group input, .pi-dob-select {
+  width: 100%;
+  height: 54px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 0 16px;
+  color: white;
+  font-family: 'General Sans', sans-serif;
+  font-size: 15px;
+  outline: none;
+  backdrop-filter: blur(10px);
+}
+
+.pi-dob-row {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.pi-dob-select {
+  flex: 1;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 35px;
+}
+
+.pi-dob-select option {
+  background-color: #010422;
+  color: white;
+}
+
+.pi-input-group input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.pi-gender-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.pi-gender-btn {
+  height: 50px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pi-gender-btn.active {
+  background: rgba(100, 181, 246, 0.2);
+  border-color: #64B5F6;
+}
+
+.pi-footer-spacer {
+  height: 60px;
+}
+
+.pi-actions-row {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-top: auto;
+  padding-bottom: 10px;
+}
+
+.pi-back-btn {
+  flex: 0.8;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 18px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pi-continue-btn {
+  flex: 1.2;
+  height: 60px;
+  background: #64B5F6;
+  border: none;
+  border-radius: 18px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(100, 181, 246, 0.25);
+}
+
+.pi-home-indicator {
+  width: 130px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  margin: 15px auto 5px;
+}

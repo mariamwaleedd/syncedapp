@@ -70,7 +70,7 @@ const CreateHealthID = () => {
         </div>
 
         <div className="bottom-action">
-          <button className="begin-btn" onClick={() => navigate('/next-step')}>
+          <button className="begin-btn" onClick={() => navigate('/personalinfo')}>
             Let's Begin <ArrowRight size={20} />
           </button>
           <div className="ios-indicator"></div>
