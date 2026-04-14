@@ -1,0 +1,130 @@
+.touchbar-fixed-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 10px 10px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.touchbar-container {
+  pointer-events: auto;
+  width: 100%;
+  max-width: 428px;
+  height: 76px;
+  background: #1C345B;
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  display: flex;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+/* Sliding Liquid Indicator */
+.touchbar-indicator {
+  position: absolute;
+  top: 12px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, rgba(100, 181, 246, 0.2) 0%, rgba(100, 181, 246, 0.05) 100%);
+  border-radius: 16px;
+  transform: translateX(-50%);
+  transition: left 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), background 0.3s;
+  z-index: 0;
+  box-shadow: inset 0 0 10px rgba(100, 181, 246, 0.1);
+  border: 1px solid rgba(100, 181, 246, 0.15);
+}
+
+.touchbar-item {
+  flex: 1;
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+  padding-bottom: 4px;
+}
+
+.touchbar-icon-wrap {
+  color: rgba(255, 255, 255, 0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.touchbar-label {
+  font-family: var(--font-main);
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+/* Active State Styles */
+.touchbar-item.active .touchbar-icon-wrap {
+  color: #64B5F6;
+  transform: translateY(-4px) scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(100, 181, 246, 0.4));
+}
+
+.touchbar-item.active .touchbar-label {
+  color: #64B5F6;
+  font-weight: 600;
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* Creative Motion: Keyframes for a heartbeat effect on active icon */
+@keyframes activePulse {
+  0% { transform: translateY(-4px) scale(1.1); }
+  50% { transform: translateY(-4px) scale(1.15); }
+  100% { transform: translateY(-4px) scale(1.1); }
+}
+
+.touchbar-item.active .touchbar-icon-wrap svg {
+  animation: activePulse 2s infinite ease-in-out;
+}
+
+/* Wave Effect on Click */
+.touchbar-item:active .touchbar-icon-wrap {
+  transform: scale(0.85);
+  transition: transform 0.1s;
+}
+
+.touchbar-home-pill {
+  width: 130px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin-top: 12px;
+  opacity: 0.5;
+}
+
+/* Responsive adjustments for very small devices */
+@media (max-width: 360px) {
+  .touchbar-container {
+    height: 70px;
+    border-radius: 20px;
+  }
+  .touchbar-label {
+    display: none;
+  }
+  .touchbar-indicator {
+    top: 10px;
+  }
+}
