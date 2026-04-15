@@ -1,41 +1,211 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, Sparkles, Accessibility } from 'lucide-react';
+import { 
+  ChevronLeft, Moon, Sun, Globe, Type, 
+  Eye, EyeOff, MousePointer2, Volume2, 
+  Check, RefreshCw 
+} from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './AccessibilitySettings.css';
 
-const AccessibilitySettings = () => {
+const Accessibility = () => {
   const navigate = useNavigate();
+  const [theme, setTheme] = useState('dark');
+  const [lang, setLang] = useState('en');
+  const [size, setSize] = useState('medium');
+  const [colorMode, setColorMode] = useState('none');
+  const [cursor, setCursor] = useState('normal');
+  const [toggles, setToggles] = useState({
+    contrast: false,
+    motion: true,
+    tts: false,
+    sounds: true,
+    autoRead: false
+  });
+
+  const handleToggle = (key) => setToggles(p => ({ ...p, [key]: !p[key] }));
 
   return (
-    <div className="qa-stub-root ltr-theme">
-      <div className="qa-stub-header">
+    <div className="ac-root ltr-theme">
+      <div className="ac-bg-gradient"></div>
+      <div className="ac-bg-lines"></div>
+
+      <div className="ac-wrapper">
         <StatusBar dark={true} />
-        <div className="qa-stub-nav">
-          <button className="qa-stub-circle-btn" onClick={() => navigate(-1)}>
-            <ChevronLeft size={22} />
+
+        <header className="ac-header-nav">
+          <button className="ac-back-btn" onClick={() => navigate(-1)}>
+            <ChevronLeft size={20} strokeWidth={2.5} />
+            <span>Back</span>
           </button>
-          <div className="qa-stub-title">
-            <h1>Accessibility</h1>
+          <h1 className="ac-page-title">Accessibility</h1>
+        </header>
+
+        <div className="ac-scroll-content">
+          <section className="ac-section">
+            <div className="ac-section-label">
+              <Sun size={18} />
+              <h2>Appearance</h2>
+            </div>
+            <div className="ac-card ac-glass">
+              <div className="ac-label-min">Theme</div>
+              <div className="ac-theme-grid">
+                <div className={`ac-theme-box dark ${theme === 'dark' ? 'active' : ''}`} onClick={() => setTheme('dark')}>
+                   <Moon size={24} />
+                   <span>Dark Mode</span>
+                   {theme === 'dark' && <div className="ac-check-abs"><Check size={12} strokeWidth={4} /></div>}
+                </div>
+                <div className={`ac-theme-box light ${theme === 'light' ? 'active' : ''}`} onClick={() => setTheme('light')}>
+                   <Sun size={24} />
+                   <span>Light Mode</span>
+                   {theme === 'light' && <div className="ac-check-abs"><Check size={12} strokeWidth={4} /></div>}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="ac-section">
+            <div className="ac-section-label">
+              <Globe size={18} />
+              <h2>Language</h2>
+            </div>
+            <div className="ac-card ac-glass">
+               <div className="ac-label-min">Select Language</div>
+               <div className="ac-lang-list">
+                  <div className={`ac-lang-row ${lang === 'en' ? 'active' : ''}`} onClick={() => setLang('en')}>
+                    <div className="ac-lang-info">🇺🇸 <span>English</span></div>
+                    {lang === 'en' && <Check size={16} color="#64B5F6" />}
+                  </div>
+                  <div className={`ac-lang-row ${lang === 'ar' ? 'active' : ''}`} onClick={() => setLang('ar')}>
+                    <div className="ac-lang-info">🇸🇦 <span>العربية</span></div>
+                    {lang === 'ar' && <Check size={16} color="#64B5F6" />}
+                  </div>
+                  <div className={`ac-lang-row ${lang === 'fr' ? 'active' : ''}`} onClick={() => setLang('fr')}>
+                    <div className="ac-lang-info">🇫🇷 <span>Français</span></div>
+                    {lang === 'fr' && <Check size={16} color="#64B5F6" />}
+                  </div>
+               </div>
+            </div>
+          </section>
+
+          <section className="ac-section">
+            <div className="ac-section-label">
+              <Type size={18} />
+              <h2>Text Size</h2>
+            </div>
+            <div className="ac-card ac-glass">
+              <div className="ac-label-min">Font Size</div>
+              <div className="ac-size-stack">
+                {['Small', 'Medium', 'Large', 'Extra Large'].map((s) => (
+                  <div 
+                    key={s} 
+                    className={`ac-size-row ${size === s.toLowerCase() ? 'active' : ''}`}
+                    onClick={() => setSize(s.toLowerCase())}
+                  >
+                    <span>Aa {s}</span>
+                    {size === s.toLowerCase() && <Check size={16} color="#00E676" />}
+                  </div>
+                ))}
+              </div>
+              <p className="ac-size-hint">This is how your text will appear throughout the app.</p>
+            </div>
+          </section>
+
+          <section className="ac-section">
+            <h2 className="ac-sec-lbl">Visual Adjustments</h2>
+            <div className="ac-card ac-glass">
+              <div className="ac-toggle-row">
+                <div className="ac-toggle-l">
+                  <div className="ac-toggle-ico yellow"><Sun size={16}/></div>
+                  <div className="ac-toggle-txt"><h4>High Contrast</h4><p>Increase color contrast</p></div>
+                </div>
+                <div className={`ac-ui-switch ${toggles.contrast ? 'on' : ''}`} onClick={() => handleToggle('contrast')}>
+                  <div className="ac-ui-handle"></div>
+                </div>
+              </div>
+              <div className="ac-toggle-row">
+                <div className="ac-toggle-l">
+                  <div className="ac-toggle-ico purple"><RefreshCw size={16}/></div>
+                  <div className="ac-toggle-txt"><h4>Reduce Motion</h4><p>Minimize animations</p></div>
+                </div>
+                <div className={`ac-ui-switch ${toggles.motion ? 'on' : ''}`} onClick={() => handleToggle('motion')}>
+                  <div className="ac-ui-handle"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="ac-section">
+            <h2 className="ac-sec-lbl">Color Accessibility</h2>
+            <div className="ac-card ac-glass">
+              <div className="ac-label-min"><Eye size={14}/> Color Blind Mode</div>
+              <div className="ac-color-stack">
+                {['None', 'Protanopia', 'Deuteranopia', 'Tritanopia', 'Monochromacy'].map((m) => (
+                   <div 
+                    key={m} 
+                    className={`ac-color-row ${colorMode === m.toLowerCase() ? 'active' : ''}`}
+                    onClick={() => setColorMode(m.toLowerCase())}
+                   >
+                     <span>{m}</span>
+                     {colorMode === m.toLowerCase() && <Check size={16} color="#64B5F6" />}
+                   </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="ac-section">
+            <h2 className="ac-sec-lbl">Pointer & Cursor</h2>
+            <div className="ac-card ac-glass">
+              <div className="ac-label-min"><MousePointer2 size={14}/> Cursor Size</div>
+              <div className="ac-cursor-grid">
+                {[
+                  { id: 'normal', s: 10 }, { id: 'medium', s: 16 },
+                  { id: 'large', s: 22 }, { id: 'extra', s: 28 }
+                ].map((c) => (
+                  <div key={c.id} className={`ac-cursor-box ${cursor === c.id ? 'active' : ''}`} onClick={() => setCursor(c.id)}>
+                    <div className="ac-dot-v" style={{ width: c.s, height: c.s }}></div>
+                    <span>{c.id.charAt(0).toUpperCase() + c.id.slice(1)}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="ac-section">
+            <h2 className="ac-sec-lbl">Audio & Speech</h2>
+            <div className="ac-card ac-glass">
+              {[
+                { id: 'tts', h: 'Text to Speech', p: 'Read text aloud', ico: <Volume2 />, col: 'blue' },
+                { id: 'sounds', h: 'Sound Effects', p: 'Button clicks & alerts', ico: <Volume2 />, col: 'purple' },
+                { id: 'autoRead', h: 'Auto Read Text', p: 'Automatically read new content', ico: <Volume2 />, col: 'green' }
+              ].map(item => (
+                <div className="ac-toggle-row" key={item.id}>
+                  <div className="ac-toggle-l">
+                    <div className={`ac-toggle-ico ${item.col}`}>{item.ico}</div>
+                    <div className="ac-toggle-txt"><h4>{item.h}</h4><p>{item.p}</p></div>
+                  </div>
+                  <div className={`ac-ui-switch ${toggles[item.id] ? 'on' : ''}`} onClick={() => handleToggle(item.id)}>
+                    <div className="ac-ui-handle"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <button className="ac-reset-btn">Reset to Default Settings</button>
+
+          <div className="ac-disclaimer">
+            <p>These settings help make the app more accessible and easier to use for everyone.</p>
           </div>
-          <button className="qa-stub-circle-btn">
-            <Sparkles size={20} />
-          </button>
+
+          <div className="ac-bottom-pad"></div>
         </div>
       </div>
-
-      <motion.div className="qa-stub-content" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <div className="qa-stub-card">
-          <div className="qa-stub-icon-wrap"><Accessibility size={48} color="#00B8D4" /></div>
-          <h2>Accessibility Options</h2>
-          <p>Customize your experience with screen readers, high contrast modes, and voice commands to ensure the application is easier to use.</p>
-        </div>
-      </motion.div>
       <TouchBar />
     </div>
   );
 };
 
-export default AccessibilitySettings;
+export default Accessibility;
