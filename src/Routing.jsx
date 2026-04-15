@@ -1,5 +1,5 @@
-import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/LoggingIn/Login';
 import SignUp from './pages/LoggingIn/SignUp';
@@ -60,73 +60,113 @@ import BloodTypeDNA from './pages/HelpCenter/BloodTypeDNA';
 import AllergiesConditions from './pages/HelpCenter/AllergiesConditions';
 import CompleteReview from './pages/HelpCenter/CompleteReview';
 
+const TitleUpdater = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const titles = {
+      '/home': 'Home',
+      '/login': 'Login',
+      '/signup': 'Join SYNCED',
+      '/forgetpass': 'Reset Password',
+      '/registration': 'Account Registration',
+      '/confirmation': 'Verification',
+      '/confirmed': 'Account Confirmed',
+      '/createhealth': 'Setup Health ID',
+      '/helpcenter': 'Help Center',
+      '/helpcenter/complete-profile': 'Complete Profile',
+      '/helpcenter/health-basics': 'Health Basics',
+      '/helpcenter/blood-type-dna': 'Blood Type & DNA',
+      '/helpcenter/allergies-conditions': 'Allergies & Conditions',
+      '/helpcenter/complete-review': 'Complete & Review',
+      '/settings': 'Settings',
+      '/quickactions': 'Quick Actions',
+      '/healthid': 'Your Health ID',
+      '/wellness': 'Wellness & Focus',
+      '/familyhub': 'Family Hub',
+      '/emergency': 'Emergency Support',
+      '/blood': 'Blood Network',
+      '/appointments': 'My Appointments',
+      '/personaldetails': 'Personal Details'
+    };
+
+    const currentTitle = titles[location.pathname] || 'SYNCED';
+    document.title = currentTitle === 'SYNCED' ? 'SYNCED' : `${currentTitle} | SYNCED`;
+  }, [location]);
+
+  return null;
+};
+
 const Routing = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/login" replace />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route path="/forgetpass" element={<ForgetPass />} />
-      <Route path="/registration" element={<Registration />} />
-      <Route path="/confirmation" element={<Confirmation />} />
-      <Route path="/confirmed" element={<Confirmed />} />
+    <>
+      <TitleUpdater />
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/forgetpass" element={<ForgetPass />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/confirmation" element={<Confirmation />} />
+        <Route path="/confirmed" element={<Confirmed />} />
 
-      {/* QuizHero Routes */}
-      <Route path="/createhealth" element={<CreateHealthID />} />
-      <Route path="/personalinfo" element={<PersonalInfo />} />
-      <Route path="/physicalstats" element={<PhysicalStats />} />
-      <Route path="/medicalhistory" element={<MedicalHistory/>} />
-      <Route path="/lifestyle" element={<Lifestyle/>} />
-      <Route path="/geneticinfo" element={<GeneticInfo/>} />
-      <Route path="/emergencycontacts" element={<EmergencyContact/>} />
-      <Route path="/allset" element={<AllSet/>} />
+        {/* QuizHero Routes */}
+        <Route path="/createhealth" element={<CreateHealthID />} />
+        <Route path="/personalinfo" element={<PersonalInfo />} />
+        <Route path="/physicalstats" element={<PhysicalStats />} />
+        <Route path="/medicalhistory" element={<MedicalHistory/>} />
+        <Route path="/lifestyle" element={<Lifestyle/>} />
+        <Route path="/geneticinfo" element={<GeneticInfo/>} />
+        <Route path="/emergencycontacts" element={<EmergencyContact/>} />
+        <Route path="/allset" element={<AllSet/>} />
 
-      {/* Core Quick Actions Routes */}
-      <Route path="/quickactions" element={<QuickActions/>} />
-      <Route path="/healthid" element={<HealthID/>} />
-      <Route path="/medicine" element={<Medicine/>} />
-      <Route path="/healthai" element={<HealthAI/>} />
-      <Route path="/wellness" element={<WellnessPage/>} />
-      <Route path="/familyhub" element={<FamilyHub/>} />
-      <Route path="/addfamily" element={<AddFamily/>} />
-      <Route path="/emergency" element={<Emergency/>} />
-      <Route path="/blood" element={<Blood/>} />
-      <Route path="/doctors" element={<Doctors/>} />
-      <Route path="/mydoctors" element={<MyDoctors/>} />
-      <Route path="/reports" element={<Reports/>} />
-      <Route path="/appointments" element={<Appointments/>} />
-      <Route path="/devices" element={<Devices/>} />
-      <Route path="/devicedashboard" element={<DeviceDashboard/>} />
-      <Route path="/settings" element={<Settings/>} />
-      <Route path="/security" element={<Security/>} />
-      <Route path="/privacy" element={<Privacy/>} />
-      <Route path="/notifications" element={<Notifications/>} />
-      <Route path="/accessibility" element={<Accessibility/>} />
-      <Route path="/preferences" element={<Preferences/>} />
-      <Route path="/records" element={<Records/>} />
-      <Route path="/personaldetails" element={<PersonalDetails/>} />
+        {/* Core Quick Actions Routes */}
+        <Route path="/quickactions" element={<QuickActions/>} />
+        <Route path="/healthid" element={<HealthID/>} />
+        <Route path="/medicine" element={<Medicine/>} />
+        <Route path="/healthai" element={<HealthAI/>} />
+        <Route path="/wellness" element={<WellnessPage/>} />
+        <Route path="/familyhub" element={<FamilyHub/>} />
+        <Route path="/addfamily" element={<AddFamily/>} />
+        <Route path="/emergency" element={<Emergency/>} />
+        <Route path="/blood" element={<Blood/>} />
+        <Route path="/doctors" element={<Doctors/>} />
+        <Route path="/mydoctors" element={<MyDoctors/>} />
+        <Route path="/reports" element={<Reports/>} />
+        <Route path="/appointments" element={<Appointments/>} />
+        <Route path="/devices" element={<Devices/>} />
+        <Route path="/devicedashboard" element={<DeviceDashboard/>} />
+        <Route path="/settings" element={<Settings/>} />
+        <Route path="/security" element={<Security/>} />
+        <Route path="/privacy" element={<Privacy/>} />
+        <Route path="/notifications" element={<Notifications/>} />
+        <Route path="/accessibility" element={<Accessibility/>} />
+        <Route path="/preferences" element={<Preferences/>} />
+        <Route path="/records" element={<Records/>} />
+        <Route path="/personaldetails" element={<PersonalDetails/>} />
 
-      {/* Settings Sub-Routes */}
-      <Route path="/settings/profile" element={<Profile/>} />
-      <Route path="/settings/security" element={<SecurityDetails/>} />
-      <Route path="/settings/accessibility" element={<AccessibilitySettings/>} />
-      <Route path="/settings/preferences" element={<HealthPreferences/>} />
-      <Route path="/settings/records" element={<MedicalRecords/>} />
-      <Route path="/settings/appointments" element={<AppointmentSettings/>} />
-      <Route path="/settings/devices" element={<ConnectedDevices/>} />
-      <Route path="/settings/notifications" element={<NotificationSettings/>} />
-      <Route path="/settings/privacy" element={<PrivacySettings/>} />
+        {/* Settings Sub-Routes */}
+        <Route path="/settings/profile" element={<Profile/>} />
+        <Route path="/settings/security" element={<SecurityDetails/>} />
+        <Route path="/settings/accessibility" element={<AccessibilitySettings/>} />
+        <Route path="/settings/preferences" element={<HealthPreferences/>} />
+        <Route path="/settings/records" element={<MedicalRecords/>} />
+        <Route path="/settings/appointments" element={<AppointmentSettings/>} />
+        <Route path="/settings/devices" element={<ConnectedDevices/>} />
+        <Route path="/settings/notifications" element={<NotificationSettings/>} />
+        <Route path="/settings/privacy" element={<PrivacySettings/>} />
 
-      {/* Help Center Routes */}
-      <Route path="/helpcenter" element={<HelpCenter/>} />
-      <Route path="/helpcenter/complete-profile" element={<CompleteProfile/>} />
-      <Route path="/helpcenter/health-basics" element={<HealthBasics/>} />
-      <Route path="/helpcenter/blood-type-dna" element={<BloodTypeDNA/>} />
-      <Route path="/helpcenter/allergies-conditions" element={<AllergiesConditions/>} />
-      <Route path="/helpcenter/complete-review" element={<CompleteReview/>} />
+        {/* Help Center Routes */}
+        <Route path="/helpcenter" element={<HelpCenter/>} />
+        <Route path="/helpcenter/complete-profile" element={<CompleteProfile/>} />
+        <Route path="/helpcenter/health-basics" element={<HealthBasics/>} />
+        <Route path="/helpcenter/blood-type-dna" element={<BloodTypeDNA/>} />
+        <Route path="/helpcenter/allergies-conditions" element={<AllergiesConditions/>} />
+        <Route path="/helpcenter/complete-review" element={<CompleteReview/>} />
 
-    </Routes>
+      </Routes>
+    </>
   );
 };
 

@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import './HelpCenter.css';
+import TouchBar from '../../common/TouchBar';
 
 const HelpCenter = () => {
   const navigate = useNavigate();
@@ -23,6 +24,9 @@ const HelpCenter = () => {
   };
 
   return (
+   <>
+   <TouchBar/>
+   
     <div className="hc-root ltr-theme">
       <div className="hc-header">
         <StatusBar dark={true} />
@@ -194,6 +198,7 @@ const HelpCenter = () => {
         </div>
       </motion.div>
     </div>
+    </>
   );
 };
 
