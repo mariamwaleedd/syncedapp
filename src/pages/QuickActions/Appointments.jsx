@@ -1,0 +1,41 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { ChevronLeft, Sparkles, Calendar } from 'lucide-react';
+import StatusBar from '../../common/StatusBar';
+import TouchBar from '../../common/TouchBar';
+import './Appointments.css';
+
+const Appointments = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="qa-stub-root ltr-theme">
+      <div className="qa-stub-header">
+        <StatusBar dark={true} />
+        <div className="qa-stub-nav">
+          <button className="qa-stub-circle-btn" onClick={() => navigate(-1)}>
+            <ChevronLeft size={22} />
+          </button>
+          <div className="qa-stub-title">
+            <h1>Appointments</h1>
+          </div>
+          <button className="qa-stub-circle-btn">
+            <Sparkles size={20} />
+          </button>
+        </div>
+      </div>
+
+      <motion.div className="qa-stub-content" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <div className="qa-stub-card">
+          <div className="qa-stub-icon-wrap"><Calendar size={48} color="#FF6D00" /></div>
+          <h2>Manage Schedules</h2>
+          <p>Book new consultations, reschedule existing ones, and set reminders for your upcoming healthcare visits so you never miss a checkup.</p>
+        </div>
+      </motion.div>
+      <TouchBar />
+    </div>
+  );
+};
+
+export default Appointments;

@@ -7,8 +7,8 @@ import {
   FileText, Calendar, Bluetooth, Smartphone, Settings, Shield, Bell, 
   Accessibility, TrendingUp, Database, Plus
 } from 'lucide-react';
-import TouchBar from '../common/TouchBar';
-import StatusBar from '../common/StatusBar';
+import TouchBar from '../../common/TouchBar';
+import StatusBar from '../../common/StatusBar';
 import './QuickActions.css';
 
 const QuickActions = () => {
@@ -33,7 +33,7 @@ const QuickActions = () => {
         { title: "My Health Profile", sub: "Your personalized health ID", icon: <User size={22} />, color: "green", path: "/healthid" },
         { title: "Medicine Tracker", sub: "Track medications and schedules", icon: <Pill size={22} />, color: "orange", path: "/medicine" },
         { title: "AI Health Assistant", sub: "Chat with our AI health bot", icon: <MessageSquare size={22} />, color: "purple", path: "/healthai" },
-        { title: "Wellness & Lifestyle", sub: "Track your daily health", icon: <Activity size={22} />, color: "cyan", path: "/lifestyle" }
+        { title: "Wellness & Lifestyle", sub: "Track your daily health", icon: <Activity size={22} />, color: "cyan", path: "/wellness" }
       ]
     },
     {
@@ -70,7 +70,7 @@ const QuickActions = () => {
       title: "Settings & Preferences",
       actions: [
         { title: "All Settings", sub: "Manage app preferences", icon: <Settings size={22} />, color: "grey", path: "/settings" },
-        { title: "Personal Details", sub: "Update your information", icon: <User size={22} />, color: "blue", path: "/personalinfo" },
+        { title: "Personal Details", sub: "Update your information", icon: <User size={22} />, color: "blue", path: "/personaldetails" },
         { title: "Security", sub: "Manage security settings", icon: <Shield size={22} />, color: "red", path: "/security" },
         { title: "Privacy", sub: "Control your privacy", icon: <Shield size={22} />, color: "green", path: "/privacy" },
         { title: "Notifications", sub: "Custom app notifications", icon: <Bell size={22} />, color: "orange", path: "/notifications" },

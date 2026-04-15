@@ -7,7 +7,7 @@ import {
   ClipboardList, Pill, ShieldAlert, 
   Dna, Phone, FileText, Upload, Check 
 } from 'lucide-react';
-import TouchBar from '../common/TouchBar';
+import TouchBar from '../../common/TouchBar';
 import './HealthID.css';
 
 const SectionHeader = ({ title, showEdit = true }) => (

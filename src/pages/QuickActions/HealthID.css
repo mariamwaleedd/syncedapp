@@ -1,7 +1,7 @@
 .hid-root {
   background-color: #010422;
   background-image: 
-    url('../imgs/bg.png'), 
+    url('../../imgs/bg.png'), 
     linear-gradient(180deg, rgba(100, 181, 246, 0.28) 0%, #010422 100%);
   background-size: contain;
   background-repeat: repeat-y;
