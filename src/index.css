@@ -1,12 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
 @import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
 
-:root {
+:root[data-theme='dark'] {
   --navy: #010422;
-  --blue: #2c5282;
-  --light-blue: #ebf8ff;
-  --text: #2d3748;
-  --bg: #f7fafc;
+  --bg-color: #010422;
+  --text-main: #FFFFFF;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --card-bg: rgba(255, 255, 255, 0.06);
+  --accent-blue: #64B5F6;
+  --sub-text: rgba(255, 255, 255, 0.5);
+  --btn-bg: rgba(255, 255, 255, 0.08);
+}
+
+:root[data-theme='light'] {
+  --navy: #f0f4f8;
+  --bg-color: #f7f9fc;
+  --text-main: #010422;
+  --glass-bg: rgba(0, 0, 0, 0.05);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --accent-blue: #1A73E8;
+  --sub-text: rgba(0, 0, 0, 0.6);
+  --btn-bg: rgba(0, 0, 0, 0.05);
+}
+
+:root {
   --font-title: 'Instrument Serif', serif;
   --font-main: 'General Sans', sans-serif;
 }
@@ -24,10 +43,10 @@ body {
   justify-content: center;
   align-items: flex-start;
   padding: 40px 0;
-  background: var(--navy);
+  background: var(--bg-color);
   overflow-y: auto;
   font-family: var(--font-main);
-  color: #FFFFFF;
+  color: var(--text-main);
 }
 
 button, input, select, textarea {

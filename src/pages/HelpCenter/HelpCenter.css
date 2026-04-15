@@ -1,16 +1,16 @@
 .hc-root {
   width: 100%;
   min-height: 100vh;
-  background-color: #010422;
+  background-color: var(--bg-color);
   background-image: 
     url('../../imgs/bg.png'), 
-    linear-gradient(180deg, rgba(100, 181, 246, 0.28) 0%, #010422 100%);
+    linear-gradient(180deg, rgba(100, 181, 246, 0.28) 0%, var(--bg-color) 100%);
   background-size: contain;
   background-repeat: repeat-y;
   background-position: top center;
   background-attachment: scroll;
   position: relative;
-  color: #FFFFFF;
+  color: var(--text-main);
   font-family: var(--font-main);
   display: flex;
   flex-direction: column;
@@ -26,7 +26,7 @@
   transform: translateX(-50%);
   width: 100%;
   max-width: 430px;
-  background: rgba(28, 52, 91, 0.9);
+  background: var(--navy);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   z-index: 1001;
@@ -45,19 +45,19 @@
 .hc-circle-btn {
   width: 44px;
   height: 44px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--btn-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #FFFFFF;
+  color: var(--text-main);
 }
 
 .hc-sq-btn {
   width: 44px;
   height: 44px;
-  background: #1A73E8;
+  background: var(--accent-blue);
   border: none;
   border-radius: 12px;
   display: flex;
@@ -87,8 +87,8 @@
 }
 
 .hc-search-bar {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--btn-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 16px;
   padding: 14px 18px;
   display: flex;
@@ -103,14 +103,14 @@
 .hc-search-bar input {
   background: none;
   border: none;
-  color: white;
+  color: var(--text-main);
   font-size: 16px;
   outline: none;
   width: 100%;
 }
 
 .hc-search-bar input::placeholder {
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--sub-text);
 }
 
 .hc-scroll-content {
@@ -139,8 +139,8 @@
 }
 
 .hc-guide-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 20px;
   backdrop-filter: blur(10px);
@@ -183,8 +183,8 @@
 }
 
 .hc-video-item {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 16px;
   padding: 16px;
   display: flex;
@@ -196,7 +196,7 @@
 .hc-video-icon {
   width: 50px;
   height: 50px;
-  background: #1A73E8;
+  background: var(--accent-blue);
   border-radius: 12px;
   display: flex;
   justify-content: center;
@@ -225,8 +225,8 @@
 }
 
 .hc-cat-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 16px;
   padding: 16px;
   text-align: left;
@@ -261,8 +261,8 @@
 }
 
 .hc-faq-item {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 14px;
   padding: 16px 20px;
   display: flex;
@@ -273,7 +273,7 @@
 .hc-faq-arrow {
   width: 24px;
   height: 24px;
-  background: #1A73E8;
+  background: var(--accent-blue);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -293,8 +293,8 @@
 }
 
 .hc-support-card {
-  background: rgba(25, 33, 56, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 16px;
   padding: 20px;
   display: flex;
@@ -309,6 +309,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #FFF;
 }
 
 .hc-support-info {
@@ -336,18 +337,18 @@
 .hc-support-btn {
   background: none;
   border: none;
-  color: #1A73E8;
+  color: var(--accent-blue);
   font-size: 13px;
   font-weight: 600;
 }
 
 /* Brand Banner */
 .hc-brand-banner {
-  background: linear-gradient(90deg, #1C345B 0%, #010422 100%);
+  background: linear-gradient(90deg, var(--navy) 0%, var(--bg-color) 100%);
   border-radius: 20px;
   padding: 30px;
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--glass-border);
 }
 
 .hc-brand-banner h3 {

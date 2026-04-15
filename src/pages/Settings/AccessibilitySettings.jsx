@@ -9,9 +9,11 @@ import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './AccessibilitySettings.css';
 
+import { useTheme } from '../../common/ThemeContext';
+
 const Accessibility = () => {
   const navigate = useNavigate();
-  const [theme, setTheme] = useState('dark');
+  const { theme, setTheme } = useTheme();
   const [lang, setLang] = useState('en');
   const [size, setSize] = useState('medium');
   const [colorMode, setColorMode] = useState('none');

@@ -2,15 +2,15 @@
 @import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
 
 .mr-root {
-  background-color: #010422;
+  background-color: var(--bg-color);
   width: 100%;
   max-width: 430px;
   min-height: 100vh;
   margin: 0 auto;
   position: relative;
   overflow-x: hidden;
-  font-family: 'General Sans', sans-serif;
-  color: #FFFFFF;
+  font-family: var(--font-main);
+  color: var(--text-main);
 }
 
 .mr-layer-grad {
@@ -19,7 +19,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgba(100, 181, 246, 0.2) 0%, #010422 100%);
+  background: linear-gradient(180deg, rgba(100, 181, 246, 0.2) 0%, var(--bg-color) 100%);
   z-index: 1;
 }
 
@@ -53,7 +53,7 @@
 .mr-back-btn {
   background: none;
   border: none;
-  color: #FFF;
+  color: var(--text-main);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -62,7 +62,7 @@
 }
 
 .mr-page-title {
-  font-family: 'Instrument Serif', serif;
+  font-family: var(--font-title);
   font-size: 32px;
   margin: 0;
   font-weight: 400;
@@ -71,7 +71,7 @@
 .mr-add-btn {
   width: 100%;
   height: 52px;
-  background: #64B5F6;
+  background: var(--accent-blue);
   border: none;
   border-radius: 12px;
   color: #FFF;
@@ -86,8 +86,8 @@
 }
 
 .mr-glass {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 24px;
   backdrop-filter: blur(15px);
 }
@@ -105,9 +105,9 @@
 .mr-upload-zone p { font-size: 14px; opacity: 0.5; margin-bottom: 25px; }
 
 .mr-choose-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #FFF;
+  background: var(--btn-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
   padding: 10px 24px;
   border-radius: 20px;
   font-size: 14px;
@@ -115,13 +115,13 @@
 }
 
 .mr-section { margin-bottom: 40px; }
-.mr-sec-title { font-family: 'Instrument Serif', serif; font-size: 24px; margin-bottom: 20px; font-weight: 400; }
+.mr-sec-title { font-family: var(--font-title); font-size: 24px; margin-bottom: 20px; font-weight: 400; }
 
 .mr-records-stack { display: flex; flex-direction: column; gap: 14px; }
 
-.mr-rec-card { padding: 20px; }
+.mr-rec-card { padding: 20px; background: var(--card-bg); }
 .mr-rec-top { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
-.mr-file-ico { width: 44px; height: 44px; background: #64B5F6; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+.mr-file-ico { width: 44px; height: 44px; background: var(--accent-blue); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #FFF; }
 .mr-rec-info h4 { margin: 0; font-size: 16px; font-weight: 600; }
 .mr-rec-info p { margin: 4px 0 0; font-size: 13px; opacity: 0.5; }
 
@@ -129,9 +129,9 @@
 .mr-type-badge { background: rgba(184, 159, 255, 0.12); color: #B89FFF; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 8px; }
 .mr-v-badge { background: rgba(0, 230, 118, 0.08); border: 1px solid rgba(0, 230, 118, 0.2); color: #00E676; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 8px; display: flex; align-items: center; gap: 4px; }
 
-.mr-rec-actions { display: flex; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 15px; }
-.mr-act-btn { flex: 1; background: none; border: none; color: #FFF; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 600; }
-.mr-v-sep { width: 1px; height: 20px; background: rgba(255, 255, 255, 0.1); }
+.mr-rec-actions { display: flex; align-items: center; border-top: 1px solid var(--glass-border); padding-top: 15px; }
+.mr-act-btn { flex: 1; background: none; border: none; color: var(--text-main); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 600; }
+.mr-v-sep { width: 1px; height: 20px; background: var(--glass-border); }
 
 .mr-cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .mr-cat-card { padding: 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 15px; }

@@ -4,16 +4,19 @@ import './index.css';
 import Routing from './Routing';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { LanguageProvider } from './common/LanguageContext';
+import { ThemeProvider } from './common/ThemeContext';
 import AppShell from './components/AppShell';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <LanguageProvider>
-    <Router>
-      <AppShell>
-        <Routing />
-      </AppShell>
-    </Router>
-  </LanguageProvider>
+  <ThemeProvider>
+    <LanguageProvider>
+      <Router>
+        <AppShell>
+          <Routing />
+        </AppShell>
+      </Router>
+    </LanguageProvider>
+  </ThemeProvider>
 );
 

@@ -1,12 +1,13 @@
-import React from 'react';
+import { useTheme } from '../common/ThemeContext';
 import { useLanguage } from '../common/LanguageContext';
 
 const AppShell = ({ children }) => {
   const { lang } = useLanguage();
+  const { theme } = useTheme();
 
   return (
-    <div className="app-shell">
-      <div className="mobile-container">
+    <div className="app-shell" data-theme={theme}>
+      <div className="mobile-container" data-theme={theme}>
         <main className="app-content">
           {children}
         </main>
