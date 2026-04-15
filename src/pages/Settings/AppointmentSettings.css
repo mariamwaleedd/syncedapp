@@ -1,106 +1,281 @@
-.qa-stub-root {
-  width: 100%;
-  min-height: 100vh;
-  background-color: #010422;
-  background-image: 
-    url('../../imgs/bg.png'), 
-    linear-gradient(180deg, rgba(100, 181, 246, 0.28) 0%, #010422 100%);
-  background-size: contain;
-  background-repeat: repeat-y;
-  background-position: top center;
-  background-attachment: scroll;
-  position: relative;
-  color: #FFFFFF;
-  font-family: var(--font-main);
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
-  max-width: 480px;
-  margin: 0 auto;
-}
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
 
-.qa-stub-header {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+.ap-root {
+  background-color: #010422;
   width: 100%;
   max-width: 430px;
-  background: rgba(28, 52, 91, 0.9);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  z-index: 1001;
-  padding: 12px 20px 24px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-  box-sizing: border-box;
+  min-height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'General Sans', sans-serif;
+  color: #FFFFFF;
 }
 
-.qa-stub-nav {
+.ap-bg-grad {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(100, 181, 246, 0.22) 0%, #010422 100%);
+  z-index: 1;
+}
+
+.ap-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../imgs/bg.png');
+  background-size: cover;
+  opacity: 0.4;
+  z-index: 2;
+}
+
+.ap-wrapper {
+  position: relative;
+  z-index: 3;
+  padding: 10px 24px 110px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ap-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 15px 0 35px;
 }
 
-.qa-stub-circle-btn {
-  width: 44px;
-  height: 44px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
+.ap-back-btn {
+  background: none;
+  border: none;
+  color: #FFF;
   display: flex;
-  justify-content: center;
   align-items: center;
-  color: #FFFFFF;
-  cursor: pointer;
+  gap: 8px;
+  font-size: 15px;
+  opacity: 0.8;
 }
 
-.qa-stub-title {
-  text-align: center;
-}
-
-.qa-stub-title h1 {
-  font-family: var(--font-title);
+.ap-main-title {
+  font-family: 'Instrument Serif', serif;
   font-size: 28px;
   margin: 0;
+  font-weight: 400;
 }
 
-.qa-stub-content {
-  flex: 1;
-  padding: 160px 20px 120px;
+.ap-section {
+  margin-bottom: 40px;
 }
 
-.qa-stub-card {
+.ap-sec-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.ap-sec-head h2 {
+  font-size: 17px;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+.ap-sec-lbl {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 18px;
+  padding-left: 4px;
+}
+
+.ap-glass {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 24px;
-  padding: 40px 30px;
   backdrop-filter: blur(15px);
-  text-align: center;
+}
+
+.ap-card {
+  padding: 8px 20px;
+}
+
+.ap-pref-row, .ap-type-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ap-pref-row:last-child, .ap-type-row:last-child {
+  border-bottom: none;
+}
+
+.ap-pref-txt h4, .ap-type-l h4, .ap-policy-txt h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.ap-pref-txt p, .ap-type-l p, .ap-policy-txt p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.ap-edit-btn {
+  background: none;
+  border: none;
+  color: #64B5F6;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ap-switch {
+  width: 44px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.ap-switch.on {
+  background: #64B5F6;
+}
+
+.ap-switch-handle {
+  width: 18px;
+  height: 18px;
+  background: #FFF;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: 0.3s;
+}
+
+.ap-switch.on .ap-switch-handle {
+  transform: translateX(20px);
+}
+
+.ap-appt-stack {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 24px;
+  gap: 16px;
 }
 
-.qa-stub-icon-wrap {
-  width: 100px;
-  height: 100px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 30px;
+.ap-appt-card {
+  padding: 20px;
+}
+
+.ap-appt-top {
   display: flex;
-  justify-content: center;
   align-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 16px;
+  margin-bottom: 18px;
 }
 
-.qa-stub-card h2 {
-  font-family: var(--font-title);
-  font-size: 32px;
+.ap-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ap-icon-box.blue {
+  background: #64B5F6;
+}
+
+.ap-appt-info h4 {
   margin: 0;
+  font-size: 16px;
+  font-weight: 600;
 }
 
-.qa-stub-card p {
+.ap-appt-info p {
+  margin: 4px 0 0;
+  font-size: 13px;
   opacity: 0.6;
-  line-height: 1.6;
-  margin: 0;
+}
+
+.ap-appt-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-left: 2px;
+}
+
+.ap-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.ap-badge-tele {
+  background: rgba(184, 159, 255, 0.15);
+  color: #B89FFF;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 20px;
+  align-self: flex-start;
+}
+
+.ap-appt-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.ap-res-btn {
+  flex: 1;
+  height: 44px;
+  background: #64B5F6;
+  border: none;
+  border-radius: 12px;
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ap-can-btn {
+  flex: 1;
+  height: 44px;
+  background: rgba(255, 65, 108, 0.1);
+  border: 1px solid rgba(255, 65, 108, 0.2);
+  border-radius: 12px;
+  color: #FF416C;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ap-type-l {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ap-policy-txt {
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+
+.ap-policy-txt p {
+  line-height: 1.5;
+  opacity: 0.7;
+}
+
+.ap-bottom-spacer {
+  height: 40px;
 }
