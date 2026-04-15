@@ -15,23 +15,23 @@ const GeneticInfo = () => {
       <div className="gi-bg-gradient"></div>
       <div className="gi-bg-lines"></div>
       
-      <div className="gi-wrapper">
+      <div className="gi-content">
         <StatusBar dark={true} />
 
-        <div className="gi-stepper">
-          <div className="gi-step-meta">
-            <span className="gi-step-num">Step 6 of 8</span>
-            <span className="gi-step-perc">75%</span>
+        <div className="gi-nav-header">
+          <div className="gi-progress-info">
+            <span className="gi-step-label">Step 6 of 8</span>
+            <span className="gi-percent-label">75%</span>
           </div>
-          <div className="gi-progress-track">
-            <div className="gi-progress-fill" style={{ width: '75%' }}></div>
+          <div className="gi-track">
+            <div className="gi-fill" style={{ width: '75%' }}></div>
           </div>
           <button className="gi-skip-btn">Skip</button>
         </div>
 
         <div className="gi-hero">
-          <div className="gi-icon-frame">
-            <Dna size={54} color="#FFFFFF" strokeWidth={2} />
+          <div className="gi-icon-box">
+            <Dna size={50} color="#FFFFFF" strokeWidth={2} />
           </div>
           <h1 className="gi-title">Genetic Information</h1>
           <p className="gi-subtitle">Important for medical compatibility</p>
@@ -70,12 +70,12 @@ const GeneticInfo = () => {
             <ArrowLeft size={18} />
             <span>Back</span>
           </button>
-          <button className="gi-next-btn" onClick={() => navigate('/emergencycontacts')}>
+          <button className="gi-continue-btn" onClick={() => navigate('/emergencycontacts')}>
             <span>Continue</span>
             <ArrowRight size={18} />
           </button>
         </div>
-        <div className="gi-ios-bar"></div>
+        <div className="gi-home-pill"></div>
       </div>
     </div>
   );

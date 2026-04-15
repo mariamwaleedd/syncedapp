@@ -9,71 +9,71 @@ const CreateHealthID = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="health-id-screen">
-      <div className="health-id-gradient"></div>
-      <div className="health-id-grid"></div>
+    <div className="chi-screen">
+      <div className="chi-gradient"></div>
+      <div className="chi-grid"></div>
       
-      <div className="health-id-content">
+      <div className="chi-content">
         <StatusBar dark={true} />
 
-        <div className="top-nav-area">
-          <div className="step-info-row">
-            <span className="step-text">Step 1 of 8</span>
-            <span className="percent-text">13%</span>
+        <div className="chi-nav-header">
+          <div className="chi-progress-info">
+            <span className="chi-step-label">Step 1 of 8</span>
+            <span className="chi-percent-label">13%</span>
           </div>
-          <div className="progress-bar-track">
-            <div className="progress-bar-fill" style={{ width: '13%' }}></div>
+          <div className="chi-track">
+            <div className="chi-fill" style={{ width: '13%' }}></div>
           </div>
-          <button className="skip-btn">Skip</button>
+          <button className="chi-skip-btn">Skip</button>
         </div>
 
-        <div className="hero-section">
-          <div className="hero-icon-box">
-             <img src={starIcon} alt="Icon" className="hero-star" />
+        <div className="chi-hero">
+          <div className="chi-logo-glow">
+             <img src={starIcon} alt="Icon" className="chi-star-img" />
           </div>
-          <h1 className="health-id-title">Create Your Health ID</h1>
-          <p className="health-id-desc">
+          <h1 className="chi-title">Create Your Health ID</h1>
+          <p className="chi-desc">
             Let’s build your personalized health profile in just a few minutes. Your data is secure and helps us provide better care.
           </p>
         </div>
 
-        <div className="features-card">
-          <div className="feature-item">
-            <div className="feature-icon-circle">
+        <div className="chi-info-card">
+          <div className="chi-info-item">
+            <div className="chi-icon-box">
               <Heart size={20} color="#64B5F6" />
             </div>
-            <div className="feature-text">
-              <h3>Personalized Care</h3>
+            <div className="chi-item-text">
+              <h4>Personalized Care</h4>
               <p>Get tailored health recommendations</p>
             </div>
           </div>
 
-          <div className="feature-item">
-            <div className="feature-icon-circle">
+          <div className="chi-info-item">
+            <div className="chi-icon-box">
               <ShieldAlert size={20} color="#64B5F6" />
             </div>
-            <div className="feature-text">
-              <h3>Emergency Ready</h3>
+            <div className="chi-item-text">
+              <h4>Emergency Ready</h4>
               <p>Critical info accessible when needed</p>
             </div>
           </div>
 
-          <div className="feature-item">
-            <div className="feature-icon-circle">
+          <div className="chi-info-item">
+            <div className="chi-icon-box">
               <Activity size={20} color="#64B5F6" />
             </div>
-            <div className="feature-text">
-              <h3>Track Progress</h3>
+            <div className="chi-item-text">
+              <h4>Track Progress</h4>
               <p>Monitor your health journey over time</p>
             </div>
           </div>
         </div>
 
-        <div className="bottom-action">
-          <button className="begin-btn" onClick={() => navigate('/personalinfo')}>
+        <div className="chi-bottom-nav">
+          <button className="chi-begin-btn" onClick={() => navigate('/personalinfo')}>
             Let's Begin <ArrowRight size={20} />
           </button>
-          <div className="ios-indicator"></div>
+          <div className="chi-home-pill"></div>
         </div>
       </div>
     </div>

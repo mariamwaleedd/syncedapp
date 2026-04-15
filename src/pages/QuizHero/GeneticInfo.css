@@ -3,11 +3,11 @@
   min-height: 100vh;
   background-color: #010422;
   position: relative;
-  overflow: hidden;
   color: #FFFFFF;
   font-family: var(--font-main);
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 .gi-bg-gradient {
@@ -16,7 +16,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgba(100, 181, 246, 0.22) 0%, rgba(1, 4, 34, 0) 100%);
+  background: linear-gradient(180deg, rgba(100, 181, 246, 0.2) 0%, rgba(1, 4, 34, 0) 100%);
   z-index: 1;
 }
 
@@ -32,57 +32,65 @@
   z-index: 2;
 }
 
-.gi-wrapper {
+.gi-content {
   position: relative;
   z-index: 3;
-  padding: 20px 24px;
   flex: 1;
+  padding: 60px 24px 40px;
   display: flex;
   flex-direction: column;
 }
 
-.gi-stepper {
-  margin-top: 10px;
+.gi-nav-header {
   width: 100%;
+  margin-bottom: 30px;
 }
 
-.gi-step-meta {
+.gi-progress-info {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
+  align-items: center;
+  margin-bottom: 12px;
 }
 
-.gi-step-num, .gi-step-perc {
-  font-size: 13px;
+.gi-step-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.gi-percent-label {
+  font-size: 14px;
   font-weight: 500;
-  opacity: 0.5;
+  color: #64B5F6;
 }
 
-.gi-progress-track {
+.gi-track {
   width: 100%;
   height: 6px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  overflow: hidden;
+  margin-bottom: 16px;
 }
 
-.gi-progress-fill {
+.gi-fill {
   height: 100%;
   background: #64B5F6;
   border-radius: 10px;
+  box-shadow: 0 0 10px rgba(100, 181, 246, 0.5);
 }
 
 .gi-skip-btn {
-  display: block;
-  margin-left: auto;
-  margin-top: 10px;
-  background: none;
-  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
-  font-size: 14px;
-  opacity: 0.5;
-  cursor: pointer;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
   font-weight: 600;
+  cursor: pointer;
+  float: right;
+  backdrop-filter: blur(5px);
 }
 
 .gi-hero {
@@ -90,60 +98,64 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 40px;
 }
 
-.gi-icon-frame {
-  width: 110px;
-  height: 110px;
-  background: linear-gradient(135deg, #2196F3 0%, #0D47A1 100%);
-  border-radius: 28px;
+.gi-icon-box {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #64B5F6 0%, #357ABD 100%);
+  border-radius: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 24px;
-  box-shadow: 0 12px 30px rgba(13, 71, 161, 0.4);
+  box-shadow: 0 10px 30px rgba(100, 181, 246, 0.3);
 }
 
 .gi-title {
   font-family: var(--font-title);
-  font-size: 42px;
+  font-size: 44px;
   font-weight: 400;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  color: #FFFFFF;
 }
 
 .gi-subtitle {
   font-size: 16px;
-  opacity: 0.6;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .gi-main-card {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 24px;
+  border-radius: 28px;
   padding: 24px;
-  backdrop-filter: blur(20px);
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  backdrop-filter: blur(15px);
+  margin-bottom: 24px;
 }
 
 .gi-card-header {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 20px;
+  font-size: 14px;
   font-weight: 600;
-  font-size: 15px;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .gi-blood-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: 10px;
 }
 
 .gi-blood-btn {
-  height: 52px;
+  height: 50px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
@@ -151,61 +163,52 @@
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s;
 }
 
 .gi-blood-btn.active {
-  background: rgba(100, 181, 246, 0.25);
-  border-color: #64B5F6;
-  color: #64B5F6;
+  background: rgba(255, 82, 82, 0.15);
+  border-color: #FF5252;
+  color: #FF5252;
+  box-shadow: 0 0 15px rgba(255, 82, 82, 0.2);
 }
 
 .gi-info-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
+  background: rgba(100, 181, 246, 0.05);
+  border: 1px solid rgba(100, 181, 246, 0.15);
+  border-radius: 24px;
   padding: 20px;
   display: flex;
   gap: 16px;
-  backdrop-filter: blur(20px);
-}
-
-.gi-info-icon {
-  width: 42px;
-  height: 42px;
-  background: rgba(100, 181, 246, 0.12);
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
+  align-items: flex-start;
+  margin-bottom: auto;
 }
 
 .gi-info-text h3 {
   font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 6px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #FFFFFF;
 }
 
 .gi-info-text p {
   font-size: 13px;
   line-height: 1.5;
-  opacity: 0.6;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .gi-footer {
-  margin-top: auto;
+  margin-top: 40px;
   display: flex;
   gap: 12px;
-  padding-bottom: 15px;
-  padding-top: 30px;
+  width: 100%;
 }
 
 .gi-back-btn {
   flex: 0.8;
   height: 60px;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 18px;
   color: white;
   display: flex;
@@ -217,7 +220,7 @@
   cursor: pointer;
 }
 
-.gi-next-btn {
+.gi-continue-btn {
   flex: 1.2;
   height: 60px;
   background: #64B5F6;
@@ -231,13 +234,13 @@
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 8px 25px rgba(100, 181, 246, 0.3);
+  box-shadow: 0 8px 25px rgba(100, 181, 246, 0.25);
 }
 
-.gi-ios-bar {
-  width: 135px;
+.gi-home-pill {
+  width: 130px;
   height: 5px;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
-  margin: 0 auto 5px;
-}
+  margin: 20px auto 0;
+}

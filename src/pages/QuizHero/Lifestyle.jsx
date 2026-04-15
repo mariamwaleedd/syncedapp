@@ -18,13 +18,13 @@ const Lifestyle = () => {
       <div className="ls-gradient"></div>
       <div className="ls-grid-overlay"></div>
       
-      <div className="ls-content-wrapper">
+      <div className="ls-content">
         <StatusBar dark={true} />
 
-        <div className="ls-progress-container">
-          <div className="ls-progress-header">
-            <span className="ls-step-info">Step 5 of 8</span>
-            <span className="ls-percent-info">63%</span>
+        <div className="ls-nav-header">
+          <div className="ls-progress-info">
+            <span className="ls-step-label">Step 5 of 8</span>
+            <span className="ls-percent-label">63%</span>
           </div>
           <div className="ls-track">
             <div className="ls-fill" style={{ width: '63%' }}></div>
@@ -34,7 +34,7 @@ const Lifestyle = () => {
 
         <div className="ls-hero">
           <div className="ls-icon-box">
-             <Home size={52} fill="white" color="white" />
+             <Home size={50} fill="white" color="white" />
           </div>
           <h1 className="ls-title">Lifestyle</h1>
           <p className="ls-subtitle">Habits that shape your health</p>
@@ -134,7 +134,7 @@ const Lifestyle = () => {
 
         <div className="ls-footer-spacer"></div>
 
-        <div className="ls-actions-row">
+        <div className="ls-footer">
           <button className="ls-back-btn" onClick={() => navigate(-1)}>
             <ArrowLeft size={18} />
             <span>Back</span>
@@ -144,7 +144,7 @@ const Lifestyle = () => {
             <ArrowRight size={18} />
           </button>
         </div>
-        <div className="ls-home-indicator"></div>
+        <div className="ls-home-pill"></div>
       </div>
     </div>
   );

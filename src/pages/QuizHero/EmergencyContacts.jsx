@@ -13,22 +13,22 @@ const EmergencyContact = () => {
       <div className="ec-gradient-layer"></div>
       <div className="ec-grid-layer"></div>
       
-      <div className="ec-main-content">
+      <div className="ec-content">
         <StatusBar dark={true} />
 
-        <div className="ec-progress-section">
-          <div className="ec-progress-meta">
-            <span className="ec-step-txt">Step 7 of 8</span>
-            <span className="ec-perc-txt">88%</span>
+        <div className="ec-nav-header">
+          <div className="ec-progress-info">
+            <span className="ec-step-label">Step 7 of 8</span>
+            <span className="ec-percent-label">88%</span>
           </div>
           <div className="ec-track">
             <div className="ec-fill" style={{ width: '88%' }}></div>
           </div>
-          <button className="ec-skip-link">Skip</button>
+          <button className="ec-skip-btn">Skip</button>
         </div>
 
         <div className="ec-hero">
-          <div className="ec-phone-icon-box">
+          <div className="ec-icon-box">
              <Phone size={50} color="#FFFFFF" fill="#FFFFFF" />
           </div>
           <h1 className="ec-title">Emergency Contact</h1>
@@ -95,12 +95,12 @@ const EmergencyContact = () => {
             <ArrowLeft size={18} />
             <span>Back</span>
           </button>
-          <button className="ec-next-btn" onClick={() => navigate('/allset')}>
+          <button className="ec-continue-btn" onClick={() => navigate('/allset')}>
             <span>Continue</span>
             <ArrowRight size={18} />
           </button>
         </div>
-        <div className="ec-home-bar"></div>
+        <div className="ec-home-pill"></div>
       </div>
     </div>
   );

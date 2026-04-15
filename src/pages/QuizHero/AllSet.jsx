@@ -12,21 +12,21 @@ const AllSet = () => {
       <div className="as-grad-bg"></div>
       <div className="as-grid-lines"></div>
       
-      <div className="as-container">
+      <div className="as-content">
         <StatusBar dark={true} />
 
-        <div className="as-stepper-top">
-          <div className="as-step-labels">
-            <span className="as-step-count">Step 8 of 8</span>
-            <span className="as-step-percent">100%</span>
+        <div className="as-nav-header">
+          <div className="as-progress-info">
+            <span className="as-step-label">Step 8 of 8</span>
+            <span className="as-percent-label">100%</span>
           </div>
-          <div className="as-progress-track">
-            <div className="as-progress-fill" style={{ width: '100%' }}></div>
+          <div className="as-track">
+            <div className="as-fill" style={{ width: '100%' }}></div>
           </div>
         </div>
 
         <div className="as-hero">
-          <div className="as-success-box">
+          <div className="as-icon-box">
              <Check size={56} color="#FFFFFF" strokeWidth={3.5} />
           </div>
           <h1 className="as-title">You're All Set!</h1>
@@ -61,12 +61,12 @@ const AllSet = () => {
           <span className="as-completion-text">Profile 100% Complete</span>
         </div>
 
-        <div className="as-actions">
-          <button className="as-btn-back" onClick={() => navigate('/emergencycontacts')}>
+        <div className="as-footer">
+          <button className="as-back-btn" onClick={() => navigate('/emergencycontacts')}>
             <ArrowLeft size={18} />
             <span>Back</span>
           </button>
-          <button className="as-btn-hub" onClick={() => navigate('/healthid')}>
+          <button className="as-continue-btn" onClick={() => navigate('/healthid')}>
             <span>Enter My Health Hub</span>
             <Sparkles size={18} />
           </button>

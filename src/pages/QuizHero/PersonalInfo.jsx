@@ -22,23 +22,23 @@ const PersonalInfo = () => {
       <div className="pi-gradient"></div>
       <div className="pi-grid-overlay"></div>
       
-      <div className="pi-content-wrapper">
+      <div className="pi-content">
         <StatusBar dark={true} />
 
-        <div className="pi-progress-section">
-          <div className="pi-progress-stats">
+        <div className="pi-nav-header">
+          <div className="pi-progress-info">
             <span className="pi-step-label">Step 2 of 8</span>
             <span className="pi-percent-label">25%</span>
           </div>
           <div className="pi-track">
             <div className="pi-fill" style={{ width: '25%' }}></div>
           </div>
-          <button className="pi-skip-link">Skip</button>
+          <button className="pi-skip-btn">Skip</button>
         </div>
 
         <div className="pi-hero">
-          <div className="pi-user-box">
-             <User size={48} color="#FFFFFF" strokeWidth={1.5} />
+          <div className="pi-avatar-box">
+             <User size={50} color="#FFFFFF" strokeWidth={1.5} />
           </div>
           <h1 className="pi-title">Tell us about you</h1>
           <p className="pi-subtitle">Basic information to get started</p>
@@ -47,12 +47,16 @@ const PersonalInfo = () => {
         <div className="pi-form-card">
           <div className="pi-input-group">
             <label>First Name</label>
-            <input type="text" placeholder="Enter your first name" />
+            <div className="pi-input-wrap">
+              <input type="text" placeholder="Enter your first name" />
+            </div>
           </div>
 
           <div className="pi-input-group">
             <label>Last Name</label>
-            <input type="text" placeholder="Enter your last name" />
+            <div className="pi-input-wrap">
+              <input type="text" placeholder="Enter your last name" />
+            </div>
           </div>
 
           <div className="pi-input-group">
@@ -89,7 +93,7 @@ const PersonalInfo = () => {
 
           <div className="pi-gender-section">
             <label>Gender</label>
-            <div className="pi-gender-grid">
+            <div className="pi-gender-options">
               <button 
                 className={`pi-gender-btn ${gender === 'male' ? 'active' : ''}`}
                 onClick={() => setGender('male')}
@@ -114,7 +118,7 @@ const PersonalInfo = () => {
 
         <div className="pi-footer-spacer"></div>
 
-        <div className="pi-actions-row">
+        <div className="pi-footer">
           <button className="pi-back-btn" onClick={() => navigate(-1)}>
             <ArrowLeft size={18} />
             <span>Back</span>
@@ -124,7 +128,7 @@ const PersonalInfo = () => {
             <ArrowRight size={18} />
           </button>
         </div>
-        <div className="pi-home-indicator"></div>
+        <div className="pi-home-pill"></div>
       </div>
     </div>
   );

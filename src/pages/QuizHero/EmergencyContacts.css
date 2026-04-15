@@ -3,11 +3,11 @@
   min-height: 100vh;
   background-color: #010422;
   position: relative;
-  overflow: hidden;
   color: #FFFFFF;
   font-family: var(--font-main);
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 .ec-gradient-layer {
@@ -16,7 +16,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgba(100, 181, 246, 0.22) 0%, rgba(1, 4, 34, 0) 100%);
+  background: linear-gradient(180deg, rgba(100, 181, 246, 0.2) 0%, rgba(1, 4, 34, 0) 100%);
   z-index: 1;
 }
 
@@ -32,30 +32,37 @@
   z-index: 2;
 }
 
-.ec-main-content {
+.ec-content {
   position: relative;
   z-index: 3;
-  padding: 20px 24px;
   flex: 1;
+  padding: 60px 24px 40px;
   display: flex;
   flex-direction: column;
 }
 
-.ec-progress-section {
-  margin-top: 10px;
+.ec-nav-header {
   width: 100%;
+  margin-bottom: 30px;
 }
 
-.ec-progress-meta {
+.ec-progress-info {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
+  align-items: center;
+  margin-bottom: 12px;
 }
 
-.ec-step-txt, .ec-perc-txt {
-  font-size: 13px;
+.ec-step-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ec-percent-label {
+  font-size: 14px;
   font-weight: 500;
-  opacity: 0.5;
+  color: #64B5F6;
 }
 
 .ec-track {
@@ -63,26 +70,27 @@
   height: 6px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  overflow: hidden;
+  margin-bottom: 16px;
 }
 
 .ec-fill {
   height: 100%;
   background: #64B5F6;
   border-radius: 10px;
+  box-shadow: 0 0 10px rgba(100, 181, 246, 0.5);
 }
 
-.ec-skip-link {
-  display: block;
-  margin-left: auto;
-  margin-top: 10px;
-  background: none;
-  border: none;
+.ec-skip-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
-  font-size: 14px;
-  opacity: 0.5;
-  cursor: pointer;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
   font-weight: 600;
+  cursor: pointer;
+  float: right;
+  backdrop-filter: blur(5px);
 }
 
 .ec-hero {
@@ -90,63 +98,64 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-top: 15px;
-  margin-bottom: 25px;
+  margin-top: 10px;
+  margin-bottom: 35px;
 }
 
-.ec-phone-icon-box {
-  width: 110px;
-  height: 110px;
-  background: linear-gradient(135deg, #FF4D00 0%, #FF8A00 100%);
-  border-radius: 28px;
+.ec-icon-box {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #64B5F6 0%, #357ABD 100%);
+  border-radius: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 24px;
-  box-shadow: 0 12px 30px rgba(255, 77, 0, 0.35);
+  box-shadow: 0 10px 30px rgba(100, 181, 246, 0.3);
 }
 
 .ec-title {
   font-family: var(--font-title);
-  font-size: 42px;
+  font-size: 44px;
   font-weight: 400;
   margin-bottom: 8px;
+  color: #FFFFFF;
 }
 
 .ec-subtitle {
   font-size: 16px;
-  opacity: 0.6;
-  max-width: 320px;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .ec-card {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 24px;
+  border-radius: 28px;
   padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
   backdrop-filter: blur(15px);
+  margin-bottom: 24px;
 }
 
 .ec-input-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
-.ec-input-group label, .ec-relation-section label {
+.ec-input-group label {
   font-size: 14px;
   font-weight: 600;
-  opacity: 0.9;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .ec-input-group input {
   width: 100%;
-  height: 54px;
+  height: 56px;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 14px;
   padding: 0 16px;
   color: white;
@@ -155,72 +164,76 @@
   outline: none;
 }
 
-.ec-input-group input::placeholder {
-  color: rgba(255, 255, 255, 0.25);
+.ec-relation-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ec-relation-section label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .ec-relation-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-  margin-top: 10px;
 }
 
 .ec-rel-btn {
-  height: 50px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
   color: white;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
-}
-
-.ec-full-width {
-  grid-column: span 1;
 }
 
 .ec-rel-btn.active {
   background: rgba(100, 181, 246, 0.15);
   border-color: #64B5F6;
+  color: #64B5F6;
+  font-weight: 600;
+}
+
+.ec-full-width {
+  grid-column: span 2;
 }
 
 .ec-alert-box {
-  margin-top: 20px;
-  background: rgba(255, 138, 0, 0.05);
-  border: 1px solid rgba(255, 138, 0, 0.2);
+  background: rgba(255, 138, 0, 0.08);
+  border: 1px solid rgba(255, 138, 0, 0.15);
   border-radius: 20px;
-  padding: 16px;
+  padding: 16px 20px;
   display: flex;
+  gap: 14px;
   align-items: center;
-  gap: 15px;
-}
-
-.ec-alert-circle {
-  flex-shrink: 0;
+  margin-bottom: auto;
 }
 
 .ec-alert-box p {
   font-size: 13px;
-  line-height: 1.5;
-  opacity: 0.85;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .ec-footer {
-  margin-top: auto;
+  margin-top: 40px;
   display: flex;
   gap: 12px;
-  padding-bottom: 10px;
-  padding-top: 30px;
+  width: 100%;
 }
 
 .ec-back-btn {
   flex: 0.8;
   height: 60px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 18px;
   color: white;
   display: flex;
@@ -232,7 +245,7 @@
   cursor: pointer;
 }
 
-.ec-next-btn {
+.ec-continue-btn {
   flex: 1.2;
   height: 60px;
   background: #64B5F6;
@@ -246,13 +259,13 @@
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 8px 25px rgba(100, 181, 246, 0.3);
+  box-shadow: 0 8px 25px rgba(100, 181, 246, 0.25);
 }
 
-.ec-home-bar {
-  width: 135px;
+.ec-home-pill {
+  width: 130px;
   height: 5px;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
-  margin: 15px auto 5px;
+  margin: 20px auto 0;
 }

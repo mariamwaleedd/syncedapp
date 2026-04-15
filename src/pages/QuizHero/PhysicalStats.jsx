@@ -34,22 +34,22 @@ const PhysicalStats = () => {
       <div className="ps-content">
         <StatusBar dark={true} />
 
-        <div className="ps-nav-step">
-          <div className="ps-step-header">
+        <div className="ps-nav-header">
+          <div className="ps-progress-info">
             <span className="ps-step-label">Step 3 of 8</span>
             <span className="ps-percent-label">38%</span>
           </div>
-          <div className="ps-progress-track">
-            <div className="ps-progress-fill" style={{ width: '38%' }}></div>
+          <div className="ps-track">
+            <div className="ps-fill" style={{ width: '38%' }}></div>
           </div>
           <button className="ps-skip-btn">Skip</button>
         </div>
 
         <div className="ps-hero">
-          <div className="ps-icon-gradient">
-             <Activity size={48} color="#FFFFFF" strokeWidth={2} />
+          <div className="ps-icon-box">
+             <Activity size={50} color="#FFFFFF" strokeWidth={2} />
           </div>
-          <h1 className="ps-main-title">Physical Stats</h1>
+          <h1 className="ps-title">Physical Stats</h1>
           <p className="ps-subtitle">Help us track your health metrics</p>
         </div>
 
@@ -95,7 +95,7 @@ const PhysicalStats = () => {
           </div>
         </div>
 
-        <div className="ps-bottom-actions">
+        <div className="ps-footer">
           <button className="ps-back-btn" onClick={() => navigate(-1)}>
             <ArrowLeft size={18} />
             <span>Back</span>
@@ -105,7 +105,7 @@ const PhysicalStats = () => {
             <ArrowRight size={18} />
           </button>
         </div>
-        <div className="ps-home-indicator"></div>
+        <div className="ps-home-pill"></div>
       </div>
     </div>
   );

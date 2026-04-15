@@ -38,13 +38,13 @@ const MedicalHistory = () => {
       <div className="mh-gradient"></div>
       <div className="mh-grid-overlay"></div>
       
-      <div className="mh-content-wrapper">
+      <div className="mh-content">
         <StatusBar dark={true} />
 
-        <div className="mh-progress-container">
-          <div className="mh-progress-header">
-            <span className="mh-step-info">Step 4 of 8</span>
-            <span className="mh-percent-info">50%</span>
+        <div className="mh-nav-header">
+          <div className="mh-progress-info">
+            <span className="mh-step-label">Step 4 of 8</span>
+            <span className="mh-percent-label">50%</span>
           </div>
           <div className="mh-track">
             <div className="mh-fill" style={{ width: '50%' }}></div>
@@ -53,8 +53,8 @@ const MedicalHistory = () => {
         </div>
 
         <div className="mh-hero">
-          <div className="mh-heart-box">
-             <Heart size={52} fill="white" color="white" />
+          <div className="mh-icon-box">
+             <Heart size={50} fill="white" color="white" />
           </div>
           <h1 className="mh-title">Medical History</h1>
           <p className="mh-subtitle">Important for your safety</p>
@@ -138,7 +138,7 @@ const MedicalHistory = () => {
 
         <div className="mh-footer-spacer"></div>
 
-        <div className="mh-actions-row">
+        <div className="mh-footer">
           <button className="mh-back-btn" onClick={() => navigate(-1)}>
             <ArrowLeft size={18} />
             <span>Back</span>
@@ -148,7 +148,7 @@ const MedicalHistory = () => {
             <ArrowRight size={18} />
           </button>
         </div>
-        <div className="mh-home-indicator"></div>
+        <div className="mh-home-pill"></div>
       </div>
     </div>
   );
