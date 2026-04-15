@@ -1,7 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, FileText, AlertTriangle, Lightbulb, Check } from 'lucide-react';
+import { ChevronLeft, FileText, AlertTriangle, CheckCircle2, Lightbulb, ChevronRight, ArrowLeft } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import './AllergiesConditions.css';
 
@@ -9,81 +8,88 @@ const AllergiesConditions = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="gs-root ltr-theme">
-      <div className="gs-header">
+    <div className="ac-page-root ltr-theme">
+      <div className="ac-gradient-overlay"></div>
+      <div className="ac-bg-lines-img"></div>
+
+      <div className="ac-main-container">
         <StatusBar dark={true} />
-        <div className="gs-nav">
-          <button className="gs-back-btn" onClick={() => navigate('/helpcenter/blood-type-dna')}>
+
+        <header className="ac-top-navigation">
+          <button className="ac-icon-nav-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} />
           </button>
-          <div className="gs-progress-dots">
-            <div className="gs-dot active" />
-            <div className="gs-dot active" />
-            <div className="gs-dot active" />
-            <div className="gs-dot active" />
-            <div className="gs-dot" />
+          
+          <div className="ac-stepper-dots">
+            <span className="ac-dot"></span>
+            <span className="ac-dot"></span>
+            <span className="ac-dot"></span>
+            <span className="ac-dot ac-active"></span>
+            <span className="ac-dot"></span>
           </div>
-          <button className="gs-doc-btn">
+
+          <button className="ac-icon-nav-btn ac-file-btn">
             <FileText size={20} />
           </button>
-        </div>
-      </div>
+        </header>
 
-      <motion.div 
-        className="gs-scroll-content"
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-      >
-        <div className="gs-title-wrap">
-          <span className="gs-step-count">Step 4 of 5</span>
-          <h1 className="gs-title">Getting Started</h1>
+        <div className="ac-header-text">
+          <h1 className="ac-main-title">Getting Started</h1>
+          <p className="ac-step-indicator">Step 4 of 5</p>
         </div>
 
-        <div className="gs-icon-container" style={{ background: '#FF6D00' }}>
-          <AlertTriangle size={50} color="white" />
-        </div>
-
-        <h2 className="gs-step-name">Allergies & Conditions</h2>
-        <p className="gs-step-sub">List your existing health conditions and sensitivity profiles.</p>
-
-        <div className="gs-check-card">
-          <h3 className="gs-check-title">What to do:</h3>
-          <div className="gs-check-list">
-            <div className="gs-check-item">
-              <div className="gs-check-circle" style={{ borderColor: '#FF6D00' }}><Check size={12} color="#FF6D00" /></div>
-              <p>Add any drug allergies (e.g., Penicillin)</p>
-            </div>
-            <div className="gs-check-item">
-              <div className="gs-check-circle" style={{ borderColor: '#FF6D00' }}><Check size={12} color="#FF6D00" /></div>
-              <p>Include food allergies (e.g., Peanuts, Shellfish)</p>
-            </div>
-            <div className="gs-check-item">
-              <div className="gs-check-circle" style={{ borderColor: '#FF6D00' }}><Check size={12} color="#FF6D00" /></div>
-              <p>List chronic conditions (e.g., Diabetes, Asthma)</p>
-            </div>
-            <div className="gs-check-item">
-              <div className="gs-check-circle" style={{ borderColor: '#FF6D00' }}><Check size={12} color="#FF6D00" /></div>
-              <p>Mark severity levels for each allergy</p>
-            </div>
+        <div className="ac-hero-area">
+          <div className="ac-warning-icon-box">
+            <AlertTriangle size={54} color="#FFF" strokeWidth={1.5} />
           </div>
+          <h2 className="ac-section-title">Allergies & Conditions</h2>
+          <p className="ac-section-desc">List allergies and existing conditions</p>
         </div>
 
-        <div className="gs-tip-card">
-          <div className="gs-tip-header">
-            <Lightbulb size={16} />
-            <span>Pro Tip</span>
+        <div className="ac-info-card ac-glass-panel">
+          <h3 className="ac-card-heading">What to do:</h3>
+          <ul className="ac-instruction-list">
+            <li>
+              <CheckCircle2 size={18} color="#FF8A00" />
+              <span>Add any drug allergies (e.g., Penicillin)</span>
+            </li>
+            <li>
+              <CheckCircle2 size={18} color="#FF8A00" />
+              <span>Include food allergies (e.g., Peanuts, Shellfish)</span>
+            </li>
+            <li>
+              <CheckCircle2 size={18} color="#FF8A00" />
+              <span>List chronic conditions (e.g., Diabetes, Asthma)</span>
+            </li>
+            <li>
+              <CheckCircle2 size={18} color="#FF8A00" />
+              <span>Mark severity levels for each allergy</span>
+            </li>
+          </ul>
+        </div>
+
+        <div className="ac-tip-box ac-glass-panel">
+          <div className="ac-tip-header">
+            <Lightbulb size={20} color="#FFD54F" />
+            <span className="ac-tip-title">Pro Tip</span>
           </div>
-          <p className="gs-tip-content">Being thorough with allergies can prevent dangerous medical errors.</p>
+          <p className="ac-tip-content">
+            Being thorough with allergies can prevent dangerous medical errors.
+          </p>
         </div>
-      </motion.div>
 
-      <div className="gs-footer-nav">
-        <button className="gs-prev-btn" onClick={() => navigate('/helpcenter/blood-type-dna')}>
-          <ChevronLeft size={16} /> Previous
-        </button>
-        <button className="gs-next-btn" onClick={() => navigate('/helpcenter/complete-review')}>
-          Next Step <ChevronRight size={16} />
-        </button>
+        <footer className="ac-bottom-navigation">
+          <button className="ac-nav-btn ac-prev-btn" onClick={() => navigate('/helpcenter/health-basics')}>
+             <ArrowLeft size={16} />
+             <span>Previous</span>
+          </button>
+          <button className="ac-nav-btn ac-next-btn" onClick={() => navigate('/helpcenter/complete-review')}>
+             <span>Next Step</span>
+             <ChevronRight size={18} />
+          </button>
+        </footer>
+        
+        <div className="ac-home-indicator-bar"></div>
       </div>
     </div>
   );

@@ -1,253 +1,240 @@
-.gs-root {
-  width: 100%;
-  min-height: 100vh;
-  background-color: var(--bg-color);
-  background-image: 
-    url('../../imgs/bg.png'), 
-    linear-gradient(180deg, rgba(100, 181, 246, 0.28) 0%, var(--bg-color) 100%);
-  background-size: contain;
-  background-repeat: repeat-y;
-  background-position: top center;
-  background-attachment: scroll;
-  position: relative;
-  color: var(--text-main);
-  font-family: var(--font-main);
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
-  max-width: 480px;
-  margin: 0 auto;
-}
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
 
-.gs-header {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+.ac-page-root {
+  background-color: #010422;
   width: 100%;
   max-width: 430px;
-  background: var(--navy);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  z-index: 1001;
-  padding: 12px 20px 24px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-  box-sizing: border-box;
-}
-
-.gs-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.gs-back-btn {
-  width: 44px;
-  height: 44px;
-  background: var(--btn-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--text-main);
-}
-
-.gs-progress-dots {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-.gs-dot {
-  width: 24px;
-  height: 4px;
-  background: var(--btn-bg);
-  border-radius: 2px;
-}
-
-.gs-dot.active {
-  background: var(--accent-blue);
-}
-
-.gs-doc-btn {
-  width: 44px;
-  height: 44px;
-  background: var(--accent-blue);
-  border: none;
-  border-radius: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  min-height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'General Sans', sans-serif;
   color: #FFFFFF;
 }
 
-.gs-scroll-content {
-  flex: 1;
-  padding: 160px 24px 120px;
+.ac-gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(100, 181, 246, 0.22) 0%, #010422 100%);
+  z-index: 1;
+}
+
+.ac-bg-lines-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../imgs/bg.png');
+  background-size: cover;
+  opacity: 0.4;
+  z-index: 2;
+}
+
+.ac-main-container {
+  position: relative;
+  z-index: 3;
+  padding: 10px 24px 40px;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+}
+
+.ac-top-navigation {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding: 15px 0 25px;
 }
 
-.gs-title-wrap {
-  text-align: center;
-  margin-bottom: 40px;
+.ac-icon-nav-btn {
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.gs-step-count {
-  font-size: 13px;
-  opacity: 0.5;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.ac-file-btn {
+  background: #64B5F6;
+  border: none;
 }
 
-.gs-title {
-  font-family: var(--font-title);
-  font-size: 32px;
-  margin: 12px 0 0 0;
+.ac-stepper-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.ac-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.ac-dot.ac-active {
+  width: 24px;
+  border-radius: 10px;
+  background: #64B5F6;
+}
+
+.ac-header-text {
+  margin-bottom: 30px;
+}
+
+.ac-main-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 38px;
+  margin: 0;
   font-weight: 400;
 }
 
-.gs-icon-container {
+.ac-step-indicator {
+  font-size: 14px;
+  opacity: 0.5;
+  margin-top: 8px;
+}
+
+.ac-hero-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.ac-warning-icon-box {
   width: 110px;
   height: 110px;
-  border-radius: 30px;
+  background: #FF8A00;
+  border-radius: 28px;
   display: flex;
-  top: 10px;
-  position: relative;
-  justify-content: center;
   align-items: center;
-  margin-bottom: 30px;
-  background: var(--btn-bg);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  justify-content: center;
+  margin-bottom: 24px;
+  box-shadow: 0 12px 30px rgba(255, 138, 0, 0.35);
 }
 
-.gs-step-name {
-  font-family: var(--font-title);
-  font-size: 28px;
-  margin-bottom: 8px;
-  color: var(--text-main);
+.ac-section-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 34px;
+  font-weight: 400;
+  margin: 0;
 }
 
-.gs-step-sub {
-  font-size: 14px;
+.ac-section-desc {
+  font-size: 15px;
   opacity: 0.6;
-  max-width: 280px;
-  line-height: 1.5;
-  margin-bottom: 30px;
+  margin-top: 10px;
 }
 
-.gs-check-card {
-  width: 100%;
-  background: var(--card-bg);
-  border: 1px solid var(--glass-border);
+.ac-glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 24px;
+  backdrop-filter: blur(15px);
   padding: 24px;
-  backdrop-filter: blur(10px);
+}
+
+.ac-info-card {
   margin-bottom: 20px;
 }
 
-.gs-check-title {
-  font-size: 16px;
+.ac-card-heading {
+  font-size: 18px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin: 0 0 16px 0;
 }
 
-.gs-check-list {
+.ac-instruction-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.gs-check-item {
+.ac-instruction-list li {
   display: flex;
-  gap: 14px;
   align-items: flex-start;
-}
-
-.gs-check-circle {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid var(--accent-blue);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.gs-check-item p {
-  font-size: 14px;
-  opacity: 0.8;
-  line-height: 1.5;
-  margin: 0;
-}
-
-.gs-tip-card {
-  width: 100%;
-  background: rgba(255, 214, 0, 0.05);
-  border: 1px solid rgba(255, 214, 0, 0.1);
-  border-radius: 20px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
   gap: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  opacity: 0.8;
+}
+
+.ac-tip-box {
+  background: rgba(255, 213, 79, 0.04);
+  border-color: rgba(255, 213, 79, 0.15);
   margin-bottom: 30px;
 }
 
-.gs-tip-header {
+.ac-tip-header {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #FFD600;
-  font-size: 14px;
-  font-weight: 600;
+  margin-bottom: 8px;
 }
 
-.gs-tip-content {
+.ac-tip-title {
+  color: #FFD54F;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.ac-tip-content {
   font-size: 13px;
-  opacity: 0.6;
   line-height: 1.5;
-  margin: 0;
+  opacity: 0.7;
 }
 
-.gs-footer-nav {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 430px;
-  background: var(--navy);
-  backdrop-filter: blur(20px);
-  padding: 20px 24px 40px;
+.ac-bottom-navigation {
+  margin-top: auto;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1001;
+  gap: 12px;
+  padding-bottom: 20px;
 }
 
-.gs-prev-btn {
-  background: none;
-  border: none;
-  color: var(--sub-text);
-  font-size: 14px;
+.ac-nav-btn {
+  height: 56px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
 }
 
-.gs-next-btn {
-  background: var(--accent-blue);
-  border: none;
-  color: white;
-  padding: 14px 40px;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 14px;
-  box-shadow: 0 10px 20px rgba(26, 115, 232, 0.2);
+.ac-prev-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFF;
+  opacity: 0.8;
+}
+
+.ac-next-btn {
+  flex: 1;
+  background: #64B5F6;
+  color: #FFF;
+  box-shadow: 0 8px 25px rgba(100, 181, 246, 0.3);
+}
+
+.ac-home-indicator-bar {
+  width: 135px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin: 0 auto;
 }

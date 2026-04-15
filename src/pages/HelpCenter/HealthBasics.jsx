@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, FileText, Activity, Lightbulb, Check } from 'lucide-react';
+import { ChevronLeft, FileText, Activity, CheckCircle2, Lightbulb, ChevronRight, ArrowLeft } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import './HealthBasics.css';
 
@@ -9,81 +9,88 @@ const HealthBasics = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="gs-root ltr-theme">
-      <div className="gs-header">
+    <div className="hb-page-root ltr-theme">
+      <div className="hb-gradient-overlay"></div>
+      <div className="hb-bg-lines-img"></div>
+
+      <div className="hb-main-container">
         <StatusBar dark={true} />
-        <div className="gs-nav">
-          <button className="gs-back-btn" onClick={() => navigate('/helpcenter/complete-profile')}>
+
+        <header className="hb-top-nav">
+          <button className="hb-top-nav-btn" onClick={() => navigate('/helpcenter/complete-profile')}>
             <ChevronLeft size={22} />
           </button>
-          <div className="gs-progress-dots">
-            <div className="gs-dot active" />
-            <div className="gs-dot active" />
-            <div className="gs-dot" />
-            <div className="gs-dot" />
-            <div className="gs-dot" />
+          
+          <div className="hb-stepper">
+            <span className="hb-dot"></span>
+            <span className="hb-dot hb-active"></span>
+            <span className="hb-dot"></span>
+            <span className="hb-dot"></span>
+            <span className="hb-dot"></span>
           </div>
-          <button className="gs-doc-btn">
+
+          <button className="hb-top-nav-btn hb-blue-btn">
             <FileText size={20} />
           </button>
-        </div>
-      </div>
+        </header>
 
-      <motion.div 
-        className="gs-scroll-content"
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-      >
-        <div className="gs-title-wrap">
-          <span className="gs-step-count">Step 2 of 5</span>
-          <h1 className="gs-title">Getting Started</h1>
+        <div className="hb-header-text">
+          <h1 className="hb-main-title">Getting Started</h1>
+          <p className="hb-step-info">Step 2 of 5</p>
         </div>
 
-        <div className="gs-icon-container" style={{ background: '#00E676' }}>
-          <Activity size={50} color="white" />
+        <div className="hb-hero-section">
+          <div className="hb-icon-box">
+            <Activity size={54} color="#FFF" strokeWidth={1.5} />
+          </div>
+          <h2 className="hb-section-name">Enter Health Basics</h2>
+          <p className="hb-section-desc">Provide measurements and biological info</p>
         </div>
 
-        <h2 className="gs-step-name">Enter Health Basics</h2>
-        <p className="gs-step-sub">Provide essential health measurements and biological information.</p>
-
-        <div className="gs-check-card">
-          <h3 className="gs-check-title">What to do:</h3>
-          <div className="gs-check-list">
-            <div className="gs-check-item">
-              <div className="gs-check-circle" style={{ borderColor: '#00E676' }}><Check size={12} color="#00E676" /></div>
+        <div className="hb-card hb-glass">
+          <h3 className="hb-card-title">What to do:</h3>
+          <div className="hb-check-list">
+            <div className="hb-check-item">
+              <CheckCircle2 size={18} color="#00E676" />
               <p>Enter your current weight in kg or lbs</p>
             </div>
-            <div className="gs-check-item">
-              <div className="gs-check-circle" style={{ borderColor: '#00E676' }}><Check size={12} color="#00E676" /></div>
+            <div className="hb-check-item">
+              <CheckCircle2 size={18} color="#00E676" />
               <p>Add your height in cm or feet/inches</p>
             </div>
-            <div className="gs-check-item">
-              <div className="gs-check-circle" style={{ borderColor: '#00E676' }}><Check size={12} color="#00E676" /></div>
+            <div className="hb-check-item">
+              <CheckCircle2 size={18} color="#00E676" />
               <p>Select your biological sex</p>
             </div>
-            <div className="gs-check-item">
-              <div className="gs-check-circle" style={{ borderColor: '#00E676' }}><Check size={12} color="#00E676" /></div>
+            <div className="hb-check-item">
+              <CheckCircle2 size={18} color="#00E676" />
               <p>These measurements help calculate BMI and health metrics</p>
             </div>
           </div>
         </div>
 
-        <div className="gs-tip-card">
-          <div className="gs-tip-header">
-            <Lightbulb size={16} />
-            <span>Pro Tip</span>
+        <div className="hb-tip-box hb-glass">
+          <div className="hb-tip-header">
+            <Lightbulb size={20} color="#FFD54F" />
+            <span className="hb-tip-label">Pro Tip</span>
           </div>
-          <p className="gs-tip-content">Regular updates to weight help track your health prognosis over time.</p>
+          <p className="hb-tip-body">
+            Regular updates to weight help track your health prognosis over time.
+          </p>
         </div>
-      </motion.div>
 
-      <div className="gs-footer-nav">
-        <button className="gs-prev-btn" onClick={() => navigate('/helpcenter/complete-profile')}>
-          <ChevronLeft size={16} /> Previous
-        </button>
-        <button className="gs-next-btn" onClick={() => navigate('/helpcenter/blood-type-dna')}>
-          Next Step <ChevronRight size={16} />
-        </button>
+        <footer className="hb-bottom-nav">
+          <button className="hb-nav-button hb-btn-secondary" onClick={() => navigate('/helpcenter/complete-profile')}>
+             <ArrowLeft size={16} />
+             <span>Previous</span>
+          </button>
+          <button className="hb-nav-button hb-btn-primary" onClick={() => navigate('/helpcenter/blood-type-dna')}>
+             <span>Next Step</span>
+             <ChevronRight size={18} />
+          </button>
+        </footer>
+        
+        <div className="hb-ios-bar"></div>
       </div>
     </div>
   );

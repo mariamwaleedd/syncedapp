@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, FileText, User, Lightbulb, Check } from 'lucide-react';
+import { ChevronLeft, FileText, User, CheckCircle2, Lightbulb, ChevronRight, ArrowLeft } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import './CompleteProfile.css';
 
@@ -9,81 +9,88 @@ const CompleteProfile = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="gs-root ltr-theme">
-      <div className="gs-header">
+    <div className="cp-page-root ltr-theme">
+      <div className="cp-gradient-overlay"></div>
+      <div className="cp-bg-lines-img"></div>
+
+      <div className="cp-main-container">
         <StatusBar dark={true} />
-        <div className="gs-nav">
-          <button className="gs-back-btn" onClick={() => navigate('/helpcenter')}>
+
+        <header className="cp-top-nav">
+          <button className="cp-icon-btn" onClick={() => navigate('/helpcenter')}>
             <ChevronLeft size={22} />
           </button>
-          <div className="gs-progress-dots">
-            <div className="gs-dot active" />
-            <div className="gs-dot" />
-            <div className="gs-dot" />
-            <div className="gs-dot" />
-            <div className="gs-dot" />
+          
+          <div className="cp-stepper">
+            <span className="cp-step-dot active"></span>
+            <span className="cp-step-dot"></span>
+            <span className="cp-step-dot"></span>
+            <span className="cp-step-dot"></span>
+            <span className="cp-step-dot"></span>
           </div>
-          <button className="gs-doc-btn">
+
+          <button className="cp-icon-btn cp-file-btn">
             <FileText size={20} />
           </button>
-        </div>
-      </div>
+        </header>
 
-      <motion.div 
-        className="gs-scroll-content"
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-      >
-        <div className="gs-title-wrap">
-          <span className="gs-step-count">Step 1 of 5</span>
-          <h1 className="gs-title">Getting Started</h1>
+        <div className="cp-header-info">
+          <h1 className="cp-main-title">Getting Started</h1>
+          <p className="cp-step-text">Step 1 of 5</p>
         </div>
 
-        <div className="gs-icon-container" style={{ background: '#1A73E8' }}>
-          <User size={50} color="white" />
-        </div>
-
-        <h2 className="gs-step-name">Complete Your Profile</h2>
-        <p className="gs-step-sub">Start by filling in your basic health and identity information.</p>
-
-        <div className="gs-check-card">
-          <h3 className="gs-check-title">What to do:</h3>
-          <div className="gs-check-list">
-            <div className="gs-check-item">
-              <div className="gs-check-circle"><Check size={12} color="#1A73E8" /></div>
-              <p>Enter your full name and date of birth</p>
-            </div>
-            <div className="gs-check-item">
-              <div className="gs-check-circle"><Check size={12} color="#1A73E8" /></div>
-              <p>Add your contact information (email and phone)</p>
-            </div>
-            <div className="gs-check-item">
-              <div className="gs-check-circle"><Check size={12} color="#1A73E8" /></div>
-              <p>Upload a profile picture (optional)</p>
-            </div>
-            <div className="gs-check-item">
-              <div className="gs-check-circle"><Check size={12} color="#1A73E8" /></div>
-              <p>This information helps personalize your health experience</p>
-            </div>
+        <div className="cp-hero-section">
+          <div className="cp-icon-square">
+            <User size={54} color="#FFF" strokeWidth={1.5} />
           </div>
+          <h2 className="cp-section-title">Complete Your Profile</h2>
+          <p className="cp-section-subtitle">Fill in your health and identity info</p>
         </div>
 
-        <div className="gs-tip-card">
-          <div className="gs-tip-header">
-            <Lightbulb size={16} />
-            <span>Pro Tip</span>
+        <div className="cp-card cp-glass">
+          <h3 className="cp-card-label">What to do:</h3>
+          <ul className="cp-list">
+            <li>
+              <CheckCircle2 size={18} color="#1A73E8" />
+              <span>Enter your full name and date of birth</span>
+            </li>
+            <li>
+              <CheckCircle2 size={18} color="#1A73E8" />
+              <span>Add your contact information (email and phone)</span>
+            </li>
+            <li>
+              <CheckCircle2 size={18} color="#1A73E8" />
+              <span>Upload a profile picture (optional)</span>
+            </li>
+            <li>
+              <CheckCircle2 size={18} color="#1A73E8" />
+              <span>This information helps personalize your health experience</span>
+            </li>
+          </ul>
+        </div>
+
+        <div className="cp-tip-box cp-glass">
+          <div className="cp-tip-head">
+            <Lightbulb size={20} color="#FFD54F" />
+            <span className="cp-tip-title">Pro Tip</span>
           </div>
-          <p className="gs-tip-content">Make sure your contact information is accurate for emergency notifications.</p>
+          <p className="cp-tip-body">
+            Make sure your contact information is accurate for emergency notifications.
+          </p>
         </div>
-      </motion.div>
 
-      <div className="gs-footer-nav">
-        <button className="gs-prev-btn" onClick={() => navigate('/helpcenter')}>
-          <ChevronLeft size={16} /> Previous
-        </button>
-        <button className="gs-next-btn" onClick={() => navigate('/helpcenter/health-basics')}>
-          Next Step <ChevronRight size={16} />
-        </button>
+        <footer className="cp-footer-actions">
+          <button className="cp-btn-secondary" onClick={() => navigate('/helpcenter')}>
+             <ArrowLeft size={16} />
+             <span>Previous</span>
+          </button>
+          <button className="cp-btn-primary" onClick={() => navigate('/helpcenter/health-basics')}>
+             <span>Next Step</span>
+             <ChevronRight size={18} />
+          </button>
+        </footer>
+        
+        <div className="cp-ios-indicator"></div>
       </div>
     </div>
   );
