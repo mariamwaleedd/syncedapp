@@ -57,6 +57,32 @@
 :root {
   --font-title: 'Instrument Serif', serif;
   --font-main: 'General Sans', sans-serif;
+
+  /* Responsive Spacing */
+  --app-h-padding: clamp(16px, 5vw, 24px);
+  --section-gap: clamp(24px, 8vw, 40px);
+  --card-padding: clamp(16px, 5vw, 24px);
+  
+  /* Responsive Typography */
+  --size-hero: clamp(32px, 10vw, 44px);
+  --size-title: clamp(24px, 7vw, 32px);
+  --size-body: clamp(14px, 4vw, 16px);
+  
+  /* Responsive Components */
+  --btn-height: clamp(52px, 15vw, 60px);
+  --input-height: clamp(50px, 14vw, 56px);
+  --icon-box-size: clamp(44px, 12vw, 52px);
+}
+
+@media (max-width: 360px) {
+  :root {
+    --app-h-padding: 16px;
+    --section-gap: 20px;
+    --card-padding: 16px;
+    --btn-height: 50px;
+    --input-height: 48px;
+    --icon-box-size: 44px;
+  }
 }
 
 * {
@@ -66,14 +92,14 @@
 
 body {
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 40px 0;
+  padding: 0;
   background: var(--bg-color);
-  overflow-y: auto;
+  overflow-x: hidden;
   font-family: var(--font-main);
   color: var(--text-main);
 }
@@ -91,6 +117,10 @@ button {
 
 #root {
   width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  position: relative;
 }
 
 .rtl-theme {
@@ -100,3 +130,4 @@ button {
 .ltr-theme {
   direction: ltr;
 }
+

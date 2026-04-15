@@ -36,7 +36,7 @@
   position: relative;
   z-index: 3;
   flex: 1;
-  padding: 60px 24px 40px;
+  padding: 60px var(--app-h-padding) 40px;
   display: flex;
   flex-direction: column;
 }
@@ -116,7 +116,7 @@
 
 .ps-title {
   font-family: var(--font-title);
-  font-size: 44px;
+  font-size: var(--size-hero);
   font-weight: 400;
   margin-bottom: 8px;
   color: #FFFFFF;
@@ -131,7 +131,7 @@
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 28px;
-  padding: 24px;
+  padding: var(--card-padding);
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -153,7 +153,7 @@
 }
 
 .ps-custom-select {
-  height: 64px;
+  height: var(--input-height);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 16px;
@@ -234,7 +234,7 @@
 
 .ps-back-btn {
   flex: 0.8;
-  height: 60px;
+  height: var(--btn-height);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 18px;
@@ -250,7 +250,7 @@
 
 .ps-continue-btn {
   flex: 1.2;
-  height: 60px;
+  height: var(--btn-height);
   background: #64B5F6;
   border: none;
   border-radius: 18px;

@@ -36,7 +36,7 @@
   position: relative;
   z-index: 3;
   flex: 1;
-  padding: 60px 24px 40px;
+  padding: 60px var(--app-h-padding) 40px;
   display: flex;
   flex-direction: column;
 }
@@ -116,7 +116,7 @@
 
 .mh-title {
   font-family: var(--font-title);
-  font-size: 44px;
+  font-size: var(--size-hero);
   font-weight: 400;
   margin-bottom: 8px;
   color: #FFFFFF;

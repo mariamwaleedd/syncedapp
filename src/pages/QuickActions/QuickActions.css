@@ -94,7 +94,7 @@
 
 .qa-scroll-content {
   flex: 1;
-  padding: 130px 20px 120px;
+  padding: 130px var(--app-h-padding) 120px;
 }
 
 .qa-category {

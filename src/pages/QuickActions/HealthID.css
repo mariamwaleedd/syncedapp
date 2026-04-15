@@ -27,7 +27,7 @@
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   z-index: 1001;
-  padding: 12px 20px 20px;
+  padding: 12px var(--app-h-padding) 20px;
   box-shadow: 0 10px 40px rgba(0,0,0,0.5);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-sizing: border-box;
@@ -127,7 +127,7 @@
 }
 
 .hid-scroll-body {
-  padding: 240px 20px 140px;
+  padding: 240px var(--app-h-padding) 140px;
 }
 
 .hid-glass {
@@ -140,7 +140,7 @@
 .hid-score-card {
   display: flex;
   justify-content: space-between;
-  padding: 24px;
+  padding: var(--card-padding);
   margin-bottom: 35px;
 }
 
@@ -216,9 +216,8 @@
 
 .hid-vitals-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 35px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;  margin-bottom: 35px;
 }
 
 .hid-vital-item {
@@ -302,7 +301,7 @@
 .hid-contact-phone { font-size: 17px; font-weight: 600; display: block; }
 
 .hid-files-list { display: flex; flex-direction: column; gap: 12px; }
-.hid-file-row { display: flex; align-items: center; padding: 16px; gap: 16px; }
+.hid-file-row { display: flex; align-items: center; padding: 16px var(--app-h-padding); gap: 16px; }
 .hid-file-ico { width: 44px; height: 44px; background: rgba(100, 181, 246, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
 .hid-file-info { flex: 1; }
 .hid-file-info h5 { margin: 0; font-size: 15px; }
@@ -324,7 +323,7 @@
   background: #64B5F6; 
   color: #FFF; 
   border: none; 
-  height: 60px; 
+  height: var(--btn-height); 
   border-radius: 18px; 
   display: flex; 
   align-items: center; 

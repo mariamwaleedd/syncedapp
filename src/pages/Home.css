@@ -28,7 +28,7 @@
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   z-index: 1001;
-  padding: 12px 20px 24px;
+  padding: 12px var(--app-h-padding) 24px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
 }
@@ -82,7 +82,7 @@
 
 .ha-greeting-left h1 {
   font-family: var(--font-title);
-  font-size: 38px;
+  font-size: var(--size-hero);
   margin: 0;
   line-height: 1.1;
 }
@@ -139,7 +139,7 @@
   border: 2px solid var(--navy);
 }
 
-.ha-scroll-content { padding: 300px 20px 140px; }
+.ha-scroll-content { padding: 300px var(--app-h-padding) 140px; }
 
 .ha-glass {
   background: var(--glass-bg);
@@ -168,7 +168,7 @@
 
 .ha-tracker-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
   gap: 12px;
 }
 
@@ -305,18 +305,20 @@
   justify-items: center;
 }
 
-.ha-menu-cell { display: flex; flex-direction: column; 
+.ha-menu-cell { 
+  display: flex; 
+  flex-direction: column; 
   background: var(--btn-bg);
   border: 1.5px solid var(--glass-border);
-  display: flex;
   align-items: center;
-  padding: 20px;
-  width: 85%;
+  padding: var(--card-padding);
+  width: 100%;
   aspect-ratio: 1;
   justify-content: center;
   position: relative;
   border-radius: 22px;
-  align-items: center; gap: 10px; }
+  gap: 10px; 
+}
 
 .ha-sq-box {
   width: 54px;

@@ -34,7 +34,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 20px var(--app-h-padding);
 }
 
 .header-nav {
@@ -85,7 +85,7 @@
 
 .main-heading {
   font-family: var(--font-title);
-  font-size: 64px;
+  font-size: var(--size-hero);
   font-weight: 400;
   line-height: 1;
   margin-bottom: 4px;
@@ -217,7 +217,7 @@ form {
   color: #FFFFFF;
   border: none;
   border-radius: 14px;
-  height: 60px;
+  height: var(--btn-height);
   font-size: 18px;
   font-family: var(--font-main);
   font-weight: 600;
