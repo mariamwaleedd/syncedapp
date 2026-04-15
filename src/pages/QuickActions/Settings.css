@@ -1,4 +1,4 @@
-.qa-stub-root {
+.set-root {
   width: 100%;
   min-height: 100vh;
   background-color: #010422;
@@ -19,7 +19,7 @@
   margin: 0 auto;
 }
 
-.qa-stub-header {
+.set-fixed-header {
   position: fixed;
   top: 0;
   left: 50%;
@@ -35,13 +35,13 @@
   box-sizing: border-box;
 }
 
-.qa-stub-nav {
+.set-nav-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.qa-stub-circle-btn {
+.set-circle-btn {
   width: 44px;
   height: 44px;
   background: rgba(255, 255, 255, 0.08);
@@ -51,56 +51,124 @@
   justify-content: center;
   align-items: center;
   color: #FFFFFF;
-  cursor: pointer;
 }
 
-.qa-stub-title {
-  text-align: center;
-}
-
-.qa-stub-title h1 {
+.set-header-title h1 {
   font-family: var(--font-title);
   font-size: 28px;
   margin: 0;
 }
 
-.qa-stub-content {
+.set-scroll-content {
   flex: 1;
-  padding: 160px 20px 120px;
+  padding: 140px 20px 120px;
 }
 
-.qa-stub-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
-  padding: 40px 30px;
-  backdrop-filter: blur(15px);
-  text-align: center;
+.set-profile-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  margin-bottom: 40px;
 }
 
-.qa-stub-icon-wrap {
-  width: 100px;
-  height: 100px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 30px;
+.set-avatar-wrap {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.set-avatar {
+  width: 120px;
+  height: 120px;
+  background: #FFFFFF;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 4px solid rgba(255, 255, 255, 0.1);
 }
 
-.qa-stub-card h2 {
+.set-avatar-edit {
+  position: absolute;
+  bottom: 0;
+  right: 8px;
+  background: #1A73E8;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #010422;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.set-user-name {
+  font-family: var(--font-main);
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.set-user-email {
+  font-size: 14px;
+  opacity: 0.5;
+  margin: 4px 0 0 0;
+}
+
+.set-section {
+  margin-bottom: 30px;
+}
+
+.set-sec-title {
   font-family: var(--font-title);
-  font-size: 32px;
-  margin: 0;
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 16px;
+  opacity: 0.9;
+  padding-left: 4px;
 }
 
-.qa-stub-card p {
-  opacity: 0.6;
-  line-height: 1.6;
-  margin: 0;
+.set-options-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.set-opt-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(10px);
+}
+
+.set-opt-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.set-opt-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.8;
+}
+
+.set-opt-left span {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.set-chevron {
+  opacity: 0.4;
+}
+
+.set-bottom-spacer {
+  height: 60px;
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, Sparkles, Activity } from 'lucide-react';
+import { ChevronLeft, Sparkles, Eye } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
-import './WellnessPage.css';
+import './PrivacySettings.css';
 
-const Wellness = () => {
+const PrivacySettings = () => {
   const navigate = useNavigate();
 
   return (
@@ -18,7 +18,7 @@ const Wellness = () => {
             <ChevronLeft size={22} />
           </button>
           <div className="qa-stub-title">
-            <h1>Wellness</h1>
+            <h1>Privacy</h1>
           </div>
           <button className="qa-stub-circle-btn">
             <Sparkles size={20} />
@@ -28,9 +28,9 @@ const Wellness = () => {
 
       <motion.div className="qa-stub-content" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
         <div className="qa-stub-card">
-          <div className="qa-stub-icon-wrap"><Activity size={48} color="#00B8D4" /></div>
-          <h2>Wellness & Lifestyle</h2>
-          <p>Monitor your daily habits, from sleep and hydration to mindfulness. Build a healthier lifestyle, one step at a time.</p>
+          <div className="qa-stub-icon-wrap"><Eye size={48} color="#00E676" /></div>
+          <h2>Privacy Controls</h2>
+          <p>Review and configure your data sharing permissions. Manage who can access your medical history and lifestyle metrics across the ecosystem.</p>
         </div>
       </motion.div>
       <TouchBar />
@@ -38,4 +38,4 @@ const Wellness = () => {
   );
 };
 
-export default Wellness;
+export default PrivacySettings;

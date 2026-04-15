@@ -16,7 +16,7 @@ import GeneticInfo from './pages/QuizHero/GeneticInfo';
 import EmergencyContact from './pages/QuizHero/EmergencyContacts';
 import AllSet from './pages/QuizHero/AllSet';
 
-// Quick Actions Folder
+// Quick Actions & Core Features
 import QuickActions from './pages/QuickActions/QuickActions';
 import HealthID from './pages/QuickActions/HealthID';
 import Medicine from './pages/QuickActions/Medicine';
@@ -41,6 +41,18 @@ import Preferences from './pages/QuickActions/Preferences';
 import Records from './pages/QuickActions/Records';
 import PersonalDetails from './pages/QuickActions/PersonalDetails';
 
+// NEW Settings Pages
+import Profile from './pages/Settings/Profile';
+import SecurityDetails from './pages/Settings/SecurityDetails';
+import AccessibilitySettings from './pages/Settings/AccessibilitySettings';
+import HealthPreferences from './pages/Settings/HealthPreferences';
+import MedicalRecords from './pages/Settings/MedicalRecords';
+import AppointmentSettings from './pages/Settings/AppointmentSettings';
+import ConnectedDevices from './pages/Settings/ConnectedDevices';
+import NotificationSettings from './pages/Settings/NotificationSettings';
+import PrivacySettings from './pages/Settings/PrivacySettings';
+import HelpCenter from './pages/Settings/HelpCenter';
+
 const Routing = () => {
   return (
     <Routes>
@@ -63,7 +75,7 @@ const Routing = () => {
       <Route path="/emergencycontacts" element={<EmergencyContact/>} />
       <Route path="/allset" element={<AllSet/>} />
 
-      {/* Quick Actions & Features Routes */}
+      {/* Quick Actions Routes */}
       <Route path="/quickactions" element={<QuickActions/>} />
       <Route path="/healthid" element={<HealthID/>} />
       <Route path="/medicine" element={<Medicine/>} />
@@ -87,6 +99,19 @@ const Routing = () => {
       <Route path="/preferences" element={<Preferences/>} />
       <Route path="/records" element={<Records/>} />
       <Route path="/personaldetails" element={<PersonalDetails/>} />
+
+      {/* Settings Sub-Routes */}
+      <Route path="/settings/profile" element={<Profile/>} />
+      <Route path="/settings/security" element={<SecurityDetails/>} />
+      <Route path="/settings/accessibility" element={<AccessibilitySettings/>} />
+      <Route path="/settings/preferences" element={<HealthPreferences/>} />
+      <Route path="/settings/records" element={<MedicalRecords/>} />
+      <Route path="/settings/appointments" element={<AppointmentSettings/>} />
+      <Route path="/settings/devices" element={<ConnectedDevices/>} />
+      <Route path="/settings/notifications" element={<NotificationSettings/>} />
+      <Route path="/settings/privacy" element={<PrivacySettings/>} />
+      <Route path="/settings/help" element={<HelpCenter/>} />
+
     </Routes>
   );
 };
