@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
+
+.ep-container {
+  background-color: #010422;
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'General Sans', sans-serif;
+  color: #FFF;
+}
+
+.ep-bg-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(100, 181, 246, 0.2) 0%, #010422 100%);
+  z-index: 1;
+}
+
+.ep-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../imgs/bg.png');
+  background-size: cover;
+  opacity: 0.4;
+  z-index: 2;
+}
+
+.ep-content {
+  position: relative;
+  z-index: 3;
+  padding: 10px 20px 100px;
+}
+
+.ep-nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.ep-back-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ep-save-btn {
+  background: #64B5F6;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #FFF;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(100, 181, 246, 0.3);
+}
+
+.ep-title-section { margin-bottom: 30px; }
+.ep-page-title { font-family: 'Instrument Serif', serif; font-size: 38px; margin: 0; }
+.ep-page-subtitle { font-size: 14px; opacity: 0.5; margin-top: 6px; }
+
+.ep-avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.ep-avatar-sq {
+  width: 100px;
+  height: 100px;
+  background: #64B5F6;
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(100, 181, 246, 0.2);
+}
+
+.ep-cam-badge {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  background: #00E676;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #010422;
+}
+
+.ep-cam-txt { font-size: 12px; opacity: 0.4; margin-top: 12px; }
+
+.ep-block { margin-bottom: 35px; }
+.ep-block-lbl { font-family: 'Instrument Serif', serif; font-size: 22px; margin-bottom: 15px; padding-left: 4px; display: flex; align-items: center; gap: 10px; }
+
+.ep-glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  backdrop-filter: blur(15px);
+}
+
+.ep-card { padding: 10px 20px 20px; }
+
+.ep-field { margin-top: 18px; }
+.ep-field label { font-size: 12px; font-weight: 600; opacity: 0.6; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.ep-field input, .ep-field select {
+  width: 100%;
+  height: 52px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 0 16px;
+  color: #FFF;
+  font-size: 15px;
+  outline: none;
+}
+
+.ep-row-split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.ep-bmi-pill {
+  margin-top: 20px;
+  height: 54px;
+  background: rgba(5, 255, 145, 0.1);
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  color: #05FF91;
+}
+
+.ep-bmi-l { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 13px; }
+.ep-bmi-v { font-weight: 700; font-size: 18px; }
+
+.ep-list-card {
+  padding: 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ep-allergy-bg { background: rgba(255, 65, 108, 0.06); }
+.ep-condition-bg { background: rgba(255, 138, 0, 0.06); }
+
+.ep-tags-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.ep-tag {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ep-tag svg { cursor: pointer; opacity: 0.6; }
+
+.ep-add-row { display: flex; gap: 10px; }
+.ep-add-row input { flex: 1; height: 50px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 0 16px; color: #FFF; outline: none; }
+.ep-add-btn { width: 50px; height: 50px; border-radius: 14px; border: none; display: flex; align-items: center; justify-content: center; color: #FFF; }
+.ep-add-btn.red { background: rgba(255, 65, 108, 0.2); color: #FF416C; }
+.ep-add-btn.orange { background: rgba(255, 138, 0, 0.2); color: #FF8A00; }
+
+.ep-bottom-pad { height: 60px; }

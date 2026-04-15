@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   ChevronLeft, Edit2, CheckCircle2, Calendar, 
   Mail, Phone, MapPin, Droplets, Ruler, 
@@ -11,6 +12,7 @@ import TouchBar from '../../common/TouchBar';
 import './Profile.css';
 
 const Profile = () => {
+  const navigate = useNavigate();
   return (
     <div className="pf-container ltr-theme">
       <div className="pf-layer-gradient"></div>
@@ -20,8 +22,8 @@ const Profile = () => {
         <StatusBar dark={true} />
 
         <div className="pf-header-nav">
-          <button className="pf-nav-circle"><ChevronLeft size={22} /></button>
-          <button className="pf-nav-circle pf-edit-active"><Edit2 size={20} /></button>
+          <button className="pf-nav-circle" onClick={() => navigate(-1)}><ChevronLeft size={22} /></button>
+          <button className="pf-nav-circle pf-edit-active" onClick={() => navigate('/settings/edit-profile')}><Edit2 size={20} /></button>
         </div>
 
         <div className="pf-user-hero">
@@ -67,7 +69,7 @@ const Profile = () => {
         <section className="pf-block">
           <h2 className="pf-block-title">Quick Actions</h2>
           <div className="pf-actions-layout">
-            <div className="pf-action-glass">
+            <div className="pf-action-glass" onClick={() => navigate('/settings/edit-profile')} style={{ cursor: 'pointer' }}>
               <div className="pf-act-ico blue"><Edit2 size={20} /></div>
               <span>Edit Profile</span>
             </div>

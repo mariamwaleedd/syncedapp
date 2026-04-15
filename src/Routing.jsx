@@ -51,6 +51,7 @@ import AppointmentSettings from './pages/Settings/AppointmentSettings';
 import ConnectedDevices from './pages/Settings/ConnectedDevices';
 import NotificationSettings from './pages/Settings/NotificationSettings';
 import PrivacySettings from './pages/Settings/PrivacySettings';
+import EditProfile from './pages/Settings/EditProfile';
 
 // Help Center Hub & Guides
 import HelpCenter from './pages/HelpCenter/HelpCenter';
@@ -87,7 +88,8 @@ const TitleUpdater = () => {
       '/emergency': 'Emergency Support',
       '/blood': 'Blood Network',
       '/appointments': 'My Appointments',
-      '/personaldetails': 'Personal Details'
+      '/personaldetails': 'Personal Details',
+      '/settings/edit-profile': 'Edit Profile'
     };
 
     const currentTitle = titles[location.pathname] || 'SYNCED';
@@ -156,6 +158,7 @@ const Routing = () => {
         <Route path="/settings/devices" element={<ConnectedDevices/>} />
         <Route path="/settings/notifications" element={<NotificationSettings/>} />
         <Route path="/settings/privacy" element={<PrivacySettings/>} />
+        <Route path="/settings/edit-profile" element={<EditProfile/>} />
 
         {/* Help Center Routes */}
         <Route path="/helpcenter" element={<HelpCenter/>} />
