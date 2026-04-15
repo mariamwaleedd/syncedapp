@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, FileText, User, Lightbulb, Check } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
-import './GuideLayout.css';
+import './CompleteProfile.css';
 
 const CompleteProfile = () => {
   const navigate = useNavigate();
