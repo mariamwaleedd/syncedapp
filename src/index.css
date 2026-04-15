@@ -25,6 +25,35 @@
   --btn-bg: rgba(0, 0, 0, 0.05);
 }
 
+:root[data-high-contrast='true'] {
+  --glass-bg: var(--bg-color) !important;
+  --glass-border: var(--text-main) !important;
+  --card-bg: var(--bg-color) !important;
+  --sub-text: var(--text-main) !important;
+  --btn-bg: var(--bg-color) !important;
+  border-width: 2px !important;
+}
+
+:root[data-font-size='small'] { font-size: 14px; }
+:root[data-font-size='medium'] { font-size: 16px; }
+:root[data-font-size='large'] { font-size: 18px; }
+:root[data-font-size='extra large'] { font-size: 20px; }
+
+:root[data-reduce-motion='true'] * {
+  transition-duration: 0.01s !important;
+  animation-duration: 0.01s !important;
+  animation-iteration-count: 1 !important;
+}
+
+:root[data-color-mode='monochromacy'] { filter: grayscale(100%); }
+:root[data-color-mode='protanopia'] { filter: hue-rotate(45deg); }
+:root[data-color-mode='deuteranopia'] { filter: hue-rotate(90deg); }
+:root[data-color-mode='tritanopia'] { filter: hue-rotate(180deg); }
+
+:root[data-cursor-size='medium'] { cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="black"><path d="M5.5 3.5l13.5 13.5-5.5 0.5 4 6-2 1-4-6-6 6z"/></svg>'), auto; }
+:root[data-cursor-size='large'] { cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white" stroke="black"><path d="M5.5 3.5l13.5 13.5-5.5 0.5 4 6-2 1-4-6-6 6z"/></svg>'), auto; }
+:root[data-cursor-size='extra'] { cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white" stroke="black"><path d="M5.5 3.5l13.5 13.5-5.5 0.5 4 6-2 1-4-6-6 6z"/></svg>'), auto; }
+
 :root {
   --font-title: 'Instrument Serif', serif;
   --font-main: 'General Sans', sans-serif;

@@ -1,32 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   ChevronLeft, Moon, Sun, Globe, Type, 
-  Eye, EyeOff, MousePointer2, Volume2, 
+  Eye, MousePointer2, Volume2, 
   Check, RefreshCw 
 } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './AccessibilitySettings.css';
-
 import { useTheme } from '../../common/ThemeContext';
 
 const Accessibility = () => {
   const navigate = useNavigate();
-  const { theme, setTheme } = useTheme();
-  const [lang, setLang] = useState('en');
-  const [size, setSize] = useState('medium');
-  const [colorMode, setColorMode] = useState('none');
-  const [cursor, setCursor] = useState('normal');
-  const [toggles, setToggles] = useState({
-    contrast: false,
-    motion: true,
-    tts: false,
-    sounds: true,
-    autoRead: false
-  });
-
-  const handleToggle = (key) => setToggles(p => ({ ...p, [key]: !p[key] }));
+  const { 
+    theme, setTheme, 
+    fontSize, setFontSize,
+    highContrast, setHighContrast,
+    reduceMotion, setReduceMotion,
+    colorMode, setColorMode,
+    cursorSize, setCursorSize,
+    resetSettings
+  } = useTheme();
 
   return (
     <div className="ac-root ltr-theme">
@@ -69,30 +63,6 @@ const Accessibility = () => {
 
           <section className="ac-section">
             <div className="ac-section-label">
-              <Globe size={18} />
-              <h2>Language</h2>
-            </div>
-            <div className="ac-card ac-glass">
-               <div className="ac-label-min">Select Language</div>
-               <div className="ac-lang-list">
-                  <div className={`ac-lang-row ${lang === 'en' ? 'active' : ''}`} onClick={() => setLang('en')}>
-                    <div className="ac-lang-info">🇺🇸 <span>English</span></div>
-                    {lang === 'en' && <Check size={16} color="#64B5F6" />}
-                  </div>
-                  <div className={`ac-lang-row ${lang === 'ar' ? 'active' : ''}`} onClick={() => setLang('ar')}>
-                    <div className="ac-lang-info">🇸🇦 <span>العربية</span></div>
-                    {lang === 'ar' && <Check size={16} color="#64B5F6" />}
-                  </div>
-                  <div className={`ac-lang-row ${lang === 'fr' ? 'active' : ''}`} onClick={() => setLang('fr')}>
-                    <div className="ac-lang-info">🇫🇷 <span>Français</span></div>
-                    {lang === 'fr' && <Check size={16} color="#64B5F6" />}
-                  </div>
-               </div>
-            </div>
-          </section>
-
-          <section className="ac-section">
-            <div className="ac-section-label">
               <Type size={18} />
               <h2>Text Size</h2>
             </div>
@@ -102,11 +72,11 @@ const Accessibility = () => {
                 {['Small', 'Medium', 'Large', 'Extra Large'].map((s) => (
                   <div 
                     key={s} 
-                    className={`ac-size-row ${size === s.toLowerCase() ? 'active' : ''}`}
-                    onClick={() => setSize(s.toLowerCase())}
+                    className={`ac-size-row ${fontSize === s.toLowerCase() ? 'active' : ''}`}
+                    onClick={() => setFontSize(s.toLowerCase())}
                   >
                     <span>Aa {s}</span>
-                    {size === s.toLowerCase() && <Check size={16} color="#00E676" />}
+                    {fontSize === s.toLowerCase() && <Check size={16} color="#00E676" />}
                   </div>
                 ))}
               </div>
@@ -122,7 +92,7 @@ const Accessibility = () => {
                   <div className="ac-toggle-ico yellow"><Sun size={16}/></div>
                   <div className="ac-toggle-txt"><h4>High Contrast</h4><p>Increase color contrast</p></div>
                 </div>
-                <div className={`ac-ui-switch ${toggles.contrast ? 'on' : ''}`} onClick={() => handleToggle('contrast')}>
+                <div className={`ac-ui-switch ${highContrast ? 'on' : ''}`} onClick={() => setHighContrast(!highContrast)}>
                   <div className="ac-ui-handle"></div>
                 </div>
               </div>
@@ -131,7 +101,7 @@ const Accessibility = () => {
                   <div className="ac-toggle-ico purple"><RefreshCw size={16}/></div>
                   <div className="ac-toggle-txt"><h4>Reduce Motion</h4><p>Minimize animations</p></div>
                 </div>
-                <div className={`ac-ui-switch ${toggles.motion ? 'on' : ''}`} onClick={() => handleToggle('motion')}>
+                <div className={`ac-ui-switch ${reduceMotion ? 'on' : ''}`} onClick={() => setReduceMotion(!reduceMotion)}>
                   <div className="ac-ui-handle"></div>
                 </div>
               </div>
@@ -146,11 +116,11 @@ const Accessibility = () => {
                 {['None', 'Protanopia', 'Deuteranopia', 'Tritanopia', 'Monochromacy'].map((m) => (
                    <div 
                     key={m} 
-                    className={`ac-color-row ${colorMode === m.toLowerCase() ? 'active' : ''}`}
-                    onClick={() => setColorMode(m.toLowerCase())}
+                    className={`ac-color-row ${colorMode === (m === 'Monochromacy' ? 'monochromacy' : m.toLowerCase()) ? 'active' : ''}`}
+                    onClick={() => setColorMode(m === 'Monochromacy' ? 'monochromacy' : m.toLowerCase())}
                    >
                      <span>{m}</span>
-                     {colorMode === m.toLowerCase() && <Check size={16} color="#64B5F6" />}
+                     {colorMode === (m === 'Monochromacy' ? 'monochromacy' : m.toLowerCase()) && <Check size={16} color="#64B5F6" />}
                    </div>
                 ))}
               </div>
@@ -166,7 +136,7 @@ const Accessibility = () => {
                   { id: 'normal', s: 10 }, { id: 'medium', s: 16 },
                   { id: 'large', s: 22 }, { id: 'extra', s: 28 }
                 ].map((c) => (
-                  <div key={c.id} className={`ac-cursor-box ${cursor === c.id ? 'active' : ''}`} onClick={() => setCursor(c.id)}>
+                  <div key={c.id} className={`ac-cursor-box ${cursorSize === c.id ? 'active' : ''}`} onClick={() => setCursorSize(c.id)}>
                     <div className="ac-dot-v" style={{ width: c.s, height: c.s }}></div>
                     <span>{c.id.charAt(0).toUpperCase() + c.id.slice(1)}</span>
                   </div>
@@ -188,7 +158,7 @@ const Accessibility = () => {
                     <div className={`ac-toggle-ico ${item.col}`}>{item.ico}</div>
                     <div className="ac-toggle-txt"><h4>{item.h}</h4><p>{item.p}</p></div>
                   </div>
-                  <div className={`ac-ui-switch ${toggles[item.id] ? 'on' : ''}`} onClick={() => handleToggle(item.id)}>
+                  <div className={`ac-ui-switch off`}>
                     <div className="ac-ui-handle"></div>
                   </div>
                 </div>
@@ -196,7 +166,7 @@ const Accessibility = () => {
             </div>
           </section>
 
-          <button className="ac-reset-btn">Reset to Default Settings</button>
+          <button className="ac-reset-btn" onClick={resetSettings}>Reset to Default Settings</button>
 
           <div className="ac-disclaimer">
             <p>These settings help make the app more accessible and easier to use for everyone.</p>
