@@ -60,6 +60,7 @@ import HealthBasics from './pages/HelpCenter/HealthBasics';
 import BloodTypeDNA from './pages/HelpCenter/BloodTypeDNA';
 import AllergiesConditions from './pages/HelpCenter/AllergiesConditions';
 import CompleteReview from './pages/HelpCenter/CompleteReview';
+import ErrorPage from './pages/ErrorPage';
 
 const TitleUpdater = () => {
   const location = useLocation();
@@ -166,6 +167,8 @@ const Routing = () => {
         <Route path="/helpcenter/blood-type-dna" element={<BloodTypeDNA/>} />
         <Route path="/helpcenter/allergies-conditions" element={<AllergiesConditions/>} />
         <Route path="/helpcenter/complete-review" element={<CompleteReview/>} />
+
+        <Route path="/*" element={<ErrorPage />} />
 
       </Routes>
     </>
