@@ -2,7 +2,7 @@
 @import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
 
 :root[data-theme='dark'] {
-  --navy: #010422;
+  --navy: #1C345B;
   --bg-color: #010422;
   --text-main: #FFFFFF;
   --glass-bg: rgba(255, 255, 255, 0.05);

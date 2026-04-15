@@ -17,7 +17,7 @@ const TouchBar = () => {
   const navItems = [
     { id: 'reports', label: 'Reports', icon: <ClipboardCheck size={22} />, path: '/reports' },
     { id: 'healthid', label: 'Health ID', icon: <User size={22} />, path: '/healthid' },
-    { id: 'home', label: 'Home', icon: <Home size={22} />, path: '/home' },
+    { id: 'home', label: 'Home', icon: <Home size={22} />, path: '/' },
     { id: 'familyhub', label: 'Family Hub', icon: <Network size={22} />, path: '/familyhub' },
     { id: 'quickactions', label: 'Quick Actions', icon: <ShieldPlus size={22} />, path: '/quickactions' },
   ];
