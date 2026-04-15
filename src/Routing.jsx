@@ -15,6 +15,7 @@ import Lifestyle from './pages/QuizHero/Lifestyle';
 import GeneticInfo from './pages/QuizHero/GeneticInfo';
 import EmergencyContact from './pages/QuizHero/EmergencyContacts';
 import AllSet from './pages/QuizHero/AllSet';
+import QuickActions from './pages/QuickActions';
 import HealthID from './pages/HealthID';
 
 const Routing = () => {
@@ -39,6 +40,7 @@ const Routing = () => {
       <Route path="/geneticinfo" element={<GeneticInfo/>} />
       <Route path="/emergencycontacts" element={<EmergencyContact/>} />
       <Route path="/allset" element={<AllSet/>} />
+      <Route path="/quickactions" element={<QuickActions/>} />
 
     </Routes>
   );
