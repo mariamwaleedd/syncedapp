@@ -26,7 +26,7 @@ const GeneticInfo = () => {
           <div className="gi-track">
             <div className="gi-fill" style={{ width: '75%' }}></div>
           </div>
-          <button className="gi-skip-btn">Skip</button>
+          <button className="gi-skip-btn" onClick={() => navigate('/')}>Skip</button>
         </div>
 
         <div className="gi-hero">

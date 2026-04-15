@@ -24,7 +24,7 @@ const CreateHealthID = () => {
           <div className="chi-track">
             <div className="chi-fill" style={{ width: '13%' }}></div>
           </div>
-          <button className="chi-skip-btn">Skip</button>
+          <button className="chi-skip-btn" onClick={() => navigate('/')}>Skip</button>
         </div>
 
         <div className="chi-hero">

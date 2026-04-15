@@ -49,7 +49,7 @@ const MedicalHistory = () => {
           <div className="mh-track">
             <div className="mh-fill" style={{ width: '50%' }}></div>
           </div>
-          <button className="mh-skip-btn">Skip</button>
+          <button className="mh-skip-btn" onClick={() => navigate('/')}>Skip</button>
         </div>
 
         <div className="mh-hero">

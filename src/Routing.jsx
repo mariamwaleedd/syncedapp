@@ -104,8 +104,7 @@ const Routing = () => {
     <>
       <TitleUpdater />
       <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/forgetpass" element={<ForgetPass />} />

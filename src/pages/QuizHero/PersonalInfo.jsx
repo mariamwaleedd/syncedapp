@@ -33,7 +33,7 @@ const PersonalInfo = () => {
           <div className="pi-track">
             <div className="pi-fill" style={{ width: '25%' }}></div>
           </div>
-          <button className="pi-skip-btn">Skip</button>
+          <button className="pi-skip-btn" onClick={() => navigate('/')}>Skip</button>
         </div>
 
         <div className="pi-hero">

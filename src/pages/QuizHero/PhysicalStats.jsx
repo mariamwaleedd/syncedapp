@@ -42,7 +42,7 @@ const PhysicalStats = () => {
           <div className="ps-track">
             <div className="ps-fill" style={{ width: '38%' }}></div>
           </div>
-          <button className="ps-skip-btn">Skip</button>
+          <button className="ps-skip-btn" onClick={() => navigate('/')}>Skip</button>
         </div>
 
         <div className="ps-hero">

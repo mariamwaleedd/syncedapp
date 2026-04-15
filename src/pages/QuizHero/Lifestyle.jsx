@@ -29,7 +29,7 @@ const Lifestyle = () => {
           <div className="ls-track">
             <div className="ls-fill" style={{ width: '63%' }}></div>
           </div>
-          <button className="ls-skip-btn">Skip</button>
+          <button className="ls-skip-btn" onClick={() => navigate('/')}>Skip</button>
         </div>
 
         <div className="ls-hero">

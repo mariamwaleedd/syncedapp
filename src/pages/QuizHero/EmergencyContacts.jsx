@@ -24,7 +24,7 @@ const EmergencyContact = () => {
           <div className="ec-track">
             <div className="ec-fill" style={{ width: '88%' }}></div>
           </div>
-          <button className="ec-skip-btn">Skip</button>
+          <button className="ec-skip-btn" onClick={() => navigate('/')}>Skip</button>
         </div>
 
         <div className="ec-hero">
