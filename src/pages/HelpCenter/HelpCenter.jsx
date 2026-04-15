@@ -62,7 +62,7 @@ const HelpCenter = () => {
               <p>Complete your health questionnaire</p>
               <span>5 steps • 5 min</span>
             </div>
-            <div className="hc-guide-card">
+            <div className="hc-guide-card" onClick={() => navigate('/helpcenter/complete-profile')} style={{ cursor: 'pointer' }}>
               <div className="hc-guide-icon" style={{ background: '#D500F9' }}><Bluetooth size={18} /></div>
               <h3>Connect Devices</h3>
               <p>Sync your smart health devices</p>
