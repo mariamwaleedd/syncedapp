@@ -51,7 +51,14 @@ import AppointmentSettings from './pages/Settings/AppointmentSettings';
 import ConnectedDevices from './pages/Settings/ConnectedDevices';
 import NotificationSettings from './pages/Settings/NotificationSettings';
 import PrivacySettings from './pages/Settings/PrivacySettings';
+
+// Help Center Hub & Guides
 import HelpCenter from './pages/HelpCenter/HelpCenter';
+import CompleteProfile from './pages/HelpCenter/CompleteProfile';
+import HealthBasics from './pages/HelpCenter/HealthBasics';
+import BloodTypeDNA from './pages/HelpCenter/BloodTypeDNA';
+import AllergiesConditions from './pages/HelpCenter/AllergiesConditions';
+import CompleteReview from './pages/HelpCenter/CompleteReview';
 
 const Routing = () => {
   return (
@@ -75,7 +82,7 @@ const Routing = () => {
       <Route path="/emergencycontacts" element={<EmergencyContact/>} />
       <Route path="/allset" element={<AllSet/>} />
 
-      {/* Quick Actions Routes */}
+      {/* Core Quick Actions Routes */}
       <Route path="/quickactions" element={<QuickActions/>} />
       <Route path="/healthid" element={<HealthID/>} />
       <Route path="/medicine" element={<Medicine/>} />
@@ -110,7 +117,15 @@ const Routing = () => {
       <Route path="/settings/devices" element={<ConnectedDevices/>} />
       <Route path="/settings/notifications" element={<NotificationSettings/>} />
       <Route path="/settings/privacy" element={<PrivacySettings/>} />
+
+      {/* Help Center Routes */}
       <Route path="/helpcenter" element={<HelpCenter/>} />
+      <Route path="/helpcenter/complete-profile" element={<CompleteProfile/>} />
+      <Route path="/helpcenter/health-basics" element={<HealthBasics/>} />
+      <Route path="/helpcenter/blood-type-dna" element={<BloodTypeDNA/>} />
+      <Route path="/helpcenter/allergies-conditions" element={<AllergiesConditions/>} />
+      <Route path="/helpcenter/complete-review" element={<CompleteReview/>} />
+
     </Routes>
   );
 };

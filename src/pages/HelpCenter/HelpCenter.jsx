@@ -56,7 +56,7 @@ const HelpCenter = () => {
         <section className="hc-section">
           <h2 className="hc-sec-title"><Zap size={18} fill="#AAA" /> Quick Start Guides</h2>
           <div className="hc-guides-grid">
-            <div className="hc-guide-card">
+            <div className="hc-guide-card" onClick={() => navigate('/helpcenter/complete-profile')} style={{ cursor: 'pointer' }}>
               <div className="hc-guide-icon" style={{ background: '#00B0FF' }}><User size={18} /></div>
               <h3>Getting Started</h3>
               <p>Complete your health questionnaire</p>
