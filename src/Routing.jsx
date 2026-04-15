@@ -51,7 +51,7 @@ import AppointmentSettings from './pages/Settings/AppointmentSettings';
 import ConnectedDevices from './pages/Settings/ConnectedDevices';
 import NotificationSettings from './pages/Settings/NotificationSettings';
 import PrivacySettings from './pages/Settings/PrivacySettings';
-import HelpCenter from './pages/Settings/HelpCenter';
+import HelpCenter from './pages/HelpCenter/HelpCenter';
 
 const Routing = () => {
   return (
@@ -110,8 +110,7 @@ const Routing = () => {
       <Route path="/settings/devices" element={<ConnectedDevices/>} />
       <Route path="/settings/notifications" element={<NotificationSettings/>} />
       <Route path="/settings/privacy" element={<PrivacySettings/>} />
-      <Route path="/settings/help" element={<HelpCenter/>} />
-
+      <Route path="/helpcenter" element={<HelpCenter/>} />
     </Routes>
   );
 };

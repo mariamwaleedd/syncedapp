@@ -56,7 +56,7 @@ const Settings = () => {
       title: "Legal and Privacy",
       options: [
         { label: "Privacy Settings", icon: <Eye size={20} />, path: "/settings/privacy" },
-        { label: "Help Center", icon: <HelpCircle size={20} />, path: "/settings/help" }
+        { label: "Help Center", icon: <HelpCircle size={20} />, path: "/helpcenter" }
       ]
     }
   ];
