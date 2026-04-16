@@ -80,6 +80,9 @@ import AppConfirmed from './pages/Doctors/AppConfirmed';
 import ReportView from './pages/Reports/ReportView';
 import UploadReport from './pages/Reports/UploadReport';
 import BloodNetwork from './pages/QuickActions/BloodNetwork';
+import AgreeTerms from './pages/FamilyHub/AgreeTerms';
+import AddMember from './pages/FamilyHub/AddMember';
+import ChooseAvatar from './pages/FamilyHub/ChooseAvatar';
 
 const TitleUpdater = () => {
   const location = useLocation();
@@ -215,6 +218,12 @@ const Routing = () => {
         {/* Reports Routes */}
         <Route path="/reports/view" element={<ReportView/>} /> 
         <Route path="/reports/upload" element={<UploadReport/>} /> 
+
+        {/* Family Hub Routes */}
+        <Route path="/familyhub/agree-terms" element={<AgreeTerms/>} />
+        <Route path="/familyhub/add-member" element={<AddMember/>} />
+        <Route path="/familyhub/choose-avatar" element={<ChooseAvatar/>} />
+
 
         <Route path="/*" element={<ErrorPage />} />
 

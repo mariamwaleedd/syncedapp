@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
+
+.ca-root {
+  background-color: #010422;
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  font-family: 'General Sans', sans-serif;
+  color: #FFFFFF;
+}
+
+.ca-bg-grad {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(100, 181, 246, 0.18) 0%, #010422 100%);
+  z-index: 1;
+}
+
+.ca-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../imgs/bg.png');
+  background-size: cover;
+  opacity: 0.35;
+  z-index: 2;
+}
+
+.ca-wrapper {
+  position: relative;
+  z-index: 5;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 24px;
+}
+
+.ca-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0 35px;
+}
+
+.ca-nav-btn {
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  cursor: pointer;
+}
+
+.ca-stepper {
+  display: flex;
+  gap: 8px;
+}
+
+.ca-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.ca-dot.ca-active {
+  width: 24px;
+  border-radius: 10px;
+  background: #64B5F6;
+}
+
+.ca-title-box {
+  margin-bottom: 30px;
+}
+
+.ca-main-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 38px;
+  margin: 0;
+  font-weight: 400;
+}
+
+.ca-subtitle {
+  font-size: 16px;
+  opacity: 0.5;
+  margin-top: 10px;
+}
+
+.ca-grid-container {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 20px;
+}
+
+.ca-avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.ca-glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+}
+
+.ca-avatar-card {
+  padding: 24px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ca-avatar-card.active {
+  background: rgba(100, 181, 246, 0.15);
+  border-color: #64B5F6;
+}
+
+.ca-emoji {
+  font-size: 32px;
+}
+
+.ca-label {
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.8;
+  text-align: center;
+}
+
+.ca-footer {
+  padding-top: 20px;
+  margin-top: auto;
+}
+
+.ca-submit-btn {
+  width: 100%;
+  height: 60px;
+  background: #64B5F6;
+  border: none;
+  border-radius: 18px;
+  color: #FFF;
+  font-size: 17px;
+  font-weight: 700;
+  font-family: 'General Sans', sans-serif;
+  box-shadow: 0 8px 25px rgba(100, 181, 246, 0.35);
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+
+.ca-home-bar {
+  width: 135px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin: 0 auto;
+}
