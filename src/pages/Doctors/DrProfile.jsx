@@ -160,11 +160,11 @@ const DrProfile = () => {
           </motion.main>
 
           <div className="dp-sticky-actions">
-            <button className="dp-chat-btn">
+            <button className="dp-chat-btn" onClick={() => navigate('/doctors/chat')}>
               <MessageSquare size={18} />
               <span>Chat</span>
             </button>
-            <button className="dp-book-btn">
+            <button className="dp-book-btn" onClick={() => navigate('/doctors/book')}>
               <Calendar size={18} />
               <span>Book Now</span>
             </button>
