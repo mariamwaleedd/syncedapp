@@ -28,7 +28,7 @@ const QuickActions = () => {
     {
       title: "Health Management",
       actions: [
-        { title: "Home Dashboard", sub: "Your daily health overview", icon: <Home size={22} />, color: "blue", path: "/home" },
+        { title: "Home Dashboard", sub: "Your daily health overview", icon: <Home size={22} />, color: "blue", path: "/" },
         { title: "Health Questionnaire", sub: "Complete your health profile", icon: <ClipboardList size={22} />, color: "pink", path: "/createhealth" },
         { title: "My Health Profile", sub: "Your personalized health ID", icon: <User size={22} />, color: "green", path: "/healthid" },
         { title: "Medicine Tracker", sub: "Track medications and schedules", icon: <Pill size={22} />, color: "orange", path: "/medicine" },
@@ -71,12 +71,12 @@ const QuickActions = () => {
       actions: [
         { title: "All Settings", sub: "Manage app preferences", icon: <Settings size={22} />, color: "grey", path: "/settings" },
         { title: "Personal Details", sub: "Update your information", icon: <User size={22} />, color: "blue", path: "/personaldetails" },
-        { title: "Security", sub: "Manage security settings", icon: <Shield size={22} />, color: "red", path: "/security" },
-        { title: "Privacy", sub: "Control your privacy", icon: <Shield size={22} />, color: "green", path: "/privacy" },
-        { title: "Notifications", sub: "Custom app notifications", icon: <Bell size={22} />, color: "orange", path: "/notifications" },
-        { title: "Accessibility", sub: "Accessibility options", icon: <Accessibility size={22} />, color: "pink", path: "/accessibility" },
-        { title: "Health Preferences", sub: "Set health goals & preferences", icon: <TrendingUp size={22} />, color: "blue", path: "/preferences" },
-        { title: "Medical Records", sub: "Manage medical records", icon: <Database size={22} />, color: "cyan", path: "/records" }
+        { title: "Security", sub: "Manage security settings", icon: <Shield size={22} />, color: "red", path: "/settings/security" },
+        { title: "Privacy", sub: "Control your privacy", icon: <Shield size={22} />, color: "green", path: "/settings/privacy" },
+        { title: "Notifications", sub: "Custom app notifications", icon: <Bell size={22} />, color: "orange", path: "/settings/notifications" },
+        { title: "Accessibility", sub: "Accessibility options", icon: <Accessibility size={22} />, color: "pink", path: "/settings/accessibility" },
+        { title: "Health Preferences", sub: "Set health goals & preferences", icon: <TrendingUp size={22} />, color: "blue", path: "/settings/preferences" },
+        { title: "Medical Records", sub: "Manage medical records", icon: <Database size={22} />, color: "cyan", path: "/settings/records" }
       ]
     }
   ];
