@@ -67,6 +67,9 @@ import BasicInformation from './pages/MedicineTracker/BasicInformation';
 import DosageSchedule from './pages/MedicineTracker/DosageSchedule';
 import Reminders from './pages/MedicineTracker/Reminders';
 import AdditionalDetails from './pages/MedicineTracker/AdditionalDetails';
+import WaterIntake from './pages/WellnessLifestyle/WaterIntake';
+import SleepTracker from './pages/WellnessLifestyle/SleepTracker';
+import Nutrition from './pages/WellnessLifestyle/Nutrition';
 
 const TitleUpdater = () => {
   const location = useLocation();
@@ -183,6 +186,11 @@ const Routing = () => {
         <Route path="/medicinetracker/dosage-schedule" element={<DosageSchedule/>} />
         <Route path="/medicinetracker/reminders" element={<Reminders/>} />
         <Route path="/medicinetracker/additional-details" element={<AdditionalDetails/>} />
+
+        {/* Wellness & Lifestyle Routes */}
+        <Route path="/wellness/waterintake" element={<WaterIntake/>} />
+        <Route path="/wellness/sleep" element={<SleepTracker/>} />
+        <Route path="/wellness/nutrition" element={<Nutrition/>} />
 
         <Route path="/*" element={<ErrorPage />} />
 
