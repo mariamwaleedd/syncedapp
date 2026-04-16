@@ -51,7 +51,7 @@ const Home = () => {
                 <span>Live • 11:56 AM</span>
               </div>
             </div>
-            <button className="ha-notif-btn">
+            <button className="ha-notif-btn" onClick={() => navigate('/notifications')}>
               <Bell size={20} />
               <div className="ha-red-dot" />
             </button>
@@ -279,7 +279,7 @@ const Home = () => {
         <section className="ha-section">
           <div className="ha-section-title">
             <h2>Recent Reports</h2>
-            <span className="ha-view-link">View All</span>
+            <span className="ha-view-link" onClick={() => navigate('/reports')}>View All</span>
           </div>
           <div className="ha-report-row ha-glass">
             <div className="ha-report-ico blue"><FileText size={18}/></div>
