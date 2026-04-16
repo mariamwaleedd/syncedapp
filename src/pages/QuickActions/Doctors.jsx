@@ -1,7 +1,11 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, Sparkles, Stethoscope } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { 
+  ChevronLeft, X, Search, Heart, Brain, 
+  Activity, Star, MapPin, Video, ChevronRight,
+  CheckCircle2
+} from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './Doctors.css';
@@ -9,30 +13,159 @@ import './Doctors.css';
 const Doctors = () => {
   const navigate = useNavigate();
 
-  return (
-    <div className="qa-stub-root ltr-theme">
-      <div className="qa-stub-header">
-        <StatusBar dark={true} />
-        <div className="qa-stub-nav">
-          <button className="qa-stub-circle-btn" onClick={() => navigate(-1)}>
-            <ChevronLeft size={22} />
-          </button>
-          <div className="qa-stub-title">
-            <h1>Browse Doctors</h1>
-          </div>
-          <button className="qa-stub-circle-btn">
-            <Sparkles size={20} />
-          </button>
-        </div>
-      </div>
+  const filters = [
+    { name: 'Cardiology', count: 24, ico: <Heart size={14} /> },
+    { name: 'Neurology', count: 18, ico: <Brain size={14} /> },
+    { name: 'Orthopedics', count: 12, ico: <Activity size={14} /> }
+  ];
 
-      <motion.div className="qa-stub-content" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <div className="qa-stub-card">
-          <div className="qa-stub-icon-wrap"><Stethoscope size={48} color="#1A73E8" /></div>
-          <h2>Find Doctors</h2>
-          <p>Search for top-rated healthcare professionals in your area. filter by specialty, rating, and availability to find your perfect match.</p>
-        </div>
-      </motion.div>
+  const doctorsList = [
+    {
+      name: "Dr. Sarah Wilson",
+      spec: "Cardiology",
+      exp: "15 years",
+      loc: "New York, NY",
+      rating: "4.9",
+      reviews: "234",
+      status: "Available Today",
+      price: "$150",
+      next: "2:00 PM"
+    },
+    {
+      name: "Dr. Michael Chen",
+      spec: "Neurology",
+      exp: "12 years",
+      loc: "Los Angeles, CA",
+      rating: "4.8",
+      reviews: "189",
+      status: "Available Tomorrow",
+      price: "$180",
+      next: "10:00 AM"
+    },
+    {
+      name: "Dr. Emily Rodriguez",
+      spec: "Orthopedics",
+      exp: "18 years",
+      loc: "Chicago, IL",
+      rating: "4.9",
+      reviews: "312",
+      status: "Available Today",
+      price: "$200",
+      next: "4:30 PM"
+    },
+    {
+      name: "Dr. James Anderson",
+      spec: "General",
+      exp: "10 years",
+      loc: "Boston, MA",
+      rating: "4.7",
+      reviews: "156",
+      status: "Available Today",
+      price: "$120",
+      next: "1:00 PM"
+    }
+  ];
+
+  return (
+    <div className="dr-root ltr-theme">
+      <div className="dr-bg-grad"></div>
+      <div className="dr-bg-lines"></div>
+
+      <div className="dr-wrapper">
+        <StatusBar dark={true} />
+
+        <header className="dr-header">
+          <div className="dr-header-top">
+            <div className="dr-title-box">
+              <h1>Find Doctors</h1>
+              <p>Book appointments with specialists</p>
+            </div>
+            <button className="dr-close-btn" onClick={() => navigate(-1)}>
+              <X size={24} />
+            </button>
+          </div>
+
+          <div className="dr-search-row">
+            <div className="dr-search-box dr-glass">
+              <Search size={20} opacity={0.4} />
+              <input type="text" placeholder="Search doctors, specialties..." />
+            </div>
+          </div>
+
+          <div className="dr-filters-scroll">
+            {filters.map((f, i) => (
+              <div key={i} className="dr-filter-pill dr-glass">
+                {f.ico}
+                <span>{f.name}</span>
+                <span className="dr-filter-count">{f.count}</span>
+              </div>
+            ))}
+          </div>
+        </header>
+
+        <main className="dr-scroll-area">
+          <button className="dr-view-my-btn" onClick={() => navigate('/mydoctors')}>
+            <span>View My Doctors</span>
+            <ChevronRight size={18} />
+          </button>
+
+          <div className="dr-list-container">
+            {doctorsList.map((doc, idx) => (
+              <motion.div 
+                key={idx} 
+                className="dr-card dr-glass"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.1 }}
+              >
+                <div className="dr-card-main">
+                  <div className="dr-card-avatar-wrap">
+                    <div className="dr-card-avatar">
+                      <img src={`https://i.pravatar.cc/150?u=${doc.name}`} alt="" />
+                    </div>
+                    <div className="dr-card-verified">
+                      <CheckCircle2 size={14} fill="#64B5F6" color="#010422" />
+                    </div>
+                  </div>
+
+                  <div className="dr-card-info">
+                    <div className="dr-card-name-row">
+                      <h4>{doc.name}</h4>
+                      <div className="dr-card-rating">
+                        <Star size={14} fill="#FFD54F" color="#FFD54F" />
+                        <span>{doc.rating}</span>
+                        <span className="review-cnt">({doc.reviews})</span>
+                      </div>
+                    </div>
+                    <p className="dr-card-spec">{doc.spec}</p>
+                    <div className="dr-card-meta">
+                      <div className="dr-meta-item"><Activity size={14}/><span>{doc.exp}</span></div>
+                      <div className="dr-meta-item"><MapPin size={14}/><span>{doc.loc}</span></div>
+                    </div>
+                    <div className="dr-card-status-row">
+                      <span className={`dr-card-status ${doc.status.includes('Tomorrow') ? 'tmrw' : ''}`}>
+                        {doc.status}
+                      </span>
+                      <Video size={16} opacity={0.6} />
+                      <div className="dr-card-pricing">
+                        <strong>{doc.price}</strong>
+                        <span>Next: {doc.next}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <button className="dr-book-btn">
+                  <span>Book Appointment</span>
+                  <ChevronRight size={18} />
+                </button>
+              </motion.div>
+            ))}
+          </div>
+          
+          <div className="dr-bottom-pad"></div>
+        </main>
+      </div>
       <TouchBar />
     </div>
   );
