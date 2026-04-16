@@ -25,7 +25,7 @@ import WellnessPage from './pages/QuickActions/WellnessPage';
 import FamilyHub from './pages/QuickActions/FamilyHub';
 import AddFamily from './pages/QuickActions/AddFamily';
 import Emergency from './pages/QuickActions/Emergency';
-import Blood from './pages/QuickActions/Blood';
+import Blood from './pages/QuickActions/BloodNetwork';
 import Doctors from './pages/QuickActions/Doctors';
 import MyDoctors from './pages/QuickActions/MyDoctors';
 import Reports from './pages/QuickActions/Reports';
@@ -79,6 +79,7 @@ import Payment from './pages/Doctors/Payment';
 import AppConfirmed from './pages/Doctors/AppConfirmed';
 import ReportView from './pages/Reports/ReportView';
 import UploadReport from './pages/Reports/UploadReport';
+import BloodNetwork from './pages/QuickActions/BloodNetwork';
 
 const TitleUpdater = () => {
   const location = useLocation();
@@ -155,7 +156,7 @@ const Routing = () => {
         <Route path="/familyhub" element={<FamilyHub/>} />
         <Route path="/addfamily" element={<AddFamily/>} />
         <Route path="/emergency" element={<Emergency/>} />
-        <Route path="/blood" element={<Blood/>} />
+        <Route path="/blood" element={<BloodNetwork/>} />
         <Route path="/doctors" element={<Doctors/>} />
         <Route path="/mydoctors" element={<MyDoctors/>} />
         <Route path="/reports" element={<Reports/>} />

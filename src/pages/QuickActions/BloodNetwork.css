@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
+
+.bn-root {
+  background-color: #010422;
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  font-family: 'General Sans', sans-serif;
+  color: #FFFFFF;
+}
+
+.bn-bg-gradient {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(180deg, rgba(100, 181, 246, 0.15) 0%, #010422 100%);
+  z-index: 1;
+}
+
+.bn-bg-lines {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('../../imgs/bg.png');
+  background-size: cover;
+  opacity: 0.3;
+  z-index: 2;
+}
+
+.bn-wrapper {
+  position: relative;
+  z-index: 3;
+  padding: 10px 20px 110px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bn-header { padding: 15px 0 25px; }
+.bn-nav-row { display: flex; justify-content: space-between; align-items: center; }
+
+.bn-circ-btn {
+  width: 44px; height: 44px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  color: #FFF;
+}
+
+.bn-title { font-family: 'Instrument Serif', serif; font-size: 32px; font-weight: 400; margin: 0; }
+
+.bn-scroll-area { flex: 1; overflow-y: auto; }
+
+.bn-glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  backdrop-filter: blur(15px);
+}
+
+.bn-hero-card { padding: 24px; margin-bottom: 25px; background: linear-gradient(135deg, rgba(255, 65, 108, 0.1) 0%, rgba(1, 4, 34, 0.2) 100%); }
+.bn-hero-top { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+.bn-blood-sq { width: 64px; height: 64px; background: #FF416C; border-radius: 18px; display: flex; align-items: center; justify-content: center; }
+.bn-user-blood { flex: 1; }
+.bn-user-blood p { font-size: 13px; opacity: 0.5; margin: 0; }
+.bn-user-blood strong { font-size: 32px; font-weight: 700; }
+.bn-donations { text-align: right; }
+.bn-donations strong { font-size: 24px; color: #FFD54F; }
+.bn-donations p { font-size: 11px; opacity: 0.4; text-transform: uppercase; font-weight: 700; }
+
+.bn-hero-stats { display: flex; gap: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); margin-bottom: 20px; }
+.bn-stat-sub { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.green-t { color: #00E676; }
+
+.bn-compatibility label { font-size: 11px; font-weight: 700; opacity: 0.4; text-transform: uppercase; display: block; margin-bottom: 10px; }
+.bn-compat-tags { display: flex; gap: 8px; }
+.bn-compat-tags span { background: rgba(255,255,255,0.06); padding: 4px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); }
+
+.bn-quick-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 35px; }
+.bn-q-stat { padding: 16px 10px; display: flex; flex-direction: column; gap: 5px; text-align: center; }
+.bn-q-stat span { font-size: 11px; opacity: 0.5; font-weight: 600; }
+.bn-q-stat strong { font-size: 20px; }
+.bn-q-stat.critical { background: rgba(255, 65, 108, 0.08); color: #FF416C; border-color: rgba(255, 65, 108, 0.15); }
+.bn-q-stat.nearby { background: rgba(0, 230, 118, 0.08); color: #00E676; border-color: rgba(0, 230, 118, 0.15); }
+
+.bn-sec { margin-bottom: 40px; }
+.bn-sec-lbl { font-family: 'Instrument Serif', serif; font-size: 24px; font-weight: 400; margin-bottom: 20px; padding-left: 5px; }
+
+.bn-req-stack { display: flex; flex-direction: column; gap: 14px; }
+.bn-req-card { padding: 20px; }
+.bn-req-top { display: flex; gap: 16px; align-items: center; margin-bottom: 15px; }
+.bn-req-avatar { width: 50px; height: 50px; border-radius: 12px; overflow: hidden; }
+.bn-req-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.bn-req-info h4 { margin: 0; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+.bn-badge-row { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.bn-type-tag { font-weight: 800; color: #64B5F6; font-size: 12px; }
+.bn-urgency { font-size: 9px; font-weight: 800; padding: 2px 8px; border-radius: 6px; }
+.bn-urgency.red { background: rgba(255, 65, 108, 0.15); color: #FF416C; }
+.bn-urgency.orange { background: rgba(255, 138, 0, 0.15); color: #FF8A00; }
+.bn-urgency.blue { background: rgba(100, 181, 246, 0.15); color: #64B5F6; }
+.bn-time { font-size: 10px; opacity: 0.4; font-weight: 600; }
+
+.bn-hosp-line { display: flex; align-items: center; gap: 8px; font-size: 13px; opacity: 0.6; margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 14px; }
+
+.bn-req-btns { display: flex; gap: 10px; }
+.bn-btn { flex: 1; height: 42px; border-radius: 10px; border: none; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
+.bn-btn.accept { background: #00E676; color: #FFF; }
+.bn-btn.contact { background: rgba(255,255,255,0.06); color: #FFF; border: 1px solid rgba(255,255,255,0.1); }
+
+.bn-bank-stack { display: flex; flex-direction: column; gap: 16px; }
+.bn-bank-card { padding: 20px; }
+.bn-bank-top { display: flex; gap: 16px; margin-bottom: 20px; }
+.bn-bank-ico { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #FFF; }
+.bn-bank-ico.red { background: #FF416C; }
+.bn-bank-ico.blue { background: #64B5F6; }
+.bn-bank-name-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.bn-bank-info { flex: 1; }
+.bn-bank-info h4 { margin: 0; font-size: 15px; font-weight: 700; }
+.bn-open-tag { background: rgba(0, 230, 118, 0.1); color: #00E676; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px; }
+.bn-bank-meta { font-size: 12px; opacity: 0.4; margin-bottom: 8px; }
+.bn-bank-types { display: flex; gap: 6px; }
+.bn-bank-types span { font-size: 10px; font-weight: 700; color: #64B5F6; }
+
+.bn-bank-actions { display: flex; gap: 10px; }
+.bn-b-btn { flex: 1; height: 40px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #FFF; border-radius: 10px; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+.bn-guide-card { padding: 20px; display: flex; gap: 18px; background: rgba(100, 181, 246, 0.05); border-color: rgba(100, 181, 246, 0.15); }
+.bn-guide-txt h4 { margin: 0; font-size: 15px; font-weight: 700; color: #64B5F6; }
+.bn-guide-txt p { font-size: 12px; line-height: 1.5; opacity: 0.7; margin-top: 6px; }
+
+.bn-bottom-pad { height: 40px; }
