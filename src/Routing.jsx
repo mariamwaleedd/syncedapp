@@ -77,6 +77,7 @@ import SelectDate from './pages/Doctors/SelectDate';
 import Details from './pages/Doctors/Details';
 import Payment from './pages/Doctors/Payment';
 import AppConfirmed from './pages/Doctors/AppConfirmed';
+import ReportView from './pages/Reports/ReportView';
 
 const TitleUpdater = () => {
   const location = useLocation();
@@ -208,6 +209,9 @@ const Routing = () => {
         <Route path="/doctors/details" element={<Details/>} />
         <Route path="/doctors/payment" element={<Payment/>} />
         <Route path="/doctors/confirmed" element={<AppConfirmed/>} />
+
+        {/* Reports Routes */}
+        <Route path="/reports/view" element={<ReportView/>} /> 
 
         <Route path="/*" element={<ErrorPage />} />
 

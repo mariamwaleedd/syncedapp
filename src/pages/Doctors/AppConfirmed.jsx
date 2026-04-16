@@ -114,7 +114,7 @@ const AppConfirmed = () => {
               <MessageSquare size={20} />
               <span>Chat with Doctor</span>
             </button>
-            <button className="ac-home-btn" onClick={() => navigate('/home')}>
+            <button className="ac-home-btn" onClick={() => navigate('/')}>
               <Home size={20} />
               <span>Back to Home</span>
             </button>
