@@ -245,7 +245,7 @@ const Home = () => {
         <section className="ha-section">
           <div className="ha-section-title">
             <h2>Upcoming Appointments</h2>
-            <span className="ha-view-link">View All</span>
+            <span className="ha-view-link" onClick={() => navigate('/Appointments')}>View All</span>
           </div>
           <div className="ha-appt-card ha-glass">
             <div className="ha-appt-row">
