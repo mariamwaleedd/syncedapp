@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
+
+.dt-root {
+  background-color: #010422;
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  font-family: 'General Sans', sans-serif;
+  color: #FFFFFF;
+}
+
+.dt-bg-grad {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(180deg, rgba(100, 181, 246, 0.22) 0%, #010422 100%);
+  z-index: 1;
+}
+
+.dt-bg-img {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('../../imgs/bg.png');
+  background-size: cover;
+  opacity: 0.4;
+  z-index: 2;
+}
+
+.dt-wrapper {
+  position: relative;
+  z-index: 3;
+  padding: 10px 24px 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.dt-header { padding: 15px 0 35px; }
+
+.dt-nav-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.dt-circle-btn {
+  width: 44px; height: 44px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  color: #FFF;
+  cursor: pointer;
+}
+
+.dt-main-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 28px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.dt-nav-gap { width: 44px; }
+
+.dt-stepper {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.dt-step-bar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.dt-step-bar.active, .dt-step-bar.filled {
+  background: #64B5F6;
+}
+
+.dt-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 120px;
+}
+
+.dt-glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+}
+
+.dt-doc-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  border-radius: 24px;
+  margin-bottom: 35px;
+}
+
+.dt-doc-l { display: flex; align-items: center; gap: 16px; }
+.dt-avatar-box {
+  width: 52px; height: 52px;
+  background: #64B5F6;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.dt-doc-info h4 { margin: 0; font-size: 16px; font-weight: 600; }
+.dt-doc-info p { margin: 2px 0 0; font-size: 13px; opacity: 0.5; }
+.dt-price { font-size: 18px; font-weight: 700; }
+
+.dt-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.dt-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dt-label {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.9;
+  padding-left: 2px;
+}
+
+.dt-input-wrap {
+  width: 100%;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.dt-field-ico {
+  opacity: 0.3;
+  margin-right: 12px;
+}
+
+.dt-input-wrap input {
+  background: none;
+  border: none;
+  flex: 1;
+  color: #FFF;
+  font-family: 'General Sans', sans-serif;
+  font-size: 15px;
+  outline: none;
+}
+
+.dt-input-wrap input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.dt-textarea {
+  width: 100%;
+  height: 120px;
+  border-radius: 18px;
+  padding: 16px;
+  color: #FFF;
+  font-family: 'General Sans', sans-serif;
+  font-size: 15px;
+  outline: none;
+  resize: none;
+}
+
+.dt-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.dt-bottom-spacer { height: 100px; }
+
+.dt-footer {
+  position: absolute;
+  bottom: 0; left: 0; width: 100%;
+  padding: 0 24px 30px;
+  background: linear-gradient(180deg, rgba(1, 4, 34, 0) 0%, #010422 100%);
+  z-index: 10;
+}
+
+.dt-continue-btn {
+  width: 100%;
+  height: 60px;
+  background: #64B5F6;
+  border: none;
+  border-radius: 18px;
+  color: #FFF;
+  font-size: 17px;
+  font-weight: 700;
+  box-shadow: 0 8px 25px rgba(100, 181, 246, 0.3);
+}
+
+.dt-home-bar {
+  width: 135px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin: 25px auto 0;
+}

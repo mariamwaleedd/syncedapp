@@ -119,7 +119,7 @@ const SelectDate = () => {
         </div>
 
         <footer className="sd-footer">
-          <button className="sd-continue-btn" onClick={() => navigate('/next')}>
+          <button className="sd-continue-btn" onClick={() => navigate('/doctors/details')}>
             Continue
           </button>
           <div className="sd-home-bar"></div>
