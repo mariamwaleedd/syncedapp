@@ -1,56 +1,98 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, Info } from 'lucide-react';
+import { ChevronLeft, Check } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
-import TouchBar from '../../common/TouchBar';
 import './BasicInformation.css';
 
 const BasicInformation = () => {
   const navigate = useNavigate();
+  const [selectedColor, setSelectedColor] = useState('#2196F3');
+
+  const themes = [
+    '#2196F3', '#E91E63', '#FF4D6D',
+    '#00E676', '#FF8A00', '#9C27B0'
+  ];
 
   return (
-    <div className="medicine-tracker-root ltr-theme">
-      <div className="medicine-tracker-header">
-        <StatusBar dark={true} />
-        <div className="medicine-tracker-nav">
-          <button className="medicine-tracker-circle-btn" onClick={() => navigate(-1)}>
-            <ChevronLeft size={22} />
-          </button>
-          <div className="medicine-tracker-title">
-            <h1>Basic Information</h1>
-          </div>
-          <div style={{ width: 40 }} />
-        </div>
-      </div>
+    <div className="bi-root ltr-theme">
+      <div className="bi-layer-grad"></div>
+      <div className="bi-layer-lines"></div>
 
-      <motion.div 
-        className="medicine-tracker-content" 
-        initial={{ opacity: 0, y: 20 }} 
-        animate={{ opacity: 1, y: 0 }}
-      >
-        <div className="medicine-tracker-card">
-          <div className="medicine-tracker-icon-wrap" style={{ background: 'rgba(0, 184, 212, 0.1)', borderColor: 'rgba(0, 184, 212, 0.2)' }}>
-            <Info size={48} color="#00B8D4" />
-          </div>
-          <h2>Medicine Details</h2>
-          <p>Enter the name, type, and primary purpose of your medication here.</p>
+      <div className="bi-wrapper">
+        <StatusBar dark={true} />
+
+        <header className="bi-top-nav">
+          <button className="bi-back-btn" onClick={() => navigate(-1)}>
+            <ChevronLeft size={22} color="#FFF" strokeWidth={2.5} />
+          </button>
           
-          <div className="placeholder-form">
-            <div className="form-group">
-              <label>Medicine Name</label>
-              <input type="text" placeholder="e.g. Aspirin" disabled />
+          <div className="bi-stepper">
+            <span className="bi-step-bar active"></span>
+            <span className="bi-step-bar"></span>
+            <span className="bi-step-bar"></span>
+            <span className="bi-step-bar"></span>
+          </div>
+          <div className="bi-nav-gap"></div>
+        </header>
+
+        <div className="bi-header-info">
+          <h1 className="bi-main-title">Basic Information</h1>
+          <p className="bi-subtitle">Enter medicine name and dosage</p>
+        </div>
+
+        <div className="bi-form">
+          <div className="bi-field-wrap">
+            <label className="bi-label">Medicine Name</label>
+            <input 
+              className="bi-input bi-glass" 
+              type="text" 
+              placeholder="e.g., Aspirin" 
+            />
+          </div>
+
+          <div className="bi-row-split">
+            <div className="bi-field-wrap">
+              <label className="bi-label">Dose Amount</label>
+              <input 
+                className="bi-input bi-glass" 
+                type="text" 
+                placeholder="100" 
+              />
             </div>
-            <div className="form-group">
-              <label>Medicine Type</label>
-              <select disabled>
-                <option>Tablet / Capsule</option>
-              </select>
+            <div className="bi-field-wrap">
+              <label className="bi-label">Unit</label>
+              <input 
+                className="bi-input bi-glass" 
+                type="text" 
+                placeholder="mg" 
+              />
+            </div>
+          </div>
+
+          <div className="bi-theme-section">
+            <label className="bi-label">Color Theme</label>
+            <div className="bi-color-grid">
+              {themes.map((color) => (
+                <div 
+                  key={color}
+                  className={`bi-color-box ${selectedColor === color ? 'active' : ''}`}
+                  style={{ backgroundColor: color }}
+                  onClick={() => setSelectedColor(color)}
+                >
+                  {selectedColor === color && <Check size={20} color="#FFF" strokeWidth={3} />}
+                </div>
+              ))}
             </div>
           </div>
         </div>
-      </motion.div>
-      <TouchBar />
+
+        <footer className="bi-footer">
+          <button className="bi-continue-btn" onClick={() => navigate('/medicine-tracker/dosage-schedule')}>
+            Continue
+          </button>
+          <div className="bi-home-bar"></div>
+        </footer>
+      </div>
     </div>
   );
 };

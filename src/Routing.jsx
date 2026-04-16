@@ -63,7 +63,6 @@ import CompleteReview from './pages/HelpCenter/CompleteReview';
 import ErrorPage from './pages/ErrorPage';
 
 // Medicine Tracker Module
-import MedicineTracker from './pages/MedicineTracker/MedicineTracker';
 import BasicInformation from './pages/MedicineTracker/BasicInformation';
 import DosageSchedule from './pages/MedicineTracker/DosageSchedule';
 import Reminders from './pages/MedicineTracker/Reminders';
@@ -98,7 +97,6 @@ const TitleUpdater = () => {
       '/appointments': 'My Appointments',
       '/personaldetails': 'Personal Details',
       '/settings/edit-profile': 'Edit Profile',
-      '/medicinetracker': 'Medicine Tracker',
       '/medicinetracker/basic-information': 'Medicine Basic Info',
       '/medicinetracker/dosage-schedule': 'Medicine Dosage',
       '/medicinetracker/reminders': 'Medicine Reminders',
@@ -181,7 +179,6 @@ const Routing = () => {
         <Route path="/helpcenter/complete-review" element={<CompleteReview/>} />
 
         {/* Medicine Tracker Routes */}
-        <Route path="/medicinetracker" element={<MedicineTracker/>} />
         <Route path="/medicinetracker/basic-information" element={<BasicInformation/>} />
         <Route path="/medicinetracker/dosage-schedule" element={<DosageSchedule/>} />
         <Route path="/medicinetracker/reminders" element={<Reminders/>} />

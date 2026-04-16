@@ -1,106 +1,206 @@
-.qa-stub-root {
-  width: 100%;
-  min-height: 100vh;
-  background-color: #010422;
-  background-image: 
-    url('../../imgs/bg.png'), 
-    linear-gradient(180deg, rgba(100, 181, 246, 0.28) 0%, #010422 100%);
-  background-size: contain;
-  background-repeat: repeat-y;
-  background-position: top center;
-  background-attachment: scroll;
-  position: relative;
-  color: #FFFFFF;
-  font-family: var(--font-main);
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
-  max-width: 480px;
-  margin: 0 auto;
-}
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
 
-.qa-stub-header {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+.mt-root {
+  background-color: #010422;
   width: 100%;
   max-width: 430px;
-  background: rgba(28, 52, 91, 0.9);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  z-index: 1001;
-  padding: 12px 20px 24px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-  box-sizing: border-box;
+  min-height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'General Sans', sans-serif;
+  color: #FFFFFF;
 }
 
-.qa-stub-nav {
+.mt-gradient-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(100, 181, 246, 0.22) 0%, #010422 100%);
+  z-index: 1;
+}
+
+.mt-bg-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../imgs/bg.png');
+  background-size: cover;
+  opacity: 0.4;
+  z-index: 2;
+}
+
+.mt-wrapper {
+  position: relative;
+  z-index: 3;
+  padding: 10px 20px 110px;
+}
+
+.mt-nav-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 15px 0 25px;
 }
 
-.qa-stub-circle-btn {
+.mt-nav-btn {
   width: 44px;
   height: 44px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
+  border-radius: 12px;
+  color: #FFF;
   display: flex;
-  justify-content: center;
   align-items: center;
-  color: #FFFFFF;
-  cursor: pointer;
+  justify-content: center;
 }
 
-.qa-stub-title {
-  text-align: center;
+.mt-add-btn {
+  background: #64B5F6;
+  border: none;
 }
 
-.qa-stub-title h1 {
-  font-family: var(--font-title);
-  font-size: 28px;
+.mt-title-box h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 38px;
   margin: 0;
+  font-weight: 400;
 }
 
-.qa-stub-content {
-  flex: 1;
-  padding: 160px 20px 120px;
+.mt-title-box p {
+  font-size: 15px;
+  opacity: 0.5;
+  margin-top: 6px;
 }
 
-.qa-stub-card {
+.mt-glass {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
-  padding: 40px 30px;
+  border-radius: 28px;
   backdrop-filter: blur(15px);
-  text-align: center;
+}
+
+.mt-summary-card {
+  padding: 24px;
+  margin-top: 30px;
+  margin-bottom: 35px;
+}
+
+.mt-summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.mt-summary-header h3 { font-size: 18px; font-weight: 600; }
+.mt-summary-header span { font-size: 14px; opacity: 0.5; font-weight: 600; }
+
+.mt-main-progress-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 25px;
+}
+
+.mt-main-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #64B5F6, #05FF91);
+  border-radius: 10px;
+}
+
+.mt-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.mt-stat-box {
+  border-radius: 20px;
+  padding: 15px 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 6px;
+  border: 1px solid transparent;
 }
 
-.qa-stub-icon-wrap {
-  width: 100px;
-  height: 100px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 30px;
+.mt-stat-box.taken { background: rgba(0, 230, 118, 0.06); border-color: rgba(0, 230, 118, 0.15); color: #00E676; }
+.mt-stat-box.missed { background: rgba(255, 75, 43, 0.06); border-color: rgba(255, 75, 43, 0.15); color: #FF4B2B; }
+.mt-stat-box.upcoming { background: rgba(100, 181, 246, 0.06); border-color: rgba(100, 181, 246, 0.15); color: #64B5F6; }
+
+.mt-stat-num { font-size: 20px; font-weight: 700; }
+.mt-stat-lbl { font-size: 11px; font-weight: 600; text-transform: uppercase; }
+
+.mt-sec-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 26px;
+  margin-bottom: 20px;
+  font-weight: 400;
+  padding-left: 5px;
+}
+
+.mt-cards-stack { display: flex; flex-direction: column; gap: 16px; }
+
+.mt-med-card { padding: 20px; }
+
+.mt-med-top { display: flex; gap: 18px; align-items: flex-start; }
+
+.mt-pill-ico {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  justify-content: center;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
 }
 
-.qa-stub-card h2 {
-  font-family: var(--font-title);
-  font-size: 32px;
-  margin: 0;
+.mt-pill-ico.red { background: linear-gradient(135deg, #FF4B2B, #FF416C); }
+.mt-pill-ico.orange { background: linear-gradient(135deg, #FF8A00, #F97316); }
+.mt-pill-ico.blue { background: linear-gradient(135deg, #00B4DB, #0083B0); }
+.mt-pill-ico.purple { background: linear-gradient(135deg, #9D50BB, #6E48AA); }
+
+.mt-med-info { flex: 1; }
+
+.mt-name-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.mt-name-row h4 { font-size: 18px; font-weight: 600; margin: 0; }
+
+.mt-status-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 8px;
+  text-transform: uppercase;
 }
 
-.qa-stub-card p {
-  opacity: 0.6;
-  line-height: 1.6;
-  margin: 0;
+.mt-status-badge.upcoming { background: rgba(100, 181, 246, 0.15); color: #64B5F6; }
+.mt-status-badge.taken { background: rgba(0, 230, 118, 0.15); color: #00E676; }
+.mt-status-badge.missed { background: rgba(255, 75, 43, 0.15); color: #FF4B2B; }
+
+.mt-dosage { font-size: 14px; opacity: 0.5; margin: 0; }
+
+.mt-time-row { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 13px; font-weight: 500; opacity: 0.8; }
+
+.mt-supply-section { margin-top: 18px; }
+.mt-supply-meta { display: flex; justify-content: space-between; font-size: 11px; font-weight: 600; opacity: 0.4; margin-bottom: 8px; }
+
+.mt-supply-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
 }
+
+.mt-supply-fill { height: 100%; border-radius: 10px; }
+.mt-supply-fill.red { background: #FF4B2B; }
+.mt-supply-fill.orange { background: #FF8A00; }
+.mt-supply-fill.blue { background: #00B4DB; }
+.mt-supply-fill.purple { background: #9D50BB; }
+
+.mt-footer-spacer { height: 30px; }
