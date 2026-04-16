@@ -78,6 +78,7 @@ import Details from './pages/Doctors/Details';
 import Payment from './pages/Doctors/Payment';
 import AppConfirmed from './pages/Doctors/AppConfirmed';
 import ReportView from './pages/Reports/ReportView';
+import UploadReport from './pages/Reports/UploadReport';
 
 const TitleUpdater = () => {
   const location = useLocation();
@@ -212,6 +213,7 @@ const Routing = () => {
 
         {/* Reports Routes */}
         <Route path="/reports/view" element={<ReportView/>} /> 
+        <Route path="/reports/upload" element={<UploadReport/>} /> 
 
         <Route path="/*" element={<ErrorPage />} />
 

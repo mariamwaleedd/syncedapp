@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
-  ChevronLeft, Filter, Search, Heart, 
+  ChevronLeft, Search, Heart, Plus,
   CheckCircle2, AlertTriangle, Activity, 
   Stethoscope, Eye, Download, Share2, 
   ArrowRight, Smile, User
@@ -40,8 +40,8 @@ const Reports = () => {
               <ChevronLeft size={22} strokeWidth={2.5} />
             </button>
             <h1 className="rp-main-title">Medical Reports</h1>
-            <button className="rp-circle-btn">
-              <Filter size={20} />
+            <button className="rp-circle-btn" onClick={() => navigate('/reports/upload')}>
+              <Plus size={22} />
             </button>
           </div>
 
