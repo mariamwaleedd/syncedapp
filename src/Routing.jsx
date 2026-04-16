@@ -62,6 +62,13 @@ import AllergiesConditions from './pages/HelpCenter/AllergiesConditions';
 import CompleteReview from './pages/HelpCenter/CompleteReview';
 import ErrorPage from './pages/ErrorPage';
 
+// Medicine Tracker Module
+import MedicineTracker from './pages/MedicineTracker/MedicineTracker';
+import BasicInformation from './pages/MedicineTracker/BasicInformation';
+import DosageSchedule from './pages/MedicineTracker/DosageSchedule';
+import Reminders from './pages/MedicineTracker/Reminders';
+import AdditionalDetails from './pages/MedicineTracker/AdditionalDetails';
+
 const TitleUpdater = () => {
   const location = useLocation();
 
@@ -90,7 +97,12 @@ const TitleUpdater = () => {
       '/blood': 'Blood Network',
       '/appointments': 'My Appointments',
       '/personaldetails': 'Personal Details',
-      '/settings/edit-profile': 'Edit Profile'
+      '/settings/edit-profile': 'Edit Profile',
+      '/medicinetracker': 'Medicine Tracker',
+      '/medicinetracker/basic-information': 'Medicine Basic Info',
+      '/medicinetracker/dosage-schedule': 'Medicine Dosage',
+      '/medicinetracker/reminders': 'Medicine Reminders',
+      '/medicinetracker/additional-details': 'Medicine Additional Details'
     };
 
     const currentTitle = titles[location.pathname] || 'SYNCED';
@@ -167,6 +179,13 @@ const Routing = () => {
         <Route path="/helpcenter/blood-type-dna" element={<BloodTypeDNA/>} />
         <Route path="/helpcenter/allergies-conditions" element={<AllergiesConditions/>} />
         <Route path="/helpcenter/complete-review" element={<CompleteReview/>} />
+
+        {/* Medicine Tracker Routes */}
+        <Route path="/medicinetracker" element={<MedicineTracker/>} />
+        <Route path="/medicinetracker/basic-information" element={<BasicInformation/>} />
+        <Route path="/medicinetracker/dosage-schedule" element={<DosageSchedule/>} />
+        <Route path="/medicinetracker/reminders" element={<Reminders/>} />
+        <Route path="/medicinetracker/additional-details" element={<AdditionalDetails/>} />
 
         <Route path="/*" element={<ErrorPage />} />
 
