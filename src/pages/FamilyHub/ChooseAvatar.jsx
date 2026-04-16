@@ -69,7 +69,7 @@ const ChooseAvatar = () => {
         </div>
 
         <footer className="ca-footer">
-          <button className="ca-submit-btn" onClick={() => navigate('/family-hub')}>
+          <button className="ca-submit-btn" onClick={() => navigate('/familyhub')}>
             Add Family Member
           </button>
           <div className="ca-home-bar"></div>

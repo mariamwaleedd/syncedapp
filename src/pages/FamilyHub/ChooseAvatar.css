@@ -5,7 +5,6 @@
   background-color: #010422;
   width: 100%;
   max-width: 430px;
-  min-height: 100vh;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
@@ -38,7 +37,6 @@
 .ca-wrapper {
   position: relative;
   z-index: 5;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 10px 24px;

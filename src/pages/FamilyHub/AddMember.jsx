@@ -121,7 +121,7 @@ const AddMember = () => {
         </div>
 
         <footer className="am-footer">
-          <button className="am-submit-btn" onClick={() => navigate('/choose-avatar')}>
+          <button className="am-submit-btn" onClick={() => navigate('/familyhub/choose-avatar')}>
             Next: Choose Avatar
           </button>
           <div className="am-home-bar"></div>
