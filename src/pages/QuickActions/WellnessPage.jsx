@@ -14,17 +14,17 @@ const WellnessPage = () => {
   const navigate = useNavigate();
 
   const progress = [
-    { label: 'Steps', val: '8,234', target: '10,000', perc: 82, color: '#64B5F6', ico: <Footprints size={20} /> },
-    { label: 'Water', val: '1.8L', target: '2.5L', perc: 72, color: '#00E676', ico: <Droplets size={20} /> },
-    { label: 'Calories', val: '1,650', target: '2,000', perc: 83, color: '#FF416C', ico: <Flame size={20} /> },
-    { label: 'Sleep', val: '7.5h', target: '8h', perc: 94, color: '#B89FFF', ico: <Moon size={20} /> }
+    { label: 'Steps', val: '8,234', target: '10,000', perc: 82, color: '#64B5F6', ico: <Footprints size={20} />, path: '/wellness/steps' },
+    { label: 'Water', val: '1.8L', target: '2.5L', perc: 72, color: '#00E676', ico: <Droplets size={20} />, path: '/wellness/waterintake' },
+    { label: 'Calories', val: '1,650', target: '2,000', perc: 83, color: '#FF416C', ico: <Flame size={20} />, path: '/wellness/nutrition' },
+    { label: 'Sleep', val: '7.5h', target: '8h', perc: 94, color: '#B89FFF', ico: <Moon size={20} />, path: '/wellness/sleep' }
   ];
 
   const categories = [
-    { name: 'Nutrition', desc: 'Track meals & calories', stat: '3 meals today', color: '#00E676', ico: <Utensils size={22} /> },
-    { name: 'Exercise', desc: 'Log workouts & activity', stat: '45 min today', color: '#64B5F6', ico: <Activity size={22} /> },
-    { name: 'Mindfulness', desc: 'Meditation & breathing', stat: '10 min today', color: '#B89FFF', ico: <Brain size={22} /> },
-    { name: 'Goals', desc: 'Set & track wellness goals', stat: '4 active goals', color: '#FF8A00', ico: <Target size={22} /> }
+    { name: 'Nutrition', desc: 'Track meals & calories', stat: '3 meals today', color: '#00E676', ico: <Utensils size={22} />, path: '/wellness/nutrition' },
+    { name: 'Exercise', desc: 'Log workouts & activity', stat: '45 min today', color: '#64B5F6', ico: <Activity size={22} />, path: '/exercise' },
+    { name: 'Mindfulness', desc: 'Meditation & breathing', stat: '10 min today', color: '#B89FFF', ico: <Brain size={22} />, path: '/mindfulness' },
+    { name: 'Goals', desc: 'Set & track wellness goals', stat: '4 active goals', color: '#FF8A00', ico: <Target size={22} />, path: '/goals' }
   ];
 
   return (
@@ -58,7 +58,12 @@ const WellnessPage = () => {
           <h2 className="wh-sec-lbl">Today's Progress</h2>
           <div className="wh-prog-grid">
             {progress.map((item, i) => (
-              <div key={i} className="wh-prog-card wh-glass">
+              <div 
+                key={i} 
+                className="wh-prog-card wh-glass" 
+                onClick={() => navigate(item.path)}
+                style={{ cursor: 'pointer' }}
+              >
                 <div className="wh-prog-head">
                   <div className="wh-prog-ico" style={{ backgroundColor: `${item.color}20`, color: item.color }}>
                     {item.ico}
@@ -84,7 +89,7 @@ const WellnessPage = () => {
           <h2 className="wh-sec-lbl">Wellness Categories</h2>
           <div className="wh-cat-stack">
             {categories.map((cat, i) => (
-              <div key={i} className="wh-cat-card wh-glass" onClick={() => navigate(`/${cat.name.toLowerCase()}`)}>
+              <div key={i} className="wh-cat-card wh-glass" onClick={() => navigate(cat.path)}>
                 <div className="wh-cat-ico-box" style={{ backgroundColor: cat.color }}>
                   {cat.ico}
                 </div>

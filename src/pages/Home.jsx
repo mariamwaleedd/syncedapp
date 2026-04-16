@@ -1,4 +1,4 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   Bell, Heart, Activity, Moon, Droplets, 
@@ -14,6 +14,7 @@ import logo from '../imgs/logoblue.png';
 import './Home.css';
 
 const Home = () => {
+  const navigate = useNavigate();
   const container = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.05 } }
@@ -80,12 +81,12 @@ const Home = () => {
               <div className="ha-tracker-val">8,544<span>Steps</span></div>
               <p>Daily Steps</p>
             </div>
-            <div className="ha-tracker-item ha-glass">
+            <div className="ha-tracker-item ha-glass" onClick={() => navigate('/wellness/sleep')} style={{ cursor: 'pointer' }}>
               <div className="ha-ico-box purple"><Moon size={20} fill="white" /></div>
               <div className="ha-tracker-val">7.5<span>Hours</span></div>
               <p>Sleep</p>
             </div>
-            <div className="ha-tracker-item ha-glass">
+            <div className="ha-tracker-item ha-glass" onClick={() => navigate('/wellness/waterintake')} style={{ cursor: 'pointer' }}>
               <div className="ha-ico-box orange"><Droplets size={20} fill="white" /></div>
               <div className="ha-tracker-val">85<span>%</span></div>
               <p>Hydration</p>
@@ -154,11 +155,16 @@ const Home = () => {
           <h2 className="ha-sec-lbl">Daily Goals</h2>
           <div className="ha-goals-container">
             {[
-              { label: 'Steps Goal', val: '8,544/10k', perc: 85, color: '#05FF91', icon: <Footprints size={16}/> },
-              { label: 'Water Intake', val: '6/8 glasses', perc: 75, color: '#64B5F6', icon: <Droplet size={16}/> },
-              { label: 'Calories Burned', val: '420/500', perc: 84, color: '#FF8A00', icon: <Activity size={16}/> }
+              { label: 'Steps Goal', val: '8,544/10k', perc: 85, color: '#05FF91', icon: <Footprints size={16}/>, path: '/steps' },
+              { label: 'Water Intake', val: '6/8 glasses', perc: 75, color: '#64B5F6', icon: <Droplet size={16}/>, path: '/wellness/waterintake' },
+              { label: 'Calories Burned', val: '420/500', perc: 84, color: '#FF8A00', icon: <Activity size={16}/>, path: '/wellness/nutrition' }
             ].map((g) => (
-              <div className="ha-goal-card ha-glass" key={g.label}>
+              <div 
+                className="ha-goal-card ha-glass" 
+                key={g.label} 
+                onClick={() => navigate(g.path)}
+                style={{ cursor: 'pointer' }}
+              >
                 <div className="ha-goal-meta">
                   <div className="ha-goal-header">
                     <span className="ha-goal-icon" style={{color: g.color}}>{g.icon}</span>

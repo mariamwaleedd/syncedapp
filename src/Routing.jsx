@@ -70,6 +70,7 @@ import AdditionalDetails from './pages/MedicineTracker/AdditionalDetails';
 import WaterIntake from './pages/WellnessLifestyle/WaterIntake';
 import SleepTracker from './pages/WellnessLifestyle/SleepTracker';
 import Nutrition from './pages/WellnessLifestyle/Nutrition';
+import Steps from './pages/WellnessLifestyle/Steps';
 
 const TitleUpdater = () => {
   const location = useLocation();
@@ -191,6 +192,7 @@ const Routing = () => {
         <Route path="/wellness/waterintake" element={<WaterIntake/>} />
         <Route path="/wellness/sleep" element={<SleepTracker/>} />
         <Route path="/wellness/nutrition" element={<Nutrition/>} />
+        <Route path="/wellness/steps" element={<Steps/>} />
 
         <Route path="/*" element={<ErrorPage />} />
 
