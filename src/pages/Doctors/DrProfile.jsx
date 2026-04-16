@@ -164,7 +164,7 @@ const DrProfile = () => {
               <MessageSquare size={18} />
               <span>Chat</span>
             </button>
-            <button className="dp-book-btn" onClick={() => navigate('/doctors/book')}>
+            <button className="dp-book-btn" onClick={() => navigate('/doctors/select-date')}>
               <Calendar size={18} />
               <span>Book Now</span>
             </button>

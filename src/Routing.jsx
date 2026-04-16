@@ -73,6 +73,7 @@ import Nutrition from './pages/WellnessLifestyle/Nutrition';
 import Steps from './pages/WellnessLifestyle/Steps';
 import DrProfile from './pages/Doctors/DrProfile';
 import ChatDr from './pages/Doctors/ChatDr';
+import SelectDate from './pages/Doctors/SelectDate';
 
 const TitleUpdater = () => {
   const location = useLocation();
@@ -200,6 +201,7 @@ const Routing = () => {
         {/* Doctor Routes */}
         <Route path="/doctors/profile" element={<DrProfile/>} />
         <Route path="/doctors/chat" element={<ChatDr/>} />
+        <Route path="/doctors/select-date" element={<SelectDate/>} />
 
         <Route path="/*" element={<ErrorPage />} />
 
