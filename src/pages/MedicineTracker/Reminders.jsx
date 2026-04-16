@@ -1,54 +1,81 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, Bell } from 'lucide-react';
+import { ChevronLeft, Bell, Clock } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
-import TouchBar from '../../common/TouchBar';
 import './Reminders.css';
 
 const Reminders = () => {
   const navigate = useNavigate();
+  const [isEnabled, setIsEnabled] = useState(true);
 
   return (
-    <div className="medicine-tracker-root ltr-theme">
-      <div className="medicine-tracker-header">
-        <StatusBar dark={true} />
-        <div className="medicine-tracker-nav">
-          <button className="medicine-tracker-circle-btn" onClick={() => navigate(-1)}>
-            <ChevronLeft size={22} />
-          </button>
-          <div className="medicine-tracker-title">
-            <h1>Reminders</h1>
-          </div>
-          <div style={{ width: 40 }} />
-        </div>
-      </div>
+    <div className="rm-root ltr-theme">
+      <div className="rm-layer-grad"></div>
+      <div className="rm-layer-lines"></div>
 
-      <motion.div 
-        className="medicine-tracker-content" 
-        initial={{ opacity: 0, y: 20 }} 
-        animate={{ opacity: 1, y: 0 }}
-      >
-        <div className="medicine-tracker-card">
-          <div className="medicine-tracker-icon-wrap" style={{ background: 'rgba(255, 171, 0, 0.1)', borderColor: 'rgba(255, 171, 0, 0.2)' }}>
-            <Bell size={48} color="#FFAB00" />
-          </div>
-          <h2>Alerts & Notifications</h2>
-          <p>Get notified when it's time to take your medicine.</p>
+      <div className="rm-wrapper">
+        <StatusBar dark={true} />
+
+        <header className="rm-top-nav">
+          <button className="rm-back-btn" onClick={() => navigate(-1)}>
+            <ChevronLeft size={22} color="#FFF" strokeWidth={2.5} />
+          </button>
           
-          <div className="placeholder-form">
-            <div className="form-group" style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-              <label>Enable Reminders</label>
-              <input type="checkbox" checked disabled style={{ width: 24, height: 24 }} />
+          <div className="rm-stepper">
+            <span className="rm-step-bar filled"></span>
+            <span className="rm-step-bar filled"></span>
+            <span className="rm-step-bar active"></span>
+            <span className="rm-step-bar"></span>
+          </div>
+          <div className="rm-nav-placeholder"></div>
+        </header>
+
+        <div className="rm-header-info">
+          <h1 className="rm-main-title">Reminders</h1>
+          <p className="rm-subtitle">Configure notifications</p>
+        </div>
+
+        <div className="rm-content-body">
+          <div className="rm-toggle-card rm-glass">
+            <div className="rm-toggle-l">
+              <div className="rm-bell-circle">
+                <Bell size={20} color="#64B5F6" />
+              </div>
+              <div className="rm-toggle-txt">
+                <h4>Enable Reminders</h4>
+                <p>Get notified when it's time</p>
+              </div>
             </div>
-            <div className="form-group">
-              <label>Reminder Time</label>
-              <input type="time" value="08:00" disabled />
+            <div 
+              className={`rm-ui-switch ${isEnabled ? 'on' : ''}`} 
+              onClick={() => setIsEnabled(!isEnabled)}
+            >
+              <div className="rm-ui-handle"></div>
+            </div>
+          </div>
+
+          <div className="rm-time-section">
+            <label className="rm-field-label">You'll receive reminders at:</label>
+            <div className="rm-time-input rm-glass">
+              <Clock size={20} color="#64B5F6" />
+              <span className="rm-time-val">08:00</span>
+            </div>
+          </div>
+
+          <div className="rm-hero-illustration">
+            <div className="rm-big-bell-box">
+              <Bell size={64} color="#FFF" strokeWidth={1.5} />
             </div>
           </div>
         </div>
-      </motion.div>
-      <TouchBar />
+
+        <footer className="rm-footer">
+          <button className="rm-continue-btn" onClick={() => navigate('/medicinetracker/additional-details')}>
+            Continue
+          </button>
+          <div className="rm-home-bar"></div>
+        </footer>
+      </div>
     </div>
   );
 };

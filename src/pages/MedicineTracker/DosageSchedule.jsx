@@ -81,7 +81,7 @@ const DosageSchedule = () => {
         </div>
 
         <footer className="ds-footer">
-          <button className="ds-continue-btn" onClick={() => navigate('/medicine-reminders')}>
+          <button className="ds-continue-btn" onClick={() => navigate('/medicinetracker/reminders')}>
             Continue
           </button>
           <div className="ds-home-bar"></div>

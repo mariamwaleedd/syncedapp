@@ -8,12 +8,12 @@
   min-height: 100vh;
   margin: 0 auto;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
   font-family: 'General Sans', sans-serif;
   color: #FFFFFF;
 }
 
-.ad-layer-grad {
+.ad-bg-grad {
   position: absolute;
   top: 0;
   left: 0;
@@ -23,7 +23,7 @@
   z-index: 1;
 }
 
-.ad-layer-lines {
+.ad-bg-lines {
   position: absolute;
   top: 0;
   left: 0;
@@ -35,20 +35,20 @@
   z-index: 2;
 }
 
-.ad-main-container {
+.ad-full-page {
   position: relative;
-  z-index: 3;
+  z-index: 5;
   padding: 10px 24px 40px;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
 }
 
-.ad-top-nav {
+.ad-top-navigation {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 0 25px;
+  padding: 15px 0 30px;
 }
 
 .ad-back-circle {
@@ -60,70 +60,74 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
+  cursor: pointer;
 }
 
-.ad-stepper {
+.ad-progress-stepper {
   display: flex;
   gap: 8px;
 }
 
 .ad-step-bar {
-  width: 32px;
+  width: 38px;
   height: 4px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.15);
 }
 
-.ad-step-bar.ad-active {
+.ad-step-bar.ad-filled, .ad-step-bar.ad-active {
   background: #64B5F6;
 }
 
-.ad-nav-placeholder {
+.ad-nav-spacer {
   width: 44px;
 }
 
-.ad-header-text {
-  margin-bottom: 40px;
+.ad-title-group {
+  margin-bottom: 35px;
 }
 
-.ad-main-title {
+.ad-main-heading {
   font-family: 'Instrument Serif', serif;
-  font-size: 38px;
+  font-size: 40px;
   margin: 0;
   font-weight: 400;
 }
 
-.ad-subtitle {
-  font-size: 15px;
-  opacity: 0.5;
+.ad-sub-heading {
+  font-size: 16px;
+  opacity: 0.6;
   margin-top: 8px;
 }
 
-.ad-body-content {
+.ad-scrollable-body {
   flex: 1;
+  overflow-y: auto;
+  padding-bottom: 20px;
 }
 
-.ad-input-group {
+.ad-input-container {
   margin-bottom: 30px;
 }
 
-.ad-label {
+.ad-field-label {
   font-size: 14px;
-  font-weight: 500;
-  opacity: 0.8;
+  font-weight: 600;
+  opacity: 0.85;
   display: block;
   margin-bottom: 12px;
   padding-left: 2px;
 }
 
-.ad-glass {
-  background: rgba(255, 255, 255, 0.05);
+.ad-glass-effect {
+  background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 24px;
   backdrop-filter: blur(15px);
 }
 
-.ad-textarea {
+.ad-text-area {
   width: 100%;
   height: 140px;
   padding: 18px;
@@ -134,76 +138,77 @@
   outline: none;
 }
 
-.ad-textarea::placeholder {
+.ad-text-area::placeholder {
   color: rgba(255, 255, 255, 0.25);
 }
 
-.ad-summary-card {
+.ad-summary-box {
   padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
 }
 
 .ad-summary-title {
-  font-size: 18px;
-  font-weight: 600;
-  margin: 0 0 4px;
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0 0 5px;
 }
 
-.ad-summary-item {
+.ad-summary-row {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
 }
 
-.ad-sum-ico {
-  width: 40px;
-  height: 40px;
-  background: rgba(100, 181, 246, 0.1);
+.ad-icon-square {
+  width: 42px;
+  height: 42px;
+  background: rgba(100, 181, 246, 0.12);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
-.ad-sum-txt label {
+.ad-row-data label {
   font-size: 11px;
-  opacity: 0.4;
-  font-weight: 600;
+  opacity: 0.45;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
 }
 
-.ad-sum-txt p {
+.ad-row-data p {
   margin: 2px 0 0;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 600;
 }
 
-.ad-footer {
+.ad-bottom-action {
   margin-top: auto;
-  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
-.ad-submit-btn {
+.ad-submit-button {
   width: 100%;
   height: 60px;
   background: #64B5F6;
   border: none;
   border-radius: 18px;
   color: #FFF;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
   font-family: 'General Sans', sans-serif;
-  box-shadow: 0 8px 25px rgba(100, 181, 246, 0.3);
-  margin-bottom: 25px;
+  box-shadow: 0 10px 25px rgba(100, 181, 246, 0.35);
+  margin-bottom: 20px;
 }
 
-.ad-home-pill {
+.ad-ios-indicator {
   width: 135px;
   height: 5px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   border-radius: 10px;
   margin: 0 auto;
 }

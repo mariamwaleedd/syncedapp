@@ -10,84 +10,84 @@ const AdditionalDetails = () => {
 
   return (
     <div className="ad-root ltr-theme">
-      <div className="ad-layer-grad"></div>
-      <div className="ad-layer-lines"></div>
+      <div className="ad-bg-grad"></div>
+      <div className="ad-bg-lines"></div>
 
-      <div className="ad-main-container">
+      <div className="ad-full-page">
         <StatusBar dark={true} />
 
-        <header className="ad-top-nav">
+        <header className="ad-top-navigation">
           <button className="ad-back-circle" onClick={() => navigate(-1)}>
-            <ChevronLeft size={22} color="#FFF" />
+            <ChevronLeft size={24} color="#FFFFFF" strokeWidth={2.5} />
           </button>
           
-          <div className="ad-stepper">
-            <span className="ad-step-bar"></span>
-            <span className="ad-step-bar"></span>
-            <span className="ad-step-bar"></span>
+          <div className="ad-progress-stepper">
+            <span className="ad-step-bar ad-filled"></span>
+            <span className="ad-step-bar ad-filled"></span>
+            <span className="ad-step-bar ad-filled"></span>
             <span className="ad-step-bar ad-active"></span>
           </div>
-          <div className="ad-nav-placeholder"></div>
+          <div className="ad-nav-spacer"></div>
         </header>
 
-        <div className="ad-header-text">
-          <h1 className="ad-main-title">Additional Details</h1>
-          <p className="ad-subtitle">Final customization</p>
+        <div className="ad-title-group">
+          <h1 className="ad-main-heading">Additional Details</h1>
+          <p className="ad-sub-heading">Final customization</p>
         </div>
 
-        <div className="ad-body-content">
-          <div className="ad-input-group">
-            <label className="ad-label">Notes (Optional)</label>
+        <main className="ad-scrollable-body">
+          <div className="ad-input-container">
+            <label className="ad-field-label">Notes (Optional)</label>
             <textarea 
-              className="ad-textarea ad-glass"
+              className="ad-text-area ad-glass-effect"
               placeholder="E.g., Take with food, avoid alcohol..."
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
             />
           </div>
 
-          <div className="ad-summary-card ad-glass">
+          <div className="ad-summary-box ad-glass-effect">
             <h2 className="ad-summary-title">Summary</h2>
             
-            <div className="ad-summary-item">
-              <div className="ad-sum-ico"><Pill size={20} color="#64B5F6" /></div>
-              <div className="ad-sum-txt">
+            <div className="ad-summary-row">
+              <div className="ad-icon-square"><Pill size={20} color="#64B5F6" /></div>
+              <div className="ad-row-data">
                 <label>Medicine</label>
                 <p>ff - 1122ml</p>
               </div>
             </div>
 
-            <div className="ad-summary-item">
-              <div className="ad-sum-ico"><Clock size={20} color="#64B5F6" /></div>
-              <div className="ad-sum-txt">
+            <div className="ad-summary-row">
+              <div className="ad-icon-square"><Clock size={20} color="#64B5F6" /></div>
+              <div className="ad-row-data">
                 <label>Schedule</label>
                 <p>Once daily</p>
               </div>
             </div>
 
-            <div className="ad-summary-item">
-              <div className="ad-sum-ico"><Calendar size={20} color="#64B5F6" /></div>
-              <div className="ad-sum-txt">
+            <div className="ad-summary-row">
+              <div className="ad-icon-square"><Calendar size={20} color="#64B5F6" /></div>
+              <div className="ad-row-data">
                 <label>Duration</label>
                 <p>30 days</p>
               </div>
             </div>
 
-            <div className="ad-summary-item">
-              <div className="ad-sum-ico"><Bell size={20} color="#64B5F6" /></div>
-              <div className="ad-sum-txt">
+            <div className="ad-summary-row">
+              <div className="ad-icon-square"><Bell size={20} color="#64B5F6" /></div>
+              <div className="ad-row-data">
                 <label>Reminders</label>
                 <p>Enabled</p>
               </div>
             </div>
           </div>
-        </div>
+        </main>
 
-        <footer className="ad-footer">
-          <button className="ad-submit-btn" onClick={() => navigate('/medicine-tracker')}>
+        <footer className="ad-bottom-action">
+          <button className="ad-submit-button" onClick={() => navigate('/medicine-tracker')}>
             Add Medicine
           </button>
-          <div className="ad-home-pill"></div>
+          <div className="ad-ios-indicator"></div>
         </footer>
       </div>
     </div>

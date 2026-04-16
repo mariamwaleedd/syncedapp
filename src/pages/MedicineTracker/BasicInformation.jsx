@@ -87,7 +87,7 @@ const BasicInformation = () => {
         </div>
 
         <footer className="bi-footer">
-          <button className="bi-continue-btn" onClick={() => navigate('/medicine-tracker/dosage-schedule')}>
+          <button className="bi-continue-btn" onClick={() => navigate('/medicinetracker/dosage-schedule')}>
             Continue
           </button>
           <div className="bi-home-bar"></div>
