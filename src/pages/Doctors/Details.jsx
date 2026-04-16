@@ -90,7 +90,7 @@ const Details = () => {
         </div>
 
         <footer className="dt-footer">
-          <button className="dt-continue-btn" onClick={() => navigate('/next')}>
+          <button className="dt-continue-btn" onClick={() => navigate('/doctors/payment')}>
             Continue
           </button>
           <div className="dt-home-bar"></div>
