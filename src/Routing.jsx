@@ -71,6 +71,7 @@ import WaterIntake from './pages/WellnessLifestyle/WaterIntake';
 import SleepTracker from './pages/WellnessLifestyle/SleepTracker';
 import Nutrition from './pages/WellnessLifestyle/Nutrition';
 import Steps from './pages/WellnessLifestyle/Steps';
+import DrProfile from './pages/Doctors/DrProfile';
 
 const TitleUpdater = () => {
   const location = useLocation();
@@ -104,7 +105,8 @@ const TitleUpdater = () => {
       '/medicinetracker/basic-information': 'Medicine Basic Info',
       '/medicinetracker/dosage-schedule': 'Medicine Dosage',
       '/medicinetracker/reminders': 'Medicine Reminders',
-      '/medicinetracker/additional-details': 'Medicine Additional Details'
+      '/medicinetracker/additional-details': 'Medicine Additional Details',
+      '/doctors/profile': "Doctor's Profile"
     };
 
     const currentTitle = titles[location.pathname] || 'SYNCED';
@@ -193,6 +195,9 @@ const Routing = () => {
         <Route path="/wellness/sleep" element={<SleepTracker/>} />
         <Route path="/wellness/nutrition" element={<Nutrition/>} />
         <Route path="/wellness/steps" element={<Steps/>} />
+
+        {/* Doctor Routes */}
+        <Route path="/doctors/profile" element={<DrProfile/>} />
 
         <Route path="/*" element={<ErrorPage />} />
 

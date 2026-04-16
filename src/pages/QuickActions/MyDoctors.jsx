@@ -115,7 +115,7 @@ const MyDoctors = () => {
                 <div className="md-card-actions">
                   <button className="md-act-btn purple"><MessageSquare size={16} /> <span>Chat</span></button>
                   <button className="md-act-btn blue"><Calendar size={16} /> <span>Book</span></button>
-                  <button className="md-act-btn outline">View Profile</button>
+                  <button className="md-act-btn outline" onClick={() => navigate('/doctors/profile')}>View Profile</button>
                 </div>
               </div>
             ))}

@@ -117,6 +117,8 @@ const Doctors = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
+                onClick={() => navigate('/doctors/profile')}
+                style={{ cursor: 'pointer' }}
               >
                 <div className="dr-card-main">
                   <div className="dr-card-avatar-wrap">
