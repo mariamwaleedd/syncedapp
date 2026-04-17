@@ -7,6 +7,7 @@ import {
 import TouchBar from '../../common/TouchBar';
 import ShareModal from '../../common/ShareModal';
 import FilterMenu from '../../common/FilterMenu';
+import ActionMenu from '../../common/ActionMenu';
 import './MedicalRecords.css';
 
 const MedicalRecords = () => {
@@ -15,6 +16,7 @@ const MedicalRecords = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isDownloadOpen, setIsDownloadOpen] = useState(false);
 
   const records = [
     { title: 'Blood Test Results', date: 'March 5, 2026', entity: 'Lab Corp', type: 'Lab Results', verified: true },
@@ -109,6 +111,11 @@ const MedicalRecords = () => {
                     <span>View</span>
                   </button>
                   <div className="mr-v-sep"></div>
+                  <button className="mr-act-btn" onClick={() => setIsDownloadOpen(true)}>
+                    <Download size={16} />
+                    <span>Download</span>
+                  </button>
+                  <div className="mr-v-sep"></div>
                   <button className="mr-act-btn" onClick={() => setIsShareOpen(true)}>
                     <Share2 size={16} />
                     <span>Share</span>
@@ -148,9 +155,38 @@ const MedicalRecords = () => {
       <TouchBar />
 
       <ShareModal 
-        isOpen={isShareOpen} 
-        onClose={() => setIsShareOpen(false)} 
-        title="Share Medical Record"
+        isOpen={isShareOpen}
+        onClose={() => setIsShareOpen(false)}
+        title="Share Record"
+      />
+
+      <ActionMenu 
+        isOpen={isDownloadOpen}
+        onClose={() => setIsDownloadOpen(false)}
+        title="Download Options"
+        options={[
+          { 
+            name: 'Download PDF', 
+            desc: 'Best for printing and sharing', 
+            icon: <FileText size={24} />, 
+            color: '#FF5252',
+            action: () => alert('Downloading PDF...')
+          },
+          { 
+            name: 'Save as Image', 
+            desc: 'Save to your device gallery', 
+            icon: <Upload size={24} />, 
+            color: '#51A2FF',
+            action: () => alert('Saving as Image...')
+          },
+          { 
+            name: 'Export CSV', 
+            desc: 'Raw data for spreadsheet', 
+            icon: <FileText size={24} opacity={0.5} />, 
+            color: '#00E676',
+            action: () => alert('Exporting CSV...')
+          }
+        ]}
       />
 
       <FilterMenu 

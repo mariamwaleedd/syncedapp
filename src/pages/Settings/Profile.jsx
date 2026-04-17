@@ -9,11 +9,13 @@ import {
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import ShareModal from '../../common/ShareModal';
+import ActionMenu from '../../common/ActionMenu';
 import './Profile.css';
 
 const Profile = () => {
   const navigate = useNavigate();
   const [isShareOpen, setIsShareOpen] = useState(false);
+  const [isDownloadOpen, setIsDownloadOpen] = useState(false);
   return (
     <div className="pf-container ltr-theme">
       <div className="pf-layer-gradient"></div>
@@ -44,22 +46,22 @@ const Profile = () => {
         </div>
 
         <div className="pf-stats-row">
-          <div className="pf-stat-box">
+          <div className="pf-stat-box" onClick={() => navigate('/appointments')} style={{ cursor: 'pointer' }}>
             <div className="pf-stat-ico-circle blue"><Stethoscope size={20} /></div>
             <span className="pf-stat-val">12</span>
             <span className="pf-stat-txt">Appointments</span>
           </div>
-          <div className="pf-stat-box">
+          <div className="pf-stat-box" onClick={() => navigate('/reports')} style={{ cursor: 'pointer' }}>
             <div className="pf-stat-ico-circle pink"><FileText size={20} /></div>
             <span className="pf-stat-val">8</span>
             <span className="pf-stat-txt">Reports</span>
           </div>
-          <div className="pf-stat-box">
+          <div className="pf-stat-box" onClick={() => navigate('/familyhub')} style={{ cursor: 'pointer' }}>
             <div className="pf-stat-ico-circle red"><Heart size={20} /></div>
             <span className="pf-stat-val">4</span>
             <span className="pf-stat-txt">Family</span>
           </div>
-          <div className="pf-stat-box">
+          <div className="pf-stat-box" onClick={() => navigate('/devices')} style={{ cursor: 'pointer' }}>
             <div className="pf-stat-ico-circle green"><Smartphone size={20} /></div>
             <span className="pf-stat-val">2</span>
             <span className="pf-stat-txt">Devices</span>
@@ -73,11 +75,11 @@ const Profile = () => {
               <div className="pf-act-ico blue"><Edit2 size={20} /></div>
               <span>Edit Profile</span>
             </div>
-            <div className="pf-action-glass">
+            <div className="pf-action-glass" onClick={() => navigate('/settings')} style={{ cursor: 'pointer' }}>
               <div className="pf-act-ico purple"><Settings size={20} /></div>
               <span>Account Settings</span>
             </div>
-            <div className="pf-action-glass">
+            <div className="pf-action-glass" onClick={() => navigate('/healthid')} style={{ cursor: 'pointer' }}>
               <div className="pf-act-ico green"><QrCode size={20} /></div>
               <span>Health ID Card</span>
             </div>
@@ -159,7 +161,7 @@ const Profile = () => {
           </div>
         </section>
 
-        <button className="pf-cta-btn">
+        <button className="pf-cta-btn" onClick={() => setIsDownloadOpen(true)}>
           <Download size={20} />
           <span>Download Health Data</span>
         </button>
@@ -171,6 +173,35 @@ const Profile = () => {
         isOpen={isShareOpen} 
         onClose={() => setIsShareOpen(false)} 
         title="Share Profile"
+      />
+
+      <ActionMenu 
+        isOpen={isDownloadOpen}
+        onClose={() => setIsDownloadOpen(false)}
+        title="Export Health Data"
+        options={[
+          { 
+            name: 'Full Health Report', 
+            desc: 'Complete medical history (PDF)', 
+            icon: <FileText size={24} />, 
+            color: '#FF5252',
+            action: () => alert('Generating Full Report...')
+          },
+          { 
+            name: 'Vaccination Record', 
+            desc: 'Official travel document', 
+            icon: <ShieldAlert size={24} />, 
+            color: '#51A2FF',
+            action: () => alert('Downloading Vaccination Record...')
+          },
+          { 
+            name: 'Emergency Card', 
+            desc: 'Wallet-sized overview', 
+            icon: <Heart size={24} />, 
+            color: '#00E676',
+            action: () => alert('Generating Emergency Card...')
+          }
+        ]}
       />
     </div>
   );

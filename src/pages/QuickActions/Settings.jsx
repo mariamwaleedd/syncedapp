@@ -85,7 +85,7 @@ const Settings = () => {
             <div className="set-avatar">
               <User size={60} color="#AAA" />
             </div>
-            <button className="set-avatar-edit">
+            <button className="set-avatar-edit" onClick={() => navigate('/settings/edit-profile')}>
               <Edit2 size={12} />
             </button>
           </div>

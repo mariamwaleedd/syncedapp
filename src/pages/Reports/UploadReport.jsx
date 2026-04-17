@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   ChevronLeft, Upload, Share2, User, 
@@ -12,6 +12,15 @@ const UploadReport = () => {
   const navigate = useNavigate();
   const [selectedMember, setSelectedMember] = useState('Me');
   const [category, setCategory] = useState('');
+  const [fileName, setFileName] = useState('');
+  const fileInputRef = useRef(null);
+  const camInputRef = useRef(null);
+
+  const handleFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setFileName(e.target.files[0].name);
+    }
+  };
 
   const members = [
     { name: 'Me', emoji: '😊' },
@@ -117,14 +126,33 @@ const UploadReport = () => {
               <span>Upload Files</span>
             </div>
             <div className="ur-dropzone ur-glass">
+              <input 
+                type="file" 
+                ref={fileInputRef} 
+                style={{ display: 'none' }} 
+                onChange={handleFileChange}
+              />
+              <input 
+                type="file" 
+                accept="image/*" 
+                capture="environment" 
+                ref={camInputRef} 
+                style={{ display: 'none' }} 
+                onChange={handleFileChange}
+              />
+
               <div className="ur-up-circle">
                 <Upload size={32} color="#FFF" />
               </div>
-              <h3>Drop files here or click to upload</h3>
-              <p>PDF, JPG, PNG up to 10MB</p>
+              <h3>{fileName || "Drop files here or click to upload"}</h3>
+              <p>{fileName ? "File selected successfully" : "PDF, JPG, PNG up to 10MB"}</p>
               <div className="ur-up-actions">
-                <button className="ur-file-btn"><Paperclip size={18} /> Browse Files</button>
-                <button className="ur-cam-btn"><Camera size={18} /> Camera</button>
+                <button className="ur-file-btn" onClick={() => fileInputRef.current.click()}>
+                  <Paperclip size={18} /> Browse Files
+                </button>
+                <button className="ur-cam-btn" onClick={() => camInputRef.current.click()}>
+                  <Camera size={18} /> Camera
+                </button>
               </div>
             </div>
           </section>
@@ -138,7 +166,7 @@ const UploadReport = () => {
 
           <div className="ur-footer-actions">
             <button className="ur-btn-cancel ur-glass" onClick={() => navigate(-1)}>Cancel</button>
-            <button className="ur-btn-submit" onClick={() => navigate('/medicalrecords')}>
+            <button className="ur-btn-submit" onClick={() => navigate('/reports')}>
               <Upload size={18} />
               <span>Upload Report</span>
             </button>

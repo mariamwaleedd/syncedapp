@@ -8,6 +8,8 @@ import {
 import TouchBar from '../../common/TouchBar';
 import ShareModal from '../../common/ShareModal';
 import FilterMenu from '../../common/FilterMenu';
+import ActionMenu from '../../common/ActionMenu';
+import { FileText, Share, Upload } from 'lucide-react';
 import './ReportView.css';
 
 const ReportView = () => {
@@ -15,6 +17,7 @@ const ReportView = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isDownloadOpen, setIsDownloadOpen] = useState(false);
 
   return (
     <div className="rv-root ltr-theme">
@@ -128,7 +131,7 @@ const ReportView = () => {
           </motion.div>
 
           <div className="rv-actions-footer">
-            <button className="rv-btn-action rv-glass">
+            <button className="rv-btn-action rv-glass" onClick={() => setIsDownloadOpen(true)}>
               <Download size={18} />
               <span>Download</span>
             </button>
@@ -144,20 +147,49 @@ const ReportView = () => {
       <TouchBar />
       
       <ShareModal 
-        isOpen={isShareOpen} 
-        onClose={() => setIsShareOpen(false)} 
-        title="Share Medical Report"
+        isOpen={isShareOpen}
+        onClose={() => setIsShareOpen(false)}
+        title="Share Report"
+      />
+
+      <ActionMenu 
+        isOpen={isDownloadOpen}
+        onClose={() => setIsDownloadOpen(false)}
+        title="Download Options"
+        options={[
+          { 
+            name: 'Download PDF', 
+            desc: 'High resolution document', 
+            icon: <FileText size={24} />, 
+            color: '#FF5252',
+            action: () => alert('Downloading PDF...')
+          },
+          { 
+            name: 'Save to Gallery', 
+            desc: 'Save as high quality image', 
+            icon: <Upload size={24} />, 
+            color: '#51A2FF',
+            action: () => alert('Saving to Gallery...')
+          },
+          { 
+            name: 'Send to Doctor', 
+            desc: 'Secure sharing within network', 
+            icon: <Share size={24} />, 
+            color: '#00E676',
+            action: () => alert('Sending to Doctor...')
+          }
+        ]}
       />
 
       <FilterMenu 
-        isOpen={isFilterOpen} 
+        isOpen={isFilterOpen}
         onClose={() => setIsFilterOpen(false)}
-        title="Report Categories"
+        title="Categorize"
         options={[
           { id: 'all', name: 'All Pages' },
-          { id: 'vitals', name: 'Vitals' },
+          { id: 'vitals', name: 'Vitals Only' },
           { id: 'labs', name: 'Lab Results' },
-          { id: 'notes', name: 'Doctor Notes' }
+          { id: 'doc', name: 'Doctor Summary' }
         ]}
       />
     </div>

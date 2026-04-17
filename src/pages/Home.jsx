@@ -124,12 +124,14 @@ const Home = () => {
         <section className="ha-section">
           <div className="ha-section-title">
             <h2>Family Health</h2>
-            <span className="ha-view-link">View All <ChevronRight size={14} /></span>
+            <span className="ha-view-link" onClick={() => navigate('/familyhub')} style={{ cursor: 'pointer' }}>
+              View All <ChevronRight size={14} />
+            </span>
           </div>
           <div className="ha-family-card ha-glass">
             <div className="ha-family-grid">
               {data.family_members.map((m) => (
-                <div key={m.name} className="ha-family-member">
+                <div key={m.name} className="ha-family-member" onClick={() => navigate('/familyhub')} style={{ cursor: 'pointer' }}>
                   <div className="ha-family-avatar-wrap">
                     <div className="ha-family-avatar">{m.emoji}</div>
                     <div className={`ha-family-status ${m.status}`}>

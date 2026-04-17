@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import ShareModal from '../../common/ShareModal';
+import ActionMenu from '../../common/ActionMenu';
 import './HealthID.css';
 
 const SectionHeader = ({ title, showEdit = true, onEdit }) => (
@@ -27,6 +28,7 @@ const SectionHeader = ({ title, showEdit = true, onEdit }) => (
 const HealthID = () => {
   const navigate = useNavigate();
   const [isShareOpen, setIsShareOpen] = useState(false);
+  const [isDownloadOpen, setIsDownloadOpen] = useState(false);
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
@@ -259,7 +261,7 @@ const HealthID = () => {
                 <h5>Blood Work Results</h5>
                 <p>PDF • Sep 05, 2023 • 840 KB</p>
               </div>
-              <button className="hid-down-btn"><Upload size={14} className="rotate-180" /></button>
+              <button className="hid-down-btn" onClick={() => setIsDownloadOpen(true)}><Upload size={14} className="rotate-180" /></button>
             </div>
           </div>
           <button className="hid-all-btn" onClick={() => navigate('/reports')}> View All Reports</button>
@@ -286,6 +288,28 @@ const HealthID = () => {
         isOpen={isShareOpen} 
         onClose={() => setIsShareOpen(false)} 
         title="Share Health ID"
+      />
+
+      <ActionMenu 
+        isOpen={isDownloadOpen}
+        onClose={() => setIsDownloadOpen(false)}
+        title="Export File"
+        options={[
+          { 
+            name: 'Download PDF', 
+            desc: 'Save document to device', 
+            icon: <FileText size={24} />, 
+            color: '#FF5252',
+            action: () => alert('Downloading PDF...')
+          },
+          { 
+            name: 'Save to Gallery', 
+            desc: 'Save as high-quality image', 
+            icon: <Upload size={24} />, 
+            color: '#51A2FF',
+            action: () => alert('Saving as Image...')
+          }
+        ]}
       />
     </div>
   );
