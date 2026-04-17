@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Bluetooth, Watch, Activity, Wind, Heart, ChevronRight, Battery, Wifi } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './Devices.css';
 
@@ -21,7 +20,6 @@ const Devices = () => {
       <div className="dv-lines-layer"></div>
 
       <div className="dv-wrapper">
-        <StatusBar dark={true} />
 
         <header className="dv-header">
           <div className="dv-nav-top">

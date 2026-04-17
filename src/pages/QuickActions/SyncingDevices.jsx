@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronLeft, Download, Heart, Footprints, Flame, Droplets, Moon, Activity, Check } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './SyncingDevices.css';
 
 const SyncingDevices = () => {
@@ -31,7 +30,6 @@ const SyncingDevices = () => {
       <div className="sy-lines-layer"></div>
 
       <div className="sy-wrapper">
-        <StatusBar dark={true} />
 
         <header className="sy-header">
           <button className="sy-circ-btn" onClick={() => navigate('/devices')}><ChevronLeft size={22} /></button>

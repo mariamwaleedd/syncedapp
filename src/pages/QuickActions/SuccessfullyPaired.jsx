@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Bluetooth, Check, CheckCircle2, Watch } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './SuccessfullyPaired.css';
 
 const SuccessfullyPaired = () => {
@@ -13,7 +12,6 @@ const SuccessfullyPaired = () => {
       <div className="pa-lines-layer"></div>
 
       <div className="pa-wrapper">
-        <StatusBar dark={true} />
 
         <header className="pa-header">
           <button className="pa-circ-btn" onClick={() => navigate(-1)}><ChevronLeft size={22} /></button>
