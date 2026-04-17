@@ -57,9 +57,7 @@ const TouchBar = () => {
           </button>
         ))}
       </div>
-      
-      {/* iOS Style Home Indicator for extra premium feel */}
-      <div className="touchbar-home-pill" />
+
     </div>
   );
 };
