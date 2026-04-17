@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
@@ -8,27 +8,34 @@ import {
   Moon, Footprints, AlertCircle
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
+import { supabase } from '../../supabaseClient';
 import './FamilyHub.css';
 
 const FamilyHub = () => {
   const navigate = useNavigate();
+  const [members, setMembers] = useState([]);
 
-  const members = [
-    { name: 'Mona Hassan', rel: 'Mother', age: 52, weight: '65kg', sleep: '7.5h', steps: '6.5k', mood: 'Great', img: '👩', online: true , link: '/familyhub/family-profile'},
-    { name: 'Ahmed Hassan', rel: 'Father', age: 55, weight: '82kg', sleep: '6h', steps: '4.2k', mood: 'Okay', alert: 'Abnormal glucose levels', img: '👨', online: true , link: '/familyhub/family-profile'},
-    { name: 'Maya Walid', rel: 'Daughter', age: 9, weight: '28kg', sleep: '9.2h', steps: '12.4k', mood: 'Great', img: '👧', online: true , link: '/familyhub/family-profile'},
-    { name: 'Grandpa Addo', rel: 'Grandfather', age: 78, weight: '76kg', sleep: '6.2h', steps: '3.1k', mood: 'Okay', alert: 'Medication reminder', img: '👴', online: false , link: '/familyhub/family-profile'},
-    { name: 'Grandma Fatima', rel: 'Grandmother', age: 72, weight: '62kg', sleep: '8.5h', steps: '4.5k', mood: 'Great', img: '👵', online: true , link: '/familyhub/family-profile'},
-    { name: 'Omar Hassan', rel: 'Son', age: 14, weight: '52kg', sleep: '8.2h', steps: '10.8k', mood: 'Great', img: '👦', online: true , link: '/familyhub/family-profile'}
-  ];
+  useEffect(() => {
+    fetchMembers();
+  }, []);
+
+  const fetchMembers = async () => {
+    const { data, error } = await supabase.from('application_family').select('*');
+    if (!error) setMembers(data);
+  };
+
+  const calculateAge = (dob) => {
+    const birthDate = new Date(dob);
+    const difference = Date.now() - birthDate.getTime();
+    const ageDate = new Date(difference);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  };
 
   return (
     <div className="fh-root ltr-theme">
       <div className="fh-bg-grad"></div>
       <div className="fh-bg-img"></div>
-
       <div className="fh-wrapper">
-        
         <header className="fh-header">
           <div className="fh-nav-top">
             <button className="fh-circ-btn" onClick={() => navigate(-1)}><ChevronLeft size={22} /></button>
@@ -43,7 +50,6 @@ const FamilyHub = () => {
             <p className="fh-date">Tuesday, March 11</p>
           </div>
         </header>
-
         <div className="fh-top-vitals">
           <div className="fh-vital-card fh-glass blue" onClick={() => navigate('/appointments')}>
             <Calendar size={20} />
@@ -60,38 +66,37 @@ const FamilyHub = () => {
             </div>
           </div>
         </div>
-
         <section className="fh-sec">
           <div className="fh-sec-head">
             <h2 className="fh-sec-title">Family Members</h2>
-            <button className="fh-plus-btn"onClick={() => navigate('/familyhub/add-member')}><Plus size={18} /></button>
+            <button className="fh-plus-btn" onClick={() => navigate('/familyhub/add-member')}><Plus size={18} /></button>
           </div>
           <div className="fh-list">
             {members.map((m, i) => (
               <motion.div 
-                key={i} 
+                key={m.id} 
                 className="fh-member-card fh-glass"
                 whileTap={{ scale: 0.98 }}
-                onClick={() => navigate(m.link)}
+                onClick={() => navigate(`/familyhub/family-profile/${m.id}`)}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
               >
                 <div className="fh-m-top">
                   <div className="fh-avatar-wrap">
-                    <span className="fh-m-avatar">{m.img}</span>
-                    {m.online && <div className="fh-m-online"></div>}
+                    <span className="fh-m-avatar">{m.emoji}</span>
+                    {m.is_online && <div className="fh-m-online"></div>}
                   </div>
                   <div className="fh-m-info">
-                    <h4>{m.name}</h4>
-                    <p>{m.rel} • {m.age} years old</p>
+                    <h4>{m.full_name}</h4>
+                    <p>{m.relationship} • {calculateAge(m.dob)} years old</p>
                     <div className="fh-stat-row">
                       <span className="fh-stat-pill"><Weight size={10}/> {m.weight}</span>
-                      <span className="fh-stat-pill"><Moon size={10}/> {m.sleep}</span>
+                      <span className="fh-stat-pill"><Moon size={10}/> {m.sleep_hours}</span>
                       <span className="fh-stat-pill"><Footprints size={10}/> {m.steps}</span>
                       <span className="fh-stat-pill mood"><Activity size={10}/> {m.mood}</span>
                     </div>
-                    {m.alert && <div className="fh-alert-pill"><AlertCircle size={10}/> {m.alert}</div>}
+                    {m.alert_text && <div className="fh-alert-pill"><AlertCircle size={10}/> {m.alert_text}</div>}
                   </div>
                   <ChevronRight size={18} className="fh-arrow" />
                 </div>
@@ -99,7 +104,6 @@ const FamilyHub = () => {
             ))}
           </div>
         </section>
-
         <section className="fh-sec">
           <h2 className="fh-sec-title">Family Wellness Score</h2>
           <div className="fh-score-card fh-glass">
@@ -125,7 +129,6 @@ const FamilyHub = () => {
             </div>
           </div>
         </section>
-
         <div className="fh-bottom-spacer"></div>
       </div>
       <TouchBar />
