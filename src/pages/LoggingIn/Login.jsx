@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, ChevronLeft } from 'lucide-react';
 import { useLanguage } from '../../common/LanguageContext';
-import StatusBar from '../../common/StatusBar';
 import './Login.css';
 import logo from '../../imgs/logoblue.png';
 
@@ -69,8 +68,7 @@ const Login = () => {
       <div className="gradient-overlay"></div>
       
       <div className="login-content">
-        <StatusBar dark={true} />
-
+        
         <div className="header-nav">
           <button className="nav-icon-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={28} color="#FFFFFF" strokeWidth={2.5} />

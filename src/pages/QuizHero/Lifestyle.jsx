@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Home, Activity, ArrowRight, ArrowLeft, Info, Apple, Moon } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './Lifestyle.css';
 
 const Lifestyle = () => {
@@ -19,8 +18,7 @@ const Lifestyle = () => {
       <div className="ls-grid-overlay"></div>
       
       <div className="ls-content">
-        <StatusBar dark={true} />
-
+        
         <div className="ls-nav-header">
           <div className="ls-progress-info">
             <span className="ls-step-label">Step 5 of 8</span>

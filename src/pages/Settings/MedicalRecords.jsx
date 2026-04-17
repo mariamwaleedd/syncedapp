@@ -4,7 +4,6 @@ import {
   ChevronLeft, Plus, Upload, FileText, 
   Eye, Download, ShieldCheck 
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './MedicalRecords.css';
 
@@ -31,8 +30,7 @@ const MedicalRecords = () => {
       <div className="mr-layer-bg"></div>
 
       <div className="mr-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="mr-nav-header">
           <button className="mr-back-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={20} />

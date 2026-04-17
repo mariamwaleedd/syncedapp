@@ -7,7 +7,6 @@ import {
   Settings, QrCode, Share2, Download, User,
   Stethoscope, FileText, Smartphone
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './Profile.css';
 
@@ -19,8 +18,7 @@ const Profile = () => {
       <div className="pf-layer-bg"></div>
 
       <div className="pf-main-content">
-        <StatusBar dark={true} />
-
+        
         <div className="pf-header-nav">
           <button className="pf-nav-circle" onClick={() => navigate(-1)}><ChevronLeft size={22} /></button>
           <button className="pf-nav-circle pf-edit-active" onClick={() => navigate('/settings/edit-profile')}><Edit2 size={20} /></button>

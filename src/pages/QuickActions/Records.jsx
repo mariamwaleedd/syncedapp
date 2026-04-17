@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Sparkles, Database } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './Records.css';
 
@@ -12,8 +11,7 @@ const Records = () => {
   return (
     <div className="qa-stub-root ltr-theme">
       <div className="qa-stub-header">
-        <StatusBar dark={true} />
-        <div className="qa-stub-nav">
+                <div className="qa-stub-nav">
           <button className="qa-stub-circle-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} />
           </button>

@@ -5,7 +5,6 @@ import {
   GlassWater, CupSoda, TrendingUp,
   Award
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './WaterIntake.css';
 
@@ -29,8 +28,7 @@ const WaterIntake = () => {
       <div className="wi-grid-lines"></div>
 
       <div className="wi-container">
-        <StatusBar dark={true} />
-
+        
         <header className="wi-header">
           <button className="wi-circle-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} />

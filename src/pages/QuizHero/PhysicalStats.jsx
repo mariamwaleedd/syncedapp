@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Activity, ArrowRight, ArrowLeft, ChevronDown } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './PhysicalStats.css';
 
 const PhysicalStats = () => {
@@ -32,8 +31,7 @@ const PhysicalStats = () => {
       <div className="ps-grid-layer"></div>
       
       <div className="ps-content">
-        <StatusBar dark={true} />
-
+        
         <div className="ps-nav-header">
           <div className="ps-progress-info">
             <span className="ps-step-label">Step 3 of 8</span>

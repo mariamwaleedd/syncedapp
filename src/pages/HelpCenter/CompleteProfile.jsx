@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, FileText, User, CheckCircle2, Lightbulb, ChevronRight, ArrowLeft } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './CompleteProfile.css';
 
 const CompleteProfile = () => {
@@ -13,8 +12,7 @@ const CompleteProfile = () => {
       <div className="cp-bg-lines-img"></div>
 
       <div className="cp-main-container">
-        <StatusBar dark={true} />
-
+        
         <header className="cp-top-nav">
           <button className="cp-icon-btn" onClick={() => navigate('/helpcenter')}>
             <ChevronLeft size={22} />

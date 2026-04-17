@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Video, MapPin, Clock, User } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './SelectDate.css';
 
 const SelectDate = () => {
@@ -30,8 +29,7 @@ const SelectDate = () => {
       <div className="sd-bg-lines"></div>
 
       <div className="sd-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="sd-header">
           <div className="sd-nav-top">
             <button className="sd-circle-btn" onClick={() => navigate(-1)}>

@@ -4,7 +4,6 @@ import {
   ChevronLeft, Calendar, Pill, Activity, 
   Bell, Heart
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './NotificationSettings.css';
 
@@ -36,8 +35,7 @@ const NotificationsSettings = () => {
       <div className="ns-bg-img"></div>
 
       <div className="ns-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="ns-nav-header">
           <button className="ns-back-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={20} strokeWidth={2.5} />

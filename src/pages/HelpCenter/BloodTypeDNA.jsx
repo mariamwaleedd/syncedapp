@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, FileText, Droplet, CheckCircle2, Lightbulb, ChevronRight, ArrowLeft } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './BloodTypeDNA.css';
 
 const BloodTypeDNA = () => {
@@ -13,8 +12,7 @@ const BloodTypeDNA = () => {
       <div className="bt-bg-lines-img"></div>
 
       <div className="bt-main-container">
-        <StatusBar dark={true} />
-
+        
         <header className="bt-top-navigation">
           <button className="bt-icon-nav-btn" onClick={() => navigate('/helpcenter/health-basics')}>
             <ChevronLeft size={22} />

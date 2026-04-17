@@ -6,7 +6,6 @@ import {
   Phone, Mail, Bell, Download, Share2, 
   MessageSquare, Home, User 
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './AppConfirmed.css';
 
 const AppConfirmed = () => {
@@ -18,8 +17,7 @@ const AppConfirmed = () => {
       <div className="ac-bg-img"></div>
 
       <div className="ac-wrapper">
-        <StatusBar dark={true} />
-
+        
         <div className="ac-scroll-area">
           <div className="ac-hero">
             <motion.div 

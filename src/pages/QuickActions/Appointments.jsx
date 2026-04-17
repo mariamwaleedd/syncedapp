@@ -5,7 +5,6 @@ import {
   ChevronLeft, Plus, Bell, Pill, Users, Calendar, 
   Droplets, Edit3, Trash2, Clock 
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './Appointments.css';
 
@@ -31,8 +30,7 @@ const Appointments = () => {
       <div className="rs-bg-img"></div>
 
       <div className="rs-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="rs-header">
           <div className="rs-nav-top">
             <button className="rs-circ-btn" onClick={() => navigate(-1)}>

@@ -4,7 +4,6 @@ import {
   ChevronLeft, Plus, CheckCircle2, AlertCircle, 
   Clock, Pill 
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './Medicine.css';
 
@@ -24,8 +23,7 @@ const Medicine = () => {
       <div className="mt-bg-lines"></div>
 
       <div className="mt-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="mt-header">
           <div className="mt-nav-row">
             <button className="mt-nav-btn" onClick={() => navigate(-1)}><ChevronLeft size={22} /></button>

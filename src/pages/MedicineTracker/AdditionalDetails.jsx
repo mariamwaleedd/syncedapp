@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Pill, Clock, Calendar, Bell } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './AdditionalDetails.css';
 
 const AdditionalDetails = () => {
@@ -14,8 +13,7 @@ const AdditionalDetails = () => {
       <div className="ad-bg-lines"></div>
 
       <div className="ad-full-page">
-        <StatusBar dark={true} />
-
+        
         <header className="ad-top-navigation">
           <button className="ad-back-circle" onClick={() => navigate(-1)}>
             <ChevronLeft size={24} color="#FFFFFF" strokeWidth={2.5} />

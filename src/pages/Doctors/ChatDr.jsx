@@ -4,7 +4,6 @@ import {
   ChevronLeft, Video, MoreVertical, Paperclip, 
   ImageIcon, SendHorizontal, FileText, User 
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './ChatDr.css';
 
 const ChatDr = () => {
@@ -55,8 +54,7 @@ const ChatDr = () => {
       <div className="ch-bg-lines"></div>
 
       <div className="ch-fixed-header">
-        <StatusBar dark={true} />
-        <div className="ch-nav-row">
+                <div className="ch-nav-row">
           <button className="ch-circle-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} strokeWidth={2.5} />
           </button>

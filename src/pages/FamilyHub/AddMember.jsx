@@ -4,7 +4,6 @@ import {
   ChevronLeft, X, User, Users, Calendar, 
   Mail, Phone, Droplets, AlertCircle, ChevronRight 
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './AddMember.css';
 
 const AddMember = () => {
@@ -17,8 +16,7 @@ const AddMember = () => {
       <div className="am-bg-image"></div>
 
       <div className="am-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="am-header">
           <button className="am-nav-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} strokeWidth={2.5} />

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Check } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './Confirmed.css';
 
 const Confirmed = () => {
@@ -13,8 +12,7 @@ const Confirmed = () => {
       <div className="conf-layer-lines"></div>
       
       <div className="conf-page-content">
-        <StatusBar dark={true} />
-
+        
         <div className="conf-success-module">
           <div className="conf-icon-glow">
             <Check size={64} color="#64B5F6" strokeWidth={3} />

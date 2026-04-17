@@ -33,22 +33,6 @@
   box-sizing: border-box;
 }
 
-.hid-status-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.hid-time {
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.hid-status-icons {
-  display: flex;
-  gap: 8px;
-}
 
 .hid-nav-actions {
   display: flex;

@@ -5,7 +5,6 @@ import {
   ChevronLeft, Calendar, User, 
   Download, Share2, Filter, Search
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './ReportView.css';
 
@@ -18,8 +17,7 @@ const ReportView = () => {
       <div className="rv-bg-lines"></div>
 
       <div className="rv-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="rv-header">
           <div className="rv-nav-top">
             <button className="rv-circle-btn" onClick={() => navigate(-1)}>

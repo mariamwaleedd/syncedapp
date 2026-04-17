@@ -6,7 +6,6 @@ import {
   Activity, Star, MapPin, Video, ChevronRight,
   CheckCircle2
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './Doctors.css';
 
@@ -72,8 +71,7 @@ const Doctors = () => {
       <div className="dr-bg-lines"></div>
 
       <div className="dr-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="dr-header">
           <div className="dr-header-top">
             <div className="dr-title-box">

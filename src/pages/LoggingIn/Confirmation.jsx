@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './Confirmation.css';
 
 const Confirmation = () => {
@@ -66,8 +65,7 @@ const Confirmation = () => {
       <div className="otp-layer-lines"></div>
       
       <div className="otp-page-wrapper">
-        <StatusBar dark={true} />
-
+        
         <div className="otp-header-nav">
           <button className="otp-btn-back" onClick={() => navigate(-1)}>
             <ChevronLeft size={32} color="#FFFFFF" strokeWidth={2.5} />

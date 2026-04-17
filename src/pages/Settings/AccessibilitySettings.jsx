@@ -5,7 +5,6 @@ import {
   Eye, MousePointer2, Volume2, 
   Check, RefreshCw 
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './AccessibilitySettings.css';
 import { useTheme } from '../../common/ThemeContext';
@@ -28,8 +27,7 @@ const Accessibility = () => {
       <div className="ac-bg-lines"></div>
 
       <div className="ac-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="ac-header-nav">
           <button className="ac-back-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={20} strokeWidth={2.5} />

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, X, Shield, Eye, Users, AlertCircle, Check } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './AgreeTerms.css';
 
 const AgreeTerms = () => {
@@ -14,8 +13,7 @@ const AgreeTerms = () => {
       <div className="at-bg-lines"></div>
 
       <div className="at-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="at-header">
           <button className="at-nav-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} strokeWidth={2.5} />

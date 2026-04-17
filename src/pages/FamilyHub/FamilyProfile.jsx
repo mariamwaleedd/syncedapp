@@ -5,7 +5,6 @@ import {
   Thermometer, Wind, Shield, Calendar, 
   Edit3, FileText, Download, Plus 
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './FamilyProfile.css';
 
@@ -18,8 +17,7 @@ const FamilyProfile = () => {
       <div className="fp-bg-lines"></div>
 
       <div className="fp-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="fp-header">
           <div className="fp-nav-top">
             <button className="fp-circ-btn" onClick={() => navigate(-1)}>

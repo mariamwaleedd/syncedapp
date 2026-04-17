@@ -5,7 +5,6 @@ import {
   Download, FileOutput, ClipboardCheck, 
   History, Trash2 
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './PrivacySettings.css';
 
@@ -31,8 +30,7 @@ const PrivacySettings = () => {
       <div className="ps-bg-img-layer"></div>
 
       <div className="ps-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="ps-header-nav">
           <button className="ps-back-action" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} strokeWidth={2.5} />

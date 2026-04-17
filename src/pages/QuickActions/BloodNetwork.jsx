@@ -6,7 +6,6 @@ import {
   MapPin, Clock, Phone, Navigation, 
   Droplets, Info, CheckCircle2 
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './BloodNetwork.css';
 
@@ -30,8 +29,7 @@ const BloodNetwork = () => {
       <div className="bn-bg-lines"></div>
 
       <div className="bn-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="bn-header">
           <div className="bn-nav-row">
             <button className="bn-circ-btn" onClick={() => navigate(-1)}>

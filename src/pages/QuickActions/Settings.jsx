@@ -6,7 +6,6 @@ import {
   Heart, Database, Calendar, Smartphone, Bell, Eye, HelpCircle,
   Edit2
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './Settings.css';
 
@@ -64,8 +63,7 @@ const Settings = () => {
   return (
     <div className="set-root ltr-theme">
       <div className="set-fixed-header">
-        <StatusBar dark={true} />
-        <div className="set-nav-row">
+                <div className="set-nav-row">
           <button className="set-circle-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} />
           </button>

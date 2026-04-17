@@ -5,7 +5,6 @@ import {
   Sunrise, Activity, Zap, Heart, 
   CloudMoon, TrendingUp 
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './SleepTracker.css';
 
@@ -18,8 +17,7 @@ const SleepTracker = () => {
       <div className="st-bg-lines"></div>
 
       <div className="st-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="st-header">
           <button className="st-circle-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} />

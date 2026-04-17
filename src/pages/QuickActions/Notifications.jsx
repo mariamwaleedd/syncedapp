@@ -6,7 +6,6 @@ import {
   Pill, Users, Clock, Zap, AlertCircle, 
   Check, Trash2 
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './Notifications.css';
 
@@ -49,8 +48,7 @@ const Notifications = () => {
       <div className="no-bg-img"></div>
 
       <div className="no-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="no-header">
           <div className="no-nav-top">
             <button className="no-circ-btn" onClick={() => navigate(-1)}><ChevronLeft size={22} strokeWidth={2.5} /></button>

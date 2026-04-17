@@ -5,7 +5,6 @@ import {
   ChevronLeft, Sparkles, Send, Apple, Activity, 
   Droplets, Heart, Brain, Moon 
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './HealthAI.css';
 
 const HealthAI = () => {
@@ -63,8 +62,7 @@ const HealthAI = () => {
 
       <div className="hai-wrapper">
         <div className="hai-fixed-top">
-          <StatusBar dark={true} />
-          <div className="hai-nav">
+                    <div className="hai-nav">
             <button className="hai-circle-btn" onClick={() => navigate(-1)}>
               <ChevronLeft size={22} strokeWidth={2.5} />
             </button>

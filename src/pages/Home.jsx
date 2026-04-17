@@ -22,14 +22,6 @@ const Home = () => {
   return (
     <div className="ha-root ltr-theme">
       <div className="ha-fixed-header">
-        <div className="ha-status-bar">
-          <span className="ha-time">9:41</span>
-          <div className="ha-status-icons">
-            <svg width="17" height="11" viewBox="0 0 17 11"><path d="M1 10h2V1H1v9zm4 0h2V3H5v7zm4 0h2V5H9v5zm4 0h2V7h-2v3z" fill="currentColor"/></svg>
-            <svg width="15" height="11" viewBox="0 0 15 11"><path d="M7.5 11L0 3.5a10.6 10.6 0 0115 0L7.5 11z" fill="currentColor"/></svg>
-            <svg width="22" height="11" viewBox="0 0 22 11"><rect x="0.5" y="0.5" width="18" height="10" rx="2" stroke="currentColor" fill="none"/><path d="M21 4v3" stroke="currentColor" strokeLinecap="round"/><rect x="2.5" y="2.5" width="14" height="6" rx="1" fill="currentColor"/></svg>
-          </div>
-        </div>
 
         <div className="ha-header-body">
           <div className="ha-logo-center">

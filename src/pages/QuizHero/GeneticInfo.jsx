@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Droplets, Dna } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './GeneticInfo.css';
 
 const GeneticInfo = () => {
@@ -16,8 +15,7 @@ const GeneticInfo = () => {
       <div className="gi-bg-lines"></div>
       
       <div className="gi-content">
-        <StatusBar dark={true} />
-
+        
         <div className="gi-nav-header">
           <div className="gi-progress-info">
             <span className="gi-step-label">Step 6 of 8</span>

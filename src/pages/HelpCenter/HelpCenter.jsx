@@ -6,7 +6,6 @@ import {
   PlayCircle, Zap, Activity, Stethoscope, Pill, Shield, 
   Settings, ChevronRight, MessageSquare, Phone, Mail, Star
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './HelpCenter.css';
 import TouchBar from '../../common/TouchBar';
 
@@ -24,8 +23,7 @@ const HelpCenter = () => {
    
     <div className="hc-root ltr-theme">
       <div className="hc-header">
-        <StatusBar dark={true} />
-        <div className="hc-nav">
+                <div className="hc-nav">
           <button className="hc-circle-btn" onClick={() => navigate(-1)}>
             <ArrowLeft size={22} />
           </button>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Heart, ShieldAlert, Activity, ArrowRight } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './CreateHealthID.css';
 import starIcon from '../../imgs/star.png'; 
 
@@ -14,8 +13,7 @@ const CreateHealthID = () => {
       <div className="chi-grid"></div>
       
       <div className="chi-content">
-        <StatusBar dark={true} />
-
+        
         <div className="chi-nav-header">
           <div className="chi-progress-info">
             <span className="chi-step-label">Step 1 of 8</span>

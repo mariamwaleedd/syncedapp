@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Bell, Clock } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './Reminders.css';
 
 const Reminders = () => {
@@ -14,8 +13,7 @@ const Reminders = () => {
       <div className="rm-layer-lines"></div>
 
       <div className="rm-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="rm-top-nav">
           <button className="rm-back-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} color="#FFF" strokeWidth={2.5} />

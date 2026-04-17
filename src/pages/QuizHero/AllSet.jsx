@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Check, ArrowLeft, Sparkles } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './AllSet.css';
 
 const AllSet = () => {
@@ -13,8 +12,7 @@ const AllSet = () => {
       <div className="as-grid-lines"></div>
       
       <div className="as-content">
-        <StatusBar dark={true} />
-
+        
         <div className="as-nav-header">
           <div className="as-progress-info">
             <span className="as-step-label">Step 8 of 8</span>

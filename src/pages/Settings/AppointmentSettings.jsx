@@ -4,7 +4,6 @@ import {
   ChevronLeft, Calendar, MapPin, Video, 
   Phone, Clock, MapPinned 
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './AppointmentSettings.css';
 
@@ -28,8 +27,7 @@ const AppointmentSettings = () => {
       <div className="ap-bg-img"></div>
 
       <div className="ap-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="ap-header">
           <button className="ap-back-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={20} />

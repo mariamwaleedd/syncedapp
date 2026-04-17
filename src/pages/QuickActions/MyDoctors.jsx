@@ -6,7 +6,6 @@ import {
   MapPin, Calendar, MessageSquare, User,
   MoreVertical
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './MyDoctors.css';
 
@@ -55,8 +54,7 @@ const MyDoctors = () => {
       <div className="md-bg-lines"></div>
 
       <div className="md-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="md-header">
           <button className="md-circle-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} />

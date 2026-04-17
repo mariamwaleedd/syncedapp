@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Lock, Eye, EyeOff, ChevronLeft, UserCheck } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './ForgetPass.css';
 import logo from '../../imgs/logoblue.png';
 
@@ -53,8 +52,7 @@ const ForgetPass = () => {
       <div className="bg-lines-layer"></div>
       
       <div className="forget-content">
-        <StatusBar dark={true} />
-
+        
         <div className="header-nav">
           <button className="nav-icon-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={28} color="#FFFFFF" strokeWidth={2.5} />

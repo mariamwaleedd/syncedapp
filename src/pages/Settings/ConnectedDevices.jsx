@@ -4,7 +4,6 @@ import {
   ChevronLeft, Plus, Watch, Activity, 
   Bluetooth, Smartphone
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './ConnectedDevices.css';
 
@@ -31,8 +30,7 @@ const ConnectedDevices = () => {
       <div className="cd-bg-img"></div>
 
       <div className="cd-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="cd-header">
           <button className="cd-back" onClick={() => navigate(-1)}>
             <ChevronLeft size={20} />

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, ChevronLeft, User } from 'lucide-react';
 import { useLanguage } from '../../common/LanguageContext';
-import StatusBar from '../../common/StatusBar';
 import './SignUp.css';
 import logo from '../../imgs/logoblue.png';
 
@@ -78,8 +77,7 @@ const SignUp = () => {
       <div className="bg-lines-layer"></div>
       
       <div className="signup-content">
-        <StatusBar dark={true} />
-
+        
         <div className="header-nav">
           <button className="nav-icon-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={28} color="#FFFFFF" strokeWidth={2.5} />

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Phone, Info, ArrowLeft, ArrowRight } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './EmergencyContacts.css';
 
 const EmergencyContact = () => {
@@ -14,8 +13,7 @@ const EmergencyContact = () => {
       <div className="ec-grid-layer"></div>
       
       <div className="ec-content">
-        <StatusBar dark={true} />
-
+        
         <div className="ec-nav-header">
           <div className="ec-progress-info">
             <span className="ec-step-label">Step 7 of 8</span>

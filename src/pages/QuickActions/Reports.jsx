@@ -7,7 +7,6 @@ import {
   Stethoscope, Eye, Download, Share2, 
   Smile, User
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './Reports.css';
 
@@ -32,8 +31,7 @@ const Reports = () => {
       <div className="rp-bg-lines"></div>
 
       <div className="rp-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="rp-header">
           <div className="rp-nav-top">
             <button className="rp-circle-btn" onClick={() => navigate(-1)}>

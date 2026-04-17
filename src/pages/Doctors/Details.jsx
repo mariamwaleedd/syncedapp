@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, User, Phone, Mail } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './Details.css';
 
 const Details = () => {
@@ -13,8 +12,7 @@ const Details = () => {
       <div className="dt-bg-img"></div>
 
       <div className="dt-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="dt-header">
           <div className="dt-nav-top">
             <button className="dt-circle-btn" onClick={() => navigate(-1)}>

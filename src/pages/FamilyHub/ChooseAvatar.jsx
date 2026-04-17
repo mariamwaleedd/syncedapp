@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, X } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './ChooseAvatar.css';
 
 const ChooseAvatar = () => {
@@ -29,8 +28,7 @@ const ChooseAvatar = () => {
       <div className="ca-bg-img"></div>
 
       <div className="ca-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="ca-header">
           <button className="ca-nav-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} strokeWidth={2.5} />

@@ -4,7 +4,6 @@ import {
   ChevronLeft, Lock, Smartphone, Fingerprint, 
   ShieldCheck
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './SecurityDetails.css';
 
@@ -28,8 +27,7 @@ const SecurityDetails = () => {
       <div className="sd-bg-img"></div>
 
       <div className="sd-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="sd-nav-top">
           <button className="sd-back-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={20} />

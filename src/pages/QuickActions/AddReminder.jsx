@@ -5,7 +5,6 @@ import {
   Activity, Clock, Plus, 
   ChevronRight, Check 
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './AddReminder.css';
 
 const AddReminder = () => {
@@ -33,8 +32,7 @@ const AddReminder = () => {
       <div className="arn-bg-image"></div>
 
       <div className="arn-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="arn-header">
           <button className="arn-circ-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} strokeWidth={2.5} />

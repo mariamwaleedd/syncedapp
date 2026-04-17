@@ -4,7 +4,6 @@ import {
   ChevronLeft, Save, Camera, X, Plus, User,
   Droplets, Weight, Ruler, Activity, ShieldAlert, AlertTriangle
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './EditProfile.css';
 
@@ -22,8 +21,7 @@ const EditProfile = () => {
       <div className="ep-bg-image"></div>
 
       <div className="ep-content">
-        <StatusBar dark={true} />
-
+        
         <div className="ep-nav-header">
           <button className="ep-back-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={24} color="#FFF" strokeWidth={2.5} />

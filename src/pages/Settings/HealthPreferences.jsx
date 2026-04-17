@@ -4,7 +4,6 @@ import {
   ChevronLeft, Heart, Activity, Apple, 
   Droplets
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './HealthPreferences.css';
 
@@ -28,8 +27,7 @@ const HealthPreferences = () => {
       <div className="hp-img-layer"></div>
 
       <div className="hp-main">
-        <StatusBar dark={true} />
-
+        
         <header className="hp-top-bar">
           <button className="hp-back-link" onClick={() => navigate(-1)}>
             <ChevronLeft size={20} />

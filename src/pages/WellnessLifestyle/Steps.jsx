@@ -6,7 +6,6 @@ import {
   Zap, Award, MapPin, Clock, Ruler,
   Plus, Target, X
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './Steps.css';
 
@@ -45,8 +44,7 @@ const Steps = () => {
       <div className="sp-bg-lines"></div>
 
       <div className="sp-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="sp-header">
           <button className="sp-circle-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} strokeWidth={2.5} />

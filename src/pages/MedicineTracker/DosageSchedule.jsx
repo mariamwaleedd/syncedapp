@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Check } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './DosageSchedule.css';
 
 const DosageSchedule = () => {
@@ -22,8 +21,7 @@ const DosageSchedule = () => {
       <div className="ds-layer-lines"></div>
 
       <div className="ds-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="ds-top-nav">
           <button className="ds-back-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} color="#FFF" strokeWidth={2.5} />

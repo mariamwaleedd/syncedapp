@@ -5,7 +5,6 @@ import {
   FileText, Calendar, ClipboardList, 
   Image, Shield, Folder, Camera, Paperclip 
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './UploadReport.css';
 
@@ -38,8 +37,7 @@ const UploadReport = () => {
       <div className="ur-bg-lines"></div>
 
       <div className="ur-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="ur-header">
           <div className="ur-nav-row">
             <button className="ur-circle-btn" onClick={() => navigate(-1)}>

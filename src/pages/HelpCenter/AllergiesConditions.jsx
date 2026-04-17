@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, FileText, AlertTriangle, CheckCircle2, Lightbulb, ChevronRight, ArrowLeft } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './AllergiesConditions.css';
 
 const AllergiesConditions = () => {
@@ -13,8 +12,7 @@ const AllergiesConditions = () => {
       <div className="ac-bg-lines-img"></div>
 
       <div className="ac-main-container">
-        <StatusBar dark={true} />
-
+        
         <header className="ac-top-navigation">
           <button className="ac-icon-nav-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} />

@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { AlertCircle, Home, RefreshCw, ChevronLeft } from 'lucide-react';
-import StatusBar from '../common/StatusBar';
 import TouchBar from '../common/TouchBar';
 import './ErrorPage.css';
 
@@ -15,8 +14,7 @@ const ErrorPage = () => {
       <div className="er-bg-img"></div>
 
       <div className="er-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="er-nav">
           <button className="er-back-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={24} color="#FFF" strokeWidth={2.5} />

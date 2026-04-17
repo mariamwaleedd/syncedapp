@@ -6,7 +6,6 @@ import {
   Brain, Target, Medal, Lightbulb, ChevronRight,
   Calendar
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './WellnessPage.css';
 
@@ -33,8 +32,7 @@ const WellnessPage = () => {
       <div className="wh-layer-lines"></div>
 
       <div className="wh-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="wh-header">
           <div className="wh-nav-top">
             <button className="wh-circle-btn" onClick={() => navigate(-1)}>

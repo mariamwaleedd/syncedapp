@@ -6,7 +6,6 @@ import {
   GraduationCap, Award, Building2, MessageSquare, 
   Calendar, ThumbsUp, CheckCircle2, User 
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './DrProfile.css';
 
@@ -25,8 +24,7 @@ const DrProfile = () => {
       <div className="dp-bg-img"></div>
 
       <div className="dp-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="dp-nav">
           <button className="dp-circle-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} strokeWidth={2.5} />

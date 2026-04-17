@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, FileText, Activity, CheckCircle2, Lightbulb, ChevronRight, ArrowLeft } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './HealthBasics.css';
 
 const HealthBasics = () => {
@@ -13,8 +12,7 @@ const HealthBasics = () => {
       <div className="hb-bg-lines-img"></div>
 
       <div className="hb-main-container">
-        <StatusBar dark={true} />
-
+        
         <header className="hb-top-nav">
           <button className="hb-top-nav-btn" onClick={() => navigate('/helpcenter/complete-profile')}>
             <ChevronLeft size={22} />

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, CreditCard, Info, User } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './Payment.css';
 
 const Payment = () => {
@@ -14,8 +13,7 @@ const Payment = () => {
       <div className="pm-bg-lines"></div>
 
       <div className="pm-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="pm-header">
           <div className="pm-nav-row">
             <button className="pm-circle-btn" onClick={() => navigate(-1)}>

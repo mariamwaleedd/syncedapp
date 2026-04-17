@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Delete, ChevronDown } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './Registration.css';
 
 const Registration = () => {
@@ -45,8 +44,7 @@ const Registration = () => {
       <div className="reg-lines-bg"></div>
       
       <div className="reg-inner-content">
-        <StatusBar dark={true} />
-        
+                
         <div className="reg-nav-header">
           <button className="reg-back-arrow" onClick={() => navigate(-1)}>
             <ChevronLeft size={32} color="#FFFFFF" strokeWidth={2.5} />

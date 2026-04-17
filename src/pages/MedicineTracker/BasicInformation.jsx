@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Check } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './BasicInformation.css';
 
 const BasicInformation = () => {
@@ -19,8 +18,7 @@ const BasicInformation = () => {
       <div className="bi-layer-lines"></div>
 
       <div className="bi-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="bi-top-nav">
           <button className="bi-back-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} color="#FFF" strokeWidth={2.5} />

@@ -35,24 +35,6 @@
   box-sizing: border-box;
 }
 
-.qa-status-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 24px 8px;
-  font-size: 14px;
-}
-
-.qa-time {
-  font-weight: 700;
-  letter-spacing: -0.2px;
-}
-
-.qa-status-icons {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
 
 .qa-nav-row {
   display: flex;

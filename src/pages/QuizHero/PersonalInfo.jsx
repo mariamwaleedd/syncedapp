@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, ArrowRight, ArrowLeft } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './PersonalInfo.css';
 
 const PersonalInfo = () => {
@@ -23,8 +22,7 @@ const PersonalInfo = () => {
       <div className="pi-grid-overlay"></div>
       
       <div className="pi-content">
-        <StatusBar dark={true} />
-
+        
         <div className="pi-nav-header">
           <div className="pi-progress-info">
             <span className="pi-step-label">Step 2 of 8</span>

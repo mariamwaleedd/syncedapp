@@ -8,7 +8,6 @@ import {
   Accessibility, TrendingUp, Database
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
-import StatusBar from '../../common/StatusBar';
 import './QuickActions.css';
 
 const QuickActions = () => {
@@ -84,8 +83,7 @@ const QuickActions = () => {
   return (
     <div className="qa-root ltr-theme">
       <div className="qa-fixed-header">
-        <StatusBar dark={true} />
-
+        
         <div className="qa-nav-row">
           <button className="qa-circle-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} />

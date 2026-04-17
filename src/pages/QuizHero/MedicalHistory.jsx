@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Heart, AlertCircle, Pill, Activity, ArrowRight, ArrowLeft, AlertTriangle } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './MedicalHistory.css';
 
 const MedicalHistory = () => {
@@ -39,8 +38,7 @@ const MedicalHistory = () => {
       <div className="mh-grid-overlay"></div>
       
       <div className="mh-content">
-        <StatusBar dark={true} />
-
+        
         <div className="mh-nav-header">
           <div className="mh-progress-info">
             <span className="mh-step-label">Step 4 of 8</span>

@@ -7,7 +7,6 @@ import {
   IdCard, Droplets, Weight, User, 
   Pill, AlertCircle 
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './Emergency.css';
 
@@ -36,8 +35,7 @@ const Emergency = () => {
       <div className="em-bg-img"></div>
 
       <div className="em-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="em-header">
           <div className="em-nav-row">
             <button className="em-circ-btn" onClick={() => navigate(-1)}>

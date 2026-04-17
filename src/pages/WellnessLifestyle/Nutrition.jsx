@@ -4,7 +4,6 @@ import {
   ChevronLeft, Utensils, Plus, Drumstick, 
   Apple, Beef, TrendingUp, Medal
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './Nutrition.css';
 
@@ -17,8 +16,7 @@ const Nutrition = () => {
       <div className="nt-bg-img"></div>
 
       <div className="nt-container">
-        <StatusBar dark={true} />
-
+        
         <header className="nt-header">
           <div className="nt-nav-top">
             <button className="nt-back-btn" onClick={() => navigate(-1)}>

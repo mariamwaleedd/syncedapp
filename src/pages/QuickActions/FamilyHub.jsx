@@ -7,7 +7,6 @@ import {
   Target, Users, Weight, 
   Moon, Footprints, AlertCircle
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './FamilyHub.css';
 
@@ -29,8 +28,7 @@ const FamilyHub = () => {
       <div className="fh-bg-img"></div>
 
       <div className="fh-wrapper">
-        <StatusBar dark={true} />
-
+        
         <header className="fh-header">
           <div className="fh-nav-top">
             <button className="fh-circ-btn" onClick={() => navigate(-1)}><ChevronLeft size={22} /></button>
