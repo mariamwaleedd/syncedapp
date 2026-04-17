@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronLeft, Bluetooth, Search } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import './DeviceDashboard.css';
 
 const DeviceDashboard = () => {
@@ -19,7 +18,6 @@ const DeviceDashboard = () => {
       <div className="db-lines-layer"></div>
 
       <div className="db-wrapper">
-        <StatusBar dark={true} />
 
         <header className="db-header">
           <button className="db-circ-btn" onClick={() => navigate(-1)}><ChevronLeft size={22} /></button>
