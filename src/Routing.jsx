@@ -83,6 +83,7 @@ import BloodNetwork from './pages/QuickActions/BloodNetwork';
 import AgreeTerms from './pages/FamilyHub/AgreeTerms';
 import AddMember from './pages/FamilyHub/AddMember';
 import ChooseAvatar from './pages/FamilyHub/ChooseAvatar';
+import FamilyProfile from './pages/FamilyHub/FamilyProfile';
 
 const TitleUpdater = () => {
   const location = useLocation();
@@ -223,6 +224,7 @@ const Routing = () => {
         <Route path="/familyhub/agree-terms" element={<AgreeTerms/>} />
         <Route path="/familyhub/add-member" element={<AddMember/>} />
         <Route path="/familyhub/choose-avatar" element={<ChooseAvatar/>} />
+        <Route path="/familyhub/family-profile" element={<FamilyProfile/>} />
 
 
         <Route path="/*" element={<ErrorPage />} />

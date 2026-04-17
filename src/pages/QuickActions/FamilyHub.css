@@ -70,7 +70,15 @@
 .fh-date { font-size: 15px; opacity: 0.5; margin-top: 8px; font-weight: 500; }
 
 .fh-top-vitals { display: flex; gap: 12px; margin-bottom: 40px; }
-.fh-vital-card { flex: 1; padding: 18px; border-radius: 24px; display: flex; align-items: center; gap: 14px; }
+.fh-vital-card { 
+  flex: 1; 
+  padding: 18px; 
+  border-radius: 24px; 
+  display: flex; 
+  align-items: center; 
+  gap: 14px; 
+  cursor: pointer;
+}
 .fh-vital-card.blue { background: rgba(100, 181, 246, 0.1); color: #64B5F6; }
 .fh-vital-card.purple { background: rgba(184, 159, 255, 0.1); color: #B89FFF; }
 .fh-vital-txt h4 { margin: 0; font-size: 15px; font-weight: 600; color: #FFF; }
@@ -89,7 +97,7 @@
 }
 
 .fh-list { display: flex; flex-direction: column; gap: 14px; }
-.fh-member-card { padding: 18px 20px; }
+.fh-member-card { padding: 18px 20px; cursor: pointer; }
 .fh-m-top { display: flex; align-items: center; gap: 16px; }
 
 .fh-avatar-wrap { position: relative; }

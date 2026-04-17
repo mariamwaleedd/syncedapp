@@ -4,7 +4,8 @@ import { motion } from 'framer-motion';
 import { 
   ChevronLeft, Bell, Calendar, Pill, 
   Plus, ChevronRight, Activity, Heart, 
-  Target, TrendingUp 
+  Target, TrendingUp, Users, Weight, 
+  Moon, Footprints, AlertCircle
 } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
@@ -14,12 +15,12 @@ const FamilyHub = () => {
   const navigate = useNavigate();
 
   const members = [
-    { name: 'Mona Hassan', rel: 'Mother', age: 52, weight: '65kg', sleep: '7.5h', steps: '6.5k', mood: 'Great', img: '👩', online: true },
-    { name: 'Ahmed Hassan', rel: 'Father', age: 55, weight: '82kg', sleep: '6h', steps: '4.2k', mood: 'Okay', alert: 'Abnormal glucose levels', img: '👨', online: true },
-    { name: 'Maya Walid', rel: 'Daughter', age: 9, weight: '28kg', sleep: '9.2h', steps: '12.4k', mood: 'Great', img: '👧', online: true },
-    { name: 'Grandpa Addo', rel: 'Grandfather', age: 78, weight: '76kg', sleep: '6.2h', steps: '3.1k', mood: 'Okay', alert: 'Medication reminder', img: '👴', online: false },
-    { name: 'Grandma Fatima', rel: 'Grandmother', age: 72, weight: '62kg', sleep: '8.5h', steps: '4.5k', mood: 'Great', img: '👵', online: true },
-    { name: 'Omar Hassan', rel: 'Son', age: 14, weight: '52kg', sleep: '8.2h', steps: '10.8k', mood: 'Great', img: '👦', online: true }
+    { name: 'Mona Hassan', rel: 'Mother', age: 52, weight: '65kg', sleep: '7.5h', steps: '6.5k', mood: 'Great', img: '👩', online: true , link: '/familyhub/family-profile'},
+    { name: 'Ahmed Hassan', rel: 'Father', age: 55, weight: '82kg', sleep: '6h', steps: '4.2k', mood: 'Okay', alert: 'Abnormal glucose levels', img: '👨', online: true , link: '/familyhub/family-profile'},
+    { name: 'Maya Walid', rel: 'Daughter', age: 9, weight: '28kg', sleep: '9.2h', steps: '12.4k', mood: 'Great', img: '👧', online: true , link: '/familyhub/family-profile'},
+    { name: 'Grandpa Addo', rel: 'Grandfather', age: 78, weight: '76kg', sleep: '6.2h', steps: '3.1k', mood: 'Okay', alert: 'Medication reminder', img: '👴', online: false , link: '/familyhub/family-profile'},
+    { name: 'Grandma Fatima', rel: 'Grandmother', age: 72, weight: '62kg', sleep: '8.5h', steps: '4.5k', mood: 'Great', img: '👵', online: true , link: '/familyhub/family-profile'},
+    { name: 'Omar Hassan', rel: 'Son', age: 14, weight: '52kg', sleep: '8.2h', steps: '10.8k', mood: 'Great', img: '👦', online: true , link: '/familyhub/family-profile'}
   ];
 
   return (
@@ -46,14 +47,14 @@ const FamilyHub = () => {
         </header>
 
         <div className="fh-top-vitals">
-          <div className="fh-vital-card fh-glass blue">
+          <div className="fh-vital-card fh-glass blue" onClick={() => navigate('/appointments')}>
             <Calendar size={20} />
             <div className="fh-vital-txt">
               <h4>Appointments</h4>
               <span>3 Upcoming</span>
             </div>
           </div>
-          <div className="fh-vital-card fh-glass purple">
+          <div className="fh-vital-card fh-glass purple" onClick={() => navigate('/medicine')}>
             <Pill size={20} />
             <div className="fh-vital-txt">
               <h4>Medications</h4>
@@ -73,6 +74,7 @@ const FamilyHub = () => {
                 key={i} 
                 className="fh-member-card fh-glass"
                 whileTap={{ scale: 0.98 }}
+                onClick={() => navigate(m.link)}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
@@ -132,11 +134,5 @@ const FamilyHub = () => {
     </div>
   );
 };
-
-const Users = ({ size }) => <Activity size={size} />;
-const Weight = ({ size }) => <Activity size={size} />;
-const Moon = ({ size }) => <Activity size={size} />;
-const Footprints = ({ size }) => <Activity size={size} />;
-const AlertCircle = ({ size }) => <Activity size={size} />;
 
 export default FamilyHub;

@@ -129,7 +129,7 @@ const Home = () => {
                 </div>
               ))}
               <div className="ha-family-member">
-                <div className="ha-family-add">
+                <div className="ha-family-add" onClick={() => navigate('/familyhub/add-member')}>
                   <Plus size={20} color="#64B5F6" />
                 </div>
                 <span>Add</span>
@@ -143,19 +143,53 @@ const Home = () => {
         </div>
 
         <div className="ha-main-menu">
-          <div className="ha-menu-cell"><div className="ha-cell-card"><div className="ha-sq-box pink"><Users size={24} /></div><div className="ha-badge">3</div></div><span>Family</span></div>
-          <div className="ha-menu-cell"><div className="ha-cell-card"><div className="ha-sq-box orange"><Pill size={24} /></div><div className="ha-badge">4</div></div><span>Medicine</span></div>
-          <div className="ha-menu-cell"><div className="ha-cell-card"><div className="ha-sq-box blue"><FileText size={24} /></div><div className="ha-badge">12</div></div><span>Reports</span></div>
-          <div className="ha-menu-cell"><div className="ha-cell-card"><div className="ha-sq-box dark-green"><Smartphone size={24} /></div><div className="ha-badge">2</div></div><span>Devices</span></div>
-          <div className="ha-menu-cell"><div className="ha-cell-card"><div className="ha-sq-box purple"><MessageSquare size={24} /></div></div><span>Health AI</span></div>
-          <div className="ha-menu-cell"><div className="ha-cell-card"><div className="ha-sq-box grey"><Settings size={24} /></div></div><span>Settings</span></div>
+          <div className="ha-menu-cell" onClick={() => navigate('/familyhub')}>
+            <div className="ha-cell-card">
+              <div className="ha-sq-box pink"><Users size={24} /></div>
+              <div className="ha-badge">3</div>
+            </div>
+            <span>Family</span>
+          </div>
+          <div className="ha-menu-cell" onClick={() => navigate('/medicine')}>
+            <div className="ha-cell-card">
+              <div className="ha-sq-box orange"><Pill size={24} /></div>
+              <div className="ha-badge">4</div>
+            </div>
+            <span>Medicine</span>
+          </div>
+          <div className="ha-menu-cell" onClick={() => navigate('/reports')}>
+            <div className="ha-cell-card">
+              <div className="ha-sq-box blue"><FileText size={24} /></div>
+              <div className="ha-badge">12</div>
+            </div>
+            <span>Reports</span>
+          </div>
+          <div className="ha-menu-cell" onClick={() => navigate('/devices')}>
+            <div className="ha-cell-card">
+              <div className="ha-sq-box dark-green"><Smartphone size={24} /></div>
+              <div className="ha-badge">2</div>
+            </div>
+            <span>Devices</span>
+          </div>
+          <div className="ha-menu-cell" onClick={() => navigate('/healthai')}>
+            <div className="ha-cell-card">
+              <div className="ha-sq-box purple"><MessageSquare size={24} /></div>
+            </div>
+            <span>Health AI</span>
+          </div>
+          <div className="ha-menu-cell" onClick={() => navigate('/settings')}>
+            <div className="ha-cell-card">
+              <div className="ha-sq-box grey"><Settings size={24} /></div>
+            </div>
+            <span>Settings</span>
+          </div>
         </div>
 
         <section className="ha-section">
           <h2 className="ha-sec-lbl">Daily Goals</h2>
           <div className="ha-goals-container">
             {[
-              { label: 'Steps Goal', val: '8,544/10k', perc: 85, color: '#05FF91', icon: <Footprints size={16}/>, path: '/steps' },
+              { label: 'Steps Goal', val: '8,544/10k', perc: 85, color: '#05FF91', icon: <Footprints size={16}/>, path: '/wellness/steps' },
               { label: 'Water Intake', val: '6/8 glasses', perc: 75, color: '#64B5F6', icon: <Droplet size={16}/>, path: '/wellness/waterintake' },
               { label: 'Calories Burned', val: '420/500', perc: 84, color: '#FF8A00', icon: <Activity size={16}/>, path: '/wellness/nutrition' }
             ].map((g) => (

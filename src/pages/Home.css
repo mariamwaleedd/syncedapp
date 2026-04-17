@@ -318,6 +318,7 @@
   position: relative;
   border-radius: 22px;
   gap: 10px; 
+  cursor: pointer;
 }
 
 .ha-sq-box {
