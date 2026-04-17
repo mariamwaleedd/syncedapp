@@ -5,7 +5,7 @@ import {
   ChevronLeft, AlertTriangle, Phone, Ambulance, 
   Activity, Shield, MapPin, Navigation, Star, 
   IdCard, Droplets, Weight, User, 
-  Pill, AlertCircle, Heart 
+  Pill, AlertCircle 
 } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';

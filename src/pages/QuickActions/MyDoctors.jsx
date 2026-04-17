@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { 
   ChevronLeft, Plus, Star, Phone, Mail, 
   MapPin, Calendar, MessageSquare, User,
-  MoreVertical, ShieldAlert
+  MoreVertical
 } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';

@@ -2,9 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
-  ChevronLeft, Filter, Heart, User, 
+  ChevronLeft, Filter, Heart, 
   MapPin, Clock, Phone, Navigation, 
-  Droplets, ShieldCheck, Info, CheckCircle2 
+  Droplets, Info, CheckCircle2 
 } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ChevronLeft, Sparkles, Send, Apple, Activity, 
-  Droplets, Heart, Brain, Moon, Info 
+  Droplets, Heart, Brain, Moon 
 } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import './HealthAI.css';

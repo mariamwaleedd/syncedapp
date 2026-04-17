@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
-  ChevronLeft, X, Search, Heart, Brain, 
+  X, Search, Heart, Brain, 
   Activity, Star, MapPin, Video, ChevronRight,
   CheckCircle2
 } from 'lucide-react';

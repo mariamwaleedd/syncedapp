@@ -5,7 +5,7 @@ import {
   ChevronLeft, Search, Heart, Plus,
   CheckCircle2, AlertTriangle, Activity, 
   Stethoscope, Eye, Download, Share2, 
-  ArrowRight, Smile, User
+  Smile, User
 } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';

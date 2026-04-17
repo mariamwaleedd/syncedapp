@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { 
   ChevronLeft, ChevronRight, Sparkles, Home, ClipboardList, User, Pill, 
   MessageSquare, Activity, Users, UserPlus, ShieldAlert, Heart, Stethoscope, 
-  FileText, Calendar, Bluetooth, Smartphone, Settings, Shield, Bell, 
-  Accessibility, TrendingUp, Database, Plus
+  FileText, Calendar, Bluetooth, Settings, Shield, Bell, 
+  Accessibility, TrendingUp, Database
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import StatusBar from '../../common/StatusBar';

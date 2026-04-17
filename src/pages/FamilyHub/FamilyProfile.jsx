@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   ChevronLeft, Bell, Phone, Heart, Activity, 
-  Thermometer, Wind, Shield, Calendar, Users, 
-  Star, Edit3, FileText, Download, Plus, 
-  Check, ChevronRight, Droplets 
+  Thermometer, Wind, Shield, Calendar, 
+  Edit3, FileText, Download, Plus 
 } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
