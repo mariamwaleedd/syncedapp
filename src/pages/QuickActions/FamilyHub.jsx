@@ -62,7 +62,7 @@ const FamilyHub = () => {
               <Users size={14} />
               <span>Family Members</span>
             </div>
-            <button className="fh-circ-btn fh-notif"><Bell size={20} /><div className="fh-dot-alert"></div></button>
+            <button className="fh-circ-btn fh-notif" onClick={() => navigate('/appointments')}><Bell size={20} /><div className="fh-dot-alert"></div></button>
           </div>
           <div className="fh-title-area">
             <h1 className="fh-main-title">Family Health Hub</h1>

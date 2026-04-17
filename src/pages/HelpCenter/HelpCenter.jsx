@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { 
@@ -11,11 +11,33 @@ import TouchBar from '../../common/TouchBar';
 
 const HelpCenter = () => {
   const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState('');
 
   const container = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
   };
+
+  const helpItems = [
+    { title: "Complete Setup Guide", type: "Video", dur: "5:40" },
+    { title: "Device Syncing Tutorial", type: "Video", dur: "3:20" },
+    { title: "Booking Your First Appointment", type: "Video", dur: "4:15" },
+    { title: "How do I complete my health questionnaire?", type: "FAQ" },
+    { title: "How do I connect my smart health device?", type: "FAQ" },
+    { title: "How do I book an appointment with a doctor?", type: "FAQ" },
+    { title: "How do I add family members to monitor?", type: "FAQ" },
+    { title: "How do I track my medications?", type: "FAQ" },
+    { title: "Is my health data secure and private?", type: "FAQ" },
+    { title: "How do I access emergency services?", type: "FAQ" },
+    { title: "How do I donate blood through the network?", type: "FAQ" },
+    { title: "How do I view my medical reports?", type: "FAQ" },
+    { title: "How do I chat with my doctor?", type: "FAQ" }
+  ];
+
+  const filteredResults = useMemo(() => {
+    if (!searchTerm) return [];
+    return helpItems.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  }, [searchTerm]);
 
   return (
    <>
@@ -39,7 +61,12 @@ const HelpCenter = () => {
           <p className="hc-search-sub">Get help and learn how to use the app</p>
           <div className="hc-search-bar">
             <Search size={18} className="hc-search-icon" />
-            <input type="text" placeholder="Search for help..." />
+            <input 
+              type="text" 
+              placeholder="Search for help..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </div>
         </div>
       </div>
@@ -50,6 +77,32 @@ const HelpCenter = () => {
         initial="hidden"
         animate="visible"
       >
+        {searchTerm ? (
+          <section className="hc-section">
+            <h2 className="hc-sec-title">Search Results for "{searchTerm}"</h2>
+            <div className="hc-search-results">
+              {filteredResults.length > 0 ? (
+                filteredResults.map((res, i) => (
+                  <div key={i} className="hc-video-item">
+                    <div className="hc-video-icon">{res.type === 'Video' ? <PlayCircle size={20} /> : <MessageSquare size={20} />}</div>
+                    <div className="hc-video-info">
+                      <h4>{res.title}</h4>
+                      <p>{res.type} {res.dur && `• ${res.dur}`}</p>
+                    </div>
+                    <ChevronRight size={18} opacity={0.4} />
+                  </div>
+                ))
+              ) : (
+                <div className="hc-empty-search">
+                  <Search size={48} opacity={0.1} />
+                  <p>No results found. Try different keywords.</p>
+                </div>
+              )}
+            </div>
+            <button className="hc-reset-btn" onClick={() => setSearchTerm('')}>Clear Search</button>
+          </section>
+        ) : (
+          <>
         <section className="hc-section">
           <h2 className="hc-sec-title"><Zap size={18} fill="#AAA" /> Quick Start Guides</h2>
           <div className="hc-guides-grid">
@@ -189,6 +242,8 @@ const HelpCenter = () => {
           <h3><Star size={16} fill="#FFD600" color="#FFD600" /> SYNCED</h3>
           <p>Your comprehensive health management solution</p>
         </div>
+          </>
+        )}
       </motion.div>
     </div>
     </>

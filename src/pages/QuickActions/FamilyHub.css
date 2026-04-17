@@ -43,8 +43,9 @@
 
 .fh-circ-btn {
   width: 44px; height: 44px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--primary-action);
+  box-shadow: var(--primary-glow);
+  border: none;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   color: #FFF;
@@ -79,7 +80,7 @@
   gap: 14px; 
   cursor: pointer;
 }
-.fh-vital-card.blue { background: rgba(100, 181, 246, 0.1); color: #64B5F6; }
+.fh-vital-card.blue { background: rgba(81, 162, 255, 0.15); color: #51A2FF; }
 .fh-vital-card.purple { background: rgba(184, 159, 255, 0.1); color: #B89FFF; }
 .fh-vital-txt h4 { margin: 0; font-size: 15px; font-weight: 600; color: #FFF; }
 .fh-vital-txt span { font-size: 12px; opacity: 0.5; font-weight: 600; }
@@ -87,7 +88,13 @@
 .fh-sec { margin-bottom: 35px; }
 .fh-sec-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-left: 4px; }
 .fh-sec-title { font-family: 'Instrument Serif', serif; font-size: 26px; font-weight: 400; margin: 0; }
-.fh-plus-btn { width: 36px; height: 36px; background: rgba(255,255,255,0.08); border: none; border-radius: 10px; color: #FFF; display: flex; align-items: center; justify-content: center; }
+.fh-plus-btn { 
+  width: 36px; height: 36px; 
+  background: var(--primary-action); 
+  border: none; border-radius: 10px; color: #FFF; 
+  display: flex; align-items: center; justify-content: center; 
+  box-shadow: 0 4px 10px rgba(81, 162, 255, 0.3);
+}
 
 .fh-glass {
   background: rgba(255, 255, 255, 0.05);

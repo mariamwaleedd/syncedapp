@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
@@ -8,11 +8,13 @@ import {
   Smile, User
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
+import ShareModal from '../../common/ShareModal';
 import './Reports.css';
 
 const Reports = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
+  const [isShareOpen, setIsShareOpen] = useState(false);
 
   const reportData = [
     { id: 1, title: 'Cardiology Consultation', dr: 'Dr. Sarah Wilson', date: 'Mar 12, 2026', status: 'Complete', diagnosis: 'Mild Hypertension', icon: <Heart size={20} />, color: '#FF416C' },
@@ -24,6 +26,22 @@ const Reports = () => {
     { id: 7, title: 'Eye Examination', dr: 'Dr. Robert Kim', date: 'Feb 10, 2026', status: 'Attention', diagnosis: 'Minor Vision Correction Needed', icon: <Eye size={20} />, color: '#7C4DFF' },
     { id: 8, title: 'Dermatology Consultation', dr: 'Dr. Maria Santos', date: 'Feb 1, 2026', status: 'Complete', diagnosis: 'Skin Health - Normal', icon: <CheckCircle2 size={20} />, color: '#FF4081' }
   ];
+
+  const filteredReports = useMemo(() => {
+    return reportData.filter(item => 
+      item.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      item.dr.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.diagnosis.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [searchTerm]);
+
+  const stats = useMemo(() => {
+    return {
+      total: filteredReports.length,
+      complete: filteredReports.filter(r => r.status === 'Complete').length,
+      attention: filteredReports.filter(r => r.status === 'Attention').length
+    };
+  }, [filteredReports]);
 
   return (
     <div className="rp-root ltr-theme">
@@ -56,22 +74,22 @@ const Reports = () => {
           <div className="rp-stats-grid">
             <div className="rp-stat-card rp-glass">
               <span>Total</span>
-              <strong>8</strong>
+              <strong>{stats.total}</strong>
             </div>
             <div className="rp-stat-card rp-glass green">
               <span>Complete</span>
-              <strong>6</strong>
+              <strong>{stats.complete}</strong>
             </div>
             <div className="rp-stat-card rp-glass orange">
               <span>Attention</span>
-              <strong>2</strong>
+              <strong>{stats.attention}</strong>
             </div>
           </div>
         </header>
 
         <main className="rp-scroll-area">
           <div className="rp-list-stack">
-            {reportData.map((item, idx) => (
+            {filteredReports.map((item, idx) => (
               <motion.div 
                 key={item.id}
                 className="rp-item-card rp-glass"
@@ -106,7 +124,7 @@ const Reports = () => {
                 <div className="rp-action-footer">
                   <button className="rp-btn-act blue" onClick={() => navigate('/reports/view')}><Eye size={14}/> <span>View</span></button>
                   <button className="rp-btn-act"><Download size={14}/> <span>Download</span></button>
-                  <button className="rp-btn-act"><Share2 size={14}/> <span>Share</span></button>
+                  <button className="rp-btn-act" onClick={() => setIsShareOpen(true)}><Share2 size={14}/> <span>Share</span></button>
                 </div>
               </motion.div>
             ))}
@@ -115,6 +133,11 @@ const Reports = () => {
         </main>
       </div>
       <TouchBar />
+      <ShareModal 
+        isOpen={isShareOpen} 
+        onClose={() => setIsShareOpen(false)} 
+        title="Share Medical Report"
+      />
     </div>
   );
 };

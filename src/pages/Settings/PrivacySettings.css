@@ -136,7 +136,7 @@
 }
 
 .ps-ui-switch.on {
-  background: #64B5F6;
+  background: var(--primary-action);
 }
 
 .ps-ui-handle {
@@ -175,7 +175,7 @@
 .ps-edit-link {
   background: none;
   border: none;
-  color: #64B5F6;
+  color: var(--primary-action);
   font-weight: 700;
   font-size: 14px;
 }

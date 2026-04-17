@@ -100,13 +100,14 @@
 .ha-notif-btn {
   width: 52px;
   height: 52px;
-  background: var(--btn-bg);
-  border: 1px solid var(--glass-border);
+  background: var(--primary-action);
+  box-shadow: var(--primary-glow);
+  border: none;
   border-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-main);
+  color: #FFFFFF;
   position: relative;
   flex-shrink: 0;
 }

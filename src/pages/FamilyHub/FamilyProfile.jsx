@@ -41,7 +41,7 @@ const FamilyProfile = () => {
           <div className="fp-nav-top">
             <button className="fp-circ-btn" onClick={() => navigate(-1)}><ChevronLeft size={22} strokeWidth={2.5} /></button>
             <div className="fp-health-pill"><div className="fp-pulse-dot"></div><span>Healthy</span></div>
-            <button className="fp-circ-btn"><Bell size={20} /></button>
+            <button className="fp-circ-btn" onClick={() => navigate('/appointments')}><Bell size={20} /></button>
           </div>
           <div className="fp-hero-profile">
             <div className="fp-avatar-wrap"><div className="fp-avatar-box">{member.emoji}</div></div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   ChevronLeft, Edit2, CheckCircle2, Calendar, 
@@ -8,10 +8,12 @@ import {
   Stethoscope, FileText, Smartphone
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
+import ShareModal from '../../common/ShareModal';
 import './Profile.css';
 
 const Profile = () => {
   const navigate = useNavigate();
+  const [isShareOpen, setIsShareOpen] = useState(false);
   return (
     <div className="pf-container ltr-theme">
       <div className="pf-layer-gradient"></div>
@@ -79,7 +81,7 @@ const Profile = () => {
               <div className="pf-act-ico green"><QrCode size={20} /></div>
               <span>Health ID Card</span>
             </div>
-            <div className="pf-action-glass">
+            <div className="pf-action-glass" onClick={() => setIsShareOpen(true)} style={{ cursor: 'pointer' }}>
               <div className="pf-act-ico orange"><Share2 size={20} /></div>
               <span>Share Profile</span>
             </div>
@@ -165,6 +167,11 @@ const Profile = () => {
         <div className="pf-spacer"></div>
       </div>
       <TouchBar />
+      <ShareModal 
+        isOpen={isShareOpen} 
+        onClose={() => setIsShareOpen(false)} 
+        title="Share Profile"
+      />
     </div>
   );
 };

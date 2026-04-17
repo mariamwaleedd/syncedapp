@@ -8,7 +8,9 @@
   --glass-bg: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
   --card-bg: rgba(255, 255, 255, 0.06);
-  --accent-blue: #64B5F6;
+  --accent-blue: #51A2FF;
+  --primary-action: #51A2FF;
+  --primary-glow: 0 8px 25px rgba(81, 162, 255, 0.35);
   --sub-text: rgba(255, 255, 255, 0.5);
   --btn-bg: rgba(255, 255, 255, 0.08);
 }
@@ -21,6 +23,8 @@
   --glass-border: rgba(0, 0, 0, 0.08);
   --card-bg: rgba(255, 255, 255, 0.9);
   --accent-blue: #1A73E8;
+  --primary-action: #51A2FF;
+  --primary-glow: 0 8px 20px rgba(81, 162, 255, 0.2);
   --sub-text: rgba(0, 0, 0, 0.6);
   --btn-bg: rgba(0, 0, 0, 0.05);
 }
@@ -112,7 +116,28 @@ button, input, select, textarea {
 button {
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* Global Primary Action Button Style */
+.btn-primary {
+  background: var(--primary-action);
+  color: #FFFFFF;
+  box-shadow: var(--primary-glow);
+  border-radius: 16px;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 12px 30px rgba(81, 162, 255, 0.5);
 }
 
 #root {

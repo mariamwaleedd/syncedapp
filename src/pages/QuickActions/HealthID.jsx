@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -9,6 +9,7 @@ import {
   Dna, Phone, FileText, Upload, Check
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
+import ShareModal from '../../common/ShareModal';
 import './HealthID.css';
 
 const SectionHeader = ({ title, showEdit = true, onEdit }) => (
@@ -25,6 +26,7 @@ const SectionHeader = ({ title, showEdit = true, onEdit }) => (
 
 const HealthID = () => {
   const navigate = useNavigate();
+  const [isShareOpen, setIsShareOpen] = useState(false);
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
@@ -40,14 +42,14 @@ const HealthID = () => {
       <div className="hid-fixed-header">
 
         <div className="hid-nav-actions">
-          <button className="hid-circle-btn"><ChevronLeft size={22} /></button>
+          <button className="hid-circle-btn" onClick={() => navigate(-1)}><ChevronLeft size={22} /></button>
           <div className="hid-verified-pill">
             <Check size={14} color="#05FF91" strokeWidth={3} />
             <span>Verified</span>
           </div>
           <div className="hid-right-stack">
-            <button className="hid-circle-btn"><Share2 size={20} /></button>
-            <button className="hid-circle-btn" onClick={() => navigate('/notifications')}><Bell size={20} /></button>
+            <button className="hid-circle-btn" onClick={() => setIsShareOpen(true)}><Share2 size={20} /></button>
+            <button className="hid-circle-btn" onClick={() => navigate('/appointments')}><Bell size={20} /></button>
           </div>
         </div>
 
@@ -280,6 +282,11 @@ const HealthID = () => {
       </motion.div>
 
       <TouchBar />
+      <ShareModal 
+        isOpen={isShareOpen} 
+        onClose={() => setIsShareOpen(false)} 
+        title="Share Health ID"
+      />
     </div>
   );
 };

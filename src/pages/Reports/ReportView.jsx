@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
@@ -6,10 +6,15 @@ import {
   Download, Share2, Filter, Search
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
+import ShareModal from '../../common/ShareModal';
+import FilterMenu from '../../common/FilterMenu';
 import './ReportView.css';
 
 const ReportView = () => {
   const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isShareOpen, setIsShareOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   return (
     <div className="rv-root ltr-theme">
@@ -24,14 +29,19 @@ const ReportView = () => {
               <ChevronLeft size={22} strokeWidth={2.5} />
             </button>
             <h1 className="rv-main-title">Report Preview</h1>
-            <button className="rv-circle-btn">
+            <button className="rv-circle-btn" onClick={() => setIsFilterOpen(true)}>
               <Filter size={20} />
             </button>
           </div>
 
           <div className="rv-search-bar rv-glass">
             <Search size={18} opacity={0.4} />
-            <input type="text" placeholder="Search reports..." />
+            <input 
+              type="text" 
+              placeholder="Search in report..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </div>
         </header>
 
@@ -122,7 +132,7 @@ const ReportView = () => {
               <Download size={18} />
               <span>Download</span>
             </button>
-            <button className="rv-btn-action rv-glass">
+            <button className="rv-btn-action rv-glass" onClick={() => setIsShareOpen(true)}>
               <Share2 size={18} />
               <span>Share</span>
             </button>
@@ -132,6 +142,24 @@ const ReportView = () => {
         </main>
       </div>
       <TouchBar />
+      
+      <ShareModal 
+        isOpen={isShareOpen} 
+        onClose={() => setIsShareOpen(false)} 
+        title="Share Medical Report"
+      />
+
+      <FilterMenu 
+        isOpen={isFilterOpen} 
+        onClose={() => setIsFilterOpen(false)}
+        title="Report Categories"
+        options={[
+          { id: 'all', name: 'All Pages' },
+          { id: 'vitals', name: 'Vitals' },
+          { id: 'labs', name: 'Lab Results' },
+          { id: 'notes', name: 'Doctor Notes' }
+        ]}
+      />
     </div>
   );
 };

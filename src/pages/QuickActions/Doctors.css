@@ -77,15 +77,23 @@
 .dr-filter-pill {
   flex-shrink: 0; padding: 10px 16px; border-radius: 14px;
   display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.dr-filter-pill.active {
+  background: var(--primary-action) !important;
+  color: #FFF !important;
+  border-color: var(--primary-action) !important;
 }
 
 .dr-filter-count { opacity: 0.4; font-size: 12px; }
 
 .dr-view-my-btn {
-  width: 100%; height: 56px; background: #64B5F6; border: none;
+  width: 100%; height: 56px; background: var(--primary-action); border: none;
   border-radius: 14px; color: #FFF; font-size: 16px; font-weight: 700;
   display: flex; align-items: center; justify-content: center; gap: 10px;
-  margin: 10px 0 35px; box-shadow: 0 8px 25px rgba(100, 181, 246, 0.3);
+  margin: 10px 0 35px; box-shadow: var(--primary-glow);
 }
 
 .dr-list-container { display: flex; flex-direction: column; gap: 18px; }
@@ -128,9 +136,10 @@
 .dr-card-pricing span { display: block; font-size: 10px; opacity: 0.4; font-weight: 600; text-transform: uppercase; }
 
 .dr-book-btn {
-  width: 100%; height: 48px; background: #64B5F6; border: none;
+  width: 100%; height: 48px; background: var(--primary-action); border: none;
   border-radius: 12px; color: #FFF; font-size: 15px; font-weight: 700;
   display: flex; align-items: center; justify-content: center; gap: 8px;
+  box-shadow: 0 4px 12px rgba(81, 162, 255, 0.3);
 }
 
 .dr-bottom-pad { height: 40px; }

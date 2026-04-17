@@ -1,28 +1,43 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   ChevronLeft, Plus, Upload, FileText, 
-  Eye, Download, ShieldCheck 
+  Eye, Download, ShieldCheck, Search, Filter, Share2
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
+import ShareModal from '../../common/ShareModal';
+import FilterMenu from '../../common/FilterMenu';
 import './MedicalRecords.css';
 
 const MedicalRecords = () => {
   const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [activeCategory, setActiveCategory] = useState('All');
+  const [isShareOpen, setIsShareOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const records = [
-    { title: 'Blood Test Results', date: 'March 5, 2026', entity: 'Lab Corp', type: 'Lab Report', verified: true },
-    { title: 'Annual Physical Exam', date: 'February 20, 2026', entity: 'Dr. Smith', type: 'Medical Exam', verified: true },
+    { title: 'Blood Test Results', date: 'March 5, 2026', entity: 'Lab Corp', type: 'Lab Results', verified: true },
+    { title: 'Annual Physical Exam', date: 'February 20, 2026', entity: 'Dr. Smith', type: 'Exams', verified: true },
     { title: 'X-Ray Imaging', date: 'January 10, 2026', entity: 'Imaging Center', type: 'Imaging', verified: true },
-    { title: 'Prescription History', date: 'December 15, 2025', entity: 'Pharmacy', type: 'Prescription', verified: false },
+    { title: 'Prescription History', date: 'December 15, 2025', entity: 'Pharmacy', type: 'Prescriptions', verified: false },
   ];
 
   const categories = [
-    { name: 'Lab Results', count: 12 },
-    { name: 'Imaging', count: 8 },
-    { name: 'Prescriptions', count: 15 },
-    { name: 'Immunizations', count: 6 },
+    { name: 'Lab Results', count: 12, id: 'Lab Results' },
+    { name: 'Imaging', count: 8, id: 'Imaging' },
+    { name: 'Prescriptions', count: 15, id: 'Prescriptions' },
+    { name: 'Immunizations', count: 6, id: 'Immunizations' },
   ];
+
+  const filteredRecords = useMemo(() => {
+    return records.filter(rec => {
+      const matchSearch = rec.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                          rec.entity.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchCat = activeCategory === 'All' || rec.type === activeCategory;
+      return matchSearch && matchCat;
+    });
+  }, [searchTerm, activeCategory]);
 
   return (
     <div className="mr-root ltr-theme">
@@ -39,10 +54,25 @@ const MedicalRecords = () => {
           <h1 className="mr-page-title">Medical Records</h1>
         </header>
 
-        <button className="mr-add-btn">
-          <Plus size={18} />
-          <span>Add Record</span>
-        </button>
+        <div className="mr-action-row">
+          <button className="mr-add-btn" onClick={() => navigate('/reports/upload')}>
+            <Plus size={18} />
+            <span>Add Record</span>
+          </button>
+          <button className="mr-filter-btn" onClick={() => setIsFilterOpen(true)}>
+            <Filter size={18} />
+          </button>
+        </div>
+
+        <div className="mr-search-bar mr-glass">
+          <Search size={18} opacity={0.4} />
+          <input 
+            type="text" 
+            placeholder="Search documents..." 
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
 
         <div className="mr-upload-zone mr-glass">
           <Upload size={48} color="#64B5F6" strokeWidth={1.5} />
@@ -54,8 +84,9 @@ const MedicalRecords = () => {
         <section className="mr-section">
           <h2 className="mr-sec-title">Recent Records</h2>
           <div className="mr-records-stack">
-            {records.map((rec, i) => (
-              <div key={i} className="mr-rec-card mr-glass">
+            {filteredRecords.length > 0 ? (
+              filteredRecords.map((rec, i) => (
+                <div key={i} className="mr-rec-card mr-glass">
                 <div className="mr-rec-top">
                   <div className="mr-file-ico"><FileText size={20} color="#FFF" /></div>
                   <div className="mr-rec-info">
@@ -73,18 +104,23 @@ const MedicalRecords = () => {
                   )}
                 </div>
                 <div className="mr-rec-actions">
-                  <button className="mr-act-btn">
+                  <button className="mr-act-btn" onClick={() => navigate('/reports/view')}>
                     <Eye size={16} />
                     <span>View</span>
                   </button>
                   <div className="mr-v-sep"></div>
-                  <button className="mr-act-btn">
-                    <Download size={16} />
-                    <span>Download</span>
+                  <button className="mr-act-btn" onClick={() => setIsShareOpen(true)}>
+                    <Share2 size={16} />
+                    <span>Share</span>
                   </button>
                 </div>
               </div>
-            ))}
+            ))
+          ) : (
+            <div className="mr-empty">
+              <p>No records found matching your search</p>
+            </div>
+          )}
           </div>
         </section>
 
@@ -92,7 +128,11 @@ const MedicalRecords = () => {
           <h2 className="mr-sec-title">Browse by Category</h2>
           <div className="mr-cat-grid">
             {categories.map((cat, i) => (
-              <div key={i} className="mr-cat-card mr-glass">
+              <div 
+                key={i} 
+                className={`mr-cat-card mr-glass ${activeCategory === cat.id ? 'active' : ''}`}
+                onClick={() => setActiveCategory(cat.id)}
+              >
                 <FileText size={24} color="#FFF" strokeWidth={1.5} />
                 <div className="mr-cat-txt">
                   <h5>{cat.name}</h5>
@@ -106,6 +146,23 @@ const MedicalRecords = () => {
         <div className="mr-bottom-spacer"></div>
       </div>
       <TouchBar />
+
+      <ShareModal 
+        isOpen={isShareOpen} 
+        onClose={() => setIsShareOpen(false)} 
+        title="Share Medical Record"
+      />
+
+      <FilterMenu 
+        isOpen={isFilterOpen} 
+        onClose={() => setIsFilterOpen(false)}
+        activeFilter={activeCategory}
+        onFilterSelect={setActiveCategory}
+        options={[
+          { id: 'All', name: 'All Records' },
+          ...categories
+        ]}
+      />
     </div>
   );
 };

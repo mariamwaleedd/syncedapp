@@ -66,7 +66,7 @@ const Home = () => {
                 <span>Live • 11:56 AM</span>
               </div>
             </div>
-            <button className="ha-notif-btn" onClick={() => navigate('/notifications')}>
+            <button className="ha-notif-btn" onClick={() => navigate('/appointments')}>
               <Bell size={20} />
               <div className="ha-red-dot" />
             </button>

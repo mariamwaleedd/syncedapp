@@ -128,7 +128,7 @@
 .ns-edit-link {
   background: none;
   border: none;
-  color: #64B5F6;
+  color: var(--primary-action);
   font-weight: 700;
   font-size: 14px;
 }
@@ -144,7 +144,7 @@
 }
 
 .ns-switch.on {
-  background: #64B5F6;
+  background: var(--primary-action);
 }
 
 .ns-handle {
