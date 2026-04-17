@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   ChevronLeft, Calendar, Pill, Activity, 
-  Bell, Moon, Heart
+  Bell, Heart
 } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';

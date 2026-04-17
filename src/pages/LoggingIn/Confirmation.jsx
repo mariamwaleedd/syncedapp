@@ -14,11 +14,7 @@ const Confirmation = () => {
   const [error, setError] = useState(false);
   const codeRefs = [useRef(), useRef(), useRef(), useRef()];
 
-  useEffect(() => {
-    generateAndSendCode();
-  }, []);
-
-  const generateAndSendCode = () => {
+  const generateAndSendCode = React.useCallback(() => {
     const newCode = Math.floor(1000 + Math.random() * 9000).toString();
     setCorrectCode(newCode);
     
@@ -29,7 +25,11 @@ const Confirmation = () => {
     const encodedMsg = encodeURIComponent(`Your synced verification code is: ${newCode}`);
     const whatsappLink = `https://api.whatsapp.com/send?phone=${destination}&text=${encodedMsg}`;
     window.open(whatsappLink, '_blank');
-  };
+  }, [rawPhone]);
+
+  useEffect(() => {
+    generateAndSendCode();
+  }, [generateAndSendCode]);
 
   const onBoxInput = (idx, val) => {
     if (!/^\d*$/.test(val)) return;

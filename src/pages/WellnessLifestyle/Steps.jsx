@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  ChevronLeft, Footprints, Map, Navigation, 
-  TrendingUp, Zap, Award, MapPin, Clock, Ruler,
+  ChevronLeft, Footprints, Navigation, 
+  Zap, Award, MapPin, Clock, Ruler,
   Plus, Target, X
 } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';

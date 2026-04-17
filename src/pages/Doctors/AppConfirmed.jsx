@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
-  Check, Calendar, Clock, Video, Link, 
+  Check, Calendar, Clock, Video, 
   Phone, Mail, Bell, Download, Share2, 
   MessageSquare, Home, User 
 } from 'lucide-react';

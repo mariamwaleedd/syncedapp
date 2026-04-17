@@ -2,7 +2,6 @@ import { useTheme } from '../common/ThemeContext';
 import { useLanguage } from '../common/LanguageContext';
 
 const AppShell = ({ children }) => {
-  const { lang } = useLanguage();
   const { theme } = useTheme();
 
   return (

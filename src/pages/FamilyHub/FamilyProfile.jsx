@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { 
   ChevronLeft, Bell, Phone, Heart, Activity, 
   Thermometer, Wind, Shield, Calendar, 

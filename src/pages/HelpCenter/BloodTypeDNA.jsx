@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, FileText, Droplet, CheckCircle2, Lightbulb, ChevronRight, ArrowLeft } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';

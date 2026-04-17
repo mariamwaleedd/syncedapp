@@ -8,7 +8,6 @@ const Registration = () => {
   const navigate = useNavigate();
   const menuRef = useRef(null);
   const [phoneDigits, setPhoneDigits] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
   const countryData = [
@@ -30,13 +29,11 @@ const Registration = () => {
   const pressKey = (digit) => {
     if (phoneDigits.length < activeCountry.size) {
       setPhoneDigits(prev => prev + digit);
-      setErrorMsg('');
     }
   };
 
   const backspace = () => {
     setPhoneDigits(prev => prev.slice(0, -1));
-    setErrorMsg('');
   };
 
   const buttons = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '', '0', 'del'];

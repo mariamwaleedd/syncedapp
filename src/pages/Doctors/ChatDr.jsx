@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   ChevronLeft, Video, MoreVertical, Paperclip, 
-  Image as ImageIcon, SendHorizontal, FileText, User, Download 
+  ImageIcon, SendHorizontal, FileText, User 
 } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import './ChatDr.css';

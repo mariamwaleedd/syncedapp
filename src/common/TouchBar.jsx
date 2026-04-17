@@ -26,7 +26,7 @@ const TouchBar = () => {
     const currentPath = location.pathname;
     const active = navItems.find(item => item.path === currentPath);
     if (active) setActiveTab(active.id);
-  }, [location]);
+  }, [location, navItems]);
 
   const handleNav = (id, path) => {
     setActiveTab(id);

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { ChevronLeft, X, Shield, Eye, Users, AlertCircle, Check } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import './AgreeTerms.css';

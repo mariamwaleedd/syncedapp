@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { ChevronLeft, Video, MapPin, Clock, User } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import './SelectDate.css';

@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   ChevronLeft, Plus, Upload, FileText, 
-  Eye, Download, MoreVertical, ShieldCheck 
+  Eye, Download, ShieldCheck 
 } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';

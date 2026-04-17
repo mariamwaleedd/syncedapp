@@ -168,7 +168,13 @@ const SignUp = () => {
             {errors.password && <span className="error-text">{errors.password}</span>}
 
             <div className="forgot-row">
-              <a href="#" className="forgot-link">Forget Password?</a>
+              <button 
+                type="button" 
+                className="forgot-link" 
+                onClick={() => navigate('/forgetpass')}
+              >
+                Forget Password?
+              </button>
             </div>
 
             <button type="submit" className="action-btn">Sign Up</button>
@@ -176,7 +182,7 @@ const SignUp = () => {
         </div>
 
         <div className="footer-links">
-          <p>Already have an account? <a href="#" onClick={() => navigate('/login')}>Log In</a></p>
+          <p>Already have an account? <button type="button" className="link-text-btn" onClick={() => navigate('/login')}>Log In</button></p>
         </div>
       </div>
     </div>

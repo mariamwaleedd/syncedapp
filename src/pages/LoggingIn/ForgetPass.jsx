@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Lock, Eye, EyeOff, ChevronLeft, Globe, UserCheck } from 'lucide-react';
-import { useLanguage } from '../../common/LanguageContext';
+import { Lock, Eye, EyeOff, ChevronLeft, UserCheck } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import './ForgetPass.css';
 import logo from '../../imgs/logoblue.png';
 
 const ForgetPass = () => {
-  const { t, toggleLanguage, lang } = useLanguage();
   const navigate = useNavigate();
   const [code, setCode] = useState('');
   const [password, setPassword] = useState('');
@@ -128,7 +126,7 @@ const ForgetPass = () => {
         </div>
 
         <div className="footer-links">
-          <p>I remembered my password. <a href="#" onClick={() => navigate('/login')}>Log In</a></p>
+          <p>I remembered my password. <button type="button" className="link-text-btn" onClick={() => navigate('/login')}>Log In</button></p>
         </div>
       </div>
     </div>

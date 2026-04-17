@@ -2,8 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   ChevronLeft, Utensils, Plus, Drumstick, 
-  Apple, Beef, TrendingUp, Medal, 
-  CupSoda, Cake, ChevronRight, Search
+  Apple, Beef, TrendingUp, Medal
 } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';

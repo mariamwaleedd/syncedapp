@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   ChevronLeft, Droplets, Plus, Minus, 
-  GlassWater, CupSoda, Trash2, TrendingUp,
-  Award, Lightbulb
+  GlassWater, CupSoda, TrendingUp,
+  Award
 } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';

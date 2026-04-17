@@ -1,8 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { 
-  ChevronLeft, Moon, Sun, Clock, 
+  ChevronLeft, Moon, Clock, 
   Sunrise, Activity, Zap, Heart, 
   CloudMoon, TrendingUp 
 } from 'lucide-react';
