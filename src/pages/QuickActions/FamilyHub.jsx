@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   ChevronLeft, Bell, Calendar, Pill, 
-  Plus, ChevronRight, Activity, Heart, 
-  Target, TrendingUp, Users, Weight, 
+  Plus, ChevronRight, Activity, 
+  Target, Users, Weight, 
   Moon, Footprints, AlertCircle
 } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';

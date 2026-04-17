@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   ChevronLeft, Bell, Pill, Calendar, 
-  Activity, Users, Clock, Plus, 
+  Activity, Clock, Plus, 
   ChevronRight, Check 
 } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';

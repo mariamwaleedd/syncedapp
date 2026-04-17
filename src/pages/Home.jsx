@@ -5,8 +5,7 @@ import {
   Users, Pill, FileText, Check,
   Smartphone, MessageSquare, Settings, Trophy, 
   Footprints, Droplet, Lightbulb, Salad, 
-  Calendar, Phone, Plus, Target, ChevronRight,
-  Share2, ChevronLeft
+  Calendar, Phone, Plus, Target, ChevronRight
 } from 'lucide-react';
 import TouchBar from '../common/TouchBar';
 import StatusBar from '../common/StatusBar';

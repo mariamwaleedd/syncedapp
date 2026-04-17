@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
-  ChevronLeft, Share2, Bell, CheckCircle2, User,
+  ChevronLeft, Share2, Bell, User,
   Edit3, Calendar, Users, Droplets, Ruler, Weight,
   Heart, Activity, Thermometer, Wind, Shield,
   ClipboardList, Pill, ShieldAlert,

@@ -25,7 +25,6 @@ import WellnessPage from './pages/QuickActions/WellnessPage';
 import FamilyHub from './pages/QuickActions/FamilyHub';
 import AddFamily from './pages/QuickActions/AddFamily';
 import Emergency from './pages/QuickActions/Emergency';
-import Blood from './pages/QuickActions/BloodNetwork';
 import Doctors from './pages/QuickActions/Doctors';
 import MyDoctors from './pages/QuickActions/MyDoctors';
 import Reports from './pages/QuickActions/Reports';
