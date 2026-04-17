@@ -67,6 +67,7 @@
   align-items: center;
   justify-content: center;
   color: #FFF;
+  cursor: pointer;
 }
 
 .hid-verified-pill {
@@ -190,6 +191,7 @@
   align-items: center;
   gap: 8px;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .hid-card {
@@ -306,7 +308,7 @@
 .hid-file-info { flex: 1; }
 .hid-file-info h5 { margin: 0; font-size: 15px; }
 .hid-file-info p { margin: 4px 0 0 0; font-size: 12px; opacity: 0.4; }
-.hid-down-btn { background: rgba(255, 255, 255, 0.06); border: none; color: #FFF; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+.hid-down-btn { background: rgba(255, 255, 255, 0.06); border: none; color: #FFF; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
 
 .hid-all-btn { 
   width: 100%; 
@@ -317,6 +319,7 @@
   padding: 20px; 
   text-decoration: underline; 
   font-weight: 600;
+  cursor: pointer;
 }
 .hid-up-btn { 
   width: 100%; 
@@ -333,12 +336,13 @@
   font-weight: 600; 
   box-shadow: 0 10px 25px rgba(100, 181, 246, 0.3); 
   margin-bottom: 35px; 
+  cursor: pointer;
 }
 
 .hid-footer-status { padding: 20px; display: flex; justify-content: space-between; align-items: center; }
 .hid-foot-l { display: flex; gap: 16px; align-items: center; }
 .hid-foot-meta h5 { margin: 0; font-size: 15px; }
 .hid-foot-meta p { margin: 4px 0 0 0; font-size: 12px; opacity: 0.4; }
-.hid-ref-btn { background: rgba(100, 181, 246, 0.12); border: none; color: #64B5F6; padding: 8px 20px; border-radius: 10px; font-size: 13px; font-weight: 600; }
+.hid-ref-btn { background: rgba(100, 181, 246, 0.12); border: none; color: #64B5F6; padding: 8px 20px; border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; }
 
 .rotate-180 { transform: rotate(180deg); }

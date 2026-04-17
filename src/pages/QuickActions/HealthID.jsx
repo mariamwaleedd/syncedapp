@@ -1,20 +1,21 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
+import { useNavigate } from 'react-router-dom';
+import {
   ChevronLeft, Share2, Bell, CheckCircle2, User,
-  Edit3, Calendar, Users, Droplets, Ruler, Weight, 
+  Edit3, Calendar, Users, Droplets, Ruler, Weight,
   Heart, Activity, Thermometer, Wind, Shield,
-  ClipboardList, Pill, ShieldAlert, 
-  Dna, Phone, FileText, Upload, Check 
+  ClipboardList, Pill, ShieldAlert,
+  Dna, Phone, FileText, Upload, Check
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import './HealthID.css';
 
-const SectionHeader = ({ title, showEdit = true }) => (
+const SectionHeader = ({ title, showEdit = true, onEdit }) => (
   <div className="hid-section-header">
     <h2>{title}</h2>
     {showEdit && (
-      <button className="hid-edit-pill">
+      <button className="hid-edit-pill" onClick={onEdit}>
         <Edit3 size={12} />
         <span>Edit</span>
       </button>
@@ -23,6 +24,7 @@ const SectionHeader = ({ title, showEdit = true }) => (
 );
 
 const HealthID = () => {
+  const navigate = useNavigate();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
@@ -39,12 +41,12 @@ const HealthID = () => {
         <div className="hid-status-bar">
           <span className="hid-time">9:41</span>
           <div className="hid-status-icons">
-            <svg width="17" height="11" viewBox="0 0 17 11"><path d="M1 10h2V1H1v9zm4 0h2V3H5v7zm4 0h2V5H9v5zm4 0h2V7h-2v3z" fill="currentColor"/></svg>
-            <svg width="15" height="11" viewBox="0 0 15 11"><path d="M7.5 11L0 3.5a10.6 10.6 0 0115 0L7.5 11z" fill="currentColor"/></svg>
-            <svg width="22" height="11" viewBox="0 0 22 11"><rect x="0.5" y="0.5" width="18" height="10" rx="2" stroke="currentColor" fill="none"/><path d="M21 4v3" stroke="currentColor" strokeLinecap="round"/><rect x="2.5" y="2.5" width="14" height="6" rx="1" fill="currentColor"/></svg>
+            <svg width="17" height="11" viewBox="0 0 17 11"><path d="M1 10h2V1H1v9zm4 0h2V3H5v7zm4 0h2V5H9v5zm4 0h2V7h-2v3z" fill="currentColor" /></svg>
+            <svg width="15" height="11" viewBox="0 0 15 11"><path d="M7.5 11L0 3.5a10.6 10.6 0 0115 0L7.5 11z" fill="currentColor" /></svg>
+            <svg width="22" height="11" viewBox="0 0 22 11"><rect x="0.5" y="0.5" width="18" height="10" rx="2" stroke="currentColor" fill="none" /><path d="M21 4v3" stroke="currentColor" strokeLinecap="round" /><rect x="2.5" y="2.5" width="14" height="6" rx="1" fill="currentColor" /></svg>
           </div>
         </div>
-        
+
         <div className="hid-nav-actions">
           <button className="hid-circle-btn"><ChevronLeft size={22} /></button>
           <div className="hid-verified-pill">
@@ -53,11 +55,11 @@ const HealthID = () => {
           </div>
           <div className="hid-right-stack">
             <button className="hid-circle-btn"><Share2 size={20} /></button>
-            <button className="hid-circle-btn"><Bell size={20} /></button>
+            <button className="hid-circle-btn" onClick={() => navigate('/notifications')}><Bell size={20} /></button>
           </div>
         </div>
 
-        <div className="hid-profile-summary">
+        <div className="hid-profile-summary" onClick={() => navigate('/personaldetails')} style={{ cursor: 'pointer' }}>
           <div className="hid-avatar-box">
             <User size={40} color="#FFF" />
           </div>
@@ -68,7 +70,7 @@ const HealthID = () => {
         </div>
       </div>
 
-      <motion.div 
+      <motion.div
         className="hid-scroll-body"
         variants={containerVariants}
         initial="hidden"
@@ -83,12 +85,12 @@ const HealthID = () => {
           <div className="hid-score-visual">
             <svg width="80" height="80" viewBox="0 0 80 80">
               <circle cx="40" cy="40" r="35" stroke="rgba(255,255,255,0.05)" strokeWidth="4" fill="none" />
-              <circle 
-                cx="40" cy="40" r="35" 
-                stroke="#05FF91" 
-                strokeWidth={6} 
-                fill="none" 
-                strokeDasharray="48 7" 
+              <circle
+                cx="40" cy="40" r="35"
+                stroke="#05FF91"
+                strokeWidth={6}
+                fill="none"
+                strokeDasharray="48 7"
                 strokeLinecap="round"
                 transform="rotate(-90 40 40)"
               />
@@ -100,19 +102,19 @@ const HealthID = () => {
         </motion.div>
 
         <motion.div variants={itemVariants} className="hid-sec">
-          <SectionHeader title="Basic Information" />
+          <SectionHeader title="Basic Information" onEdit={() => navigate('/personalinfo')} />
           <div className="hid-card hid-glass">
-            <div className="hid-row"><div className="hid-label"><Calendar size={14}/> Date of Birth</div><span>February 08, 2003</span></div>
-            <div className="hid-row"><div className="hid-label"><Users size={14}/> Gender</div><span>Female</span></div>
-            <div className="hid-row"><div className="hid-label"><Activity size={14}/> Age</div><span>21 Years</span></div>
-            <div className="hid-row"><div className="hid-label"><Droplets size={14}/> Blood</div><span>B+ (High Compatibility)</span></div>
-            <div className="hid-row"><div className="hid-label"><Ruler size={14}/> Height</div><span>172 Centimeters</span></div>
-            <div className="hid-row"><div className="hid-label"><Weight size={14}/> Weight</div><span>72 Kilograms</span></div>
+            <div className="hid-row"><div className="hid-label"><Calendar size={14} /> Date of Birth</div><span>February 08, 2003</span></div>
+            <div className="hid-row"><div className="hid-label"><Users size={14} /> Gender</div><span>Female</span></div>
+            <div className="hid-row"><div className="hid-label"><Activity size={14} /> Age</div><span>21 Years</span></div>
+            <div className="hid-row"><div className="hid-label"><Droplets size={14} /> Blood</div><span>B+ (High Compatibility)</span></div>
+            <div className="hid-row"><div className="hid-label"><Ruler size={14} /> Height</div><span>172 Centimeters</span></div>
+            <div className="hid-row"><div className="hid-label"><Weight size={14} /> Weight</div><span>72 Kilograms</span></div>
           </div>
         </motion.div>
 
         <motion.div variants={itemVariants} className="hid-sec">
-          <SectionHeader title="Current Vitals" />
+          <SectionHeader title="Current Vitals" onEdit={() => navigate('/wellness')} />
           <div className="hid-vitals-grid">
             <div className="hid-vital-item hid-glass">
               <Heart size={18} color="#FF4B2B" />
@@ -138,12 +140,12 @@ const HealthID = () => {
         </motion.div>
 
         <motion.div variants={itemVariants} className="hid-sec">
-          <SectionHeader title="Physical Statistics" showEdit={false} />
+          <SectionHeader title="Physical Statistics" onEdit={() => navigate('/physicalstats')} />
           <div className="hid-stats-flex">
             <div className="hid-pill-stat hid-glass">Height: <span>172cm</span></div>
             <div className="hid-pill-stat hid-glass">Weight: <span>72kg</span></div>
           </div>
-          <div className="hid-bmi-card hid-glass">
+          <div className="hid-bmi-card hid-glass" onClick={() => navigate('/physicalstats')} style={{ cursor: 'pointer' }}>
             <div className="hid-bmi-meta">
               <div className="hid-bmi-ico"><Activity size={14} /></div>
               <span>Body Mass Index (BMI)</span>
@@ -156,7 +158,7 @@ const HealthID = () => {
         </motion.div>
 
         <motion.div variants={itemVariants} className="hid-sec">
-          <SectionHeader title="Lifestyle Habits" />
+          <SectionHeader title="Lifestyle Habits" onEdit={() => navigate('/lifestyle')} />
           <div className="hid-card hid-glass">
             <div className="hid-row"><div className="hid-label">Exercise</div><span>4-5 Times a week</span></div>
             <div className="hid-row"><div className="hid-label">Diet Type</div><span>Balanced</span></div>
@@ -167,8 +169,8 @@ const HealthID = () => {
         </motion.div>
 
         <motion.div variants={itemVariants} className="hid-sec">
-          <SectionHeader title="Medical Records" />
-          <div className="hid-med-card hid-glass">
+          <SectionHeader title="Medical Records" onEdit={() => navigate('/medicalhistory')} />
+          <div className="hid-med-card hid-glass" onClick={() => navigate('/medicalhistory')} style={{ cursor: 'pointer' }}>
             <div className="hid-emer-banner">
               <ShieldAlert size={16} />
               <span>Emergency Priority Info</span>
@@ -193,7 +195,7 @@ const HealthID = () => {
         </motion.div>
 
         <motion.div variants={itemVariants} className="hid-sec">
-          <SectionHeader title="Current Medications" />
+          <SectionHeader title="Current Medications" onEdit={() => navigate('/medicine')} />
           <div className="hid-meds-stack">
             <div className="hid-med-box hid-glass">
               <div className="hid-med-ico"><Pill size={18} color="#64B5F6" /></div>
@@ -213,7 +215,7 @@ const HealthID = () => {
         </motion.div>
 
         <motion.div variants={itemVariants} className="hid-sec">
-          <SectionHeader title="Genetics & DNA" />
+          <SectionHeader title="Genetics & DNA" onEdit={() => navigate('/geneticinfo')} />
           <div className="hid-dna-card hid-glass">
             <div className="hid-dna-header">
               <Dna size={20} color="#FF416C" />
@@ -233,8 +235,8 @@ const HealthID = () => {
         </motion.div>
 
         <motion.div variants={itemVariants} className="hid-sec">
-          <SectionHeader title="Emergency Contact" />
-          <div className="hid-emer-card hid-glass">
+          <SectionHeader title="Emergency Contact" onEdit={() => navigate('/emergencycontacts')} />
+          <div className="hid-emer-card hid-glass" onClick={() => navigate('/emergencycontacts')} style={{ cursor: 'pointer' }}>
             <div className="hid-contact-head">
               <div className="hid-contact-avatar"><Phone size={20} color="#FFF" /></div>
               <div className="hid-contact-name">
@@ -255,7 +257,7 @@ const HealthID = () => {
                 <h5>Annual Checkup 2023</h5>
                 <p>PDF • Oct 12, 2023 • 1.2 MB</p>
               </div>
-              <button className="hid-down-btn"><Upload size={14} className="rotate-180" /></button>
+              <button className="hid-down-btn" onClick={() => navigate('/reports/view')}><Upload size={14} className="rotate-180" /></button>
             </div>
             <div className="hid-file-row hid-glass">
               <div className="hid-file-ico"><FileText size={18} color="#64B5F6" /></div>
@@ -266,8 +268,8 @@ const HealthID = () => {
               <button className="hid-down-btn"><Upload size={14} className="rotate-180" /></button>
             </div>
           </div>
-          <button className="hid-all-btn">View All Reports</button>
-          <button className="hid-up-btn">
+          <button className="hid-all-btn" onClick={() => navigate('/reports')}> View All Reports</button>
+          <button className="hid-up-btn" onClick={() => navigate('/reports/upload')}>
             <Upload size={18} />
             <span>Upload New Report</span>
           </button>
