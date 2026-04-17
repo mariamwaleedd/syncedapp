@@ -1,0 +1,45 @@
+.mf-root {
+  background-color: #010422; width: 100%; max-width: 430px; min-height: 100vh;
+  margin: 0 auto; position: relative; overflow-x: hidden;
+  font-family: 'General Sans', sans-serif; color: #FFFFFF;
+}
+.mf-bg-gradient {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(180deg, rgba(184, 159, 255, 0.15) 0%, #010422 100%); z-index: 1;
+}
+.mf-bg-lines {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('../../imgs/bg.png'); background-size: cover; opacity: 0.35; z-index: 2;
+}
+.mf-wrapper { position: relative; z-index: 3; padding: 10px 24px 110px; }
+.mf-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 0 35px; }
+.mf-circ-btn {
+  width: 44px; height: 44px; background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; color: #FFF; cursor: pointer;
+}
+.mf-active-btn { background: #B89FFF; border: none; }
+.mf-title { font-family: 'Instrument Serif', serif; font-size: 32px; font-weight: 400; margin: 0; }
+.mf-hero { margin-bottom: 40px; margin-top: 10px; }
+.mf-glass { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 28px; backdrop-filter: blur(15px); }
+.mf-breath-card { padding: 40px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.mf-breath-visual { width: 160px; height: 160px; position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 30px; }
+.mf-breath-circle { width: 100px; height: 100px; background: rgba(184, 159, 255, 0.2); border: 2px solid #B89FFF; border-radius: 50%; position: absolute; }
+.mf-breath-glow { width: 140px; height: 140px; background: #B89FFF; border-radius: 50%; position: absolute; filter: blur(40px); }
+.mf-wind-ico { position: relative; z-index: 5; opacity: 0.8; }
+.mf-breath-card h3 { font-size: 24px; font-weight: 700; margin: 0; }
+.mf-breath-card p { font-size: 15px; opacity: 0.5; margin-top: 8px; margin-bottom: 30px; }
+.mf-start-btn { width: 100%; height: 56px; background: #B89FFF; border: none; border-radius: 16px; color: #FFF; font-size: 16px; font-weight: 700; }
+.mf-sec { margin-bottom: 35px; }
+.mf-sec-lbl { font-family: 'Instrument Serif', serif; font-size: 24px; margin-bottom: 18px; opacity: 0.9; }
+.mf-med-stack { display: flex; flex-direction: column; gap: 12px; }
+.mf-med-card { padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; }
+.mf-med-l { display: flex; align-items: center; gap: 16px; }
+.mf-med-ico { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+.mf-med-ico.blue { background: rgba(100, 181, 246, 0.15); color: #64B5F6; }
+.mf-med-ico.purple { background: rgba(184, 159, 255, 0.15); color: #B89FFF; }
+.mf-med-txt h4 { margin: 0; font-size: 16px; font-weight: 600; }
+.mf-med-txt p { margin: 2px 0 0; font-size: 12px; opacity: 0.4; }
+.mf-streak-box { padding: 20px; display: flex; align-items: center; gap: 15px; border-radius: 20px; }
+.mf-streak-box p { font-size: 14px; opacity: 0.8; margin: 0; }
+.mf-bottom-pad { height: 40px; }
