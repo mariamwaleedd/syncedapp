@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Home, Activity, Cigarette, GlassWater, ArrowRight, ArrowLeft, Info, Apple, Moon } from 'lucide-react';
+import { Home, Activity, ArrowRight, ArrowLeft, Info, Apple, Moon } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import './Lifestyle.css';
 

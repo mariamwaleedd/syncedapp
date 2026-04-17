@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Mail, Lock, Eye, EyeOff, ChevronLeft, Globe } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, ChevronLeft } from 'lucide-react';
 import { useLanguage } from '../../common/LanguageContext';
 import StatusBar from '../../common/StatusBar';
 import './Login.css';
 import logo from '../../imgs/logoblue.png';
 
 const Login = () => {
-  const { t, toggleLanguage, lang } = useLanguage();
+  useLanguage();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

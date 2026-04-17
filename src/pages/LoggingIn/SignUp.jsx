@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Mail, Lock, Eye, EyeOff, ChevronLeft, Globe, User } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, ChevronLeft, User } from 'lucide-react';
 import { useLanguage } from '../../common/LanguageContext';
 import StatusBar from '../../common/StatusBar';
 import './SignUp.css';
 import logo from '../../imgs/logoblue.png';
 
 const SignUp = () => {
-  const { t, toggleLanguage, lang } = useLanguage();
+  useLanguage();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',

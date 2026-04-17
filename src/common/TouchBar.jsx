@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { 
   ClipboardCheck, 
@@ -14,13 +14,13 @@ const TouchBar = () => {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState('home');
 
-  const navItems = [
+  const navItems = useMemo(() => [
     { id: 'reports', label: 'Reports', icon: <ClipboardCheck size={22} />, path: '/reports' },
     { id: 'healthid', label: 'Health ID', icon: <User size={22} />, path: '/healthid' },
     { id: 'home', label: 'Home', icon: <Home size={22} />, path: '/' },
     { id: 'familyhub', label: 'Family Hub', icon: <Network size={22} />, path: '/familyhub' },
     { id: 'quickactions', label: 'Quick Actions', icon: <ShieldPlus size={22} />, path: '/quickactions' },
-  ];
+  ], []);
 
   useEffect(() => {
     const currentPath = location.pathname;

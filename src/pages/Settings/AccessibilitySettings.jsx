@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
-  ChevronLeft, Moon, Sun, Globe, Type, 
+  ChevronLeft, Moon, Sun, Type, 
   Eye, MousePointer2, Volume2, 
   Check, RefreshCw 
 } from 'lucide-react';

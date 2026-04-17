@@ -2,8 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
-  ChevronLeft, FileText, Calendar, User, 
-  Download, Share2, Info, Filter, Search
+  ChevronLeft, Calendar, User, 
+  Download, Share2, Filter, Search
 } from 'lucide-react';
 import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';

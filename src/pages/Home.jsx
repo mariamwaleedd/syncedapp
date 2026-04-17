@@ -8,7 +8,6 @@ import {
   Calendar, Phone, Plus, Target, ChevronRight
 } from 'lucide-react';
 import TouchBar from '../common/TouchBar';
-import StatusBar from '../common/StatusBar';
 import logo from '../imgs/logoblue.png';
 import './Home.css';
 
@@ -19,10 +18,6 @@ const Home = () => {
     visible: { opacity: 1, transition: { staggerChildren: 0.05 } }
   };
 
-  const item = {
-    hidden: { y: 15, opacity: 0 },
-    visible: { y: 0, opacity: 1 }
-  };
 
   return (
     <div className="ha-root ltr-theme">
