@@ -81,7 +81,7 @@ const AgreeTerms = () => {
           <button 
             className={`at-submit-btn ${agreed ? 'ready' : ''}`}
             disabled={!agreed}
-            onClick={() => navigate('/add-family-member')}
+            onClick={() => navigate('/familyhub')}
           >
             I Agree, Continue
           </button>
