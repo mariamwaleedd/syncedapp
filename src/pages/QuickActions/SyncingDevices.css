@@ -1,0 +1,71 @@
+/* Shared UI Patterns */
+.dv-root, .db-root, .pa-root, .sy-root {
+  background-color: var(--navy); width: 100%; max-width: 430px; height: 100vh;
+  margin: 0 auto; position: relative; overflow: hidden; font-family: var(--font-main); color: #FFF;
+}
+.dv-grad-layer, .db-grad-layer, .pa-grad-layer, .sy-grad-layer {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(180deg, rgba(100, 181, 246, 0.15) 0%, var(--navy) 100%); z-index: 1;
+}
+.dv-lines-layer, .db-lines-layer, .pa-lines-layer, .sy-lines-layer {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('../../imgs/bg.png'); background-size: cover; opacity: 0.35; z-index: 2;
+}
+.dv-wrapper, .db-wrapper, .pa-wrapper, .sy-wrapper { position: relative; z-index: 5; padding: 10px 24px; height: 100%; display: flex; flex-direction: column; }
+.dv-header, .db-header, .pa-header, .sy-header { padding: 15px 0 25px; }
+.dv-nav-top, .db-nav-top, .pa-nav-top, .sy-nav-top { display: flex; justify-content: space-between; margin-bottom: 25px; }
+.dv-circ-btn, .db-circ-btn, .pa-circ-btn, .sy-circ-btn { width: 44px; height: 44px; background: rgba(255,255,255,0.08); border-radius: 50%; border: 1px solid rgba(255,255,255,0.12); color: #FFF; display: flex; align-items: center; justify-content: center; }
+.dv-blue-btn, .db-blue-btn, .pa-blue-btn, .sy-blue-btn { background: #64B5F6; border: none; }
+.dv-title, .db-title, .pa-title, .sy-title { font-family: var(--font-title); font-size: 38px; margin: 0; font-weight: 400; }
+.dv-subtitle, .db-subtitle, .pa-subtitle, .sy-subtitle { font-size: 16px; opacity: 0.5; margin-top: 8px; }
+.dv-glass, .db-glass, .pa-glass, .sy-glass { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; backdrop-filter: blur(15px); }
+
+/* Devices List */
+.dv-scroll { flex: 1; overflow-y: auto; margin-top: 20px; }
+.dv-list { display: flex; flex-direction: column; gap: 14px; }
+.dv-card { padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+.dv-card-l { display: flex; align-items: center; gap: 16px; }
+.dv-icon-sq { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; }
+.dv-info h4 { margin: 0; font-size: 16px; font-weight: 600; }
+.dv-meta { display: flex; gap: 12px; margin-top: 6px; }
+.dv-meta span { display: flex; align-items: center; gap: 5px; font-size: 11px; opacity: 0.6; font-weight: 700; }
+.dv-footer { margin-top: auto; padding-top: 20px; }
+.dv-scan-btn { width: 100%; height: 56px; background: #64B5F6; border: none; border-radius: 16px; color: #FFF; font-size: 17px; font-weight: 700; box-shadow: 0 8px 25px rgba(100,181,246,0.3); margin-bottom: 20px; }
+.dv-info-box, .db-info-box { background: rgba(100,181,246,0.05); border: 1px solid rgba(100,181,246,0.15); padding: 16px; border-radius: 14px; text-align: center; }
+.dv-info-box p, .db-info-box p { font-size: 12px; color: #64B5F6; font-weight: 600; line-height: 1.5; margin: 0; }
+.dv-home-bar, .db-home-bar, .pa-home-bar, .sy-home-bar { width: 135px; height: 5px; background: rgba(255,255,255,0.2); border-radius: 10px; margin: 25px auto 5px; }
+
+/* Dashboard Scanning */
+.db-central { flex: 1; display: flex; align-items: center; justify-content: center; }
+.db-pulse-container { position: relative; width: 220px; height: 220px; display: flex; align-items: center; justify-content: center; }
+.db-pulse { position: absolute; width: 100%; height: 100%; border: 1.5px solid #64B5F6; border-radius: 50%; }
+.db-search-box { width: 100px; height: 100px; background: #64B5F6; border-radius: 30px; display: flex; align-items: center; justify-content: center; z-index: 5; box-shadow: 0 10px 30px rgba(100,181,246,0.4); }
+
+/* Successfully Paired */
+.pa-hero { display: flex; flex-direction: column; align-items: center; margin: 40px 0; }
+.pa-device-frame { width: 130px; height: 130px; background: linear-gradient(135deg, #1C345B, var(--navy)); border-radius: 40px; display: flex; align-items: center; justify-content: center; position: relative; border: 1px solid rgba(255,255,255,0.08); }
+.pa-check-inner { position: absolute; width: 64px; height: 64px; background: #00E676; border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(0,230,118,0.3); }
+.pa-progress-section { margin-top: 35px; width: 100%; text-align: center; }
+.pa-progress-section span { font-size: 12px; opacity: 0.4; font-weight: 700; margin-top: 10px; display: block; }
+.pa-track { width: 100%; height: 6px; background: rgba(255,255,255,0.08); border-radius: 10px; }
+.pa-fill { width: 100%; height: 100%; background: linear-gradient(90deg, #64B5F6, #9C27B0); border-radius: 10px; }
+.pa-steps-stack { display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.pa-step-row { padding: 18px 20px; display: flex; align-items: center; gap: 18px; }
+.pa-step-txt h4 { margin: 0; font-size: 15px; font-weight: 600; }
+.pa-step-txt p { margin: 4px 0 0; font-size: 12px; opacity: 0.5; }
+.pa-submit-btn { width: 100%; height: 60px; background: #64B5F6; border: none; border-radius: 18px; color: #FFF; font-size: 17px; font-weight: 700; box-shadow: 0 10px 25px rgba(100,181,246,0.35); }
+
+/* Syncing */
+.sy-ring-hero { padding: 40px 0; display: flex; justify-content: center; }
+.sy-ring-box { position: relative; width: 180px; height: 180px; display: flex; align-items: center; justify-content: center; }
+.sy-ring-txt { position: absolute; text-align: center; }
+.sy-ring-txt h2 { font-size: 36px; font-weight: 800; margin: 0; }
+.sy-ring-txt span { font-size: 12px; font-weight: 700; opacity: 0.5; text-transform: uppercase; }
+.sy-metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; flex: 1; overflow-y: auto; padding-bottom: 20px; }
+.sy-metric-card { padding: 20px; border-radius: 28px; }
+.sy-m-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+.sy-m-ico { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #FFF; }
+.sy-m-check { width: 18px; height: 18px; background: #64B5F6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #010422; }
+.sy-m-body label { font-size: 13px; opacity: 0.5; font-weight: 500; }
+.sy-m-body p { font-size: 20px; font-weight: 700; margin: 4px 0 0; }
+.sy-m-body p span { font-size: 11px; opacity: 0.4; margin-left: 2px; }
