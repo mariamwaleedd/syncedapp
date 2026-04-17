@@ -225,7 +225,7 @@ const Routing = () => {
         <Route path="/familyhub/agree-terms" element={<AgreeTerms/>} />
         <Route path="/familyhub/add-member" element={<AddMember/>} />
         <Route path="/familyhub/choose-avatar" element={<ChooseAvatar/>} />
-        <Route path="/familyhub/family-profile" element={<FamilyProfile/>} />
+        <Route path="/familyhub/family-profile/:id" element={<FamilyProfile/>} />
 
 
         <Route path="/*" element={<ErrorPage />} />

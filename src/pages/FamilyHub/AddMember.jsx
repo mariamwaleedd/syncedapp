@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   ChevronLeft, X, User, Users, Calendar, 
-  Mail, Phone, Droplets, AlertCircle, ChevronRight 
+  Mail, Phone, Droplets, AlertCircle 
 } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
 import './AddMember.css';
@@ -25,12 +25,24 @@ const AddMember = () => {
   };
 
   const handleSubmit = async () => {
-    const { data, error } = await supabase
+    if (!formData.full_name || !formData.relationship || !formData.dob || !gender) {
+      alert("Please fill in all required fields");
+      return;
+    }
+
+    const { error } = await supabase
       .from('application_family')
-      .insert([{ ...formData, gender, emoji: gender === 'female' ? '👩' : '👨' }]);
+      .insert([{ 
+        ...formData, 
+        gender, 
+        emoji: gender === 'female' ? (formData.relationship.toLowerCase().includes('daughter') ? '👧' : '👩') : (formData.relationship.toLowerCase().includes('son') ? '👦' : '👨') 
+      }]);
     
     if (!error) navigate('/familyhub');
   };
+
+  const relationships = ['Father', 'Mother', 'Son', 'Daughter', 'Grandfather', 'Grandmother', 'Brother', 'Sister', 'Other'];
+  const bloodTypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', 'Unknown'];
 
   return (
     <div className="am-root ltr-theme">
@@ -40,7 +52,7 @@ const AddMember = () => {
         <header className="am-header">
           <button className="am-nav-btn" onClick={() => navigate(-1)}><ChevronLeft size={22} strokeWidth={2.5} /></button>
           <div className="am-stepper"><span className="am-dot"></span><span className="am-dot active"></span><span className="am-dot"></span></div>
-          <button className="am-nav-btn" onClick={() => navigate('/home')}><X size={22} strokeWidth={2.5} /></button>
+          <button className="am-nav-btn" onClick={() => navigate('/familyhub')}><X size={22} strokeWidth={2.5} /></button>
         </header>
         <div className="am-hero"><h1 className="am-title">Add Family Member</h1><p className="am-subtitle">Enter their health information</p></div>
         <div className="am-scroll-form">
@@ -55,7 +67,10 @@ const AddMember = () => {
             <label className="am-label">Relationship *</label>
             <div className="am-input-wrap am-glass">
               <Users size={18} className="am-field-ico" />
-              <input type="text" name="relationship" placeholder="Mother, Son, etc" onChange={handleInput}/>
+              <select name="relationship" onChange={handleInput} className="am-select-field">
+                <option value="">Select Relationship</option>
+                {relationships.map(r => <option key={r} value={r}>{r}</option>)}
+              </select>
             </div>
           </div>
           <div className="am-field-group">
@@ -90,7 +105,10 @@ const AddMember = () => {
             <label className="am-label">Blood Type</label>
             <div className="am-input-wrap am-glass">
               <Droplets size={18} className="am-field-ico" />
-              <input type="text" name="blood_type" placeholder="A+, O-, etc" onChange={handleInput}/>
+              <select name="blood_type" onChange={handleInput} className="am-select-field">
+                <option value="">Select Blood Type</option>
+                {bloodTypes.map(b => <option key={b} value={b}>{b}</option>)}
+              </select>
             </div>
           </div>
           <div className="am-field-group">

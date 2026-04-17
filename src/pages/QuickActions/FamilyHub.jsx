@@ -5,15 +5,18 @@ import {
   ChevronLeft, Bell, Calendar, Pill, 
   Plus, ChevronRight, Activity, 
   Target, Users, Weight, 
-  Moon, Footprints, AlertCircle
+  Moon, Footprints, AlertCircle, Trash2, Edit3
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
+import ConfirmModal from '../../common/ConfirmModal';
 import { supabase } from '../../supabaseClient';
 import './FamilyHub.css';
 
 const FamilyHub = () => {
   const navigate = useNavigate();
   const [members, setMembers] = useState([]);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [modalConfig, setModalConfig] = useState({ isOpen: false, member: null });
 
   useEffect(() => {
     fetchMembers();
@@ -24,7 +27,23 @@ const FamilyHub = () => {
     if (!error) setMembers(data);
   };
 
+  const handleDeleteClick = (id, name, e) => {
+    e.stopPropagation();
+    setModalConfig({ isOpen: true, member: { id, name } });
+  };
+
+  const confirmDelete = async () => {
+    if (!modalConfig.member) return;
+    const { id } = modalConfig.member;
+    const { error } = await supabase.from('application_family').delete().eq('id', id);
+    if (!error) {
+      setMembers(members.filter(m => m.id !== id));
+      setModalConfig({ isOpen: false, member: null });
+    }
+  };
+
   const calculateAge = (dob) => {
+    if (!dob) return "N/A";
     const birthDate = new Date(dob);
     const difference = Date.now() - birthDate.getTime();
     const ageDate = new Date(difference);
@@ -69,7 +88,12 @@ const FamilyHub = () => {
         <section className="fh-sec">
           <div className="fh-sec-head">
             <h2 className="fh-sec-title">Family Members</h2>
-            <button className="fh-plus-btn" onClick={() => navigate('/familyhub/add-member')}><Plus size={18} /></button>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <button className={`fh-plus-btn ${isEditMode ? 'active' : ''}`} onClick={() => setIsEditMode(!isEditMode)} style={{ backgroundColor: isEditMode ? '#FF416C' : '' }}>
+                <Edit3 size={18} />
+              </button>
+              <button className="fh-plus-btn" onClick={() => navigate('/familyhub/add-member')}><Plus size={18} /></button>
+            </div>
           </div>
           <div className="fh-list">
             {members.map((m, i) => (
@@ -77,7 +101,7 @@ const FamilyHub = () => {
                 key={m.id} 
                 className="fh-member-card fh-glass"
                 whileTap={{ scale: 0.98 }}
-                onClick={() => navigate(`/familyhub/family-profile/${m.id}`)}
+                onClick={() => !isEditMode && navigate(`/familyhub/family-profile/${m.id}`)}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
@@ -98,7 +122,13 @@ const FamilyHub = () => {
                     </div>
                     {m.alert_text && <div className="fh-alert-pill"><AlertCircle size={10}/> {m.alert_text}</div>}
                   </div>
-                  <ChevronRight size={18} className="fh-arrow" />
+                  {isEditMode ? (
+                    <button className="fh-circ-btn" onClick={(e) => handleDeleteClick(m.id, m.full_name, e)} style={{ backgroundColor: 'rgba(255, 65, 108, 0.2)', color: '#FF416C', border: 'none' }}>
+                      <Trash2 size={18} />
+                    </button>
+                  ) : (
+                    <ChevronRight size={18} className="fh-arrow" />
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -132,6 +162,15 @@ const FamilyHub = () => {
         <div className="fh-bottom-spacer"></div>
       </div>
       <TouchBar />
+      
+      <ConfirmModal 
+        isOpen={modalConfig.isOpen}
+        title="Remove Member?"
+        message={`Are you sure you want to remove ${modalConfig.member?.name}? This action will permanently delete their health records from your hub.`}
+        onConfirm={confirmDelete}
+        onClose={() => setModalConfig({ isOpen: false, member: null })}
+        confirmText="Remove"
+      />
     </div>
   );
 };
