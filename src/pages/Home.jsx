@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { supabase } from '../supabaseClient';
 import { 
   Bell, Heart, Activity, Moon, Droplets, 
   Users, Pill, FileText, Check,
@@ -11,18 +13,45 @@ import TouchBar from '../common/TouchBar';
 import logo from '../imgs/logoblue.png';
 import './Home.css';
 
+
 const Home = () => {
   const navigate = useNavigate();
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   const container = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.05 } }
   };
 
+  useEffect(() => {
+    fetchHomeData();
+  }, []);
+
+  const fetchHomeData = async () => {
+    try {
+      setLoading(true);
+      const { data: homeData, error } = await supabase
+        .from('application_home')
+        .select('*')
+        .single();
+
+      if (error) throw error;
+      setData(homeData);
+    } catch (error) {
+      console.error('Error fetching data:', error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading || !data) {
+    return <div className="ha-root ltr-theme" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', color: 'white' }}>Loading...</div>;
+  }
 
   return (
     <div className="ha-root ltr-theme">
       <div className="ha-fixed-header">
-
         <div className="ha-header-body">
           <div className="ha-logo-center">
             <img src={logo} alt="Synced" className="ha-brand-logo" />
@@ -30,7 +59,7 @@ const Home = () => {
 
           <div className="ha-greeting-row">
             <div className="ha-greeting-left">
-              <h1>Hello, Mariam</h1>
+              <h1>Hello, {data.user_name}</h1>
               <p className="ha-date">Wednesday, Mar 11</p>
               <div className="ha-live-indicator">
                 <span className="ha-pulse" />
@@ -59,22 +88,22 @@ const Home = () => {
           <div className="ha-tracker-grid">
             <div className="ha-tracker-item ha-glass">
               <div className="ha-ico-box red"><Heart size={20} fill="white" /></div>
-              <div className="ha-tracker-val">72<span>bpm</span></div>
+              <div className="ha-tracker-val">{data.heart_rate}<span>bpm</span></div>
               <p>Heart Rate</p>
             </div>
             <div className="ha-tracker-item ha-glass">
               <div className="ha-ico-box green"><Activity size={20} /></div>
-              <div className="ha-tracker-val">8,544<span>Steps</span></div>
+              <div className="ha-tracker-val">{data.steps.toLocaleString()}<span>Steps</span></div>
               <p>Daily Steps</p>
             </div>
             <div className="ha-tracker-item ha-glass" onClick={() => navigate('/wellness/sleep')} style={{ cursor: 'pointer' }}>
               <div className="ha-ico-box purple"><Moon size={20} fill="white" /></div>
-              <div className="ha-tracker-val">7.5<span>Hours</span></div>
+              <div className="ha-tracker-val">{data.sleep_hours}<span>Hours</span></div>
               <p>Sleep</p>
             </div>
             <div className="ha-tracker-item ha-glass" onClick={() => navigate('/wellness/waterintake')} style={{ cursor: 'pointer' }}>
               <div className="ha-ico-box orange"><Droplets size={20} fill="white" /></div>
-              <div className="ha-tracker-val">85<span>%</span></div>
+              <div className="ha-tracker-val">{data.hydration_perc}<span>%</span></div>
               <p>Hydration</p>
             </div>
           </div>
@@ -84,7 +113,7 @@ const Home = () => {
           <h2 className="ha-sec-lbl">How are you feeling today?</h2>
           <div className="ha-mood-card ha-glass">
             {['Amazing', 'Good', 'Okay', 'Low', 'Stressed'].map((m, i) => (
-              <div key={m} className={`ha-mood-unit ${i === 0 ? 'active' : ''}`}>
+              <div key={m} className={`ha-mood-unit ${i === data.mood_index ? 'active' : ''}`}>
                 <span className="ha-emoji">{['🤩', '😊', '😐', '😔', '😟'][i]}</span>
                 <span className="ha-mood-name">{m}</span>
               </div>
@@ -99,11 +128,7 @@ const Home = () => {
           </div>
           <div className="ha-family-card ha-glass">
             <div className="ha-family-grid">
-              {[
-                { name: 'Mona', emoji: '👩', status: 'ok' },
-                { name: 'Maya', emoji: '👧', status: 'ok' },
-                { name: 'Abdo', emoji: '👦', status: 'warn' },
-              ].map((m) => (
+              {data.family_members.map((m) => (
                 <div key={m.name} className="ha-family-member">
                   <div className="ha-family-avatar-wrap">
                     <div className="ha-family-avatar">{m.emoji}</div>
@@ -132,28 +157,28 @@ const Home = () => {
           <div className="ha-menu-cell" onClick={() => navigate('/familyhub')}>
             <div className="ha-cell-card">
               <div className="ha-sq-box pink"><Users size={24} /></div>
-              <div className="ha-badge">3</div>
+              <div className="ha-badge">{data.badge_family}</div>
             </div>
             <span>Family</span>
           </div>
           <div className="ha-menu-cell" onClick={() => navigate('/medicine')}>
             <div className="ha-cell-card">
               <div className="ha-sq-box orange"><Pill size={24} /></div>
-              <div className="ha-badge">4</div>
+              <div className="ha-badge">{data.badge_medicine}</div>
             </div>
             <span>Medicine</span>
           </div>
           <div className="ha-menu-cell" onClick={() => navigate('/reports')}>
             <div className="ha-cell-card">
               <div className="ha-sq-box blue"><FileText size={24} /></div>
-              <div className="ha-badge">12</div>
+              <div className="ha-badge">{data.badge_reports}</div>
             </div>
             <span>Reports</span>
           </div>
           <div className="ha-menu-cell" onClick={() => navigate('/devices')}>
             <div className="ha-cell-card">
               <div className="ha-sq-box dark-green"><Smartphone size={24} /></div>
-              <div className="ha-badge">2</div>
+              <div className="ha-badge">{data.badge_devices}</div>
             </div>
             <span>Devices</span>
           </div>
@@ -174,11 +199,7 @@ const Home = () => {
         <section className="ha-section">
           <h2 className="ha-sec-lbl">Daily Goals</h2>
           <div className="ha-goals-container">
-            {[
-              { label: 'Steps Goal', val: '8,544/10k', perc: 85, color: '#05FF91', icon: <Footprints size={16}/>, path: '/wellness/steps' },
-              { label: 'Water Intake', val: '6/8 glasses', perc: 75, color: '#64B5F6', icon: <Droplet size={16}/>, path: '/wellness/waterintake' },
-              { label: 'Calories Burned', val: '420/500', perc: 84, color: '#FF8A00', icon: <Activity size={16}/>, path: '/wellness/nutrition' }
-            ].map((g) => (
+            {data.goals.map((g) => (
               <div 
                 className="ha-goal-card ha-glass" 
                 key={g.label} 
@@ -187,7 +208,9 @@ const Home = () => {
               >
                 <div className="ha-goal-meta">
                   <div className="ha-goal-header">
-                    <span className="ha-goal-icon" style={{color: g.color}}>{g.icon}</span>
+                    <span className="ha-goal-icon" style={{color: g.color}}>
+                       {g.label.includes('Steps') ? <Footprints size={16}/> : g.label.includes('Water') ? <Droplet size={16}/> : <Activity size={16}/>}
+                    </span>
                     <span className="ha-goal-name">{g.label}</span>
                   </div>
                   <span className="ha-goal-perc" style={{color: g.color}}>{g.perc}%</span>
@@ -205,15 +228,7 @@ const Home = () => {
           <h2 className="ha-sec-lbl">Weekly Health Score</h2>
           <div className="ha-weekly-card ha-glass">
             <div className="ha-week-grid">
-              {[
-                { day: 'Mon', emoji: '😁', active: false },
-                { day: 'Tue', emoji: '😁', active: false },
-                { day: 'Wed', emoji: '🔥', active: true },
-                { day: 'Thu', emoji: '😁', active: false },
-                { day: 'Fri', emoji: '🔥', active: false },
-                { day: 'Sat', emoji: '😊', active: false },
-                { day: 'Sun', emoji: '🔥', active: false },
-              ].map((d) => (
+              {data.weekly_score.map((d) => (
                 <div key={d.day} className={`ha-week-day ${d.active ? 'current' : ''}`}>
                   <span className="ha-week-emoji">{d.emoji}</span>
                   {d.active && <span className="ha-week-active-name">{d.day}</span>}
@@ -271,12 +286,12 @@ const Home = () => {
             <div className="ha-appt-row">
               <div className="ha-appt-avatar pink"><Calendar size={18}/></div>
               <div className="ha-appt-info">
-                <h4>Dr. John Smith</h4>
-                <p>Cardiologist</p>
+                <h4>{data.appointment.doctor}</h4>
+                <p>{data.appointment.specialty}</p>
               </div>
               <div className="ha-appt-timing">
-                <span className="ha-appt-date">Mar 16, 2026</span>
-                <span className="ha-appt-time">10:00 AM</span>
+                <span className="ha-appt-date">{data.appointment.date}</span>
+                <span className="ha-appt-time">{data.appointment.time}</span>
               </div>
             </div>
           </div>
@@ -288,11 +303,11 @@ const Home = () => {
             <div className="ha-emerg-head">
               <div className="ha-emerg-avatar red"><Phone size={18} fill="white"/></div>
               <div className="ha-emerg-info">
-                <h4>Dr. Sarah Wilson</h4>
-                <p>Non-Resident</p>
+                <h4>{data.emergency_contact.name}</h4>
+                <p>{data.emergency_contact.type}</p>
               </div>
             </div>
-            <span className="ha-emerg-phone">01275843440</span>
+            <span className="ha-emerg-phone">{data.emergency_contact.phone}</span>
           </div>
         </section>
 
@@ -304,10 +319,10 @@ const Home = () => {
           <div className="ha-report-row ha-glass" onClick={() => navigate('/reports')}>
             <div className="ha-report-ico blue"><FileText size={18}/></div>
             <div className="ha-report-meta">
-              <h4>Blood Test</h4>
-              <p>Primary Care • Feb 6, 2026</p>
+              <h4>{data.recent_report.title}</h4>
+              <p>{data.recent_report.sub}</p>
             </div>
-            <span className="ha-report-badge green">Normal</span>
+            <span className="ha-report-badge green">{data.recent_report.status}</span>
           </div>
         </section>
 
@@ -315,9 +330,9 @@ const Home = () => {
           <h2 className="ha-sec-lbl">Overall Health Score</h2>
           <div className="ha-final-score ha-glass">
             <div className="ha-score-content">
-              <p className="ha-score-tag">Excellent Progress</p>
-              <div className="ha-score-main">92<span>/100</span></div>
-              <p className="ha-score-change">↑ +3 from last week</p>
+              <p className="ha-score-tag">{data.overall_status}</p>
+              <div className="ha-score-main">{data.overall_score}<span>/100</span></div>
+              <p className="ha-score-change">{data.overall_change}</p>
             </div>
             <div className="ha-score-visual">
               <Target size={32} color="#010422" />
@@ -333,7 +348,7 @@ const Home = () => {
               <p>100% data verified</p>
             </div>
           </div>
-          <button className="ha-refresh-btn">Refresh</button>
+          <button className="ha-refresh-btn" onClick={fetchHomeData}>Refresh</button>
         </div>
 
         <div className="ha-bottom-spacer"></div>
