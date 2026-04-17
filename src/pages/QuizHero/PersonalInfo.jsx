@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, ArrowRight, ArrowLeft } from 'lucide-react';
-import { supabase } from '../supabaseClient';
+import { supabase } from '../../supabaseClient';
 import './PersonalInfo.css';
 
 const PersonalInfo = () => {
@@ -63,7 +63,7 @@ const PersonalInfo = () => {
         </div>
         <div className="pi-footer">
           <button className="pi-back-btn" onClick={() => navigate(-1)}><ArrowLeft size={18} /><span>Back</span></button>
-          <button className="pi-continue-btn" onClick={handleContinue}><span>Continue</span><ArrowRight size={18} /></button>
+          <button className="pi-continue-btn" onClick={() => navigate('/physicalstats')}><span>Continue</span><ArrowRight size={18} /></button>
         </div>
         <div className="pi-home-pill"></div>
       </div>

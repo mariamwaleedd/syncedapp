@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Heart, AlertCircle, Pill, Activity, ArrowRight, ArrowLeft, AlertTriangle } from 'lucide-react';
-import { supabase } from '../supabaseClient';
+import { supabase } from '../../supabaseClient';
 import './MedicalHistory.css';
 
 const MedicalHistory = () => {
