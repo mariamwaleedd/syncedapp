@@ -84,6 +84,7 @@ import AgreeTerms from './pages/FamilyHub/AgreeTerms';
 import AddMember from './pages/FamilyHub/AddMember';
 import ChooseAvatar from './pages/FamilyHub/ChooseAvatar';
 import FamilyProfile from './pages/FamilyHub/FamilyProfile';
+import AddReminder from './pages/QuickActions/AddReminder';
 
 const TitleUpdater = () => {
   const location = useLocation();
@@ -175,6 +176,7 @@ const Routing = () => {
         <Route path="/preferences" element={<Preferences/>} />
         <Route path="/records" element={<Records/>} />
         <Route path="/personaldetails" element={<PersonalDetails/>} />
+        <Route path="/addreminder" element={<AddReminder/>} />
 
         {/* Settings Sub-Routes */}
         <Route path="/settings/profile" element={<Profile/>} />

@@ -38,7 +38,7 @@ const Appointments = () => {
             <button className="rs-circ-btn" onClick={() => navigate(-1)}>
               <ChevronLeft size={22} strokeWidth={2.5} />
             </button>
-            <button className="rs-circ-btn rs-add-btn">
+            <button className="rs-circ-btn rs-add-btn" onClick={() => navigate('/addreminder')}>
               <Plus size={22} color="#FFF" />
             </button>
           </div>
