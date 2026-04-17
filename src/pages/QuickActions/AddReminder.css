@@ -32,7 +32,6 @@
 .arn-wrapper {
   position: relative;
   z-index: 5;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 10px 24px;

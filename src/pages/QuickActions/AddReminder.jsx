@@ -5,7 +5,7 @@ import {
   Activity, Clock, Plus, 
   ChevronRight, Check 
 } from 'lucide-react';
-import { supabase } from '../supabaseClient';
+import { supabase } from '../../supabaseClient';
 import './AddReminder.css';
 
 const AddReminder = () => {

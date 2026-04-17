@@ -6,13 +6,16 @@ import {
   Droplets, Edit3, Trash2, Clock 
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
-import { supabase } from '../supabaseClient';
+import ConfirmModal from '../../common/ConfirmModal';
+import { supabase } from '../../supabaseClient';
 import './Appointments.css';
 
 const Appointments = () => {
   const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState('All');
   const [reminders, setReminders] = useState([]);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
 
   useEffect(() => {
     fetchReminders();
@@ -28,10 +31,16 @@ const Appointments = () => {
     if (!error) fetchReminders();
   };
 
-  const deleteReminder = async (id) => {
-    if (window.confirm("Delete this reminder?")) {
-      const { error } = await supabase.from('application_reminders').delete().eq('id', id);
+  const deleteReminder = (id) => {
+    setItemToDelete(id);
+    setIsDeleteOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (itemToDelete) {
+      const { error } = await supabase.from('application_reminders').delete().eq('id', itemToDelete);
       if (!error) fetchReminders();
+      setItemToDelete(null);
     }
   };
 
@@ -147,6 +156,16 @@ const Appointments = () => {
         </main>
       </div>
       <TouchBar />
+
+      <ConfirmModal 
+        isOpen={isDeleteOpen}
+        onClose={() => setIsDeleteOpen(false)}
+        onConfirm={handleConfirmDelete}
+        title="Delete Reminder?"
+        message="This will permanently remove this reminder from your schedule."
+        confirmText="Delete Now"
+        type="danger"
+      />
     </div>
   );
 };

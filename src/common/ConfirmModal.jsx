@@ -3,7 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { AlertTriangle, X } from 'lucide-react';
 import './ConfirmModal.css';
 
-const ConfirmModal = ({ isOpen, onClose, onConfirm, title, message, confirmText = "Delete", cancelText = "Cancel", type = "danger" }) => {
+const ConfirmModal = ({ 
+  isOpen, 
+  onClose, 
+  onConfirm, 
+  title = "Are you sure?", 
+  message = "This action cannot be undone.",
+  confirmText = "Delete",
+  cancelText = "Cancel",
+  type = "danger" // danger, warning, info
+}) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -18,31 +27,38 @@ const ConfirmModal = ({ isOpen, onClose, onConfirm, title, message, confirmText 
           <div className="cm-wrapper">
             <motion.div 
               className="cm-content ha-glass"
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: 'spring', damping: 20, stiffness: 300 }}
             >
-              <button className="cm-close-btn" onClick={onClose}>
-                <X size={20} />
-              </button>
+              <div className="cm-header">
+                <div className={`cm-icon-box ${type}`}>
+                  <AlertTriangle size={24} />
+                </div>
+                <button className="cm-close-btn" onClick={onClose}>
+                  <X size={20} />
+                </button>
+              </div>
 
               <div className="cm-body">
-                <div className={`cm-icon-box ${type}`}>
-                  <AlertTriangle size={28} />
-                </div>
-                
-                <h2 className="cm-title">{title}</h2>
+                <h3 className="cm-title">{title}</h3>
                 <p className="cm-message">{message}</p>
+              </div>
 
-                <div className="cm-actions">
-                  <button className="cm-btn cancel" onClick={onClose}>
-                    {cancelText}
-                  </button>
-                  <button className={`cm-btn confirm ${type}`} onClick={onConfirm}>
-                    {confirmText}
-                  </button>
-                </div>
+              <div className="cm-footer">
+                <button className="cm-btn-cancel" onClick={onClose}>
+                  {cancelText}
+                </button>
+                <button 
+                  className={`cm-btn-confirm ${type}`} 
+                  onClick={() => {
+                    onConfirm();
+                    onClose();
+                  }}
+                >
+                  {confirmText}
+                </button>
               </div>
             </motion.div>
           </div>
