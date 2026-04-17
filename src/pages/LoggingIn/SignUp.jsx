@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, ChevronLeft, User } from 'lucide-react';
 import { useLanguage } from '../../common/LanguageContext';
-import { supabase } from '../supabaseClient';
+import { supabase } from '../../supabaseClient';
 import './SignUp.css';
 import logo from '../../imgs/logoblue.png';
 
