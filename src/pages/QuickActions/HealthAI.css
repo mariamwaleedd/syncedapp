@@ -145,8 +145,11 @@
 .hai-timestamp { font-size: 11px; opacity: 0.3; font-weight: 600; }
 
 .hai-input-sticky {
+  position: fixed;
   padding: 15px 20px 10px;
-  background: rgba(1, 4, 34, 0.9);
+  width: 430px;
+  margin-top: 66%;
+  background: #010422;
   backdrop-filter: blur(20px);
 }
 
