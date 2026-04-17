@@ -279,9 +279,9 @@ const Home = () => {
         <section className="ha-section">
           <div className="ha-section-title">
             <h2>Upcoming Appointments</h2>
-            <span className="ha-view-link" onClick={() => navigate('/Appointments')}>View All</span>
+            <span className="ha-view-link" onClick={() => navigate('/appointments')}>View All</span>
           </div>
-          <div className="ha-appt-card ha-glass">
+          <div className="ha-appt-card ha-glass" onClick={() => navigate('/appointments')}>
             <div className="ha-appt-row">
               <div className="ha-appt-avatar pink"><Calendar size={18}/></div>
               <div className="ha-appt-info">
@@ -298,7 +298,7 @@ const Home = () => {
 
         <section className="ha-section">
           <h2 className="ha-sec-lbl">Emergency Contacts</h2>
-          <div className="ha-emerg-card ha-glass">
+          <div className="ha-emerg-card ha-glass" onClick={() => navigate('/emergency')}>
             <div className="ha-emerg-head">
               <div className="ha-emerg-avatar red"><Phone size={18} fill="white"/></div>
               <div className="ha-emerg-info">
@@ -315,7 +315,7 @@ const Home = () => {
             <h2>Recent Reports</h2>
             <span className="ha-view-link" onClick={() => navigate('/reports')}>View All</span>
           </div>
-          <div className="ha-report-row ha-glass">
+          <div className="ha-report-row ha-glass" onClick={() => navigate('/reports')}>
             <div className="ha-report-ico blue"><FileText size={18}/></div>
             <div className="ha-report-meta">
               <h4>Blood Test</h4>

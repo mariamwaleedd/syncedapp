@@ -392,6 +392,7 @@
 
 .ha-view-link { font-size: 13px; color: #64B5F6; font-weight: 600; }
 
+.ha-appt-card { cursor: pointer; }
 .ha-appt-row { padding: 18px; display: flex; align-items: center; gap: 15px; }
 .ha-appt-avatar { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
 .ha-appt-avatar.pink { background: rgba(255,65,108,0.12); color: #FF416C; }
@@ -401,7 +402,7 @@
 .ha-appt-date { font-size: 11px; opacity: 0.4; display: block; }
 .ha-appt-time { font-size: 13px; font-weight: 700; color: #FF416C; }
 
-.ha-emerg-card { padding: 18px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, rgba(255,75,43,0.12), var(--btn-bg)); }
+.ha-emerg-card { padding: 18px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, rgba(255,75,43,0.12), var(--btn-bg)); cursor: pointer; }
 .ha-emerg-head { display: flex; align-items: center; gap: 12px; }
 .ha-emerg-avatar { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
 .ha-emerg-avatar.red { background: #FF4B2B; }
@@ -409,7 +410,7 @@
 .ha-emerg-info p { margin: 2px 0 0; font-size: 11px; opacity: 0.5; }
 .ha-emerg-phone { color: #FF4B2B; font-weight: 700; font-size: 14px; }
 
-.ha-report-row { padding: 16px; display: flex; align-items: center; gap: 15px; }
+.ha-report-row { padding: 16px; display: flex; align-items: center; gap: 15px; cursor: pointer; }
 .ha-report-ico { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
 .ha-report-ico.blue { background: var(--btn-bg); color: #64B5F6; }
 .ha-report-meta h4 { margin: 0; font-size: 14px; font-weight: 600; }
