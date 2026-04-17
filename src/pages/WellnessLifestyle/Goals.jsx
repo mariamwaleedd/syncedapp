@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Plus, Target, CheckCircle2, TrendingUp, Calendar, Heart, Award } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './Goals.css';
 
@@ -20,14 +19,13 @@ const Goals = () => {
       <div className="gl-bg-lines"></div>
 
       <div className="gl-wrapper">
-        <StatusBar dark={true} />
 
         <header className="gl-header">
           <button className="gl-circ-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} strokeWidth={2.5} />
           </button>
           <h1 className="gl-title">My Goals</h1>
-          <button className="gl-circ-btn gl-add-btn">
+          <button className="gl-circ-btn gl-add-btn" onClick={() => navigate('/wellness/add-goal')}>
             <Plus size={22} />
           </button>
         </header>

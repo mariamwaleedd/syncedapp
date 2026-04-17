@@ -5,7 +5,6 @@ import {
   ChevronLeft, Plus, Dumbbell, Zap, 
   Clock, Flame, Play, Trophy, Activity 
 } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './Exercise.css';
 
@@ -24,14 +23,13 @@ const Exercise = () => {
       <div className="ex-bg-lines"></div>
 
       <div className="ex-wrapper">
-        <StatusBar dark={true} />
 
         <header className="ex-header">
           <button className="ex-circ-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} strokeWidth={2.5} />
           </button>
           <h1 className="ex-title">Exercise</h1>
-          <button className="ex-circ-btn ex-add-btn">
+          <button className="ex-circ-btn ex-add-btn" onClick={() => navigate('/wellness/add-exercise')}>
             <Plus size={22} />
           </button>
         </header>

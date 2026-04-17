@@ -84,6 +84,11 @@ import AddMember from './pages/FamilyHub/AddMember';
 import ChooseAvatar from './pages/FamilyHub/ChooseAvatar';
 import FamilyProfile from './pages/FamilyHub/FamilyProfile';
 import AddReminder from './pages/QuickActions/AddReminder';
+import Goals from './pages/WellnessLifestyle/Goals';
+import Exercise from './pages/WellnessLifestyle/Exercise';
+import Mindfulness from './pages/WellnessLifestyle/Mindfulness';
+import AddExercise from './pages/WellnessLifestyle/AddExercise';
+import AddGoal from './pages/WellnessLifestyle/AddGoal';
 
 const TitleUpdater = () => {
   const location = useLocation();
@@ -118,7 +123,9 @@ const TitleUpdater = () => {
       '/medicinetracker/dosage-schedule': 'Medicine Dosage',
       '/medicinetracker/reminders': 'Medicine Reminders',
       '/medicinetracker/additional-details': 'Medicine Additional Details',
-      '/doctors/profile': "Doctor's Profile"
+      '/doctors/profile': "Doctor's Profile",
+      '/wellness/add-exercise': 'Track Workout',
+      '/wellness/add-goal': 'Create New Goal'
     };
 
     const currentTitle = titles[location.pathname] || 'SYNCED';
@@ -208,6 +215,11 @@ const Routing = () => {
         <Route path="/wellness/sleep" element={<SleepTracker/>} />
         <Route path="/wellness/nutrition" element={<Nutrition/>} />
         <Route path="/wellness/steps" element={<Steps/>} />
+        <Route path="/wellness/mindfulness" element={<Mindfulness/>} />
+        <Route path="/wellness/goals" element={<Goals/>} />
+        <Route path="/wellness/exercise" element={<Exercise/>} />
+        <Route path="/wellness/add-exercise" element={<AddExercise/>} />
+        <Route path="/wellness/add-goal" element={<AddGoal/>} />
 
         {/* Doctor Routes */}
         <Route path="/doctors/profile" element={<DrProfile/>} />

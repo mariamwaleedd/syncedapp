@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronLeft, Wind, Moon, Brain, Play, Clock, Sparkles } from 'lucide-react';
-import StatusBar from '../../common/StatusBar';
 import TouchBar from '../../common/TouchBar';
 import './Mindfulness.css';
 
@@ -16,16 +15,12 @@ const Mindfulness = () => {
       <div className="mf-bg-lines"></div>
 
       <div className="mf-wrapper">
-        <StatusBar dark={true} />
 
         <header className="mf-header">
           <button className="mf-circ-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} strokeWidth={2.5} />
           </button>
           <h1 className="mf-title">Mindfulness</h1>
-          <button className="mf-circ-btn mf-active-btn">
-            <Brain size={20} />
-          </button>
         </header>
 
         <section className="mf-hero">

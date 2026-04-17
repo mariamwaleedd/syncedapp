@@ -21,9 +21,9 @@ const WellnessPage = () => {
 
   const categories = [
     { name: 'Nutrition', desc: 'Track meals & calories', stat: '3 meals today', color: '#00E676', ico: <Utensils size={22} />, path: '/wellness/nutrition' },
-    { name: 'Exercise', desc: 'Log workouts & activity', stat: '45 min today', color: '#64B5F6', ico: <Activity size={22} />, path: '/exercise' },
-    { name: 'Mindfulness', desc: 'Meditation & breathing', stat: '10 min today', color: '#B89FFF', ico: <Brain size={22} />, path: '/mindfulness' },
-    { name: 'Goals', desc: 'Set & track wellness goals', stat: '4 active goals', color: '#FF8A00', ico: <Target size={22} />, path: '/goals' }
+    { name: 'Exercise', desc: 'Log workouts & activity', stat: '45 min today', color: '#64B5F6', ico: <Activity size={22} />, path: '/wellness/exercise' },
+    { name: 'Mindfulness', desc: 'Meditation & breathing', stat: '10 min today', color: '#B89FFF', ico: <Brain size={22} />, path: '/wellness/mindfulness' },
+    { name: 'Goals', desc: 'Set & track wellness goals', stat: '4 active goals', color: '#FF8A00', ico: <Target size={22} />, path: '/wellness/goals' }
   ];
 
   return (
