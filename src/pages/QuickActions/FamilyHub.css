@@ -70,7 +70,7 @@
 .fh-main-title { font-family: 'Instrument Serif', serif; font-size: 40px; margin: 0; font-weight: 400; }
 .fh-date { font-size: 15px; opacity: 0.5; margin-top: 8px; font-weight: 500; }
 
-.fh-top-vitals { display: flex; gap: 12px; margin-bottom: 40px; }
+.fh-top-vitals { display: flex; gap: 10px; margin-bottom: 40px;   }
 .fh-vital-card { 
   flex: 1; 
   padding: 18px; 

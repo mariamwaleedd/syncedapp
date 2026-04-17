@@ -39,7 +39,7 @@ const QuickActions = () => {
       title: "Family & Monitoring",
       actions: [
         { title: "Family Dashboard", sub: "Monitor family health vitals", icon: <Users size={22} />, color: "pink", path: "/familyhub/agree-terms" },
-        { title: "Add Family Member", sub: "Register new family members", icon: <UserPlus size={22} />, color: "cyan", path: "/addfamily" }
+        { title: "Add Family Member", sub: "Register new family members", icon: <UserPlus size={22} />, color: "cyan", path: "/familyhub/add-member" }
       ]
     },
     {
