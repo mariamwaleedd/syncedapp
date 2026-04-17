@@ -72,7 +72,7 @@
   font-family: var(--font-main);
   font-size: 10px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgb(255, 255, 255);
   transition: all 0.3s ease;
   opacity: 0.8;
 }
@@ -80,6 +80,7 @@
 /* Active State Styles */
 .touchbar-item.active .touchbar-icon-wrap {
   color: #64B5F6;
+  padding-top: 18px;
   transform: translateY(-4px) scale(1.1);
   filter: drop-shadow(0 0 8px rgba(100, 181, 246, 0.4));
 }
@@ -87,6 +88,7 @@
 .touchbar-item.active .touchbar-label {
   color: #64B5F6;
   font-weight: 600;
+  font-size: 8px;
   opacity: 1;
   transform: translateY(-2px);
 }

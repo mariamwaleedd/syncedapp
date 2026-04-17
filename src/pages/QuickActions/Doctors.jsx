@@ -9,6 +9,53 @@ import {
 import TouchBar from '../../common/TouchBar';
 import './Doctors.css';
 
+const doctorsList = [
+  {
+    name: "Dr. Sarah Wilson",
+    spec: "Cardiology",
+    exp: "15 years",
+    loc: "New York, NY",
+    rating: "4.9",
+    reviews: "234",
+    status: "Available Today",
+    price: "$150",
+    next: "2:00 PM"
+  },
+  {
+    name: "Dr. Michael Chen",
+    spec: "Neurology",
+    exp: "12 years",
+    loc: "Los Angeles, CA",
+    rating: "4.8",
+    reviews: "189",
+    status: "Available Tomorrow",
+    price: "$180",
+    next: "10:00 AM"
+  },
+  {
+    name: "Dr. Emily Rodriguez",
+    spec: "Orthopedics",
+    exp: "18 years",
+    loc: "Chicago, IL",
+    rating: "4.9",
+    reviews: "312",
+    status: "Available Today",
+    price: "$200",
+    next: "4:30 PM"
+  },
+  {
+    name: "Dr. James Anderson",
+    spec: "General",
+    exp: "10 years",
+    loc: "Boston, MA",
+    rating: "4.7",
+    reviews: "156",
+    status: "Available Today",
+    price: "$120",
+    next: "1:00 PM"
+  }
+];
+
 const Doctors = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
@@ -20,53 +67,6 @@ const Doctors = () => {
     { name: 'Orthopedics', count: 12, ico: <Activity size={14} /> }
   ];
 
-  const doctorsList = [
-    {
-      name: "Dr. Sarah Wilson",
-      spec: "Cardiology",
-      exp: "15 years",
-      loc: "New York, NY",
-      rating: "4.9",
-      reviews: "234",
-      status: "Available Today",
-      price: "$150",
-      next: "2:00 PM"
-    },
-    {
-      name: "Dr. Michael Chen",
-      spec: "Neurology",
-      exp: "12 years",
-      loc: "Los Angeles, CA",
-      rating: "4.8",
-      reviews: "189",
-      status: "Available Tomorrow",
-      price: "$180",
-      next: "10:00 AM"
-    },
-    {
-      name: "Dr. Emily Rodriguez",
-      spec: "Orthopedics",
-      exp: "18 years",
-      loc: "Chicago, IL",
-      rating: "4.9",
-      reviews: "312",
-      status: "Available Today",
-      price: "$200",
-      next: "4:30 PM"
-    },
-    {
-      name: "Dr. James Anderson",
-      spec: "General",
-      exp: "10 years",
-      loc: "Boston, MA",
-      rating: "4.7",
-      reviews: "156",
-      status: "Available Today",
-      price: "$120",
-      next: "1:00 PM"
-    }
-  ];
-
   const filteredDoctors = useMemo(() => {
     return doctorsList.filter(dr => {
       const matchSearch = dr.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -74,7 +74,7 @@ const Doctors = () => {
       const matchCat = activeCategory === 'All' || dr.spec === activeCategory;
       return matchSearch && matchCat;
     });
-  }, [searchTerm, activeCategory, doctorsList]);
+  }, [searchTerm, activeCategory]);
 
   return (
     <div className="dr-root ltr-theme">

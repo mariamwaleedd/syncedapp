@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Activity, ArrowRight, ArrowLeft, ChevronDown } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
@@ -49,7 +49,7 @@ const PhysicalStats = () => {
         </div>
         <div className="ps-footer">
           <button className="ps-back-btn" onClick={() => navigate(-1)}><ArrowLeft size={18} /><span>Back</span></button>
-          <button className="ps-continue-btn" onClick={() => navigate('/medicalhistory')}><span>Continue</span><ArrowRight size={18} /></button>
+          <button className="ps-continue-btn" onClick={handleContinue}><span>Continue</span><ArrowRight size={18} /></button>
         </div>
       </div>
     </div>

@@ -19,6 +19,7 @@ const Confirmation = () => {
     window.open(`https://api.whatsapp.com/send?phone=${rawPhone}&text=Code:${code}`, '_blank');
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { sendOtp(); }, []);
 
   const onBoxInput = (idx, val) => {

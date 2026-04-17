@@ -63,7 +63,7 @@ const PersonalInfo = () => {
         </div>
         <div className="pi-footer">
           <button className="pi-back-btn" onClick={() => navigate(-1)}><ArrowLeft size={18} /><span>Back</span></button>
-          <button className="pi-continue-btn" onClick={() => navigate('/physicalstats')}><span>Continue</span><ArrowRight size={18} /></button>
+          <button className="pi-continue-btn" onClick={handleContinue}><span>Continue</span><ArrowRight size={18} /></button>
         </div>
         <div className="pi-home-pill"></div>
       </div>

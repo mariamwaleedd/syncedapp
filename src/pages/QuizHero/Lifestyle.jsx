@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Home, Activity, ArrowRight, ArrowLeft, Info, Apple, Moon } from 'lucide-react';
+import { Home, Activity, ArrowRight, ArrowLeft, Apple, Moon } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
 import './Lifestyle.css';
 

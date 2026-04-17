@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Lock, Eye, EyeOff, ChevronLeft, UserCheck } from 'lucide-react';
+import { Lock, ChevronLeft, UserCheck } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
 import './ForgetPass.css';
 import logo from '../../imgs/logoblue.png';
@@ -10,7 +10,7 @@ const ForgetPass = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [showPass, setShowPass] = useState(false);
+  const [showPass] = useState(false);
   const [errors, setErrors] = useState({});
 
   const handleReset = async (e) => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ChevronLeft, Wind, Moon, Brain, Play, Clock, Sparkles } from 'lucide-react';
+import { ChevronLeft, Wind, Moon, Play, Clock, Sparkles } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import './Mindfulness.css';
 

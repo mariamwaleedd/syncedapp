@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, Plus, Target, CheckCircle2, TrendingUp, Calendar, Heart, Award } from 'lucide-react';
+import { ChevronLeft, Plus, CheckCircle2, TrendingUp, Award } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import './Goals.css';
 

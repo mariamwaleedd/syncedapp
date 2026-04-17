@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, Target, Plus, Calendar, Activity, Weight, Droplets, Moon } from 'lucide-react';
+import { ChevronLeft, Target, Calendar, Activity, Weight, Droplets, Moon } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import './AddGoal.css';
 

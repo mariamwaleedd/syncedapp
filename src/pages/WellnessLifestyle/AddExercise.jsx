@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ChevronLeft, Dumbbell, Zap, Clock, Flame, Activity, Plus, PlayCircle } from 'lucide-react';
+import { ChevronLeft, Dumbbell, Clock, Flame, PlayCircle } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import './AddExercise.css';
 

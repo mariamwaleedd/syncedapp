@@ -1,9 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { 
   ChevronLeft, Plus, Dumbbell, Zap, 
-  Clock, Flame, Play, Trophy, Activity 
+  Clock, Flame, Activity 
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import './Exercise.css';

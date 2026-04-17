@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Phone, Info, ArrowLeft, ArrowRight } from 'lucide-react';
+import { Phone, ArrowLeft, ArrowRight } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
 import './EmergencyContacts.css';
 
@@ -40,7 +40,7 @@ const EmergencyContact = () => {
         </div>
         <div className="ec-footer">
           <button className="ec-back-btn" onClick={() => navigate(-1)}><ArrowLeft size={18} /><span>Back</span></button>
-          <button className="ec-continue-btn" onClick={() => navigate('/allset')}><span>Continue</span><ArrowRight size={18} /></button>
+          <button className="ec-continue-btn" onClick={handleContinue}><span>Continue</span><ArrowRight size={18} /></button>
         </div>
       </div>
     </div>

@@ -123,7 +123,7 @@
   border: 2px solid var(--navy);
 }
 
-.ha-scroll-content { padding: 300px var(--app-h-padding) 140px; }
+.ha-scroll-content { padding: 250px var(--app-h-padding) 140px; }
 
 .ha-glass {
   background: var(--glass-bg);
@@ -415,4 +415,4 @@
 .ha-complete-txt p { margin: 2px 0 0; font-size: 11px; opacity: 0.4; }
 .ha-refresh-btn { background: var(--btn-bg); border: none; color: #64B5F6; padding: 8px 18px; border-radius: 10px; font-size: 13px; font-weight: 600; }
 
-.ha-bottom-spacer { height: 80px; }
+.ha-bottom-spacer { height: 40px; }

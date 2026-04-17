@@ -11,21 +11,21 @@ import TouchBar from '../../common/TouchBar';
 import ShareModal from '../../common/ShareModal';
 import './Reports.css';
 
+const reportData = [
+  { id: 1, title: 'Cardiology Consultation', dr: 'Dr. Sarah Wilson', date: 'Mar 12, 2026', status: 'Complete', diagnosis: 'Mild Hypertension', icon: <Heart size={20} />, color: '#FF416C' },
+  { id: 2, title: 'Annual Physical Examination', dr: 'Dr. James Anderson', date: 'Mar 8, 2026', status: 'Complete', diagnosis: 'Healthy', icon: <CheckCircle2 size={20} />, color: '#00E676' },
+  { id: 3, title: 'Lab Test Results - Blood Work', dr: 'Dr. Emily Rodriguez', date: 'Mar 5, 2026', status: 'Attention', diagnosis: 'Slightly Elevated Cholesterol', icon: <AlertTriangle size={20} />, color: '#FF8A00' },
+  { id: 4, title: 'Neurological Assessment', dr: 'Dr. Michael Chen', date: 'Feb 28, 2026', status: 'Complete', diagnosis: 'Normal Cognitive Function', icon: <Activity size={20} />, color: '#B89FFF' },
+  { id: 5, title: 'Orthopedic Follow-up', dr: 'Dr. Emily Rodriguez', date: 'Feb 20, 2026', status: 'Complete', diagnosis: 'Knee Recovery - Good Progress', icon: <Stethoscope size={20} />, color: '#64B5F6' },
+  { id: 6, title: 'Dental Checkup Report', dr: 'Dr. Lisa Chang', date: 'Feb 15, 2026', status: 'Complete', diagnosis: 'No Cavities Detected', icon: <Smile size={20} />, color: '#00B4DB' },
+  { id: 7, title: 'Eye Examination', dr: 'Dr. Robert Kim', date: 'Feb 10, 2026', status: 'Attention', diagnosis: 'Minor Vision Correction Needed', icon: <Eye size={20} />, color: '#7C4DFF' },
+  { id: 8, title: 'Dermatology Consultation', dr: 'Dr. Maria Santos', date: 'Feb 1, 2026', status: 'Complete', diagnosis: 'Skin Health - Normal', icon: <CheckCircle2 size={20} />, color: '#FF4081' }
+];
+
 const Reports = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [isShareOpen, setIsShareOpen] = useState(false);
-
-  const reportData = [
-    { id: 1, title: 'Cardiology Consultation', dr: 'Dr. Sarah Wilson', date: 'Mar 12, 2026', status: 'Complete', diagnosis: 'Mild Hypertension', icon: <Heart size={20} />, color: '#FF416C' },
-    { id: 2, title: 'Annual Physical Examination', dr: 'Dr. James Anderson', date: 'Mar 8, 2026', status: 'Complete', diagnosis: 'Healthy', icon: <CheckCircle2 size={20} />, color: '#00E676' },
-    { id: 3, title: 'Lab Test Results - Blood Work', dr: 'Dr. Emily Rodriguez', date: 'Mar 5, 2026', status: 'Attention', diagnosis: 'Slightly Elevated Cholesterol', icon: <AlertTriangle size={20} />, color: '#FF8A00' },
-    { id: 4, title: 'Neurological Assessment', dr: 'Dr. Michael Chen', date: 'Feb 28, 2026', status: 'Complete', diagnosis: 'Normal Cognitive Function', icon: <Activity size={20} />, color: '#B89FFF' },
-    { id: 5, title: 'Orthopedic Follow-up', dr: 'Dr. Emily Rodriguez', date: 'Feb 20, 2026', status: 'Complete', diagnosis: 'Knee Recovery - Good Progress', icon: <Stethoscope size={20} />, color: '#64B5F6' },
-    { id: 6, title: 'Dental Checkup Report', dr: 'Dr. Lisa Chang', date: 'Feb 15, 2026', status: 'Complete', diagnosis: 'No Cavities Detected', icon: <Smile size={20} />, color: '#00B4DB' },
-    { id: 7, title: 'Eye Examination', dr: 'Dr. Robert Kim', date: 'Feb 10, 2026', status: 'Attention', diagnosis: 'Minor Vision Correction Needed', icon: <Eye size={20} />, color: '#7C4DFF' },
-    { id: 8, title: 'Dermatology Consultation', dr: 'Dr. Maria Santos', date: 'Feb 1, 2026', status: 'Complete', diagnosis: 'Skin Health - Normal', icon: <CheckCircle2 size={20} />, color: '#FF4081' }
-  ];
 
   const filteredReports = useMemo(() => {
     return reportData.filter(item => 

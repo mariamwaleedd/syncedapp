@@ -10,6 +10,20 @@ import FilterMenu from '../../common/FilterMenu';
 import ActionMenu from '../../common/ActionMenu';
 import './MedicalRecords.css';
 
+const records = [
+  { title: 'Blood Test Results', date: 'March 5, 2026', entity: 'Lab Corp', type: 'Lab Results', verified: true },
+  { title: 'Annual Physical Exam', date: 'February 20, 2026', entity: 'Dr. Smith', type: 'Exams', verified: true },
+  { title: 'X-Ray Imaging', date: 'January 10, 2026', entity: 'Imaging Center', type: 'Imaging', verified: true },
+  { title: 'Prescription History', date: 'December 15, 2025', entity: 'Pharmacy', type: 'Prescriptions', verified: false },
+];
+
+const categories = [
+  { name: 'Lab Results', count: 12, id: 'Lab Results' },
+  { name: 'Imaging', count: 8, id: 'Imaging' },
+  { name: 'Prescriptions', count: 15, id: 'Prescriptions' },
+  { name: 'Immunizations', count: 6, id: 'Immunizations' },
+];
+
 const MedicalRecords = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,20 +31,6 @@ const MedicalRecords = () => {
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isDownloadOpen, setIsDownloadOpen] = useState(false);
-
-  const records = [
-    { title: 'Blood Test Results', date: 'March 5, 2026', entity: 'Lab Corp', type: 'Lab Results', verified: true },
-    { title: 'Annual Physical Exam', date: 'February 20, 2026', entity: 'Dr. Smith', type: 'Exams', verified: true },
-    { title: 'X-Ray Imaging', date: 'January 10, 2026', entity: 'Imaging Center', type: 'Imaging', verified: true },
-    { title: 'Prescription History', date: 'December 15, 2025', entity: 'Pharmacy', type: 'Prescriptions', verified: false },
-  ];
-
-  const categories = [
-    { name: 'Lab Results', count: 12, id: 'Lab Results' },
-    { name: 'Imaging', count: 8, id: 'Imaging' },
-    { name: 'Prescriptions', count: 15, id: 'Prescriptions' },
-    { name: 'Immunizations', count: 6, id: 'Immunizations' },
-  ];
 
   const filteredRecords = useMemo(() => {
     return records.filter(rec => {
