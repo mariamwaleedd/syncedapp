@@ -27,7 +27,7 @@ const QuickActions = () => {
     {
       title: "Health Management",
       actions: [
-        { title: "Home Dashboard", sub: "Your daily health overview", icon: <Home size={22} />, color: "blue", path: "/" },
+        { title: "Home Dashboard", sub: "Your daily health overview", icon: <Home size={22} />, color: "blue", path: "/home" },
         { title: "Health Questionnaire", sub: "Complete your health profile", icon: <ClipboardList size={22} />, color: "pink", path: "/createhealth" },
         { title: "My Health Profile", sub: "Your personalized health ID", icon: <User size={22} />, color: "green", path: "/healthid" },
         { title: "Medicine Tracker", sub: "Track medications and schedules", icon: <Pill size={22} />, color: "orange", path: "/medicine" },

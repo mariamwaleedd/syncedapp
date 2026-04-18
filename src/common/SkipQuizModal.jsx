@@ -9,7 +9,7 @@ const SkipQuizModal = ({ isOpen, onClose }) => {
 
   const handleSkip = () => {
     onClose();
-    navigate('/');
+    navigate('/home');
   };
 
   return (

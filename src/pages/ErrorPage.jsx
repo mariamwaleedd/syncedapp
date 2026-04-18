@@ -43,7 +43,7 @@ const ErrorPage = () => {
           </p>
 
           <div className="er-action-stack">
-            <button className="er-btn-primary" onClick={() => navigate('/')}>
+            <button className="er-btn-primary" onClick={() => navigate('/home')}>
               <Home size={18} />
               <span>Back to Home</span>
             </button>
