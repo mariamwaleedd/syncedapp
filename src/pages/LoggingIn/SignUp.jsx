@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, ChevronLeft, User } from 'lucide-react';
 import { useLanguage } from '../../common/LanguageContext';
 import { supabase } from '../../supabaseClient';
+import SkipAuthModal from '../../common/SkipAuthModal';
 import './SignUp.css';
 import logo from '../../imgs/logoblue.png';
 
@@ -12,6 +13,7 @@ const SignUp = () => {
   const [formData, setFormData] = useState({ firstName: '', lastName: '', email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
+  const [isSkipOpen, setIsSkipOpen] = useState(false);
   const [strength, setStrength] = useState({ percent: 0, hasLength: false, hasNumber: false, hasSpecial: false });
 
   useEffect(() => {
@@ -64,6 +66,7 @@ const SignUp = () => {
       <div className="signup-content">
         <div className="header-nav">
           <button className="nav-icon-btn" onClick={() => navigate(-1)}><ChevronLeft size={28} color="#FFFFFF" strokeWidth={2.5} /></button>
+          <button className="link-text-btn" onClick={() => setIsSkipOpen(true)} style={{fontSize: '16px', marginRight: '10px'}}>Skip</button>
         </div>
         <div className="form-container">
           <img src={logo} alt="Logo" className="app-logo" />
@@ -98,6 +101,7 @@ const SignUp = () => {
         </div>
         <div className="footer-links"><p>Already have an account? <button type="button" className="link-text-btn" onClick={() => navigate('/login')}>Log In</button></p></div>
       </div>
+      <SkipAuthModal isOpen={isSkipOpen} onClose={() => setIsSkipOpen(false)} />
     </div>
   );
 };

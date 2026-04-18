@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Delete, ChevronDown } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
+import SkipAuthModal from '../../common/SkipAuthModal';
 import './Registration.css';
 
 const Registration = () => {
@@ -9,6 +10,7 @@ const Registration = () => {
   const menuRef = useRef(null);
   const [phoneDigits, setPhoneDigits] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSkipOpen, setIsSkipOpen] = useState(false);
   const countryData = [{ name: 'Egypt', pref: '+20', size: 11, flag: 'https://flagcdn.com/w40/eg.png' }, { name: 'Saudi', pref: '+966', size: 9, flag: 'https://flagcdn.com/w40/sa.png' }, { name: 'UAE', pref: '+971', size: 9, flag: 'https://flagcdn.com/w40/ae.png' }];
   const [activeCountry, setActiveCountry] = useState(countryData[0]);
 
@@ -27,7 +29,7 @@ const Registration = () => {
     <div className="reg-screen-container">
       <div className="reg-gradient-bg"></div><div className="reg-lines-bg"></div>
       <div className="reg-inner-content">
-        <div className="reg-nav-header"><button className="reg-back-arrow" onClick={() => navigate(-1)}><ChevronLeft size={32} color="#FFFFFF" strokeWidth={2.5} /></button></div>
+        <div className="reg-nav-header"><button className="reg-back-arrow" onClick={() => navigate(-1)}><ChevronLeft size={32} color="#FFFFFF" strokeWidth={2.5} /></button><button onClick={() => setIsSkipOpen(true)} style={{background: 'none', border: 'none', color: '#FFF', fontWeight: 700, fontSize: '16px', marginLeft: 'auto', marginRight: '10px'}}>Skip</button></div>
         <div className="reg-top-layout">
           <h1 className="reg-main-title">Registration</h1><p className="reg-description">Enter your phone number to verify your account.</p>
           <div className="reg-input-area" ref={menuRef}>
@@ -43,6 +45,7 @@ const Registration = () => {
           <div className="reg-submit-wrap">{phoneDigits.length === activeCountry.size && <button className="reg-continue-button" onClick={handleContinue}>Continue</button>}</div>
         </div>
       </div>
+      <SkipAuthModal isOpen={isSkipOpen} onClose={() => setIsSkipOpen(false)} />
     </div>
   );
 };
