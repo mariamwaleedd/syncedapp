@@ -2,7 +2,6 @@
   background-color: var(--bg-color);
   width: 100%;
   max-width: 480px; /* Matching root max-width */
-  height: 100vh;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
@@ -285,8 +284,10 @@
 }
 
 .fc-bottom-controls {
-  padding: 15px var(--app-h-padding) 100px; /* Space for TouchBar */
-  background: var(--bg-color);
+  padding: 15px var(--app-h-padding) 100px;
+  position: fixed;
+  width: 430px;
+margin-top: 55%;
   backdrop-filter: blur(20px);
   border-top: 1px solid var(--glass-border);
 }
