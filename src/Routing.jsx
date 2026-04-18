@@ -85,6 +85,8 @@ import AgreeTerms from './pages/FamilyHub/AgreeTerms';
 import AddMember from './pages/FamilyHub/AddMember';
 import ChooseAvatar from './pages/FamilyHub/ChooseAvatar';
 import FamilyProfile from './pages/FamilyHub/FamilyProfile';
+import FamilyAchievements from './pages/FamilyHub/FamilyAchievements';
+import FamilyChat from './pages/FamilyHub/FamilyChat';
 import AddReminder from './pages/QuickActions/AddReminder';
 import Goals from './pages/WellnessLifestyle/Goals';
 import Exercise from './pages/WellnessLifestyle/Exercise';
@@ -241,6 +243,9 @@ const Routing = () => {
         <Route path="/familyhub/add-member" element={<AddMember/>} />
         <Route path="/familyhub/choose-avatar" element={<ChooseAvatar/>} />
         <Route path="/familyhub/family-profile/:id" element={<FamilyProfile/>} />
+        <Route path="/familyhub/achievements" element={<FamilyAchievements/>} />
+        <Route path="/familyhub/chat" element={<FamilyChat/>} />
+        <Route path="/familyhub/chat/:id" element={<FamilyChat/>} />
 
 
         <Route path="/*" element={<ErrorPage />} />

@@ -121,6 +121,27 @@
   fill: #FFD54F;
 }
 
+.fp-chat-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fp-chat-btn:hover {
+  background: rgba(100, 181, 246, 0.2);
+  border-color: rgba(100, 181, 246, 0.4);
+}
+
+.fp-chat-btn:active { transform: scale(0.95); }
+
+
 
 
 .fp-scroll { flex: 1; }

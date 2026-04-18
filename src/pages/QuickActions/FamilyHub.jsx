@@ -5,7 +5,8 @@ import {
   ChevronLeft, Bell, Calendar, Pill, 
   Plus, ChevronRight, Activity, 
   Target, Users, Weight, 
-  Moon, Footprints, AlertCircle, Trash2, Edit3
+  Moon, Footprints, AlertCircle, Trash2, Edit3, 
+  Trophy, MessageSquare
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import ConfirmModal from '../../common/ConfirmModal';
@@ -84,7 +85,22 @@ const FamilyHub = () => {
               <span>2 reminders</span>
             </div>
           </div>
+          <div className="fh-vital-card fh-glass orange" onClick={() => navigate('/familyhub/achievements')}>
+            <Trophy size={20} />
+            <div className="fh-vital-txt">
+              <h4>Achievements</h4>
+              <span>Weekly Badges</span>
+            </div>
+          </div>
+          <div className="fh-vital-card fh-glass green" onClick={() => navigate('/familyhub/chat')}>
+            <MessageSquare size={20} />
+            <div className="fh-vital-txt">
+              <h4>Family Chat</h4>
+              <span>5 new</span>
+            </div>
+          </div>
         </div>
+
         <section className="fh-sec">
           <div className="fh-sec-head">
             <h2 className="fh-sec-title">Family Members</h2>
@@ -134,8 +150,8 @@ const FamilyHub = () => {
             ))}
           </div>
         </section>
-        <section className="fh-sec">
-          <h2 className="fh-sec-title">Family Wellness Score</h2>
+        <section className="fh-sec" onClick={() => navigate('/familyhub/achievements')} style={{ cursor: 'pointer' }}>
+          <h2 className="fh-sec-title">Family Wellness Score & Achievements</h2>
           <div className="fh-score-card fh-glass">
             <div className="fh-score-row">
               <div className="fh-score-l">

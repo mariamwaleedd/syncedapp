@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { 
   ChevronLeft, Bell, Phone, Heart, Activity, 
   Thermometer, Wind, Shield, Calendar, 
-  Edit3, FileText, Download, Plus, Zap, Lock 
+  Edit3, FileText, Download, Plus, Zap, Lock, MessageSquare 
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import GlassToast from '../../common/GlassToast';
@@ -71,6 +71,7 @@ const FamilyProfile = () => {
             <div className="fp-hero-actions">
               <button className="fp-call-btn" onClick={() => setToastMsg(`Calling ${member.full_name}...`)}><Phone size={18} fill="white" stroke="none" /></button>
               <button className="fp-poke-btn" onClick={handlePoke}><Zap size={18} fill="white" stroke="none" /></button>
+              <button className="fp-chat-btn" onClick={() => navigate(`/familyhub/chat/${member.id}`)}><MessageSquare size={18} fill="white" stroke="none" /></button>
             </div>
           </div>
           <div className="fp-privacy-trigger">
