@@ -10,6 +10,7 @@ import FilterMenu from '../../common/FilterMenu';
 import ActionMenu from '../../common/ActionMenu';
 import GlassToast from '../../common/GlassToast';
 import './MedicalRecords.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const records = [
   { title: 'Blood Test Results', date: 'March 5, 2026', entity: 'Lab Corp', type: 'Lab Results', verified: true },
@@ -18,21 +19,22 @@ const records = [
   { title: 'Prescription History', date: 'December 15, 2025', entity: 'Pharmacy', type: 'Prescriptions', verified: false },
 ];
 
-const categories = [
-  { name: 'Lab Results', count: 12, id: 'Lab Results' },
-  { name: 'Imaging', count: 8, id: 'Imaging' },
-  { name: 'Prescriptions', count: 15, id: 'Prescriptions' },
-  { name: 'Immunizations', count: 6, id: 'Immunizations' },
-];
-
 const MedicalRecords = () => {
   const navigate = useNavigate();
+  const { t, lang } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isDownloadOpen, setIsDownloadOpen] = useState(false);
   const [toastMsg, setToastMsg] = useState('');
+
+  const categories = useMemo(() => [
+    { name: t('labResults'), count: 12, id: 'Lab Results' },
+    { name: t('imaging'), count: 8, id: 'Imaging' },
+    { name: t('prescriptions'), count: 15, id: 'Prescriptions' },
+    { name: t('immunizations'), count: 6, id: 'Immunizations' },
+  ], [t]);
 
   const filteredRecords = useMemo(() => {
     return records.filter(rec => {
@@ -43,8 +45,12 @@ const MedicalRecords = () => {
     });
   }, [searchTerm, activeCategory]);
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'mr-root rtl-theme' : 'mr-root ltr-theme';
+  };
+
   return (
-    <div className="mr-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="mr-layer-grad"></div>
       <div className="mr-layer-bg"></div>
 
@@ -52,16 +58,16 @@ const MedicalRecords = () => {
         
         <header className="mr-nav-header">
           <button className="mr-back-btn" onClick={() => navigate(-1)}>
-            <ChevronLeft size={20} />
-            <span>Back</span>
+            <ChevronLeft size={20} className={lang === 'ar' ? 'rtl-flip' : ''} />
+            <span>{t('back')}</span>
           </button>
-          <h1 className="mr-page-title">Medical Records</h1>
+          <h1 className="mr-page-title">{t('medicalRecordsTitle')}</h1>
         </header>
 
         <div className="mr-action-row">
           <button className="mr-add-btn" onClick={() => navigate('/reports/upload')}>
             <Plus size={18} />
-            <span>Add Record</span>
+            <span>{t('addRecord')}</span>
           </button>
           <button className="mr-filter-btn" onClick={() => setIsFilterOpen(true)}>
             <Filter size={18} />
@@ -72,7 +78,7 @@ const MedicalRecords = () => {
           <Search size={18} opacity={0.4} />
           <input 
             type="text" 
-            placeholder="Search documents..." 
+            placeholder={t('searchDocuments')} 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -80,13 +86,13 @@ const MedicalRecords = () => {
 
         <div className="mr-upload-zone mr-glass">
           <Upload size={48} color="#64B5F6" strokeWidth={1.5} />
-          <h3>Upload Medical Records</h3>
-          <p>PDF, JPEG, PNG up to 10MB</p>
-          <button className="mr-choose-btn">Choose Files</button>
+          <h3>{t('uploadMedicalRecords')}</h3>
+          <p>{t('uploadLimit')}</p>
+          <button className="mr-choose-btn">{t('chooseFiles')}</button>
         </div>
 
         <section className="mr-section">
-          <h2 className="mr-sec-title">Recent Records</h2>
+          <h2 className="mr-sec-title">{t('recentRecords')}</h2>
           <div className="mr-records-stack">
             {filteredRecords.length > 0 ? (
               filteredRecords.map((rec, i) => (
@@ -99,42 +105,42 @@ const MedicalRecords = () => {
                   </div>
                 </div>
                 <div className="mr-badge-row">
-                  <span className="mr-type-badge">{rec.type}</span>
+                  <span className="mr-type-badge">{t(rec.type.toLowerCase().replace(' ', '')) || rec.type}</span>
                   {rec.verified && (
                     <div className="mr-v-badge">
                       <ShieldCheck size={12} color="#00E676" />
-                      <span>Verified</span>
+                      <span>{t('verified')}</span>
                     </div>
                   )}
                 </div>
                 <div className="mr-rec-actions">
                   <button className="mr-act-btn" onClick={() => navigate('/reports/view')}>
                     <Eye size={16} />
-                    <span>View</span>
+                    <span>{t('viewAction')}</span>
                   </button>
                   <div className="mr-v-sep"></div>
                   <button className="mr-act-btn" onClick={() => setIsDownloadOpen(true)}>
                     <Download size={16} />
-                    <span>Download</span>
+                    <span>{t('downloadAction')}</span>
                   </button>
                   <div className="mr-v-sep"></div>
                   <button className="mr-act-btn" onClick={() => setIsShareOpen(true)}>
                     <Share2 size={16} />
-                    <span>Share</span>
+                    <span>{t('shareAction')}</span>
                   </button>
                 </div>
               </div>
             ))
           ) : (
             <div className="mr-empty">
-              <p>No records found matching your search</p>
+              <p>{t('noRecordsFound')}</p>
             </div>
           )}
           </div>
         </section>
 
         <section className="mr-section">
-          <h2 className="mr-sec-title">Browse by Category</h2>
+          <h2 className="mr-sec-title">{t('browseByCategory')}</h2>
           <div className="mr-cat-grid">
             {categories.map((cat, i) => (
               <div 
@@ -145,7 +151,7 @@ const MedicalRecords = () => {
                 <FileText size={24} color="#FFF" strokeWidth={1.5} />
                 <div className="mr-cat-txt">
                   <h5>{cat.name}</h5>
-                  <span>{cat.count} files</span>
+                  <span>{cat.count} {t('filesCount')}</span>
                 </div>
               </div>
             ))}
@@ -159,13 +165,13 @@ const MedicalRecords = () => {
       <ShareModal 
         isOpen={isShareOpen}
         onClose={() => setIsShareOpen(false)}
-        title="Share Record"
+        title={t('shareAction')}
       />
 
       <ActionMenu 
         isOpen={isDownloadOpen}
         onClose={() => setIsDownloadOpen(false)}
-        title="Download Options"
+        title={t('downloadAction')}
         options={[
           { 
             name: 'Download PDF', 
@@ -197,7 +203,7 @@ const MedicalRecords = () => {
         activeFilter={activeCategory}
         onFilterSelect={setActiveCategory}
         options={[
-          { id: 'All', name: 'All Records' },
+          { id: 'All', name: t('allRecords') },
           ...categories
         ]}
       />

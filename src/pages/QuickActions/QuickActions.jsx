@@ -9,9 +9,11 @@ import {
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import './QuickActions.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const QuickActions = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const container = {
     hidden: { opacity: 0 },
@@ -25,57 +27,57 @@ const QuickActions = () => {
 
   const categories = [
     {
-      title: "Health Management",
+      title: t('mgmt'),
       actions: [
-        { title: "Home Dashboard", sub: "Your daily health overview", icon: <Home size={22} />, color: "blue", path: "/home" },
-        { title: "Health Questionnaire", sub: "Complete your health profile", icon: <ClipboardList size={22} />, color: "pink", path: "/createhealth" },
-        { title: "My Health Profile", sub: "Your personalized health ID", icon: <User size={22} />, color: "green", path: "/healthid" },
-        { title: "Medicine Tracker", sub: "Track medications and schedules", icon: <Pill size={22} />, color: "orange", path: "/medicine" },
-        { title: "AI Health Assistant", sub: "Chat with our AI health bot", icon: <MessageSquare size={22} />, color: "purple", path: "/healthai" },
-        { title: "Wellness & Lifestyle", sub: "Track your daily health", icon: <Activity size={22} />, color: "cyan", path: "/wellness" }
+        { title: t('homeDash'), sub: t('homeDashSub'), icon: <Home size={22} />, color: "blue", path: "/home" },
+        { title: t('quest'), sub: t('questSub'), icon: <ClipboardList size={22} />, color: "pink", path: "/createhealth" },
+        { title: t('myProfile'), sub: t('myProfileSub'), icon: <User size={22} />, color: "green", path: "/healthid" },
+        { title: t('medTrack'), sub: t('medTrackSub'), icon: <Pill size={22} />, color: "orange", path: "/medicine" },
+        { title: t('healthAI'), sub: t('healthAISub'), icon: <MessageSquare size={22} />, color: "purple", path: "/healthai" },
+        { title: t('wellness'), sub: t('wellnessSub'), icon: <Activity size={22} />, color: "cyan", path: "/wellness" }
       ]
     },
     {
-      title: "Family & Monitoring",
+      title: t('familyDash'),
       actions: [
-        { title: "Family Dashboard", sub: "Monitor family health vitals", icon: <Users size={22} />, color: "pink", path: "/familyhub/agree-terms" },
-        { title: "Add Family Member", sub: "Register new family members", icon: <UserPlus size={22} />, color: "cyan", path: "/familyhub/add-member" }
+        { title: t('familyDash'), sub: t('familyDashSub'), icon: <Users size={22} />, color: "pink", path: "/familyhub/agree-terms" },
+        { title: t('addMember'), sub: t('addMemberSub'), icon: <UserPlus size={22} />, color: "cyan", path: "/familyhub/add-member" }
       ]
     },
     {
-      title: "Emergency & Support",
+      title: t('emergSupp'),
       actions: [
-        { title: "Emergency Services", sub: "Quick access to emergency help", icon: <ShieldAlert size={22} />, color: "red", path: "/emergency" },
-        { title: "Blood Donation Network", sub: "Donate blood & save lives", icon: <Heart size={22} />, color: "pink", path: "/blood" }
+        { title: t('emergServ'), sub: t('emergServSub'), icon: <ShieldAlert size={22} />, color: "red", path: "/emergency" },
+        { title: t('bloodNet'), sub: t('bloodNetSub'), icon: <Heart size={22} />, color: "pink", path: "/blood" }
       ]
     },
     {
-      title: "Medical Care",
+      title: t('medCare'),
       actions: [
-        { title: "Browse Doctors", sub: "Find & book appointments", icon: <Stethoscope size={22} />, color: "blue", path: "/doctors" },
-        { title: "My Doctors", sub: "View saved doctors & history", icon: <Heart size={22} />, color: "pink", path: "/mydoctors" },
-        { title: "Medical Reports", sub: "Access all medical reports", icon: <FileText size={22} />, color: "purple", path: "/reports" },
-        { title: "Appointments", sub: "Manage your appointments", icon: <Calendar size={22} />, color: "orange", path: "/appointments" }
+        { title: t('browseDocs'), sub: t('browseDocsSub'), icon: <Stethoscope size={22} />, color: "blue", path: "/doctors" },
+        { title: t('myDocs'), sub: t('myDocsSub'), icon: <Heart size={22} />, color: "pink", path: "/mydoctors" },
+        { title: t('medReports'), sub: t('medReportsSub'), icon: <FileText size={22} />, color: "purple", path: "/reports" },
+        { title: t('appointments'), sub: t('manageApps'), icon: <Calendar size={22} />, color: "orange", path: "/appointments" }
       ]
     },
     {
-      title: "Devices & Sync",
+      title: t('syncDevCat'),
       actions: [
-        { title: "Connect Devices", sub: "Sync smart health devices", icon: <Bluetooth size={22} />, color: "blue", path: "/devices" },
-        { title: "Device Dashboard", sub: "Personal sensor data", icon: <Activity size={22} />, color: "green", path: "/devicedashboard" }
+        { title: t('syncDev'), sub: t('syncDevSub'), icon: <Bluetooth size={22} />, color: "blue", path: "/devices" },
+        { title: t('devDash'), sub: t('devDashSub'), icon: <Activity size={22} />, color: "green", path: "/devicedashboard" }
       ]
     },
     {
-      title: "Settings & Preferences",
+      title: t('prefSet'),
       actions: [
-        { title: "All Settings", sub: "Manage app preferences", icon: <Settings size={22} />, color: "grey", path: "/settings" },
-        { title: "Personal Details", sub: "Update your information", icon: <User size={22} />, color: "blue", path: "/personaldetails" },
-        { title: "Security", sub: "Manage security settings", icon: <Shield size={22} />, color: "red", path: "/settings/security" },
-        { title: "Privacy", sub: "Control your privacy", icon: <Shield size={22} />, color: "green", path: "/settings/privacy" },
-        { title: "Notifications", sub: "Custom app notifications", icon: <Bell size={22} />, color: "orange", path: "/settings/notifications" },
-        { title: "Accessibility", sub: "Accessibility options", icon: <Accessibility size={22} />, color: "pink", path: "/settings/accessibility" },
-        { title: "Health Preferences", sub: "Set health goals & preferences", icon: <TrendingUp size={22} />, color: "blue", path: "/settings/preferences" },
-        { title: "Medical Records", sub: "Manage medical records", icon: <Database size={22} />, color: "cyan", path: "/settings/records" }
+        { title: t('allSettings'), sub: t('allSettingsSub'), icon: <Settings size={22} />, color: "grey", path: "/settings" },
+        { title: t('personalDetails'), sub: t('personalDetailsSub'), icon: <User size={22} />, color: "blue", path: "/personaldetails" },
+        { title: t('security'), sub: t('securitySub'), icon: <Shield size={22} />, color: "red", path: "/settings/security" },
+        { title: t('privacy'), sub: t('privacySub'), icon: <Shield size={22} />, color: "green", path: "/settings/privacy" },
+        { title: t('notifications'), sub: t('notificationsSub'), icon: <Bell size={22} />, color: "orange", path: "/settings/notifications" },
+        { title: t('accessibility'), sub: t('accessibilitySub'), icon: <Accessibility size={22} />, color: "pink", path: "/settings/accessibility" },
+        { title: t('healthPref'), sub: t('healthPrefSub'), icon: <TrendingUp size={22} />, color: "blue", path: "/settings/preferences" },
+        { title: t('medRec'), sub: t('medRecSub'), icon: <Database size={22} />, color: "cyan", path: "/settings/records" }
       ]
     }
   ];
@@ -86,12 +88,12 @@ const QuickActions = () => {
         
         <div className="qa-nav-row">
           <button className="qa-circle-btn" onClick={() => navigate(-1)}>
-            <ChevronLeft size={22} />
+            <ChevronLeft size={22} strokeWidth={2.5} />
           </button>
           
           <div className="qa-header-title">
-            <h1>Quick Actions</h1>
-            <p>Access all features in one place</p>
+            <h1>{t('qaHeader')}</h1>
+            <p>{t('qaSub')}</p>
           </div>
 
           <button className="qa-circle-btn" onClick={() => navigate('/healthai')}>
@@ -140,3 +142,4 @@ const QuickActions = () => {
 };
 
 export default QuickActions;
+

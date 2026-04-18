@@ -8,6 +8,7 @@ import {
 import TouchBar from '../../common/TouchBar';
 import './AccessibilitySettings.css';
 import { useTheme } from '../../common/ThemeContext';
+import { useLanguage } from '../../common/LanguageContext';
 
 const Accessibility = () => {
   const navigate = useNavigate();
@@ -20,9 +21,14 @@ const Accessibility = () => {
     cursorSize, setCursorSize,
     resetSettings
   } = useTheme();
+  const { lang, toggleLanguage, t } = useLanguage();
+
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'ac-root rtl-theme' : 'ac-root ltr-theme';
+  };
 
   return (
-    <div className="ac-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="ac-bg-gradient"></div>
       <div className="ac-bg-lines"></div>
 
@@ -31,28 +37,50 @@ const Accessibility = () => {
         <header className="ac-header-nav">
           <button className="ac-back-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={20} strokeWidth={2.5} />
-            <span>Back</span>
+            <span>{t('back')}</span>
           </button>
-          <h1 className="ac-page-title">Accessibility</h1>
+          <h1 className="ac-page-title">{t('accessibility')}</h1>
         </header>
 
         <div className="ac-scroll-content">
           <section className="ac-section">
             <div className="ac-section-label">
-              <Sun size={18} />
-              <h2>Appearance</h2>
+              <RefreshCw size={18} />
+              <h2>{t('languageSelector')}</h2>
             </div>
             <div className="ac-card ac-glass">
-              <div className="ac-label-min">Theme</div>
+              <div className="ac-label-min">{t('appLanguage')}</div>
+              <div className="ac-theme-grid">
+                <div className={`ac-theme-box ${lang === 'en' ? 'active' : ''}`} onClick={() => lang !== 'en' && toggleLanguage()}>
+                   <div className="ac-lang-circle">EN</div>
+                   <span>English</span>
+                   {lang === 'en' && <div className="ac-check-abs"><Check size={12} strokeWidth={4} /></div>}
+                </div>
+                <div className={`ac-theme-box ark ${lang === 'ar' ? 'active' : ''}`} onClick={() => lang !== 'ar' && toggleLanguage()}>
+                   <div className="ac-lang-circle">ع</div>
+                   <span>العربية</span>
+                   {lang === 'ar' && <div className="ac-check-abs"><Check size={12} strokeWidth={4} /></div>}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="ac-section">
+            <div className="ac-section-label">
+              <Sun size={18} />
+              <h2>{t('appearance')}</h2>
+            </div>
+            <div className="ac-card ac-glass">
+              <div className="ac-label-min">{t('theme')}</div>
               <div className="ac-theme-grid">
                 <div className={`ac-theme-box dark ${theme === 'dark' ? 'active' : ''}`} onClick={() => setTheme('dark')}>
                    <Moon size={24} />
-                   <span>Dark Mode</span>
+                   <span>{t('darkMode')}</span>
                    {theme === 'dark' && <div className="ac-check-abs"><Check size={12} strokeWidth={4} /></div>}
                 </div>
                 <div className={`ac-theme-box light ${theme === 'light' ? 'active' : ''}`} onClick={() => setTheme('light')}>
                    <Sun size={24} />
-                   <span>Light Mode</span>
+                   <span>{t('lightMode')}</span>
                    {theme === 'light' && <div className="ac-check-abs"><Check size={12} strokeWidth={4} /></div>}
                 </div>
               </div>
@@ -62,33 +90,33 @@ const Accessibility = () => {
           <section className="ac-section">
             <div className="ac-section-label">
               <Type size={18} />
-              <h2>Text Size</h2>
+              <h2>{t('textSize')}</h2>
             </div>
             <div className="ac-card ac-glass">
-              <div className="ac-label-min">Font Size</div>
+              <div className="ac-label-min">{t('fontSize')}</div>
               <div className="ac-size-stack">
                 {['Small', 'Medium', 'Large', 'Extra Large'].map((s) => (
                   <div 
                     key={s} 
-                    className={`ac-size-row ${fontSize === s.toLowerCase() ? 'active' : ''}`}
-                    onClick={() => setFontSize(s.toLowerCase())}
+                    className={`ac-size-row ${fontSize === s.toLowerCase().replace(' ', '') ? 'active' : ''}`}
+                    onClick={() => setFontSize(s.toLowerCase().replace(' ', ''))}
                   >
                     <span>Aa {s}</span>
-                    {fontSize === s.toLowerCase() && <Check size={16} color="#00E676" />}
+                    {fontSize === s.toLowerCase().replace(' ', '') && <Check size={16} color="#00E676" />}
                   </div>
                 ))}
               </div>
-              <p className="ac-size-hint">This is how your text will appear throughout the app.</p>
+              <p className="ac-size-hint">{t('sizeHint')}</p>
             </div>
           </section>
 
           <section className="ac-section">
-            <h2 className="ac-sec-lbl">Visual Adjustments</h2>
+            <h2 className="ac-sec-lbl">{t('visualAdjustments')}</h2>
             <div className="ac-card ac-glass">
               <div className="ac-toggle-row">
                 <div className="ac-toggle-l">
                   <div className="ac-toggle-ico yellow"><Sun size={16}/></div>
-                  <div className="ac-toggle-txt"><h4>High Contrast</h4><p>Increase color contrast</p></div>
+                  <div className="ac-toggle-txt"><h4>{t('highContrast')}</h4><p>{t('highContrastDesc')}</p></div>
                 </div>
                 <div className={`ac-ui-switch ${highContrast ? 'on' : ''}`} onClick={() => setHighContrast(!highContrast)}>
                   <div className="ac-ui-handle"></div>
@@ -97,7 +125,7 @@ const Accessibility = () => {
               <div className="ac-toggle-row">
                 <div className="ac-toggle-l">
                   <div className="ac-toggle-ico purple"><RefreshCw size={16}/></div>
-                  <div className="ac-toggle-txt"><h4>Reduce Motion</h4><p>Minimize animations</p></div>
+                  <div className="ac-toggle-txt"><h4>{t('reduceMotion')}</h4><p>{t('reduceMotionDesc')}</p></div>
                 </div>
                 <div className={`ac-ui-switch ${reduceMotion ? 'on' : ''}`} onClick={() => setReduceMotion(!reduceMotion)}>
                   <div className="ac-ui-handle"></div>
@@ -107,9 +135,9 @@ const Accessibility = () => {
           </section>
 
           <section className="ac-section">
-            <h2 className="ac-sec-lbl">Color Accessibility</h2>
+            <h2 className="ac-sec-lbl">{t('colorAccessibility')}</h2>
             <div className="ac-card ac-glass">
-              <div className="ac-label-min"><Eye size={14}/> Color Blind Mode</div>
+              <div className="ac-label-min"><Eye size={14}/> {t('colorBlindMode')}</div>
               <div className="ac-color-stack">
                 {['None', 'Protanopia', 'Deuteranopia', 'Tritanopia', 'Monochromacy'].map((m) => (
                    <div 
@@ -126,9 +154,9 @@ const Accessibility = () => {
           </section>
 
           <section className="ac-section">
-            <h2 className="ac-sec-lbl">Pointer & Cursor</h2>
+            <h2 className="ac-sec-lbl">{t('pointerCursor')}</h2>
             <div className="ac-card ac-glass">
-              <div className="ac-label-min"><MousePointer2 size={14}/> Cursor Size</div>
+              <div className="ac-label-min"><MousePointer2 size={14}/> {t('cursorSize')}</div>
               <div className="ac-cursor-grid">
                 {[
                   { id: 'normal', s: 10 }, { id: 'medium', s: 16 },
@@ -144,12 +172,12 @@ const Accessibility = () => {
           </section>
 
           <section className="ac-section">
-            <h2 className="ac-sec-lbl">Audio & Speech</h2>
+            <h2 className="ac-sec-lbl">{t('audioSpeech')}</h2>
             <div className="ac-card ac-glass">
               {[
-                { id: 'tts', h: 'Text to Speech', p: 'Read text aloud', ico: <Volume2 />, col: 'blue' },
-                { id: 'sounds', h: 'Sound Effects', p: 'Button clicks & alerts', ico: <Volume2 />, col: 'purple' },
-                { id: 'autoRead', h: 'Auto Read Text', p: 'Automatically read new content', ico: <Volume2 />, col: 'green' }
+                { id: 'tts', h: t('tts') || 'Text to Speech', p: t('ttsDesc') || 'Read text aloud', ico: <Volume2 />, col: 'blue' },
+                { id: 'sounds', h: t('sounds') || 'Sound Effects', p: t('soundsDesc') || 'Button clicks & alerts', ico: <Volume2 />, col: 'purple' },
+                { id: 'autoRead', h: t('autoRead') || 'Auto Read Text', p: t('autoReadDesc') || 'Automatically read new content', ico: <Volume2 />, col: 'green' }
               ].map(item => (
                 <div className="ac-toggle-row" key={item.id}>
                   <div className="ac-toggle-l">
@@ -164,10 +192,10 @@ const Accessibility = () => {
             </div>
           </section>
 
-          <button className="ac-reset-btn" onClick={resetSettings}>Reset to Default Settings</button>
+          <button className="ac-reset-btn" onClick={resetSettings}>{t('resetToDefault')}</button>
 
           <div className="ac-disclaimer">
-            <p>These settings help make the app more accessible and easier to use for everyone.</p>
+            <p>{t('accessibilityDisclaimer')}</p>
           </div>
 
           <div className="ac-bottom-pad"></div>

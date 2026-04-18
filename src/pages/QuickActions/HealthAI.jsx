@@ -6,16 +6,18 @@ import {
   Droplets, Heart, Brain, Moon 
 } from 'lucide-react';
 import './HealthAI.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const HealthAI = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const scrollRef = useRef(null);
   const [inputText, setInputText] = useState('');
   const [chatLog, setChatLog] = useState([
     {
       id: 1,
       sender: 'ai',
-      text: "Hello! I'm your personal AI Health Assistant. I'm here to help you with questions about your diet, nutrition, fitness, wellness, and overall health. How can I assist you today?",
+      text: t('aiGreeting'),
       time: '10:50 AM'
     }
   ]);
@@ -27,12 +29,12 @@ const HealthAI = () => {
   }, [chatLog]);
 
   const quickQs = [
-    { text: 'What should I eat for breakfast?', icon: <Apple size={20} />, color: '#FF4B2B' },
-    { text: 'How many calories should I consume?', icon: <Activity size={20} />, color: '#00E676' },
-    { text: 'How much water should I drink daily?', icon: <Droplets size={20} />, color: '#64B5F6' },
-    { text: 'How can I improve my heart health?', icon: <Heart size={20} />, color: '#FF416C' },
-    { text: 'Foods that boost brain function?', icon: <Brain size={20} />, color: '#B89FFF' },
-    { text: 'Tips for better sleep?', icon: <Moon size={20} />, color: '#7C4DFF' }
+    { text: t('q1'), icon: <Apple size={20} />, color: '#FF4B2B' },
+    { text: t('q2'), icon: <Activity size={20} />, color: '#00E676' },
+    { text: t('q3'), icon: <Droplets size={20} />, color: '#64B5F6' },
+    { text: t('q4'), icon: <Heart size={20} />, color: '#FF416C' },
+    { text: t('q5'), icon: <Brain size={20} />, color: '#B89FFF' },
+    { text: t('q6'), icon: <Moon size={20} />, color: '#7C4DFF' }
   ];
 
   const onSend = (e) => {
@@ -48,7 +50,7 @@ const HealthAI = () => {
       const aiMsg = {
         id: Date.now() + 1,
         sender: 'ai',
-        text: "That's a great question! Based on your health profile, I recommend focusing on protein-rich meals and maintaining consistent hydration. Would you like a detailed plan?",
+        text: t('aiResponseMock'),
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
       setChatLog(prev => [...prev, aiMsg]);
@@ -71,14 +73,14 @@ const HealthAI = () => {
             </div>
           </div>
           <div className="hai-intro">
-            <h1 className="hai-title">AI Health Assistant</h1>
-            <p className="hai-sub">Your personal health & nutrition guide</p>
+            <h1 className="hai-title">{t('healthAI')}</h1>
+            <p className="hai-sub">{t('aiSub')}</p>
           </div>
         </div>
 
         <div className="hai-scroll-content" ref={scrollRef}>
           <div className="hai-quick-section">
-            <p className="hai-sec-label">Quick questions:</p>
+            <p className="hai-sec-label">{t('quickQsLabel')}</p>
             <div className="hai-grid">
               {quickQs.map((q, i) => (
                 <motion.div 
@@ -123,7 +125,7 @@ const HealthAI = () => {
           <form className="hai-input-bar hai-glass" onSubmit={onSend}>
             <input 
               type="text" 
-              placeholder="Ask me about your health..." 
+              placeholder={t('aiPlaceholder')}
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
             />

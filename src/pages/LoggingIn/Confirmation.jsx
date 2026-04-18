@@ -4,10 +4,12 @@ import { ChevronLeft } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
 import SkipAuthModal from '../../common/SkipAuthModal';
 import './Confirmation.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const Confirmation = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useLanguage();
   const rawPhone = location.state?.phone || "";
   const [otpCodes, setOtpCodes] = useState(['', '', '', '']);
   const [error, setError] = useState(false);
@@ -42,14 +44,14 @@ const Confirmation = () => {
     <div className="otp-view-root">
       <div className="otp-layer-grad"></div><div className="otp-layer-lines"></div>
       <div className="otp-page-wrapper">
-        <div className="otp-header-nav"><button className="otp-btn-back" onClick={() => navigate(-1)}><ChevronLeft size={32} color="#FFFFFF" strokeWidth={2.5} /></button><button onClick={() => setIsSkipOpen(true)} style={{background: 'none', border: 'none', color: '#FFF', fontWeight: 700, fontSize: '16px', marginLeft: 'auto', marginRight: '10px'}}>Skip</button></div>
+        <div className="otp-header-nav"><button className="otp-btn-back" onClick={() => navigate(-1)}><ChevronLeft size={32} color="#FFFFFF" strokeWidth={2.5} /></button><button onClick={() => setIsSkipOpen(true)} style={{background: 'none', border: 'none', color: '#FFF', fontWeight: 700, fontSize: '16px', marginLeft: 'auto', marginRight: '10px'}}>{t('skip')}</button></div>
         <div className="otp-main-body">
-          <h1 className="otp-hero-title">Confirmation</h1><p className="otp-hero-desc">Enter code sent to <br /><span className="otp-number-text">{rawPhone}</span></p>
+          <h1 className="otp-hero-title">{t('confirmationTitle')}</h1><p className="otp-hero-desc">{t('enterCodeSentTo')} <br /><span className="otp-number-text">{rawPhone}</span></p>
           <div className="otp-inputs-row">{otpCodes.map((val, i) => (<input key={i} ref={codeRefs[i]} type="text" value={val} onChange={(e) => onBoxInput(i, e.target.value)} className={`otp-square-field ${error ? 'otp-error-field' : ''}`} />))}</div>
-          {error && <p className="otp-error-msg">Incorrect code. Please try again.</p>}
-          <p className="otp-resend-info">Didn’t receive code? <span className="otp-resend-trigger" onClick={sendOtp}>Resend Code</span></p>
+          {error && <p className="otp-error-msg">{t('incorrectCode')}</p>}
+          <p className="otp-resend-info">{t('didntReceiveCode')} <span className="otp-resend-trigger" onClick={sendOtp}>{t('resendCode')}</span></p>
         </div>
-        <div className="otp-footer-action"><button className={`otp-submit-btn ${otpCodes.join('').length === 4 ? 'otp-ready' : ''}`} onClick={verifyOtp}>Verify</button></div>
+        <div className="otp-footer-action"><button className={`otp-submit-btn ${otpCodes.join('').length === 4 ? 'otp-ready' : ''}`} onClick={verifyOtp}>{t('verify')}</button></div>
       </div>
       <SkipAuthModal isOpen={isSkipOpen} onClose={() => setIsSkipOpen(false)} />
     </div>

@@ -6,15 +6,17 @@ import {
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import './Medicine.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const Medicine = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const meds = [
-    { name: 'Aspirin', dose: '100 mg', freq: 'Twice daily', time: '08:00 PM', supply: '28/30', status: 'Upcoming', theme: 'red' },
-    { name: 'Vitamin D', dose: '1000 IU', freq: 'Once daily', time: 'Taken today', supply: '15/30', status: 'Taken', theme: 'orange' },
-    { name: 'Metformin', dose: '500 mg', freq: 'Three times daily', time: '02:00 PM', supply: '22/30', status: 'Missed', theme: 'blue' },
-    { name: 'Omega-3', dose: '1000 mg', freq: 'Once daily', time: 'Tomorrow', supply: '30/30', status: 'Taken', theme: 'purple' }
+    { name: 'Aspirin', dose: '100 mg', freq: t('twiceDaily'), time: '08:00 PM', supply: '28/30', status: t('upcoming'), theme: 'red' },
+    { name: 'Vitamin D', dose: '1000 IU', freq: t('onceDaily'), time: t('takenToday'), supply: '15/30', status: t('taken'), theme: 'orange' },
+    { name: 'Metformin', dose: '500 mg', freq: t('threeTimesDaily'), time: '02:00 PM', supply: '22/30', status: t('missed'), theme: 'blue' },
+    { name: 'Omega-3', dose: '1000 mg', freq: t('onceDaily'), time: t('tomorrow'), supply: '30/30', status: t('taken'), theme: 'purple' }
   ];
 
   return (
@@ -32,14 +34,14 @@ const Medicine = () => {
             </button>
           </div>
           <div className="mt-title-box">
-            <h1>Medicine Tracker</h1>
-            <p>Stay on top of your medications</p>
+            <h1>{t('medTitle')}</h1>
+            <p>{t('medSubtitle')}</p>
           </div>
         </header>
 
         <section className="mt-summary-card mt-glass">
           <div className="mt-summary-header">
-            <h3>Today's Progress</h3>
+            <h3>{t('todayProgress')}</h3>
             <span>5/8</span>
           </div>
           <div className="mt-main-progress-bar">
@@ -49,23 +51,23 @@ const Medicine = () => {
             <div className="mt-stat-box taken">
               <CheckCircle2 size={18} />
               <span className="mt-stat-num">5</span>
-              <span className="mt-stat-lbl">Taken</span>
+              <span className="mt-stat-lbl">{t('taken')}</span>
             </div>
             <div className="mt-stat-box missed">
               <AlertCircle size={18} />
               <span className="mt-stat-num">1</span>
-              <span className="mt-stat-lbl">Missed</span>
+              <span className="mt-stat-lbl">{t('missed')}</span>
             </div>
             <div className="mt-stat-box upcoming">
               <Clock size={18} />
               <span className="mt-stat-num">2</span>
-              <span className="mt-stat-lbl">Upcoming</span>
+              <span className="mt-stat-lbl">{t('upcoming')}</span>
             </div>
           </div>
         </section>
 
         <section className="mt-list-section">
-          <h2 className="mt-sec-title">Your Medications</h2>
+          <h2 className="mt-sec-title">{t('yourMeds')}</h2>
           <div className="mt-cards-stack">
             {meds.map((med, i) => (
               <div key={i} className="mt-med-card mt-glass">
@@ -81,13 +83,13 @@ const Medicine = () => {
                     <p className="mt-dosage">{med.dose} • {med.freq}</p>
                     <div className="mt-time-row">
                       <Clock size={14} />
-                      <span>Next dose: {med.time}</span>
+                      <span>{t('nextDose')}: {med.time}</span>
                     </div>
                   </div>
                 </div>
                 <div className="mt-supply-section">
                   <div className="mt-supply-meta">
-                    <span>Supply</span>
+                    <span>{t('supply')}</span>
                     <span>{med.supply}</span>
                   </div>
                   <div className="mt-supply-track">

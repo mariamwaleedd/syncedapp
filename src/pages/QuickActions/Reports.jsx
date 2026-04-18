@@ -10,6 +10,7 @@ import {
 import TouchBar from '../../common/TouchBar';
 import ShareModal from '../../common/ShareModal';
 import './Reports.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const reportData = [
   { id: 1, title: 'Cardiology Consultation', dr: 'Dr. Sarah Wilson', date: 'Mar 12, 2026', status: 'Complete', diagnosis: 'Mild Hypertension', icon: <Heart size={20} />, color: '#FF416C' },
@@ -24,6 +25,7 @@ const reportData = [
 
 const Reports = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
   const [isShareOpen, setIsShareOpen] = useState(false);
 
@@ -55,7 +57,7 @@ const Reports = () => {
             <button className="rp-circle-btn" onClick={() => navigate(-1)}>
               <ChevronLeft size={22} strokeWidth={2.5} />
             </button>
-            <h1 className="rp-main-title">Medical Reports</h1>
+            <h1 className="rp-main-title">{t('reportsTitle')}</h1>
             <button className="rp-circle-btn" onClick={() => navigate('/reports/upload')}>
               <Plus size={22} />
             </button>
@@ -65,7 +67,7 @@ const Reports = () => {
             <Search size={18} opacity={0.4} />
             <input 
               type="text" 
-              placeholder="Search reports..." 
+              placeholder={t('searchReports')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -73,15 +75,15 @@ const Reports = () => {
 
           <div className="rp-stats-grid">
             <div className="rp-stat-card rp-glass">
-              <span>Total</span>
+              <span>{t('total')}</span>
               <strong>{stats.total}</strong>
             </div>
             <div className="rp-stat-card rp-glass green">
-              <span>Complete</span>
+              <span>{t('complete')}</span>
               <strong>{stats.complete}</strong>
             </div>
             <div className="rp-stat-card rp-glass orange">
-              <span>Attention</span>
+              <span>{t('attention')}</span>
               <strong>{stats.attention}</strong>
             </div>
           </div>
@@ -110,21 +112,21 @@ const Reports = () => {
                     <div className="rp-item-status-row">
                       <span className="rp-date">{item.date}</span>
                       <span className={`rp-status-pill ${item.status.toLowerCase()}`}>
-                        {item.status}
+                        {item.status === 'Complete' ? t('complete') : t('attention')}
                       </span>
                     </div>
                   </div>
                 </div>
 
                 <div className="rp-diagnosis-box">
-                  <label>Diagnosis</label>
+                  <label>{t('diag')}</label>
                   <p>{item.diagnosis}</p>
                 </div>
 
                 <div className="rp-action-footer">
-                  <button className="rp-btn-act blue" onClick={() => navigate('/reports/view')}><Eye size={14}/> <span>View</span></button>
-                  <button className="rp-btn-act"><Download size={14}/> <span>Download</span></button>
-                  <button className="rp-btn-act" onClick={() => setIsShareOpen(true)}><Share2 size={14}/> <span>Share</span></button>
+                  <button className="rp-btn-act blue" onClick={() => navigate('/reports/view')}><Eye size={14}/> <span>{t('view')}</span></button>
+                  <button className="rp-btn-act"><Download size={14}/> <span>{t('download')}</span></button>
+                  <button className="rp-btn-act" onClick={() => setIsShareOpen(true)}><Share2 size={14}/> <span>{t('share')}</span></button>
                 </div>
               </motion.div>
             ))}
@@ -136,7 +138,7 @@ const Reports = () => {
       <ShareModal 
         isOpen={isShareOpen} 
         onClose={() => setIsShareOpen(false)} 
-        title="Share Medical Report"
+        title={t('shareReport')}
       />
     </div>
   );

@@ -8,22 +8,24 @@ import {
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import './WellnessPage.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const WellnessPage = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const progress = [
-    { label: 'Steps', val: '8,234', target: '10,000', perc: 82, color: '#64B5F6', ico: <Footprints size={20} />, path: '/wellness/steps' },
-    { label: 'Water', val: '1.8L', target: '2.5L', perc: 72, color: '#00E676', ico: <Droplets size={20} />, path: '/wellness/waterintake' },
-    { label: 'Calories', val: '1,650', target: '2,000', perc: 83, color: '#FF416C', ico: <Flame size={20} />, path: '/wellness/nutrition' },
-    { label: 'Sleep', val: '7.5h', target: '8h', perc: 94, color: '#B89FFF', ico: <Moon size={20} />, path: '/wellness/sleep' }
+    { label: t('stepCount'), val: '8,234', target: '10,000', perc: 82, color: '#64B5F6', ico: <Footprints size={20} />, path: '/wellness/steps' },
+    { label: t('hydration'), val: '1.8L', target: '2.5L', perc: 72, color: '#00E676', ico: <Droplets size={20} />, path: '/wellness/waterintake' },
+    { label: t('calories'), val: '1,650', target: '2,000', perc: 83, color: '#FF416C', ico: <Flame size={20} />, path: '/wellness/nutrition' },
+    { label: t('sleep'), val: '7.5h', target: '8h', perc: 94, color: '#B89FFF', ico: <Moon size={20} />, path: '/wellness/sleep' }
   ];
 
   const categories = [
-    { name: 'Nutrition', desc: 'Track meals & calories', stat: '3 meals today', color: '#00E676', ico: <Utensils size={22} />, path: '/wellness/nutrition' },
-    { name: 'Exercise', desc: 'Log workouts & activity', stat: '45 min today', color: '#64B5F6', ico: <Activity size={22} />, path: '/wellness/exercise' },
-    { name: 'Mindfulness', desc: 'Meditation & breathing', stat: '10 min today', color: '#B89FFF', ico: <Brain size={22} />, path: '/wellness/mindfulness' },
-    { name: 'Goals', desc: 'Set & track wellness goals', stat: '4 active goals', color: '#FF8A00', ico: <Target size={22} />, path: '/wellness/goals' }
+    { name: t('nutrition'), desc: t('nutritionSub'), stat: t('mealsToday'), color: '#00E676', ico: <Utensils size={22} />, path: '/wellness/nutrition' },
+    { name: t('exercise'), desc: t('exerciseSub'), stat: t('exerciseTime'), color: '#64B5F6', ico: <Activity size={22} />, path: '/wellness/exercise' },
+    { name: t('mindfulness'), desc: t('mindfulnessSub'), stat: t('breathTime'), color: '#B89FFF', ico: <Brain size={22} />, path: '/wellness/mindfulness' },
+    { name: t('dailyGoals'), desc: t('goalsSub'), stat: t('activeGoals'), color: '#FF8A00', ico: <Target size={22} />, path: '/wellness/goals' }
   ];
 
   return (
@@ -36,15 +38,15 @@ const WellnessPage = () => {
         <header className="wh-header">
           <div className="wh-nav-top">
             <button className="wh-circle-btn" onClick={() => navigate(-1)}>
-              <ChevronLeft size={22} />
+              <ChevronLeft size={22} strokeWidth={2.5} />
             </button>
             <button className="wh-circle-btn active-hub" onClick={() => navigate('/healthid')}>
               <Heart size={20} fill="#FFF" />
             </button>
           </div>
           <div className="wh-title-block">
-            <h1 className="wh-main-title">Wellness Hub</h1>
-            <p className="wh-subtitle">Track your daily health & lifestyle</p>
+            <h1 className="wh-main-title">{t('wellnessHub')}</h1>
+            <p className="wh-subtitle">{t('wellnessSub')}</p>
           </div>
         </header>
 
@@ -53,7 +55,7 @@ const WellnessPage = () => {
             <Calendar size={18} opacity={0.6} />
             <span>Friday, March 13</span>
           </div>
-          <h2 className="wh-sec-lbl">Today's Progress</h2>
+          <h2 className="wh-sec-lbl">{t('todayProgress')}</h2>
           <div className="wh-prog-grid">
             {progress.map((item, i) => (
               <div 
@@ -84,7 +86,7 @@ const WellnessPage = () => {
         </section>
 
         <section className="wh-section">
-          <h2 className="wh-sec-lbl">Wellness Categories</h2>
+          <h2 className="wh-sec-lbl">{t('wellnessCats')}</h2>
           <div className="wh-cat-stack">
             {categories.map((cat, i) => (
               <div key={i} className="wh-cat-card wh-glass" onClick={() => navigate(cat.path)} style={{ cursor: 'pointer' }}>
@@ -107,20 +109,20 @@ const WellnessPage = () => {
         <section className="wh-section">
           <div className="wh-sec-head">
             <Medal size={18} color="#FFD54F" />
-            <h2 className="wh-sec-lbl no-m">Recent Achievements</h2>
+            <h2 className="wh-sec-lbl no-m">{t('recentAchieve')}</h2>
           </div>
           <div className="wh-ach-flex">
             <div className="wh-ach-box wh-glass" onClick={() => navigate('/familyhub/achievements')} style={{ cursor: 'pointer' }}>
               <div className="wh-ach-ico gold"><Target size={20} /></div>
-              <span>7-Day Streak</span>
+              <span>{t('streak7Day')}</span>
             </div>
             <div className="wh-ach-box wh-glass" onClick={() => navigate('/familyhub/achievements')} style={{ cursor: 'pointer' }}>
               <div className="wh-ach-ico blue"><Droplets size={20} /></div>
-              <span>Water Champion</span>
+              <span>{t('waterChampion')}</span>
             </div>
             <div className="wh-ach-box wh-glass" onClick={() => navigate('/familyhub/achievements')} style={{ cursor: 'pointer' }}>
               <div className="wh-ach-ico purple"><Moon size={20} /></div>
-              <span>Early Bird</span>
+              <span>{t('earlyBird')}</span>
             </div>
           </div>
         </section>
@@ -130,8 +132,8 @@ const WellnessPage = () => {
             <Lightbulb size={24} color="#64B5F6" />
           </div>
           <div className="wh-tip-txt">
-            <h5>Daily Wellness Tip</h5>
-            <p>Stay hydrated! Aim for 8 glasses of water throughout the day. Your body performs best when properly hydrated.</p>
+            <h5>{t('dailyWellnessTip')}</h5>
+            <p>{t('hydrationTipLong')}</p>
           </div>
         </div>
 

@@ -9,10 +9,12 @@ import {
 import { supabase } from '../../supabaseClient';
 import TouchBar from '../../common/TouchBar';
 import './FamilyChat.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const FamilyChat = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { t } = useLanguage();
   const scrollRef = useRef(null);
   const [text, setText] = useState('');
   const [members, setMembers] = useState([]);
@@ -21,7 +23,7 @@ const FamilyChat = () => {
   const [toast, setToast] = useState({ show: false, msg: '' });
   
   const [messages, setMessages] = useState([
-    { id: 1, senderId: 'system', type: 'text', content: 'Family Chat started. Be kind!', time: 'Yesterday' },
+    { id: 1, senderId: 'system', type: 'text', content: t('chatSysMsg'), time: 'Yesterday' },
   ]);
 
   useEffect(() => {
@@ -31,7 +33,7 @@ const FamilyChat = () => {
   useEffect(() => {
     if (id) {
       if (id === 'group') {
-        setActivePartner({ full_name: 'Family Group', emoji: '👨‍👩‍👧‍👦', id: 'group' });
+        setActivePartner({ full_name: t('familyGroup'), emoji: '👨‍👩‍👧‍👦', id: 'group' });
       } else {
         const partner = members.find(m => m.id === id);
         if (partner) setActivePartner(partner);
@@ -39,7 +41,7 @@ const FamilyChat = () => {
     } else {
       setActivePartner(null);
     }
-  }, [id, members]);
+  }, [id, members, t]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -69,7 +71,7 @@ const FamilyChat = () => {
           id: Date.now() + 1,
           senderId: activePartner.id,
           type: 'text',
-          content: `Thanks for the message! I'm busy right now but I'll get back to you soon. ${activePartner.emoji}`,
+          content: `${t('chatAutoReply')} ${activePartner.emoji}`,
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         };
         setMessages(prev => [...prev, reply]);
@@ -104,13 +106,13 @@ const FamilyChat = () => {
             <button className="fc-circle-btn" onClick={() => navigate(-1)}>
               <ChevronLeft size={22} />
             </button>
-            <h1>Family Hub Chat</h1>
+            <h1>{t('familyHubChat')}</h1>
             <div className="fc-header-ico"><Users size={20} /></div>
           </header>
           
           <div className="fc-search-bar fc-glass">
             <Search size={18} opacity={0.4} />
-            <input type="text" placeholder="Search family members..." />
+            <input type="text" placeholder={t('searchFamily')} />
           </div>
 
           <div className="fc-list">
@@ -122,13 +124,13 @@ const FamilyChat = () => {
                 <Users size={22} color="#FFF" />
               </div>
               <div className="fc-chat-info">
-                <h3>Family Group</h3>
-                <p>Chat with everyone at once</p>
+                <h3>{t('familyGroup')}</h3>
+                <p>{t('groupChatSub')}</p>
               </div>
               <ChevronLeft className="fc-chevron-r" size={16} />
             </div>
 
-            <h2 className="fc-sec-title">Private Messages</h2>
+            <h2 className="fc-sec-title">{t('privateMessages')}</h2>
             {members.map(m => (
               <div key={m.id} className="fc-chat-item fc-glass" onClick={() => navigate(`/familyhub/chat/${m.id}`)}>
                 <div className="fc-chat-avatar">{m.emoji}</div>
@@ -156,7 +158,7 @@ const FamilyChat = () => {
                 </div>
                 <div className="fc-profile-info">
                   <h4>{activePartner.full_name}</h4>
-                  <span>{id === 'group' ? `${members.length + 1} participants` : 'Online'}</span>
+                  <span>{id === 'group' ? `${members.length + 1} ${t('participants')}` : t('online')}</span>
                 </div>
               </div>
               <div className="fc-nav-right">
@@ -187,7 +189,7 @@ const FamilyChat = () => {
               <button type="button" className="fc-tool-btn"><Paperclip size={20} /></button>
               <input 
                 type="text" 
-                placeholder="Type a message..." 
+                placeholder={t('typeMessage')}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
               />
@@ -213,9 +215,9 @@ const FamilyChat = () => {
             <div className="fc-video-content">
               <div className="fc-video-avatar">{activePartner?.emoji}</div>
               <h2>{activePartner?.full_name}</h2>
-              <p>Incoming Video Call...</p>
+              <p>{t('videoCallInc')}</p>
               <div className="fc-video-actions">
-                <button className="fc-video-close" onClick={endCall}>End Call</button>
+                <button className="fc-video-close" onClick={endCall}>{t('endCall')}</button>
               </div>
             </div>
           </motion.div>
@@ -232,3 +234,4 @@ const FamilyChat = () => {
 };
 
 export default FamilyChat;
+

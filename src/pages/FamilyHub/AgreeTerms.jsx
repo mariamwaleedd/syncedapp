@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, X, Shield, Eye, Users, AlertCircle, Check } from 'lucide-react';
 import './AgreeTerms.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const AgreeTerms = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [agreed, setAgreed] = useState(false);
 
   return (
@@ -34,8 +36,8 @@ const AgreeTerms = () => {
           <div className="at-shield-box">
             <Shield size={52} color="#FFF" fill="rgba(255,255,255,0.1)" />
           </div>
-          <h1 className="at-title">Data Sharing Agreement</h1>
-          <p className="at-subtitle">Important information about family health data</p>
+          <h1 className="at-title">{t('dataSharingAgreem')}</h1>
+          <p className="at-subtitle">{t('familyDataSub')}</p>
         </div>
 
         <div className="at-scroll-content">
@@ -44,8 +46,8 @@ const AgreeTerms = () => {
               <Eye size={20} color="#64B5F6" />
             </div>
             <div className="at-card-txt">
-              <h4>Full Data Visibility</h4>
-              <p>All family members you add will have access to view each other's complete health information, including medical records, vital signs, medications, and reports.</p>
+              <h4>{t('fullVis')}</h4>
+              <p>{t('fullVisSub')}</p>
             </div>
           </div>
 
@@ -54,8 +56,8 @@ const AgreeTerms = () => {
               <Users size={20} color="#B89FFF" />
             </div>
             <div className="at-card-txt">
-              <h4>Shared Health Dashboard</h4>
-              <p>Every member will appear on your family health dashboard, and their health data will be continuously monitored and displayed.</p>
+              <h4>{t('sharedDash')}</h4>
+              <p>{t('sharedDashSub')}</p>
             </div>
           </div>
 
@@ -64,8 +66,8 @@ const AgreeTerms = () => {
               <AlertCircle size={20} color="#FF8A00" />
             </div>
             <div className="at-card-txt">
-              <h4>Consent Required</h4>
-              <p>By adding a family member, you confirm that you have their consent to share their health information on this platform.</p>
+              <h4>{t('consentReq')}</h4>
+              <p>{t('consentReqSub')}</p>
             </div>
           </div>
 
@@ -73,7 +75,7 @@ const AgreeTerms = () => {
             <div className={`at-check-circle ${agreed ? 'active' : ''}`}>
               {agreed && <Check size={14} color="#FFF" strokeWidth={4} />}
             </div>
-            <p>I understand and agree that all family members will have access to view each other's complete health data, and I have obtained consent from the person I'm adding.</p>
+            <p>{t('iAgreeTerms')}</p>
           </div>
         </div>
 
@@ -83,7 +85,7 @@ const AgreeTerms = () => {
             disabled={!agreed}
             onClick={() => navigate('/familyhub')}
           >
-            I Agree, Continue
+            {t('agreeCont')}
           </button>
           <div className="at-home-bar"></div>
         </footer>
@@ -92,4 +94,4 @@ const AgreeTerms = () => {
   );
 };
 
-export default AgreeTerms;
+export default AgreeTerms;

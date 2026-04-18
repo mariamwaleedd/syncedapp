@@ -8,7 +8,7 @@ import './Login.css';
 import logo from '../../imgs/logoblue.png';
 
 const Login = () => {
-  useLanguage();
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -35,8 +35,8 @@ const Login = () => {
 
   const validate = () => {
     const newErrors = {};
-    if (email.trim().length === 0) newErrors.email = "Please enter any email to continue";
-    if (password.length === 0) newErrors.password = "Please enter a password";
+    if (email.trim().length === 0) newErrors.email = t('pleaseEnterEmail');
+    if (password.length === 0) newErrors.password = t('pleaseEnterPassword');
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -62,18 +62,18 @@ const Login = () => {
           <button className="nav-icon-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={28} color="#FFFFFF" strokeWidth={2.5} />
           </button>
-          <button className="link-text-btn" onClick={() => setIsSkipOpen(true)} style={{fontSize: '16px', marginRight: '10px'}}>Skip</button>
+          <button className="link-text-btn" onClick={() => setIsSkipOpen(true)} style={{fontSize: '16px', marginRight: '10px'}}>{t('skip')}</button>
         </div>
         <div className="form-container">
           <img src={logo} alt="Logo" className="app-logo" />
-          <h1 className="main-heading">Log In</h1>
-          <p className="sub-heading">Let’s get started</p>
+          <h1 className="main-heading">{t('logIn')}</h1>
+          <p className="sub-heading">{t('letsGetStarted')}</p>
           <form onSubmit={handleLogin} noValidate>
             <div className={`field-box ${errors.email ? 'field-error' : ''}`}>
               <Mail size={20} className="field-icon" strokeWidth={2} />
               <input 
                 type="email" 
-                placeholder="Email Address"
+                placeholder={t('emailAddress')}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -83,7 +83,7 @@ const Login = () => {
               <Lock size={20} className="field-icon" strokeWidth={2} />
               <input 
                 type={showPassword ? "text" : "password"} 
-                placeholder="Password"
+                placeholder={t('passwordLabel')}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -97,21 +97,21 @@ const Login = () => {
                   <div className="meter-fill" style={{ width: `${strength.percent}%`, backgroundColor: strength.percent === 100 ? '#64B5F6' : strength.percent > 40 ? '#ffd54f' : '#ff4d4d' }}></div>
                 </div>
                 <div className="meter-labels">
-                  <span className={strength.hasLength ? 'met' : ''}>8+ Chars</span>
-                  <span className={strength.hasNumber ? 'met' : ''}>Numbers</span>
-                  <span className={strength.hasSpecial ? 'met' : ''}>Symbols</span>
+                  <span className={strength.hasLength ? 'met' : ''}>{t('eightChars')}</span>
+                  <span className={strength.hasNumber ? 'met' : ''}>{t('numbers')}</span>
+                  <span className={strength.hasSpecial ? 'met' : ''}>{t('symbols')}</span>
                 </div>
               </div>
             )}
             {errors.password && <span className="error-text">{errors.password}</span>}
             <div className="forgot-row">
-              <button type="button" className="forgot-link" onClick={() => navigate('/forgetpass')}>Forget Password?</button>
+              <button type="button" className="forgot-link" onClick={() => navigate('/forgetpass')}>{t('forgetPassQ')}</button>
             </div>
-            <button type="submit" className="login-action-btn">Log In</button>
+            <button type="submit" className="login-action-btn">{t('logIn')}</button>
           </form>
         </div>
         <div className="footer-links">
-          <p>Don’t have an account? <button type="button" className="link-text-btn" onClick={() => navigate('/signup')}>Sign Up</button></p>
+          <p>{t('dontHaveAccount')} <button type="button" className="link-text-btn" onClick={() => navigate('/signup')}>{t('signUpAction')}</button></p>
         </div>
       </div>
       <SkipAuthModal isOpen={isSkipOpen} onClose={() => setIsSkipOpen(false)} />
@@ -119,4 +119,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Login;

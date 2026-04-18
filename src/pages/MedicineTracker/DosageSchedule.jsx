@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Check } from 'lucide-react';
 import './DosageSchedule.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const DosageSchedule = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [selectedFreq, setSelectedFreq] = useState('Once daily');
 
   const frequencies = [
@@ -37,13 +39,13 @@ const DosageSchedule = () => {
         </header>
 
         <div className="ds-header-info">
-          <h1 className="ds-main-title">Dosage & Schedule</h1>
-          <p className="ds-subtitle">Set frequency and timing</p>
+          <h1 className="ds-main-title">{t('dosageScheduleTitle')}</h1>
+          <p className="ds-subtitle">{t('setFreqTiming')}</p>
         </div>
 
         <div className="ds-form">
           <div className="ds-group">
-            <label className="ds-label">Frequency</label>
+            <label className="ds-label">{t('frequencyLabel')}</label>
             <div className="ds-options-stack">
               {frequencies.map((freq) => (
                 <div 
@@ -51,7 +53,7 @@ const DosageSchedule = () => {
                   className={`ds-opt-box ds-glass ${selectedFreq === freq ? 'active' : ''}`}
                   onClick={() => setSelectedFreq(freq)}
                 >
-                  <span>{freq}</span>
+                  <span>{t('frequencyOptions')[freq] || freq}</span>
                   {selectedFreq === freq && <Check size={18} color="#64B5F6" strokeWidth={3} />}
                 </div>
               ))}
@@ -59,7 +61,7 @@ const DosageSchedule = () => {
           </div>
 
           <div className="ds-group">
-            <label className="ds-label">Time Slots</label>
+            <label className="ds-label">{t('timeSlots')}</label>
             <input 
               className="ds-input ds-glass" 
               type="time" 
@@ -69,7 +71,7 @@ const DosageSchedule = () => {
 
 
           <div className="ds-group">
-            <label className="ds-label">Treatment Duration (days)</label>
+            <label className="ds-label">{t('durationDays')}</label>
             <input 
               className="ds-input ds-glass" 
               type="text" 
@@ -80,7 +82,7 @@ const DosageSchedule = () => {
 
         <footer className="ds-footer">
           <button className="ds-continue-btn" onClick={() => navigate('/medicinetracker/reminders')}>
-            Continue
+            {t('continue')}
           </button>
           <div className="ds-home-bar"></div>
         </footer>

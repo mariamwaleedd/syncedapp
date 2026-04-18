@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, X } from 'lucide-react';
 import './ChooseAvatar.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const ChooseAvatar = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [selected, setSelected] = useState('Man');
 
   const avatars = [
@@ -46,8 +48,8 @@ const ChooseAvatar = () => {
         </header>
 
         <div className="ca-title-box">
-          <h1 className="ca-main-title">Choose Avatar</h1>
-          <p className="ca-subtitle">Select a profile picture for you</p>
+          <h1 className="ca-main-title">{t('chooseAvatar')}</h1>
+          <p className="ca-subtitle">{t('selectProfilePic')}</p>
         </div>
 
         <div className="ca-grid-container">
@@ -59,7 +61,7 @@ const ChooseAvatar = () => {
                 onClick={() => setSelected(item.label)}
               >
                 <span className="ca-emoji">{item.emoji}</span>
-                <span className="ca-label">{item.label}</span>
+                <span className="ca-label">{t('avatarList')[item.label] || item.label}</span>
               </div>
             ))}
           </div>
@@ -67,7 +69,7 @@ const ChooseAvatar = () => {
 
         <footer className="ca-footer">
           <button className="ca-submit-btn" onClick={() => navigate('/familyhub')}>
-            Add Family Member
+            {t('addFamilyMember')}
           </button>
           <div className="ca-home-bar"></div>
         </footer>
@@ -76,4 +78,4 @@ const ChooseAvatar = () => {
   );
 };
 
-export default ChooseAvatar;
+export default ChooseAvatar;

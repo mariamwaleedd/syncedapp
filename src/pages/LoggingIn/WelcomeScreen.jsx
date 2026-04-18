@@ -3,33 +3,35 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../../imgs/logoblue.png';
 import './WelcomeScreen.css';
-
-const slides = [
-  {
-    id: 1,
-    title: "Welcome to SYNCED",
-    description: "Your comprehensive health and wellness ecosystem. Everything you need, centralized in one intelligent platform."
-  },
-  {
-    id: 2,
-    title: "Track & Monitor",
-    description: "Log your medicines, monitor your daily vitals, and keep all your medical records securely in your pocket."
-  },
-  {
-    id: 3,
-    title: "AI Health Assistant",
-    description: "Chat with our smart AI for instant symptom analysis and seamlessly connect with top medical professionals."
-  },
-  {
-    id: 4,
-    title: "Family & Emergency",
-    description: "Link your loved ones to a shared Family Hub, and get immediate access to one-tap emergency support."
-  }
-];
+import { useLanguage } from '../../common/LanguageContext';
 
 const WelcomeScreen = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    {
+      id: 1,
+      title: t('welcomeTitle'),
+      description: t('welcomeDesc')
+    },
+    {
+      id: 2,
+      title: t('trackTitle'),
+      description: t('trackDesc')
+    },
+    {
+      id: 3,
+      title: t('aiTitle'),
+      description: t('aiDesc')
+    },
+    {
+      id: 4,
+      title: t('familyTitle'),
+      description: t('familyDesc')
+    }
+  ];
 
   useEffect(() => {
     // Check if user is already logged in, redirect if so
@@ -49,7 +51,7 @@ const WelcomeScreen = () => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 4000);
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
   return (
     <div className="welcome-screen ltr-theme">
@@ -65,7 +67,7 @@ const WelcomeScreen = () => {
         >
           <img src={logo} alt="Synced Logo" className="app-logo" />
         </motion.div>
-
+ 
         <div className="carousel-container">
           <AnimatePresence mode="wait">
             <motion.div
@@ -102,18 +104,18 @@ const WelcomeScreen = () => {
             className="primary-login-btn"
             onClick={() => navigate('/login')}
           >
-            Login or Register
+            {t('loginOrRegister')}
           </button>
           
           <div className="skip-divider">
-            <span>OR</span>
+            <span>{t('orLabel')}</span>
           </div>
 
           <button 
             className="skip-quiz-btn"
             onClick={() => navigate('/createhealth')}
           >
-            Skip to Virtual Quiz
+            {t('skipToQuiz')}
           </button>
         </motion.div>
       </div>
@@ -122,3 +124,4 @@ const WelcomeScreen = () => {
 };
 
 export default WelcomeScreen;
+

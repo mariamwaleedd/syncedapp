@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Bell, Clock } from 'lucide-react';
 import './Reminders.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const Reminders = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [isEnabled, setIsEnabled] = useState(true);
 
   return (
@@ -29,8 +31,8 @@ const Reminders = () => {
         </header>
 
         <div className="rm-header-info">
-          <h1 className="rm-main-title">Reminders</h1>
-          <p className="rm-subtitle">Configure notifications</p>
+          <h1 className="rm-main-title">{t('remindersTitle')}</h1>
+          <p className="rm-subtitle">{t('configNotifs')}</p>
         </div>
 
         <div className="rm-content-body">
@@ -40,8 +42,8 @@ const Reminders = () => {
                 <Bell size={20} color="#64B5F6" />
               </div>
               <div className="rm-toggle-txt">
-                <h4>Enable Reminders</h4>
-                <p>Get notified when it's time</p>
+                <h4>{t('enableReminders')}</h4>
+                <p>{t('getNotifiedTime')}</p>
               </div>
             </div>
             <div 
@@ -53,7 +55,7 @@ const Reminders = () => {
           </div>
 
           <div className="rm-time-section">
-            <label className="rm-field-label">You'll receive reminders at:</label>
+            <label className="rm-field-label">{t('willRecieveRemindersAt')}</label>
             <div className="rm-time-input rm-glass">
               <Clock size={20} color="#64B5F6" />
               <input 
@@ -74,7 +76,7 @@ const Reminders = () => {
 
         <footer className="rm-footer">
           <button className="rm-continue-btn" onClick={() => navigate('/medicinetracker/additional-details')}>
-            Continue
+            {t('continue')}
           </button>
           <div className="rm-home-bar"></div>
         </footer>

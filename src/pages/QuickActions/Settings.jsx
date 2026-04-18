@@ -8,9 +8,11 @@ import {
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import './Settings.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const Settings = () => {
   const navigate = useNavigate();
+  const { t, lang } = useLanguage();
 
   const container = {
     hidden: { opacity: 0 },
@@ -24,51 +26,55 @@ const Settings = () => {
 
   const sections = [
     {
-      title: "Manage Account",
+      title: t('manageAccount'),
       options: [
-        { label: "Profile", icon: <User size={20} />, path: "/settings/profile" },
-        { label: "Security details", icon: <Shield size={20} />, path: "/settings/security" },
-        { label: "Accessibility", icon: <Accessibility size={20} />, path: "/settings/accessibility" }
+        { label: t('profile'), icon: <User size={20} />, path: "/settings/profile" },
+        { label: t('securityDetails'), icon: <Shield size={20} />, path: "/settings/security" },
+        { label: t('accessibility'), icon: <Accessibility size={20} />, path: "/settings/accessibility" }
       ]
     },
     {
-      title: "Health & Medical",
+      title: t('healthAndMedical'),
       options: [
-        { label: "Health Preferences", icon: <Heart size={20} />, path: "/settings/preferences" },
-        { label: "Medical Records", icon: <Database size={20} />, path: "/settings/records" },
-        { label: "Appointment Settings", icon: <Calendar size={20} />, path: "/settings/appointments" }
+        { label: t('healthPreferences'), icon: <Heart size={20} />, path: "/settings/preferences" },
+        { label: t('medicalRecords'), icon: <Database size={20} />, path: "/settings/records" },
+        { label: t('appointmentSettings'), icon: <Calendar size={20} />, path: "/settings/appointments" }
       ]
     },
     {
-      title: "Device & Connectivity",
+      title: t('deviceConnectivity'),
       options: [
-        { label: "Connected Devices", icon: <Smartphone size={20} />, path: "/settings/devices" }
+        { label: t('connectedDevices'), icon: <Smartphone size={20} />, path: "/settings/devices" }
       ]
     },
     {
-      title: "Notifications",
+      title: t('notifications'),
       options: [
-        { label: "Notification Settings", icon: <Bell size={20} />, path: "/settings/notifications" }
+        { label: t('notificationSettings'), icon: <Bell size={20} />, path: "/settings/notifications" }
       ]
     },
     {
-      title: "Legal and Privacy",
+      title: t('legalPrivacy'),
       options: [
-        { label: "Privacy Settings", icon: <Eye size={20} />, path: "/settings/privacy" },
-        { label: "Help Center", icon: <HelpCircle size={20} />, path: "/helpcenter" }
+        { label: t('privacySettings'), icon: <Eye size={20} />, path: "/settings/privacy" },
+        { label: t('helpCenter'), icon: <HelpCircle size={20} />, path: "/helpcenter" }
       ]
     }
   ];
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'set-root rtl-theme' : 'set-root ltr-theme';
+  };
+
   return (
-    <div className="set-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="set-fixed-header">
                 <div className="set-nav-row">
           <button className="set-circle-btn" onClick={() => navigate(-1)}>
-            <ChevronLeft size={22} />
+            <ChevronLeft size={22} className={lang === 'ar' ? 'rtl-flip' : ''} />
           </button>
           <div className="set-header-title">
-            <h1>Settings</h1>
+            <h1>{t('settings')}</h1>
           </div>
           <div style={{ width: 44 }}></div>
         </div>
@@ -110,7 +116,7 @@ const Settings = () => {
                     </div>
                     <span>{opt.label}</span>
                   </div>
-                  <ChevronRight size={18} className="set-chevron" />
+                  <ChevronRight size={18} className={`set-chevron ${lang === 'ar' ? 'rtl-flip' : ''}`} />
                 </motion.div>
               ))}
             </div>
@@ -125,3 +131,4 @@ const Settings = () => {
 };
 
 export default Settings;
+

@@ -152,6 +152,21 @@ button:active {
 
 .rtl-theme {
   direction: rtl;
+  font-family: 'General Sans', sans-serif; /* Fallback, ideally we'd add an Arabic font */
+}
+
+.rtl-theme .ha-date,
+.rtl-theme .wh-date-row span,
+.rtl-theme .qa-header-title p {
+  text-align: right;
+}
+
+.rtl-theme .ha-view-link .ha-chevron-ar {
+  transform: rotate(180deg);
+}
+
+.rtl-theme .qa-chevron {
+  transform: rotate(180deg);
 }
 
 .ltr-theme {

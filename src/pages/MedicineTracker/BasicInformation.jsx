@@ -2,9 +2,11 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Check, Camera, RotateCcw, X, ScanIcon } from 'lucide-react';
 import './BasicInformation.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const BasicInformation = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [selectedColor, setSelectedColor] = useState('#2196F3');
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const [capturedImage, setCapturedImage] = useState(null);
@@ -31,7 +33,7 @@ const BasicInformation = () => {
     } catch (err) {
       console.error("Error accessing camera:", err);
       setIsCameraOpen(false);
-      alert("Could not access camera. Please check permissions.");
+      alert(t('camError'));
     }
   };
 
@@ -83,22 +85,22 @@ const BasicInformation = () => {
         </header>
 
         <div className="bi-header-info">
-          <h1 className="bi-main-title">Basic Information</h1>
-          <p className="bi-subtitle">Enter medicine name and dosage</p>
+          <h1 className="bi-main-title">{t('basicInfoTitle')}</h1>
+          <p className="bi-subtitle">{t('enterMedNameDosage')}</p>
         </div>
 
         <div className="bi-form">
           {/* Camera Section */}
           <div className="bi-camera-section">
-            <label className="bi-label">Medicine Box Photo</label>
+            <label className="bi-label">{t('medBoxPhoto')}</label>
             <div className={`bi-photo-container ${capturedImage ? 'has-image' : ''} bi-glass`}>
               {!isCameraOpen && !capturedImage && (
                 <div className="bi-photo-placeholder" onClick={startCamera}>
                   <div className="bi-icon-circle">
                     <Camera size={32} color="#64B5F6" />
                   </div>
-                  <p>Take a picture of the box</p>
-                  <span>Helps identify medicine correctly</span>
+                  <p>{t('takeBoxPhoto')}</p>
+                  <span>{t('helpsIdentify')}</span>
                 </div>
               )}
 
@@ -128,11 +130,11 @@ const BasicInformation = () => {
                   <div className="bi-preview-actions">
                     <button className="bi-retake-btn" onClick={retakePhoto}>
                       <RotateCcw size={18} />
-                      Retake
+                      {t('retake')}
                     </button>
                     <div className="bi-success-badge">
                       <Check size={16} color="#00E676" />
-                      Captured
+                      {t('captured')}
                     </div>
                   </div>
                 </div>
@@ -142,17 +144,17 @@ const BasicInformation = () => {
           </div>
 
           <div className="bi-field-wrap">
-            <label className="bi-label">Medicine Name</label>
+            <label className="bi-label">{t('medName')}</label>
             <input 
               className="bi-input bi-glass" 
               type="text" 
-              placeholder="e.g., Aspirin" 
+              placeholder={t('aspirinEx')} 
             />
           </div>
 
           <div className="bi-row-split">
             <div className="bi-field-wrap">
-              <label className="bi-label">Dose Amount</label>
+              <label className="bi-label">{t('doseAmount')}</label>
               <input 
                 className="bi-input bi-glass" 
                 type="text" 
@@ -160,7 +162,7 @@ const BasicInformation = () => {
               />
             </div>
             <div className="bi-field-wrap">
-              <label className="bi-label">Unit</label>
+              <label className="bi-label">{t('unit')}</label>
               <input 
                 className="bi-input bi-glass" 
                 type="text" 
@@ -170,7 +172,7 @@ const BasicInformation = () => {
           </div>
 
           <div className="bi-theme-section">
-            <label className="bi-label">Color Theme</label>
+            <label className="bi-label">{t('colorTheme')}</label>
             <div className="bi-color-grid">
               {themes.map((color) => (
                 <div 
@@ -188,7 +190,7 @@ const BasicInformation = () => {
 
         <footer className="bi-footer">
           <button className="bi-continue-btn" onClick={() => navigate('/medicinetracker/dosage-schedule')}>
-            Continue
+            {t('continue')}
           </button>
           <div className="bi-home-bar"></div>
         </footer>

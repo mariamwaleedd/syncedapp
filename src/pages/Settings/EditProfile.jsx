@@ -7,9 +7,11 @@ import {
 import TouchBar from '../../common/TouchBar';
 import { supabase } from '../../supabaseClient';
 import './EditProfile.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const EditProfile = () => {
   const navigate = useNavigate();
+  const { t, lang } = useLanguage();
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState({
     first_name: '', last_name: '', email: '', phone: '', dob: '', location: '',
@@ -37,7 +39,7 @@ const EditProfile = () => {
 
   const handleSave = async () => {
     const id = localStorage.getItem('health_id');
-    const { error } = await supabase.from('application_healthId').update({
+    const { error } = await supabase.from('application_healthid').update({
       ...profile,
       allergies: allergies.join(', '),
       chronic_conditions: conditions.join(', ')
@@ -52,64 +54,68 @@ const EditProfile = () => {
 
   if (loading) return null;
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'ep-container rtl-theme' : 'ep-container ltr-theme';
+  };
+
   return (
-    <div className="ep-container ltr-theme">
+    <div className={getThemeClass()}>
       <div className="ep-bg-gradient"></div><div className="ep-bg-image"></div>
       <div className="ep-content">
         <div className="ep-nav-header">
-          <button className="ep-back-btn" onClick={() => navigate(-1)}><ChevronLeft size={24} color="#FFF" strokeWidth={2.5} /></button>
-          <button className="ep-save-btn" onClick={handleSave}><Save size={18} /><span>Save</span></button>
+          <button className="ep-back-btn" onClick={() => navigate(-1)}><ChevronLeft size={24} color="#FFF" strokeWidth={2.5} className={lang === 'ar' ? 'rtl-flip' : ''} /></button>
+          <button className="ep-save-btn" onClick={handleSave}><Save size={18} /><span>{t('save')}</span></button>
         </div>
         <div className="ep-avatar-section">
           <div className="ep-avatar-sq"><User size={50} color="#FFF" strokeWidth={1.5} /><div className="ep-cam-badge"><Camera size={16} color="#FFF" /></div></div>
-          <span className="ep-cam-txt">Tap to change photo</span>
+          <span className="ep-cam-txt">{t('tapToChange')}</span>
         </div>
         <section className="ep-block">
-          <h2 className="ep-block-lbl">Basic Information</h2>
+          <h2 className="ep-block-lbl">{t('basicInformation')}</h2>
           <div className="ep-card ep-glass">
             <div className="ep-row-split">
-              <div className="ep-field"><label>First Name</label><input type="text" value={profile.first_name} onChange={e => setProfile({...profile, first_name: e.target.value})} /></div>
-              <div className="ep-field"><label>Last Name</label><input type="text" value={profile.last_name} onChange={e => setProfile({...profile, last_name: e.target.value})} /></div>
+              <div className="ep-field"><label>{t('firstName') || 'First Name'}</label><input type="text" value={profile.first_name} onChange={e => setProfile({...profile, first_name: e.target.value})} /></div>
+              <div className="ep-field"><label>{t('lastName') || 'Last Name'}</label><input type="text" value={profile.last_name} onChange={e => setProfile({...profile, last_name: e.target.value})} /></div>
             </div>
-            <div className="ep-field"><label>Email Address</label><input type="email" value={profile.email} onChange={e => setProfile({...profile, email: e.target.value})} /></div>
-            <div className="ep-field"><label>Date of Birth</label><input type="text" value={profile.dob} onChange={e => setProfile({...profile, dob: e.target.value})} /></div>
-            <div className="ep-field"><label>Location</label><input type="text" value={profile.location} onChange={e => setProfile({...profile, location: e.target.value})} /></div>
+            <div className="ep-field"><label>{t('email')}</label><input type="email" value={profile.email} onChange={e => setProfile({...profile, email: e.target.value})} /></div>
+            <div className="ep-field"><label>{t('dob')}</label><input type="text" value={profile.dob} onChange={e => setProfile({...profile, dob: e.target.value})} /></div>
+            <div className="ep-field"><label>{t('location')}</label><input type="text" value={profile.location} onChange={e => setProfile({...profile, location: e.target.value})} /></div>
           </div>
         </section>
         <section className="ep-block">
-          <h2 className="ep-block-lbl">Health Information</h2>
+          <h2 className="ep-block-lbl">{t('healthInformation')}</h2>
           <div className="ep-card ep-glass">
-            <div className="ep-field"><label><Droplets size={14} color="#64B5F6" /> Blood Type</label>
+            <div className="ep-field"><label><Droplets size={14} color="#64B5F6" /> {t('bloodType')}</label>
               <select value={profile.blood_type} onChange={e => setProfile({...profile, blood_type: e.target.value})}>
                 {['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'].map(t => <option key={t}>{t}</option>)}
               </select>
             </div>
             <div className="ep-row-split">
-              <div className="ep-field"><label><Weight size={14} color="#64B5F6" /> Weight (kg)</label><input type="number" value={profile.weight} onChange={e => setProfile({...profile, weight: e.target.value})} /></div>
-              <div className="ep-field"><label><Ruler size={14} color="#64B5F6" /> Height (cm)</label><input type="number" value={profile.height} onChange={e => setProfile({...profile, height: e.target.value})} /></div>
+              <div className="ep-field"><label><Weight size={14} color="#64B5F6" /> {t('weight')} ({t('kg') || 'kg'})</label><input type="number" value={profile.weight} onChange={e => setProfile({...profile, weight: e.target.value})} /></div>
+              <div className="ep-field"><label><Ruler size={14} color="#64B5F6" /> {t('height')} ({t('cm') || 'cm'})</label><input type="number" value={profile.height} onChange={e => setProfile({...profile, height: e.target.value})} /></div>
             </div>
           </div>
         </section>
         <section className="ep-block">
-          <h2 className="ep-block-lbl"><ShieldAlert size={16} /> Allergies</h2>
+          <h2 className="ep-block-lbl"><ShieldAlert size={16} /> {t('allergies')}</h2>
           <div className="ep-list-card ep-allergy-bg">
             <div className="ep-tags-grid">{allergies.map((a, i) => (<div className="ep-tag" key={i}>{a} <X size={12} onClick={() => removeAllergy(i)} /></div>))}</div>
-            <div className="ep-add-row"><input type="text" placeholder="Add..." value={newAllergy} onChange={e => setNewAllergy(e.target.value)} /><button className="ep-add-btn red" onClick={addAllergy}><Plus size={18} /></button></div>
+            <div className="ep-add-row"><input type="text" placeholder={t('add') || 'Add...'} value={newAllergy} onChange={e => setNewAllergy(e.target.value)} /><button className="ep-add-btn red" onClick={addAllergy}><Plus size={18} /></button></div>
           </div>
         </section>
         <section className="ep-block">
-          <h2 className="ep-block-lbl"><AlertTriangle size={16} /> Medical Conditions</h2>
+          <h2 className="ep-block-lbl"><AlertTriangle size={16} /> {t('medicalConditions')}</h2>
           <div className="ep-list-card ep-condition-bg">
             <div className="ep-tags-grid">{conditions.map((c, i) => (<div className="ep-tag" key={i}>{c} <X size={12} onClick={() => removeCondition(i)} /></div>))}</div>
-            <div className="ep-add-row"><input type="text" placeholder="Add..." value={newCondition} onChange={e => setNewCondition(e.target.value)} /><button className="ep-add-btn orange" onClick={addCondition}><Plus size={18} /></button></div>
+            <div className="ep-add-row"><input type="text" placeholder={t('add') || 'Add...'} value={newCondition} onChange={e => setNewCondition(e.target.value)} /><button className="ep-add-btn orange" onClick={addCondition}><Plus size={18} /></button></div>
           </div>
         </section>
         <section className="ep-block">
-          <h2 className="ep-block-lbl">Emergency Contact</h2>
+          <h2 className="ep-block-lbl">{t('emergencyContact')}</h2>
           <div className="ep-card ep-glass">
-            <div className="ep-field"><label>Contact Name</label><input type="text" value={profile.emergency_name} onChange={e => setProfile({...profile, emergency_name: e.target.value})} /></div>
-            <div className="ep-field"><label>Relationship</label><input type="text" value={profile.emergency_relation} onChange={e => setProfile({...profile, emergency_relation: e.target.value})} /></div>
-            <div className="ep-field"><label>Phone Number</label><input type="text" value={profile.emergency_phone} onChange={e => setProfile({...profile, emergency_phone: e.target.value})} /></div>
+            <div className="ep-field"><label>{t('contactName')}</label><input type="text" value={profile.emergency_name} onChange={e => setProfile({...profile, emergency_name: e.target.value})} /></div>
+            <div className="ep-field"><label>{t('relationship')}</label><input type="text" value={profile.emergency_relation} onChange={e => setProfile({...profile, emergency_relation: e.target.value})} /></div>
+            <div className="ep-field"><label>{t('phoneNumber')}</label><input type="text" value={profile.emergency_phone} onChange={e => setProfile({...profile, emergency_phone: e.target.value})} /></div>
           </div>
         </section>
         <div className="ep-bottom-pad"></div>
@@ -119,4 +125,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+export default EditProfile;

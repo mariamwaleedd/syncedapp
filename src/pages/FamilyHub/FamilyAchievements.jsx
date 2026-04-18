@@ -9,9 +9,11 @@ import { supabase } from '../../supabaseClient';
 import TouchBar from '../../common/TouchBar';
 import GlassToast from '../../common/GlassToast';
 import './FamilyAchievements.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const FamilyAchievements = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [members, setMembers] = useState([]);
   const [toast, setToast] = useState({ show: false, msg: '' });
   const [congratulated, setCongratulated] = useState({});
@@ -51,7 +53,7 @@ const FamilyAchievements = () => {
 
   const handleCongratulate = (memberId, name) => {
     setCongratulated(prev => ({ ...prev, [memberId]: true }));
-    setToast({ show: true, msg: `Congratulations sent to ${name}!` });
+    setToast({ show: true, msg: `${t('congratsSentTo')} ${name}!` });
     
     // Auto hide toast after 3s
     setTimeout(() => {
@@ -68,14 +70,14 @@ const FamilyAchievements = () => {
         <button className="fa-back-btn" onClick={() => navigate(-1)}>
           <ChevronLeft size={24} />
         </button>
-        <h1>Family Achievements</h1>
+        <h1>{t('familyAch')}</h1>
         <div className="fa-header-icon"><Trophy size={20} color="#FFD54F" /></div>
       </header>
 
       <main className="fa-content">
         <section className="fa-viz-sec">
           <div className="fa-sec-head">
-            <h2>Weekly Step Chart</h2>
+            <h2>{t('stepChart')}</h2>
             <Target size={18} opacity={0.5} />
           </div>
           <div className="fa-chart-container fa-glass">
@@ -95,13 +97,13 @@ const FamilyAchievements = () => {
               ))}
             </div>
             <div className="fa-chart-legend">
-              <span>Goal: 10k Steps</span>
+              <span>{t('goalSteps')}</span>
             </div>
           </div>
         </section>
 
         <section className="fa-leaderboard-sec">
-          <h2 className="fa-sec-title">Achievements & Badges</h2>
+          <h2 className="fa-sec-title">{t('achBadges')}</h2>
           <div className="fa-list">
             {members.map((m, i) => (
               <motion.div 
@@ -121,16 +123,16 @@ const FamilyAchievements = () => {
                   <div className="fa-badge-row">
                     {m.current_steps >= 10000 && (
                       <div className="fa-badge" title="Stepmaster">
-                        <MapPin size={12} /> 10k club
+                        <MapPin size={12} /> {t('tenKClub')}
                       </div>
                     )}
                     {m.workouts > 0 && (
                       <div className="fa-badge gym" title="Workout King">
-                        <Dumbbell size={12} /> {m.workouts} Workouts
+                        <Dumbbell size={12} /> {m.workouts} {t('workouts')}
                       </div>
                     )}
                     <div className="fa-badge energy" title="High Energy">
-                      <Zap size={12} /> {m.mood}
+                      <Zap size={12} /> {m.mood === 'Great' ? t('excellent') : m.mood === 'Okay' ? t('good') : t('moods')[3]}
                     </div>
                   </div>
                 </div>
@@ -146,7 +148,7 @@ const FamilyAchievements = () => {
                         exit={{ scale: 0.5, opacity: 0 }}
                       >
                         <Heart size={14} fill="#FF416C" stroke="none" />
-                        <span>Sent</span>
+                        <span>{t('sent')}</span>
                       </motion.div>
                     ) : (
                       <button 
@@ -154,7 +156,7 @@ const FamilyAchievements = () => {
                         onClick={() => handleCongratulate(m.id, m.full_name)}
                       >
                         <Send size={16} />
-                        <span>Congratulate</span>
+                        <span>{t('congratulate')}</span>
                       </button>
                     )}
                   </AnimatePresence>
@@ -176,3 +178,4 @@ const FamilyAchievements = () => {
 };
 
 export default FamilyAchievements;
+

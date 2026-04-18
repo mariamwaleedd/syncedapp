@@ -9,10 +9,12 @@ import TouchBar from '../../common/TouchBar';
 import GlassToast from '../../common/GlassToast';
 import { supabase } from '../../supabaseClient';
 import './FamilyProfile.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const FamilyProfile = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { t, lang } = useLanguage();
   const [member, setMember] = useState(null);
   const [activeMood, setActiveMood] = useState('Great');
   const [activeTab, setActiveTab] = useState('Allergies');
@@ -20,7 +22,7 @@ const FamilyProfile = () => {
   const [showPoke, setShowPoke] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [privacySettings, setPrivacySettings] = useState({ vitals: true, records: true, meds: true });
-  const [shareAudience, setShareAudience] = useState('Family members only');
+  const [shareAudience, setShareAudience] = useState(t('familyOnly'));
 
   const handlePoke = () => {
     setShowPoke(true);
@@ -59,82 +61,82 @@ const FamilyProfile = () => {
         <header className="fp-header">
           <div className="fp-nav-top">
             <button className="fp-circ-btn" onClick={() => navigate(-1)}><ChevronLeft size={22} strokeWidth={2.5} /></button>
-            <div className="fp-health-pill"><div className="fp-pulse-dot"></div><span>Healthy</span></div>
+            <div className="fp-health-pill"><div className="fp-pulse-dot"></div><span>{t('healthy')}</span></div>
             <button className="fp-circ-btn" onClick={() => navigate('/appointments')}><Bell size={20} /></button>
           </div>
           <div className="fp-hero-profile">
             <div className="fp-avatar-wrap"><div className="fp-avatar-box">{member.emoji}</div></div>
             <div className="fp-hero-txt">
               <h1>{member.full_name}</h1>
-              <p>{member.relationship} • {calculateAge(member.dob)} years old</p>
+              <p>{member.relationship} • {calculateAge(member.dob)} {t('yearsOld')}</p>
             </div>
             <div className="fp-hero-actions">
-              <button className="fp-call-btn" onClick={() => setToastMsg(`Calling ${member.full_name}...`)}><Phone size={18} fill="white" stroke="none" /></button>
+              <button className="fp-call-btn" onClick={() => setToastMsg(`${t('loading')} ${member.full_name}...`)}><Phone size={18} fill="white" stroke="none" /></button>
               <button className="fp-poke-btn" onClick={handlePoke}><Zap size={18} fill="white" stroke="none" /></button>
               <button className="fp-chat-btn" onClick={() => navigate(`/familyhub/chat/${member.id}`)}><MessageSquare size={18} fill="white" stroke="none" /></button>
             </div>
           </div>
           <div className="fp-privacy-trigger">
             <button className="fp-privacy-btn" onClick={() => setShowPrivacy(true)}>
-              <Lock size={14} /> <span>Manage Data Sharing & Privacy</span>
+              <Lock size={14} /> <span>{t('managePrivacy')}</span>
             </button>
           </div>
         </header>
         <main className="fp-scroll">
           <section className="fp-sec">
-            <div className="fp-sec-head"><h2>Vital Signs</h2><div className="fp-live-tag"><span></span> Live</div></div>
+            <div className="fp-sec-head"><h2>{t('vitals')}</h2><div className="fp-live-tag"><span></span> {t('live')}</div></div>
             <div className="fp-vitals-grid">
               <div className="fp-vital-box fp-glass">
-                <div className="fp-v-top"><Heart size={16} color="#FF416C" /> <span>Heart Rate</span></div>
-                <div className="fp-v-val">{member.heart_rate}<span>bpm</span></div>
-                <div className="fp-status-tag green">Good</div>
+                <div className="fp-v-top"><Heart size={16} color="#FF416C" /> <span>{t('heartRate')}</span></div>
+                <div className="fp-v-val">{member.heart_rate}<span>{t('bpm')}</span></div>
+                <div className="fp-status-tag green">{t('good')}</div>
               </div>
               <div className="fp-vital-box fp-glass">
-                <div className="fp-v-top"><Activity size={16} color="#64B5F6" /> <span>Blood Pressure</span></div>
+                <div className="fp-v-top"><Activity size={16} color="#64B5F6" /> <span>{t('bloodPressure')}</span></div>
                 <div className="fp-v-val">{member.blood_pressure}</div>
-                <div className="fp-status-tag green">Good</div>
+                <div className="fp-status-tag green">{t('good')}</div>
               </div>
               <div className="fp-vital-box fp-glass">
-                <div className="fp-v-top"><Thermometer size={16} color="#B89FFF" /> <span>Temperature</span></div>
+                <div className="fp-v-top"><Thermometer size={16} color="#B89FFF" /> <span>{t('temperature')}</span></div>
                 <div className="fp-v-val">{member.temperature}<span>°C</span></div>
-                <div className="fp-status-tag green">Good</div>
+                <div className="fp-status-tag green">{t('good')}</div>
               </div>
               <div className="fp-vital-box fp-glass">
-                <div className="fp-v-top"><Wind size={16} color="#00E676" /> <span>Oxygen</span></div>
+                <div className="fp-v-top"><Wind size={16} color="#00E676" /> <span>{t('oxygen')}</span></div>
                 <div className="fp-v-val">{member.oxygen}<span>%</span></div>
-                <div className="fp-status-tag green">Good</div>
+                <div className="fp-status-tag green">{t('good')}</div>
               </div>
             </div>
           </section>
           <section className="fp-sec">
-            <h2 className="fp-sec-title">Today's Mood</h2>
+            <h2 className="fp-sec-title">{t('todayMood')}</h2>
             <div className="fp-mood-row">
               {['Great', 'Okay', 'Sad'].map((m) => (
                 <div key={m} className={`fp-mood-box fp-glass ${activeMood === m ? 'active' : ''}`} onClick={() => setActiveMood(m)}>
-                  <span>{m === 'Great' ? '😊' : m === 'Okay' ? '😐' : '😔'}</span>{m}
+                  <span>{m === 'Great' ? '😊' : m === 'Okay' ? '😐' : '😔'}</span>{m === 'Great' ? t('excellent') : m === 'Okay' ? t('good') : t('moods')[3]}
                 </div>
               ))}
             </div>
           </section>
           <section className="fp-sec">
             <div className="fp-sec-head">
-              <h2>Medical Records</h2>
-              <button className="fp-edit-btn" onClick={() => navigate('/reports')}><Edit3 size={12} /> Edit</button>
+              <h2>{t('medRec')}</h2>
+              <button className="fp-edit-btn" onClick={() => navigate('/reports')}><Edit3 size={12} /> {t('edit')}</button>
             </div>
             <div className="fp-tabs-grid">
-              <div className={`fp-tab ${activeTab === 'Allergies' ? 'active' : ''}`} onClick={() => setActiveTab('Allergies')}><Shield size={14} /><span>Allergies</span></div>
-              <div className={`fp-tab ${activeTab === 'Health ID' ? 'active' : ''}`} onClick={() => setActiveTab('Health ID')}><Activity size={14} /><span>Health ID</span></div>
-              <div className={`fp-tab ${activeTab === 'History' ? 'active' : ''}`} onClick={() => setActiveTab('History')}><Calendar size={14} /><span>History</span></div>
-              <div className={`fp-tab ${activeTab === 'Family' ? 'active' : ''}`} onClick={() => setActiveTab('Family')}><FileText size={14} /><span>Family</span></div>
-              <div className={`fp-tab ${activeTab === 'Insurance' ? 'active' : ''}`} onClick={() => setActiveTab('Insurance')}><Shield size={14} /><span>Insurance</span></div>
+              <div className={`fp-tab ${activeTab === 'Allergies' ? 'active' : ''}`} onClick={() => setActiveTab('Allergies')}><Shield size={14} /><span>{t('allergies')}</span></div>
+              <div className={`fp-tab ${activeTab === 'Health ID' ? 'active' : ''}`} onClick={() => setActiveTab('Health ID')}><Activity size={14} /><span>{t('healthId')}</span></div>
+              <div className={`fp-tab ${activeTab === 'History' ? 'active' : ''}`} onClick={() => setActiveTab('History')}><Calendar size={14} /><span>{t('historyTitle')}</span></div>
+              <div className={`fp-tab ${activeTab === 'Family' ? 'active' : ''}`} onClick={() => setActiveTab('Family')}><FileText size={14} /><span>{t('family')}</span></div>
+              <div className={`fp-tab ${activeTab === 'Insurance' ? 'active' : ''}`} onClick={() => setActiveTab('Insurance')}><Shield size={14} /><span>{t('insurance')}</span></div>
             </div>
             <div className="fp-record-box fp-glass">
-              <label>Allergies</label>
+              <label>{t('allergies')}</label>
               <div className="fp-tags">
                 {member.allergies?.split(',').map(a => <span key={a} className="fp-tag">{a.trim()}</span>)}
               </div>
               <div className="fp-history-list">
-                <label>Medical History</label>
+                <label>{t('medicalHist')}</label>
                 {member.medical_history?.map((h, i) => (
                   <div className="fp-hist-item" key={i}>
                     <FileText size={16} color="#64B5F6" />
@@ -145,7 +147,7 @@ const FamilyProfile = () => {
             </div>
           </section>
           <section className="fp-sec">
-            <div className="fp-sec-head"><h2>Medical Reports & Files</h2><span className="fp-count-tag">{member.reports?.length} Files</span></div>
+            <div className="fp-sec-head"><h2>{t('medReports')}</h2><span className="fp-count-tag">{member.reports?.length} {t('files')}</span></div>
             <div className="fp-files-stack">
               {member.reports?.map((f, i) => (
                 <div className="fp-file-card fp-glass" key={i} onClick={() => navigate('/reports/view')}>
@@ -157,17 +159,17 @@ const FamilyProfile = () => {
             </div>
           </section>
           <section className="fp-sec">
-            <div className="fp-sec-head"><h2>Medications</h2><button className="fp-add-min" onClick={() => navigate('/medicine')}><Plus size={18} /></button></div>
+            <div className="fp-sec-head"><h2>{t(' medicine')}</h2><button className="fp-add-min" onClick={() => navigate('/medicine')}><Plus size={18} /></button></div>
             <div className="fp-meds-stack">
               {member.medications?.map((med, i) => (
                 <div className="fp-med-card fp-glass" key={i}>
-                  <h4>{med.name}</h4><p>{med.dose}</p><span>🕒 {med.time} Daily</span>
+                  <h4>{med.name}</h4><p>{med.dose}</p><span>🕒 {med.time} {t('daily')}</span>
                 </div>
               ))}
             </div>
           </section>
           <div className="fp-footer">
-            <button className="fp-upload-btn" onClick={() => navigate('/reports/upload')}><FileText size={18} /><span>Upload New Report</span></button>
+            <button className="fp-upload-btn" onClick={() => navigate('/reports/upload')}><FileText size={18} /><span>{t('uploadNewReport')}</span></button>
             <div className="fp-ios-bar"></div>
           </div>
         </main>
@@ -177,16 +179,16 @@ const FamilyProfile = () => {
         <div className="fp-privacy-overlay">
           <div className="fp-privacy-modal fp-glass">
             <div className="fp-modal-head">
-              <h3>Privacy & Sharing</h3>
+              <h3>{t('privacySharing')}</h3>
               <button onClick={() => setShowPrivacy(false)}>✕</button>
             </div>
             <div className="fp-modal-body">
-              <p className="fp-privacy-desc">Control what health data {member.full_name} can view from your profile.</p>
+              <p className="fp-privacy-desc">{t('privacyDesc')}</p>
               
               <div className="fp-toggle-row">
                 <div className="fp-toggle-info">
-                  <h4>Vital Signs</h4>
-                  <p>Live health metrics</p>
+                  <h4>{t('vitals')}</h4>
+                  <p>{t('liveIndicator')}</p>
                 </div>
                 <label className="fp-switch">
                   <input type="checkbox" checked={privacySettings.vitals} onChange={(e) => setPrivacySettings({...privacySettings, vitals: e.target.checked})} />
@@ -196,8 +198,8 @@ const FamilyProfile = () => {
               
               <div className="fp-toggle-row">
                 <div className="fp-toggle-info">
-                  <h4>Medical Records</h4>
-                  <p>Files, allergies, history</p>
+                  <h4>{t('medRec')}</h4>
+                  <p>{t('medicalHist')}</p>
                 </div>
                 <label className="fp-switch">
                   <input type="checkbox" checked={privacySettings.records} onChange={(e) => setPrivacySettings({...privacySettings, records: e.target.checked})} />
@@ -207,8 +209,8 @@ const FamilyProfile = () => {
               
               <div className="fp-toggle-row">
                 <div className="fp-toggle-info">
-                  <h4>Medications</h4>
-                  <p>Current prescriptions</p>
+                  <h4>{t('medicine')}</h4>
+                  <p>{t('yourMeds')}</p>
                 </div>
                 <label className="fp-switch">
                   <input type="checkbox" checked={privacySettings.meds} onChange={(e) => setPrivacySettings({...privacySettings, meds: e.target.checked})} />
@@ -217,19 +219,19 @@ const FamilyProfile = () => {
               </div>
               
               <div className="fp-audience-sec">
-                <label>Overall Sharing Level</label>
+                <label>{t('overallSharing')}</label>
                 <select value={shareAudience} onChange={(e) => setShareAudience(e.target.value)}>
-                  <option>Family members only</option>
-                  <option>Emergency & Doctors</option>
-                  <option>Full Access</option>
-                  <option>No Access</option>
+                  <option>{t('familyOnly')}</option>
+                  <option>{t('emergDocs')}</option>
+                  <option>{t('fullAccess')}</option>
+                  <option>{t('noAccess')}</option>
                 </select>
               </div>
               
               <button className="fp-save-privacy-btn" onClick={() => {
                 setShowPrivacy(false);
-                setToastMsg("Privacy preferences updated!");
-              }}>Save Settings</button>
+                setToastMsg(t('privacyUpdated'));
+              }}>{t('save')}</button>
             </div>
           </div>
         </div>
@@ -241,8 +243,8 @@ const FamilyProfile = () => {
             <div className="fp-poke-circle">
               <Zap size={40} fill="#FFD54F" stroke="none" />
             </div>
-            <h2>You Poked {member.full_name}!</h2>
-            <p>They'll receive a notification shortly.</p>
+            <h2>{t('youPoked')} {member.full_name}!</h2>
+            <p>{t('pokeNote')}</p>
           </div>
         </div>
       )}
@@ -253,4 +255,4 @@ const FamilyProfile = () => {
   );
 };
 
-export default FamilyProfile;
+export default FamilyProfile;

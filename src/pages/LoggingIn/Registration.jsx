@@ -4,14 +4,20 @@ import { ChevronLeft, Delete, ChevronDown } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
 import SkipAuthModal from '../../common/SkipAuthModal';
 import './Registration.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const Registration = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const menuRef = useRef(null);
   const [phoneDigits, setPhoneDigits] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSkipOpen, setIsSkipOpen] = useState(false);
-  const countryData = [{ name: 'Egypt', pref: '+20', size: 11, flag: 'https://flagcdn.com/w40/eg.png' }, { name: 'Saudi', pref: '+966', size: 9, flag: 'https://flagcdn.com/w40/sa.png' }, { name: 'UAE', pref: '+971', size: 9, flag: 'https://flagcdn.com/w40/ae.png' }];
+  const countryData = [
+    { name: 'Egypt', pref: '+20', size: 11, flag: 'https://flagcdn.com/w40/eg.png' }, 
+    { name: 'Saudi', pref: '+966', size: 9, flag: 'https://flagcdn.com/w40/sa.png' }, 
+    { name: 'UAE', pref: '+971', size: 9, flag: 'https://flagcdn.com/w40/ae.png' }
+  ];
   const [activeCountry, setActiveCountry] = useState(countryData[0]);
 
   const handleContinue = async () => {
@@ -29,20 +35,20 @@ const Registration = () => {
     <div className="reg-screen-container">
       <div className="reg-gradient-bg"></div><div className="reg-lines-bg"></div>
       <div className="reg-inner-content">
-        <div className="reg-nav-header"><button className="reg-back-arrow" onClick={() => navigate(-1)}><ChevronLeft size={32} color="#FFFFFF" strokeWidth={2.5} /></button><button onClick={() => setIsSkipOpen(true)} style={{background: 'none', border: 'none', color: '#FFF', fontWeight: 700, fontSize: '16px', marginLeft: 'auto', marginRight: '10px'}}>Skip</button></div>
+        <div className="reg-nav-header"><button className="reg-back-arrow" onClick={() => navigate(-1)}><ChevronLeft size={32} color="#FFFFFF" strokeWidth={2.5} /></button><button onClick={() => setIsSkipOpen(true)} style={{background: 'none', border: 'none', color: '#FFF', fontWeight: 700, fontSize: '16px', marginLeft: 'auto', marginRight: '10px'}}>{t('skip')}</button></div>
         <div className="reg-top-layout">
-          <h1 className="reg-main-title">Registration</h1><p className="reg-description">Enter your phone number to verify your account.</p>
+          <h1 className="reg-main-title">{t('registrationTitle')}</h1><p className="reg-description">{t('enterPhoneVerify')}</p>
           <div className="reg-input-area" ref={menuRef}>
             <div className="reg-field-container reg-glass" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               <img src={activeCountry.flag} alt="" className="reg-flag-img" /><span className="reg-prefix-text">({activeCountry.pref})</span><ChevronDown size={16} className={`reg-chevron ${isMenuOpen ? 'open' : ''}`} />
-              <div className="reg-field-divider"></div><div className="reg-input-display">{phoneDigits || <span className="reg-input-placeholder">Phone Number</span>}</div>
+              <div className="reg-field-divider"></div><div className="reg-input-display">{phoneDigits || <span className="reg-input-placeholder">{t('phoneNumberPlaceholder')}</span>}</div>
             </div>
-            {isMenuOpen && <div className="reg-dropdown-list reg-glass-panel">{countryData.map((c) => (<div key={c.pref} className="reg-dropdown-item" onClick={() => { setActiveCountry(c); setPhoneDigits(''); setIsMenuOpen(false); }}><img src={c.flag} alt="" /><span>{c.name} ({c.pref})</span></div>))}</div>}
+            {isMenuOpen && <div className="reg-dropdown-list reg-glass-panel">{countryData.map((c) => (<div key={c.pref} className="reg-dropdown-item" onClick={() => { setActiveCountry(c); setPhoneDigits(''); setIsMenuOpen(false); }}><img src={c.flag} alt="" /><span>{t('countries')[c.name] || c.name} ({c.pref})</span></div>))}</div>}
           </div>
         </div>
         <div className="reg-bottom-layout">
           <div className="reg-number-keypad">{buttons.map((b, i) => b === 'del' ? <button key={i} className="reg-key-item reg-glass-key" onClick={backspace}><Delete size={26} /></button> : b === '' ? <div key={i} /> : <button key={i} className="reg-key-item reg-glass-key" onClick={() => pressKey(b)}><span className="reg-key-num-label">{b}</span></button>)}</div>
-          <div className="reg-submit-wrap">{phoneDigits.length === activeCountry.size && <button className="reg-continue-button" onClick={handleContinue}>Continue</button>}</div>
+          <div className="reg-submit-wrap">{phoneDigits.length === activeCountry.size && <button className="reg-continue-button" onClick={handleContinue}>{t('continue')}</button>}</div>
         </div>
       </div>
       <SkipAuthModal isOpen={isSkipOpen} onClose={() => setIsSkipOpen(false)} />
@@ -50,4 +56,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default Registration;

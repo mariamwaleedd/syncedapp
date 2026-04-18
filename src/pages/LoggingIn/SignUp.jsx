@@ -8,7 +8,7 @@ import './SignUp.css';
 import logo from '../../imgs/logoblue.png';
 
 const SignUp = () => {
-  useLanguage();
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ firstName: '', lastName: '', email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
@@ -33,10 +33,10 @@ const SignUp = () => {
   const validate = () => {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.firstName.trim()) newErrors.firstName = "First name is required";
-    if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
-    if (!emailRegex.test(formData.email)) newErrors.email = "Invalid email address";
-    if (formData.password.length < 8) newErrors.password = "Minimum 8 characters required";
+    if (!formData.firstName.trim()) newErrors.firstName = t('firstNameRequired');
+    if (!formData.lastName.trim()) newErrors.lastName = t('lastNameRequired');
+    if (!emailRegex.test(formData.email)) newErrors.email = t('invalidEmail');
+    if (formData.password.length < 8) newErrors.password = t('minEightChars');
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -54,7 +54,7 @@ const SignUp = () => {
         localStorage.setItem('temp_email', formData.email);
         navigate('/registration');
       } else {
-        setErrors({ email: "Email already exists" });
+        setErrors({ email: t('emailExists') });
       }
     }
   };
@@ -66,44 +66,44 @@ const SignUp = () => {
       <div className="signup-content">
         <div className="header-nav">
           <button className="nav-icon-btn" onClick={() => navigate(-1)}><ChevronLeft size={28} color="#FFFFFF" strokeWidth={2.5} /></button>
-          <button className="link-text-btn" onClick={() => setIsSkipOpen(true)} style={{fontSize: '16px', marginRight: '10px'}}>Skip</button>
+          <button className="link-text-btn" onClick={() => setIsSkipOpen(true)} style={{fontSize: '16px', marginRight: '10px'}}>{t('skip')}</button>
         </div>
         <div className="form-container">
           <img src={logo} alt="Logo" className="app-logo" />
-          <h1 className="main-heading">Sign Up</h1>
-          <p className="sub-heading">Please Sign Up to Log In</p>
+          <h1 className="main-heading">{t('signup')}</h1>
+          <p className="sub-heading">{t('pleaseSignUp')}</p>
           <form onSubmit={handleSignUp} noValidate>
             <div className={`field-box glass-effect ${errors.firstName ? 'field-error' : ''}`}>
-              <User size={20} className="field-icon" strokeWidth={2} /><input name="firstName" type="text" placeholder="First Name" value={formData.firstName} onChange={handleChange} />
+              <User size={20} className="field-icon" strokeWidth={2} /><input name="firstName" type="text" placeholder={t('firstName')} value={formData.firstName} onChange={handleChange} />
             </div>
             {errors.firstName && <span className="error-text">{errors.firstName}</span>}
             <div className={`field-box glass-effect ${errors.lastName ? 'field-error' : ''}`}>
-              <User size={20} className="field-icon" strokeWidth={2} /><input name="lastName" type="text" placeholder="Last Name" value={formData.lastName} onChange={handleChange} />
+              <User size={20} className="field-icon" strokeWidth={2} /><input name="lastName" type="text" placeholder={t('lastName')} value={formData.lastName} onChange={handleChange} />
             </div>
             {errors.lastName && <span className="error-text">{errors.lastName}</span>}
             <div className={`field-box glass-effect ${errors.email ? 'field-error' : ''}`}>
-              <Mail size={20} className="field-icon" strokeWidth={2} /><input name="email" type="email" placeholder="Email Address" value={formData.email} onChange={handleChange} />
+              <Mail size={20} className="field-icon" strokeWidth={2} /><input name="email" type="email" placeholder={t('emailAddress')} value={formData.email} onChange={handleChange} />
             </div>
             {errors.email && <span className="error-text">{errors.email}</span>}
             <div className={`field-box glass-effect ${errors.password ? 'field-error' : ''}`}>
-              <Lock size={20} className="field-icon" strokeWidth={2} /><input name="password" type={showPassword ? "text" : "password"} placeholder="Password" value={formData.password} onChange={handleChange} />
+              <Lock size={20} className="field-icon" strokeWidth={2} /><input name="password" type={showPassword ? "text" : "password"} placeholder={t('passwordLabel')} value={formData.password} onChange={handleChange} />
               <button type="button" className="eye-toggle" onClick={() => setShowPassword(!showPassword)}>{showPassword ? <EyeOff size={20} strokeWidth={2} /> : <Eye size={20} strokeWidth={2} />}</button>
             </div>
             {formData.password.length > 0 && (
               <div className="strength-module">
                 <div className="meter-bg"><div className="meter-fill" style={{ width: `${strength.percent}%`, backgroundColor: strength.percent === 100 ? '#64B5F6' : strength.percent > 40 ? '#ffd54f' : '#ff4d4d' }}></div></div>
-                <div className="meter-labels"><span className={strength.hasLength ? 'met' : ''}>8+ Chars</span><span className={strength.hasNumber ? 'met' : ''}>Numbers</span><span className={strength.hasSpecial ? 'met' : ''}>Symbols</span></div>
+                <div className="meter-labels"><span className={strength.hasLength ? 'met' : ''}>{t('eightChars')}</span><span className={strength.hasNumber ? 'met' : ''}>{t('numbers')}</span><span className={strength.hasSpecial ? 'met' : ''}>{t('symbols')}</span></div>
               </div>
             )}
-            <div className="forgot-row"><button type="button" className="forgot-link" onClick={() => navigate('/forgetpass')}>Forget Password?</button></div>
-            <button type="submit" className="action-btn">Sign Up</button>
+            <div className="forgot-row"><button type="button" className="forgot-link" onClick={() => navigate('/forgetpass')}>{t('forgetPassQ')}</button></div>
+            <button type="submit" className="action-btn">{t('signup')}</button>
           </form>
         </div>
-        <div className="footer-links"><p>Already have an account? <button type="button" className="link-text-btn" onClick={() => navigate('/login')}>Log In</button></p></div>
+        <div className="footer-links"><p>{t('alreadyHaveAccount')} <button type="button" className="link-text-btn" onClick={() => navigate('/login')}>{t('logIn')}</button></p></div>
       </div>
       <SkipAuthModal isOpen={isSkipOpen} onClose={() => setIsSkipOpen(false)} />
     </div>
   );
 };
 
-export default SignUp;
+export default SignUp;
