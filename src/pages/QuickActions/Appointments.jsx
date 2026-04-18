@@ -9,9 +9,11 @@ import TouchBar from '../../common/TouchBar';
 import ConfirmModal from '../../common/ConfirmModal';
 import { supabase } from '../../supabaseClient';
 import './Appointments.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const Appointments = () => {
   const navigate = useNavigate();
+  const { t, lang } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('All');
   const [reminders, setReminders] = useState([]);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -52,36 +54,43 @@ const Appointments = () => {
     return true;
   });
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'rs-root rtl-theme' : 'rs-root ltr-theme';
+  };
+
   return (
-    <div className="rs-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="rs-bg-grad"></div>
       <div className="rs-bg-img"></div>
       <div className="rs-wrapper">
         <header className="rs-header">
           <div className="rs-nav-top">
             <button className="rs-circ-btn" onClick={() => navigate(-1)}>
-              <ChevronLeft size={22} strokeWidth={2.5} />
+              <ChevronLeft size={22} strokeWidth={2.5} className={lang === 'ar' ? 'rtl-flip' : ''} />
             </button>
             <button className="rs-circ-btn rs-add-btn" onClick={() => navigate('/addreminder')}>
               <Plus size={22} color="#FFF" />
             </button>
           </div>
           <div className="rs-title-wrap">
-            <h1 className="rs-main-title">Reminders</h1>
-            <p className="rs-sub">{reminders.filter(r => r.is_active).length} active reminders</p>
+            <h1 className="rs-main-title">{t('reminders')}</h1>
+            <p className="rs-sub">{reminders.filter(r => r.is_active).length} {t('activeReminders')}</p>
           </div>
         </header>
         <div className="rs-filters">
-          {['All', 'My Medicine', 'Family', 'Vitals'].map(f => (
+          {[
+            { key: 'All', label: t('all'), icon: <Bell size={14} /> },
+            { key: 'My Medicine', label: t('myMedicine'), icon: <Pill size={14} /> },
+            { key: 'Family', label: t('family'), icon: <Users size={14} /> },
+            { key: 'Vitals', label: t('vitals'), icon: <Droplets size={14} /> }
+          ].map(f => (
             <button 
-              key={f} 
-              className={`rs-chip ${activeFilter === f ? 'active' : ''}`}
-              onClick={() => setActiveFilter(f)}
+              key={f.key} 
+              className={`rs-chip ${activeFilter === f.key ? 'active' : ''}`}
+              onClick={() => setActiveFilter(f.key)}
             >
-              {f === 'All' && <Bell size={14} />}
-              {f === 'My Medicine' && <Pill size={14} />}
-              {f === 'Family' && <Users size={14} />}
-              <span>{f}</span>
+              {f.icon}
+              <span>{f.label}</span>
             </button>
           ))}
         </div>
@@ -90,16 +99,16 @@ const Appointments = () => {
             <div className="rs-up-l">
               <div className="rs-up-ico"><Bell size={20} color="#FFF" /></div>
               <div className="rs-up-txt">
-                <h4>Upcoming Reminders</h4>
+                <h4>{t('upcomingReminders')}</h4>
                 {reminders.filter(r => r.is_active).slice(0, 3).map((r, i) => (
-                   <p key={i}>{r.member_name !== 'Me' ? `${r.member_name}'s ` : ''}{r.title}</p>
+                   <p key={i}>{r.member_name !== 'Me' ? `${r.member_name} ` : ''}{r.title}</p>
                 ))}
               </div>
             </div>
             <div className="rs-up-r">
-              <span>In 4 hours</span>
-              <span>In 5 hours</span>
-              <span>Tomorrow</span>
+              <span>{t('inXHours').replace('{x}', '4')}</span>
+              <span>{t('inXHours').replace('{x}', '5')}</span>
+              <span>{t('tomorrow')}</span>
             </div>
           </div>
           <div className="rs-list">
@@ -144,12 +153,12 @@ const Appointments = () => {
             ))}
           </div>
           <section className="rs-stats-sec">
-            <h2 className="rs-stats-title">Quick Stats</h2>
+            <h2 className="rs-stats-title">{t('quickStats')}</h2>
             <div className="rs-stats-grid">
-              <div className="rs-stat-box rs-glass"><strong>{reminders.filter(r => r.type === 'med' && r.member_name === 'Me').length}</strong><span>My Medicines</span></div>
-              <div className="rs-stat-box rs-glass"><strong>{reminders.filter(r => r.member_name !== 'Me').length}</strong><span>Family</span></div>
-              <div className="rs-stat-box rs-glass"><strong>{reminders.filter(r => r.type === 'appt').length}</strong><span>Appointments</span></div>
-              <div className="rs-stat-box rs-glass"><strong>{reminders.length}</strong><span>Total</span></div>
+              <div className="rs-stat-box rs-glass"><strong>{reminders.filter(r => r.type === 'med' && r.member_name === 'Me').length}</strong><span>{t('myMedicine')}</span></div>
+              <div className="rs-stat-box rs-glass"><strong>{reminders.filter(r => r.member_name !== 'Me').length}</strong><span>{t('family')}</span></div>
+              <div className="rs-stat-box rs-glass"><strong>{reminders.filter(r => r.type === 'appt').length}</strong><span>{t('appointments')}</span></div>
+              <div className="rs-stat-box rs-glass"><strong>{reminders.length}</strong><span>{t('total')}</span></div>
             </div>
           </section>
           <div className="rs-bottom-pad"></div>
@@ -161,9 +170,9 @@ const Appointments = () => {
         isOpen={isDeleteOpen}
         onClose={() => setIsDeleteOpen(false)}
         onConfirm={handleConfirmDelete}
-        title="Delete Reminder?"
-        message="This will permanently remove this reminder from your schedule."
-        confirmText="Delete Now"
+        title={t('deleteReminderTitle')}
+        message={t('deleteReminderMsg')}
+        confirmText={t('deleteNow')}
         type="danger"
       />
     </div>

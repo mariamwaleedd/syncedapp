@@ -6,11 +6,15 @@ import { useLanguage } from '../../common/LanguageContext';
 
 const AgreeTerms = () => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [agreed, setAgreed] = useState(false);
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'at-root rtl-theme' : 'at-root ltr-theme';
+  };
+
   return (
-    <div className="at-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="at-bg-gradient"></div>
       <div className="at-bg-lines"></div>
 
@@ -18,7 +22,7 @@ const AgreeTerms = () => {
         
         <header className="at-header">
           <button className="at-nav-btn" onClick={() => navigate(-1)}>
-            <ChevronLeft size={22} strokeWidth={2.5} />
+            <ChevronLeft size={22} strokeWidth={2.5} className={lang === 'ar' ? 'rtl-flip' : ''} />
           </button>
           
           <div className="at-stepper">

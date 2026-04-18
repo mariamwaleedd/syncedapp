@@ -8,9 +8,11 @@ import {
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import './MyDoctors.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const MyDoctors = () => {
   const navigate = useNavigate();
+  const { t, lang } = useLanguage();
 
   const doctors = [
     {
@@ -20,8 +22,8 @@ const MyDoctors = () => {
       phone: "+1 (555) 123-4567",
       email: "dr.wilson@hospital.com",
       location: "Mount Sinai Hospital, New York, NY",
-      lastVisit: "Mar 12, 2026",
-      nextAppt: "Apr 9, 2026",
+      lastVisit: lang === 'ar' ? "١٢ مارس ٢٠٢٦" : "Mar 12, 2026",
+      nextAppt: lang === 'ar' ? "٩ أبريل ٢٠٢٦" : "Apr 9, 2026",
       topRated: true
     },
     {
@@ -31,7 +33,7 @@ const MyDoctors = () => {
       phone: "+1 (555) 234-5678",
       email: "dr.chen@hospital.com",
       location: "UCLA Medical Center, Los Angeles, CA",
-      lastVisit: "Feb 28, 2026",
+      lastVisit: lang === 'ar' ? "٢٨ فبراير ٢٠٢٦" : "Feb 28, 2026",
       nextAppt: "Not scheduled",
       topRated: false
     },
@@ -42,14 +44,23 @@ const MyDoctors = () => {
       phone: "+1 (555) 345-6789",
       email: "dr.rodriguez@hospital.com",
       location: "Northwestern Memorial, Chicago, IL",
-      lastVisit: "Jan 15, 2026",
-      nextAppt: "Mar 20, 2026",
+      lastVisit: lang === 'ar' ? "١٥ يناير ٢٠٢٦" : "Jan 15, 2026",
+      nextAppt: lang === 'ar' ? "٢٠ مارس ٢٠٢٦" : "Mar 20, 2026",
       topRated: true
     }
   ];
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'md-root rtl-theme' : 'md-root ltr-theme';
+  };
+
+  const translateSpec = (spec) => {
+    const key = spec.toLowerCase();
+    return t(key) || spec;
+  };
+
   return (
-    <div className="md-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="md-bg-grad"></div>
       <div className="md-bg-lines"></div>
 
@@ -57,9 +68,9 @@ const MyDoctors = () => {
         
         <header className="md-header">
           <button className="md-circle-btn" onClick={() => navigate(-1)}>
-            <ChevronLeft size={22} />
+            <ChevronLeft size={22} className={lang === 'ar' ? 'rtl-flip' : ''} />
           </button>
-          <h1 className="md-main-title">My Doctors</h1>
+          <h1 className="md-main-title">{t('myDoctorsTitle')}</h1>
           <button className="md-circle-btn md-add-btn">
             <Plus size={22} />
           </button>
@@ -85,7 +96,7 @@ const MyDoctors = () => {
                       <h4>{doc.name}</h4>
                       <button className="md-more-btn"><MoreVertical size={18} /></button>
                     </div>
-                    <p className="md-spec">{doc.specialty}</p>
+                    <p className="md-spec">{translateSpec(doc.specialty)}</p>
                     <div className="md-rating">
                       <Star size={12} fill="#FFD54F" color="#FFD54F" />
                       <span>{doc.rating}</span>
@@ -101,33 +112,35 @@ const MyDoctors = () => {
 
                 <div className="md-visit-grid">
                   <div className="md-visit-box">
-                    <label>Last Visit</label>
+                    <label>{t('lastVisit')}</label>
                     <p>{doc.lastVisit}</p>
                   </div>
                   <div className="md-visit-box">
-                    <label>Next Appointment</label>
-                    <p className={doc.nextAppt !== "Not scheduled" ? "blue-txt" : ""}>{doc.nextAppt}</p>
+                    <label>{t('nextAppointment')}</label>
+                    <p className={doc.nextAppt !== "Not scheduled" ? "blue-txt" : ""}>
+                      {doc.nextAppt === "Not scheduled" ? t('notScheduled') : doc.nextAppt}
+                    </p>
                   </div>
                 </div>
 
                 <div className="md-card-actions">
-                  <button className="md-act-btn purple"><MessageSquare size={16} /> <span>Chat</span></button>
-                  <button className="md-act-btn blue"><Calendar size={16} /> <span>Book</span></button>
-                  <button className="md-act-btn outline" onClick={() => navigate('/doctors/profile')}>View Profile</button>
+                  <button className="md-act-btn purple"><MessageSquare size={16} /> <span>{t('chat')}</span></button>
+                  <button className="md-act-btn blue"><Calendar size={16} /> <span>{t('book')}</span></button>
+                  <button className="md-act-btn outline" onClick={() => navigate('/doctors/profile')}>{t('viewProfile')}</button>
                 </div>
               </div>
             ))}
           </div>
 
           <section className="md-emergency-section">
-            <h2 className="md-sec-title">Emergency Contacts</h2>
+            <h2 className="md-sec-title">{t('emergencyContacts')}</h2>
             <div className="md-emerg-stack">
               <div className="md-emerg-row md-glass red">
                 <div className="md-emerg-l">
                   <div className="md-emerg-ico-box"><Phone size={20} fill="white" /></div>
                   <div className="md-emerg-txt">
-                    <h4>Emergency Services</h4>
-                    <p>Emergency</p>
+                    <h4>{t('emergencyServices')}</h4>
+                    <p>{t('emergency')}</p>
                   </div>
                 </div>
                 <span className="md-emerg-num">911</span>
@@ -137,8 +150,8 @@ const MyDoctors = () => {
                 <div className="md-emerg-l">
                   <div className="md-emerg-ico-box"><Phone size={20} fill="white" /></div>
                   <div className="md-emerg-txt">
-                    <h4>Poison Control</h4>
-                    <p>Emergency</p>
+                    <h4>{t('poisonControl')}</h4>
+                    <p>{t('emergency')}</p>
                   </div>
                 </div>
                 <span className="md-emerg-num">1-800-222-1222</span>
@@ -148,8 +161,8 @@ const MyDoctors = () => {
                 <div className="md-emerg-l">
                   <div className="md-emerg-ico-box"><Phone size={20} fill="white" /></div>
                   <div className="md-emerg-txt">
-                    <h4>Hospital Hotline</h4>
-                    <p>Support</p>
+                    <h4>{t('hospitalHotline')}</h4>
+                    <p>{t('support')}</p>
                   </div>
                 </div>
                 <span className="md-emerg-num">+1 (555) 999-8888</span>

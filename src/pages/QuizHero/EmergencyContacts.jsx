@@ -1,61 +1,101 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Phone, ArrowLeft, ArrowRight } from 'lucide-react';
+import { Shield, ArrowRight, ArrowLeft } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
 import './EmergencyContacts.css';
 import SkipQuizModal from '../../common/SkipQuizModal';
+import { useLanguage } from '../../common/LanguageContext';
 
-const EmergencyContact = () => {
+const EmergencyContacts = () => {
   const navigate = useNavigate();
+  const { t, lang } = useLanguage();
   const [isSkipOpen, setIsSkipOpen] = useState(false);
-  const [name, setName] = useState('');
+  const [contactName, setContactName] = useState('');
+  const [relationship, setRelationship] = useState('');
   const [phone, setPhone] = useState('');
-  const [relation, setRelation] = useState('');
 
   useEffect(() => {
     const id = localStorage.getItem('health_id');
     if (id) {
-      supabase.from('application_healthId').select('emergency_name, emergency_phone, emergency_relation').eq('id', id).single().then(({ data, error }) => {
+      supabase.from('application_healthId').select('emergency_contact_name, emergency_contact_relationship, emergency_contact_phone').eq('id', id).single().then(({ data, error }) => {
         if (data && !error) {
-          if (data.emergency_name) setName(data.emergency_name);
-          if (data.emergency_phone) setPhone(data.emergency_phone);
-          if (data.emergency_relation) setRelation(data.emergency_relation);
+          if (data.emergency_contact_name) setContactName(data.emergency_contact_name);
+          if (data.emergency_contact_relationship) setRelationship(data.emergency_contact_relationship);
+          if (data.emergency_contact_phone) setPhone(data.emergency_contact_phone);
         }
       });
     }
   }, []);
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'ec-screen rtl-theme' : 'ec-screen ltr-theme';
+  };
+
+  const formatNumber = (num) => {
+    return lang === 'ar' ? new Intl.NumberFormat('ar-EG').format(num) : num;
+  };
+
+  const relKeys = ['Father', 'Mother', 'Son', 'Daughter', 'Grandfather', 'Grandmother', 'Brother', 'Sister', 'Other'];
+
   const handleContinue = async () => {
     const id = localStorage.getItem('health_id');
-    await supabase.from('application_healthId').update({ emergency_name: name, emergency_phone: phone, emergency_relation: relation }).eq('id', id);
+    await supabase.from('application_healthId').update({
+      emergency_contact_name: contactName,
+      emergency_contact_relationship: relationship,
+      emergency_contact_phone: phone
+    }).eq('id', id);
     navigate('/allset');
   };
 
   return (
-    <div className="ec-screen">
-      <div className="ec-gradient-layer"></div><div className="ec-grid-layer"></div>
+    <div className={getThemeClass()}>
+      <div className="ec-gradient"></div><div className="ec-grid-overlay"></div>
       <div className="ec-content">
         <div className="ec-nav-header">
-          <div className="ec-progress-info"><span className="ec-step-label">Step 7 of 8</span><span className="ec-percent-label">88%</span></div>
+          <div className="ec-progress-info">
+            <span className="ec-step-label">
+              {t('onboardingStep').replace('{x}', formatNumber(7)).replace('{y}', formatNumber(8))}
+            </span>
+            <span className="ec-percent-label">{formatNumber(88)}%</span>
+          </div>
           <div className="ec-track"><div className="ec-fill" style={{ width: '88%' }}></div></div>
-          <button className="ec-skip-btn" onClick={() => setIsSkipOpen(true)}>Skip</button>
+          <button className="ec-skip-btn" onClick={() => setIsSkipOpen(true)}>{t('quizSkip')}</button>
         </div>
         <div className="ec-hero">
-          <div className="ec-icon-box"><Phone size={50} color="#FFFFFF" fill="#FFFFFF" /></div>
-          <h1 className="ec-title">Emergency Contact</h1><p className="ec-subtitle">Who should we contact?</p>
+          <div className="ec-icon-box"><Shield size={50} color="#FFFFFF" strokeWidth={1.5} /></div>
+          <h1 className="ec-title">{t('emergencyContactTitle')}</h1>
+          <p className="ec-subtitle">{t('whoContactSub')}</p>
         </div>
-        <div className="ec-card glass-panel">
-          <div className="ec-input-group"><label>Contact Name</label><input type="text" placeholder="Full name" value={name} onChange={(e) => setName(e.target.value)} /></div>
-          <div className="ec-input-group"><label>Phone Number</label><input type="text" placeholder="+1 (555) 000-0000" value={phone} onChange={(e) => setPhone(e.target.value)} /></div>
-          <div className="ec-relation-section"><label>Relationship</label><div className="ec-relation-grid">
-            {['spouse', 'parent', 'sibling', 'friend', 'other'].map(r => (
-              <button key={r} className={`ec-rel-btn ${relation === r ? 'active' : ''}`} onClick={() => setRelation(r)}>{r.charAt(0).toUpperCase() + r.slice(1)}</button>
-            ))}
-          </div></div>
+        <div className="ec-form-card">
+          <div className="ec-input-group">
+            <label>{t('contactName')}</label>
+            <div className="ec-input-wrap">
+              <input type="text" placeholder={t('enterFullName')} value={contactName} onChange={(e) => setContactName(e.target.value)} />
+            </div>
+          </div>
+          <div className="ec-input-group">
+            <label>{t('relationship')}</label>
+            <select className="ec-select" value={relationship} onChange={(e) => setRelationship(e.target.value)}>
+              <option value="" disabled>{t('selectRelationship')}</option>
+              {relKeys.map(rk => <option key={rk} value={rk}>{t(`relationships.${rk}`) || rk}</option>)}
+            </select>
+          </div>
+          <div className="ec-input-group">
+            <label>{t('phoneNum')}</label>
+            <div className="ec-input-wrap">
+              <input type="tel" placeholder={t('phoneNumberPlaceholder')} value={phone} onChange={(e) => setPhone(e.target.value)} />
+            </div>
+          </div>
         </div>
         <div className="ec-footer">
-          <button className="ec-back-btn" onClick={() => navigate(-1)}><ArrowLeft size={18} /><span>Back</span></button>
-          <button className="ec-continue-btn" onClick={handleContinue}><span>Continue</span><ArrowRight size={18} /></button>
+          <button className="ec-back-btn" onClick={() => navigate(-1)}>
+            <ArrowLeft size={18} className={lang === 'ar' ? 'rtl-flip' : ''} />
+            <span>{t('quizBack')}</span>
+          </button>
+          <button className="ec-continue-btn" onClick={handleContinue}>
+            <span>{t('quizContinue')}</span>
+            <ArrowRight size={18} className={lang === 'ar' ? 'rtl-flip' : ''} />
+          </button>
         </div>
         <SkipQuizModal isOpen={isSkipOpen} onClose={() => setIsSkipOpen(false)} />
       </div>
@@ -63,4 +103,4 @@ const EmergencyContact = () => {
   );
 };
 
-export default EmergencyContact;
+export default EmergencyContacts;

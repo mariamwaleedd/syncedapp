@@ -6,11 +6,15 @@ import { useLanguage } from '../../common/LanguageContext';
 
 const Reminders = () => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [isEnabled, setIsEnabled] = useState(true);
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'rm-root rtl-theme' : 'rm-root ltr-theme';
+  };
+
   return (
-    <div className="rm-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="rm-layer-grad"></div>
       <div className="rm-layer-lines"></div>
 
@@ -18,7 +22,7 @@ const Reminders = () => {
         
         <header className="rm-top-nav">
           <button className="rm-back-btn" onClick={() => navigate(-1)}>
-            <ChevronLeft size={22} color="#FFF" strokeWidth={2.5} />
+            <ChevronLeft size={22} color="#FFF" strokeWidth={2.5} className={lang === 'ar' ? 'rtl-flip' : ''} />
           </button>
           
           <div className="rm-stepper">

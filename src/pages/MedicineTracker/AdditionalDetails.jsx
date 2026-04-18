@@ -6,11 +6,19 @@ import { useLanguage } from '../../common/LanguageContext';
 
 const AdditionalDetails = () => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [notes, setNotes] = useState('');
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'ad-root rtl-theme' : 'ad-root ltr-theme';
+  };
+
+  const formatNumber = (num) => {
+    return lang === 'ar' ? new Intl.NumberFormat('ar-EG').format(num) : num.toLocaleString();
+  };
+
   return (
-    <div className="ad-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="ad-bg-grad"></div>
       <div className="ad-bg-lines"></div>
 
@@ -18,7 +26,7 @@ const AdditionalDetails = () => {
         
         <header className="ad-top-navigation">
           <button className="ad-back-circle" onClick={() => navigate(-1)}>
-            <ChevronLeft size={24} color="#FFFFFF" strokeWidth={2.5} />
+            <ChevronLeft size={24} color="#FFFFFF" strokeWidth={2.5} className={lang === 'ar' ? 'rtl-flip' : ''} />
           </button>
           
           <div className="ad-progress-stepper">
@@ -53,7 +61,7 @@ const AdditionalDetails = () => {
               <div className="ad-icon-square"><Pill size={20} color="#64B5F6" /></div>
               <div className="ad-row-data">
                 <label>{t('medName')}</label>
-                <p>Panadol - 500mg</p>
+                <p>{lang === 'ar' ? 'بانادول - ٥٠٠ ملجم' : 'Panadol - 500mg'}</p>
               </div>
             </div>
 
@@ -69,7 +77,7 @@ const AdditionalDetails = () => {
               <div className="ad-icon-square"><Calendar size={20} color="#64B5F6" /></div>
               <div className="ad-row-data">
                 <label>{t('duration')}</label>
-                <p>30 {t('days') || 'days'}</p>
+                <p>{formatNumber(30)} {t('days')}</p>
               </div>
             </div>
 
@@ -95,4 +103,5 @@ const AdditionalDetails = () => {
   );
 };
 
-export default AdditionalDetails;
+export default AdditionalDetails;
+

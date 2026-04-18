@@ -208,14 +208,3 @@ const Emergency = () => {
 };
 
 export default Emergency;
-
-          <div className="em-bottom-pad"></div>
-        </motion.div>
-      </div>
-      <TouchBar />
-      <GlassToast message={toastMsg} isOpen={!!toastMsg} onClose={() => setToastMsg('')} type="info" />
-    </div>
-  );
-};
-
-export default Emergency;

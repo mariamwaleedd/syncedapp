@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Home, Activity, ArrowRight, ArrowLeft, Apple, Moon } from 'lucide-react';
+import { Coffee, ArrowRight, ArrowLeft } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
 import './Lifestyle.css';
 import SkipQuizModal from '../../common/SkipQuizModal';
+import { useLanguage } from '../../common/LanguageContext';
 
 const Lifestyle = () => {
   const navigate = useNavigate();
+  const { t, lang } = useLanguage();
   const [isSkipOpen, setIsSkipOpen] = useState(false);
-  const [activity, setActivity] = useState('Moderate');
-  const [diet, setDiet] = useState('Regular');
-  const [sleep, setSleep] = useState('7-8');
-  const [smoking, setSmoking] = useState('Never');
-  const [alcohol, setAlcohol] = useState('Occasionally');
+  const [activity, setActivity] = useState('');
+  const [diet, setDiet] = useState('');
+  const [sleep, setSleep] = useState('7');
+  const [smoking, setSmoking] = useState('');
+  const [alcohol, setAlcohol] = useState('');
 
   useEffect(() => {
     const id = localStorage.getItem('health_id');
@@ -21,7 +23,7 @@ const Lifestyle = () => {
         if (data && !error) {
           if (data.activity_level) setActivity(data.activity_level);
           if (data.diet_type) setDiet(data.diet_type);
-          if (data.sleep_hours) setSleep(data.sleep_hours);
+          if (data.sleep_hours) setSleep(data.sleep_hours.toString());
           if (data.smoking_status) setSmoking(data.smoking_status);
           if (data.alcohol_consumption) setAlcohol(data.alcohol_consumption);
         }
@@ -29,37 +31,95 @@ const Lifestyle = () => {
     }
   }, []);
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'ls-screen rtl-theme' : 'ls-screen ltr-theme';
+  };
+
+  const formatNumber = (num) => {
+    return lang === 'ar' ? new Intl.NumberFormat('ar-EG').format(num) : num;
+  };
+
   const handleContinue = async () => {
     const id = localStorage.getItem('health_id');
     await supabase.from('application_healthId').update({
-      activity_level: activity, diet_type: diet, sleep_hours: sleep, smoking_status: smoking, alcohol_consumption: alcohol
+      activity_level: activity,
+      diet_type: diet,
+      sleep_hours: parseInt(sleep, 10),
+      smoking_status: smoking,
+      alcohol_consumption: alcohol
     }).eq('id', id);
     navigate('/geneticinfo');
   };
 
   return (
-    <div className="ls-screen">
+    <div className={getThemeClass()}>
       <div className="ls-gradient"></div><div className="ls-grid-overlay"></div>
       <div className="ls-content">
         <div className="ls-nav-header">
-          <div className="ls-progress-info"><span className="ls-step-label">Step 5 of 8</span><span className="ls-percent-label">63%</span></div>
+          <div className="ls-progress-info">
+            <span className="ls-step-label">
+              {t('onboardingStep').replace('{x}', formatNumber(5)).replace('{y}', formatNumber(8))}
+            </span>
+            <span className="ls-percent-label">{formatNumber(63)}%</span>
+          </div>
           <div className="ls-track"><div className="ls-fill" style={{ width: '63%' }}></div></div>
-          <button className="ls-skip-btn" onClick={() => setIsSkipOpen(true)}>Skip</button>
+          <button className="ls-skip-btn" onClick={() => setIsSkipOpen(true)}>{t('quizSkip')}</button>
         </div>
         <div className="ls-hero">
-          <div className="ls-icon-box"><Home size={50} fill="white" color="white" /></div>
-          <h1 className="ls-title">Lifestyle</h1><p className="ls-subtitle">Habits that shape your health</p>
+          <div className="ls-icon-box"><Coffee size={50} color="#FFFFFF" strokeWidth={1.5} /></div>
+          <h1 className="ls-title">{t('lifestyleTitle')}</h1>
+          <p className="ls-subtitle">{t('habitsShapeSub')}</p>
         </div>
-        <div className="ls-form-card">
-          <div className="ls-section"><div className="ls-section-header"><Activity size={18} color="#64B5F6" /><span>Activity Level</span></div><div className="ls-grid-2x2">{['Sedentary', 'Light', 'Moderate', 'Very Active'].map(opt => (<button key={opt} className={`ls-chip ${activity === opt ? 'active' : ''}`} onClick={() => setActivity(opt)}>{opt}</button>))}</div></div>
-          <div className="ls-section"><div className="ls-section-header"><Apple size={18} color="#64B5F6" /><span>Diet Type</span></div><div className="ls-grid-2x2">{['Regular', 'Vegetarian', 'Vegan', 'Keto'].map(opt => (<button key={opt} className={`ls-chip ${diet === opt ? 'active' : ''}`} onClick={() => setDiet(opt)}>{opt}</button>))}</div></div>
-          <div className="ls-section"><div className="ls-section-header"><Moon size={18} color="#64B5F6" /><span>Average Sleep (hours)</span></div><div className="ls-input-wrap"><input type="text" placeholder="7-8" value={sleep} onChange={(e) => setSleep(e.target.value)} /></div></div>
-          <div className="ls-section"><div className="ls-section-header"><span>Smoking Status</span></div><div className="ls-grid-1x3">{['Never', 'Former', 'Current'].map(opt => (<button key={opt} className={`ls-chip ${smoking === opt ? 'active' : ''}`} onClick={() => setSmoking(opt)}>{opt}</button>))}</div></div>
-          <div className="ls-section"><div className="ls-section-header"><span>Alcohol Consumption</span></div><div className="ls-grid-2x2">{['Never', 'Occasionally', 'Moderately', 'Frequently'].map(opt => (<button key={opt} className={`ls-chip ${alcohol === opt ? 'active' : ''}`} onClick={() => setAlcohol(opt)}>{opt}</button>))}</div></div>
+        <div className="ls-form-scroll">
+          <div className="ls-section">
+            <label>{t('activityLevel')}</label>
+            <div className="ls-options-grid">
+              {['sedentary', 'light', 'moderate', 'veryActive'].map(opt => (
+                <button key={opt} className={`ls-option-btn ${activity === opt ? 'active' : ''}`} onClick={() => setActivity(opt)}>{t(opt)}</button>
+              ))}
+            </div>
+          </div>
+          <div className="ls-section">
+            <label>{t('dietType')}</label>
+            <div className="ls-options-grid">
+              {['regular', 'vegetarian', 'vegan', 'keto'].map(opt => (
+                <button key={opt} className={`ls-option-btn ${diet === opt ? 'active' : ''}`} onClick={() => setDiet(opt)}>{t(opt)}</button>
+              ))}
+            </div>
+          </div>
+          <div className="ls-section">
+            <label>{t('avgSleep')}</label>
+            <div className="ls-slider-box">
+              <input type="range" min="3" max="12" value={sleep} onChange={(e) => setSleep(e.target.value)} />
+              <div className="ls-value-bubble">{formatNumber(sleep)} {lang === 'ar' ? 'ساعات' : 'hours'}</div>
+            </div>
+          </div>
+          <div className="ls-section">
+            <label>{t('smokingStatus')}</label>
+            <div className="ls-options-row">
+              {['never', 'former', 'current'].map(opt => (
+                <button key={opt} className={`ls-option-btn ${smoking === opt ? 'active' : ''}`} onClick={() => setSmoking(opt)}>{t(opt)}</button>
+              ))}
+            </div>
+          </div>
+          <div className="ls-section">
+            <label>{t('alcoholConsumption')}</label>
+            <div className="ls-options-row">
+              {['never', 'occasionally', 'moderately', 'frequently'].map(opt => (
+                <button key={opt} className={`ls-option-btn ${alcohol === opt ? 'active' : ''}`} onClick={() => setAlcohol(opt)}>{t(opt)}</button>
+              ))}
+            </div>
+          </div>
         </div>
         <div className="ls-footer">
-          <button className="ls-back-btn" onClick={() => navigate(-1)}><ArrowLeft size={18} /><span>Back</span></button>
-          <button className="ls-continue-btn" onClick={handleContinue}><span>Continue</span><ArrowRight size={18} /></button>
+          <button className="ls-back-btn" onClick={() => navigate(-1)}>
+            <ArrowLeft size={18} className={lang === 'ar' ? 'rtl-flip' : ''} />
+            <span>{t('quizBack')}</span>
+          </button>
+          <button className="ls-continue-btn" onClick={handleContinue}>
+            <span>{t('quizContinue')}</span>
+            <ArrowRight size={18} className={lang === 'ar' ? 'rtl-flip' : ''} />
+          </button>
         </div>
         <SkipQuizModal isOpen={isSkipOpen} onClose={() => setIsSkipOpen(false)} />
       </div>

@@ -7,7 +7,6 @@ import {
   Users, Search, Hash
 } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
-import TouchBar from '../../common/TouchBar';
 import './FamilyChat.css';
 import { useLanguage } from '../../common/LanguageContext';
 
@@ -202,7 +201,6 @@ const FamilyChat = () => {
         </div>
       )}
 
-      <TouchBar />
 
       <AnimatePresence>
         {isVideoCalling && (

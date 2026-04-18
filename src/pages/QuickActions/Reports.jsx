@@ -12,22 +12,22 @@ import ShareModal from '../../common/ShareModal';
 import './Reports.css';
 import { useLanguage } from '../../common/LanguageContext';
 
-const reportData = [
-  { id: 1, title: 'Cardiology Consultation', dr: 'Dr. Sarah Wilson', date: 'Mar 12, 2026', status: 'Complete', diagnosis: 'Mild Hypertension', icon: <Heart size={20} />, color: '#FF416C' },
-  { id: 2, title: 'Annual Physical Examination', dr: 'Dr. James Anderson', date: 'Mar 8, 2026', status: 'Complete', diagnosis: 'Healthy', icon: <CheckCircle2 size={20} />, color: '#00E676' },
-  { id: 3, title: 'Lab Test Results - Blood Work', dr: 'Dr. Emily Rodriguez', date: 'Mar 5, 2026', status: 'Attention', diagnosis: 'Slightly Elevated Cholesterol', icon: <AlertTriangle size={20} />, color: '#FF8A00' },
-  { id: 4, title: 'Neurological Assessment', dr: 'Dr. Michael Chen', date: 'Feb 28, 2026', status: 'Complete', diagnosis: 'Normal Cognitive Function', icon: <Activity size={20} />, color: '#B89FFF' },
-  { id: 5, title: 'Orthopedic Follow-up', dr: 'Dr. Emily Rodriguez', date: 'Feb 20, 2026', status: 'Complete', diagnosis: 'Knee Recovery - Good Progress', icon: <Stethoscope size={20} />, color: '#64B5F6' },
-  { id: 6, title: 'Dental Checkup Report', dr: 'Dr. Lisa Chang', date: 'Feb 15, 2026', status: 'Complete', diagnosis: 'No Cavities Detected', icon: <Smile size={20} />, color: '#00B4DB' },
-  { id: 7, title: 'Eye Examination', dr: 'Dr. Robert Kim', date: 'Feb 10, 2026', status: 'Attention', diagnosis: 'Minor Vision Correction Needed', icon: <Eye size={20} />, color: '#7C4DFF' },
-  { id: 8, title: 'Dermatology Consultation', dr: 'Dr. Maria Santos', date: 'Feb 1, 2026', status: 'Complete', diagnosis: 'Skin Health - Normal', icon: <CheckCircle2 size={20} />, color: '#FF4081' }
-];
-
 const Reports = () => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
   const [isShareOpen, setIsShareOpen] = useState(false);
+
+  const reportData = useMemo(() => [
+    { id: 1, title: t('reportCardiology'), dr: 'Dr. Sarah Wilson', date: lang === 'ar' ? '١٢ مارس، ٢٠٢٦' : 'Mar 12, 2026', status: 'Complete', diagnosis: t('diagHypertension'), icon: <Heart size={20} />, color: '#FF416C' },
+    { id: 2, title: t('reportPhysical'), dr: 'Dr. James Anderson', date: lang === 'ar' ? '٨ مارس، ٢٠٢٦' : 'Mar 8, 2026', status: 'Complete', diagnosis: t('diagHealthy'), icon: <CheckCircle2 size={20} />, color: '#00E676' },
+    { id: 3, title: t('reportLab'), dr: 'Dr. Emily Rodriguez', date: lang === 'ar' ? '٥ مارس، ٢٠٢٦' : 'Mar 5, 2026', status: 'Attention', diagnosis: t('diagCholesterol'), icon: <AlertTriangle size={20} />, color: '#FF8A00' },
+    { id: 4, title: t('reportNeurology'), dr: 'Dr. Michael Chen', date: lang === 'ar' ? '٢٨ فبراير، ٢٠٢٦' : 'Feb 28, 2026', status: 'Complete', diagnosis: t('diagNeurological'), icon: <Activity size={20} />, color: '#B89FFF' },
+    { id: 5, title: t('reportOrthopedic'), dr: 'Dr. Emily Rodriguez', date: lang === 'ar' ? '٢٠ فبراير، ٢٠٢٦' : 'Feb 20, 2026', status: 'Complete', diagnosis: t('diagOrthopedic'), icon: <Stethoscope size={20} />, color: '#64B5F6' },
+    { id: 6, title: t('reportDental'), dr: 'Dr. Lisa Chang', date: lang === 'ar' ? '١٥ فبراير، ٢٠٢٦' : 'Feb 15, 2026', status: 'Complete', diagnosis: t('diagDental'), icon: <Smile size={20} />, color: '#00B4DB' },
+    { id: 7, title: t('reportEye'), dr: 'Dr. Robert Kim', date: lang === 'ar' ? '١٠ فبراير، ٢٠٢٦' : 'Feb 10, 2026', status: 'Attention', diagnosis: t('diagVision'), icon: <Eye size={20} />, color: '#7C4DFF' },
+    { id: 8, title: t('reportDermatology'), dr: 'Dr. Maria Santos', date: lang === 'ar' ? '١ فبراير، ٢٠٢٦' : 'Feb 1, 2026', status: 'Complete', diagnosis: t('diagSkin'), icon: <CheckCircle2 size={20} />, color: '#FF4081' }
+  ], [t, lang]);
 
   const filteredReports = useMemo(() => {
     return reportData.filter(item => 
@@ -35,7 +35,7 @@ const Reports = () => {
       item.dr.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.diagnosis.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  }, [searchTerm]);
+  }, [reportData, searchTerm]);
 
   const stats = useMemo(() => {
     return {
@@ -45,8 +45,12 @@ const Reports = () => {
     };
   }, [filteredReports]);
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'rp-root rtl-theme' : 'rp-root ltr-theme';
+  };
+
   return (
-    <div className="rp-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="rp-bg-grad"></div>
       <div className="rp-bg-lines"></div>
 
@@ -55,7 +59,7 @@ const Reports = () => {
         <header className="rp-header">
           <div className="rp-nav-top">
             <button className="rp-circle-btn" onClick={() => navigate(-1)}>
-              <ChevronLeft size={22} strokeWidth={2.5} />
+              <ChevronLeft size={22} strokeWidth={2.5} className={lang === 'ar' ? 'rtl-flip' : ''} />
             </button>
             <h1 className="rp-main-title">{t('reportsTitle')}</h1>
             <button className="rp-circle-btn" onClick={() => navigate('/reports/upload')}>

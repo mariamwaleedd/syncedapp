@@ -6,7 +6,7 @@ import { useLanguage } from '../../common/LanguageContext';
 
 const DosageSchedule = () => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [selectedFreq, setSelectedFreq] = useState('Once daily');
 
   const frequencies = [
@@ -17,8 +17,12 @@ const DosageSchedule = () => {
     'Custom schedule'
   ];
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'ds-root rtl-theme' : 'ds-root ltr-theme';
+  };
+
   return (
-    <div className="ds-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="ds-layer-grad"></div>
       <div className="ds-layer-lines"></div>
 
@@ -26,7 +30,7 @@ const DosageSchedule = () => {
         
         <header className="ds-top-nav">
           <button className="ds-back-btn" onClick={() => navigate(-1)}>
-            <ChevronLeft size={22} color="#FFF" strokeWidth={2.5} />
+            <ChevronLeft size={22} color="#FFF" strokeWidth={2.5} className={lang === 'ar' ? 'rtl-flip' : ''} />
           </button>
           
           <div className="ds-stepper">
@@ -75,7 +79,7 @@ const DosageSchedule = () => {
             <input 
               className="ds-input ds-glass" 
               type="text" 
-              placeholder="30" 
+              placeholder={lang === 'ar' ? '٣٠' : '30'} 
             />
           </div>
         </div>

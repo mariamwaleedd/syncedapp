@@ -3,18 +3,28 @@ import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Plus, CheckCircle2, TrendingUp, Award } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import './Goals.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const Goals = () => {
   const navigate = useNavigate();
+  const { t, lang } = useLanguage();
+
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'gl-root rtl-theme' : 'gl-root ltr-theme';
+  };
+
+  const formatNumber = (num) => {
+    return lang === 'ar' ? new Intl.NumberFormat('ar-EG').format(num) : num.toLocaleString();
+  };
 
   const activeGoals = [
-    { name: 'Weight Loss', current: '75', target: '70', unit: 'kg', perc: 65, color: '#FF416C' },
-    { name: 'Daily Water', current: '1.8', target: '2.5', unit: 'L', perc: 72, color: '#64B5F6' },
-    { name: 'Weekly Steps', current: '45k', target: '70k', unit: 'steps', perc: 58, color: '#00E676' }
+    { name: t('weightLoss'), current: lang === 'ar' ? '٧٥' : '75', target: lang === 'ar' ? '٧٠' : '70', unit: t('unitsWeight'), perc: 65, color: '#FF416C' },
+    { name: t('dailyWater'), current: lang === 'ar' ? '١.٨' : '1.8', target: lang === 'ar' ? '٢.٥' : '2.5', unit: 'L', perc: 72, color: '#64B5F6' },
+    { name: t('weeklySteps'), current: lang === 'ar' ? '٤٥ألف' : '45k', target: lang === 'ar' ? '٧٠ألف' : '70k', unit: t('unitsSteps'), perc: 58, color: '#00E676' }
   ];
 
   return (
-    <div className="gl-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="gl-bg-gradient"></div>
       <div className="gl-bg-lines"></div>
 
@@ -22,9 +32,9 @@ const Goals = () => {
 
         <header className="gl-header">
           <button className="gl-circ-btn" onClick={() => navigate(-1)}>
-            <ChevronLeft size={22} strokeWidth={2.5} />
+            <ChevronLeft size={22} strokeWidth={2.5} className={lang === 'ar' ? 'rtl-flip' : ''} />
           </button>
-          <h1 className="gl-title">My Goals</h1>
+          <h1 className="gl-title">{t('myGoalsTitle')}</h1>
           <button className="gl-circ-btn gl-add-btn" onClick={() => navigate('/wellness/add-goal')}>
             <Plus size={22} />
           </button>
@@ -34,15 +44,15 @@ const Goals = () => {
           <div className="gl-summary-card gl-glass">
             <div className="gl-sum-ico"><TrendingUp size={24} color="#00E676" /></div>
             <div className="gl-sum-txt">
-              <h3>Goals Summary</h3>
-              <p>You are on track with 2 of 3 active goals.</p>
+              <h3>{t('goalsSummary')}</h3>
+              <p>{t('goalsOnTrackMsg').replace('{x}', formatNumber(2)).replace('{y}', formatNumber(3))}</p>
             </div>
-            <div className="gl-sum-perc">66%</div>
+            <div className="gl-sum-perc">{formatNumber(66)}%</div>
           </div>
         </section>
 
         <section className="gl-sec">
-          <h2 className="gl-sec-lbl">Active Goals</h2>
+          <h2 className="gl-sec-lbl">{t('activeGoals')}</h2>
           <div className="gl-stack">
             {activeGoals.map((g, i) => (
               <div key={i} className="gl-goal-card gl-glass">
@@ -51,7 +61,7 @@ const Goals = () => {
                     <h4>{g.name}</h4>
                     <p>{g.current} / {g.target} {g.unit}</p>
                   </div>
-                  <span className="gl-perc-tag" style={{ color: g.color }}>{g.perc}%</span>
+                  <span className="gl-perc-tag" style={{ color: g.color }}>{formatNumber(g.perc)}%</span>
                 </div>
                 <div className="gl-bar-track">
                   <div className="gl-bar-fill" style={{ width: `${g.perc}%`, backgroundColor: g.color }}></div>
@@ -62,14 +72,14 @@ const Goals = () => {
         </section>
 
         <section className="gl-sec">
-          <h2 className="gl-sec-lbl">Completed</h2>
+          <h2 className="gl-sec-lbl">{t('completed')}</h2>
           <div className="gl-comp-list">
             <div className="gl-comp-card gl-glass">
               <div className="gl-comp-l">
                 <div className="gl-comp-ico"><CheckCircle2 size={20} color="#00E676" /></div>
                 <div className="gl-comp-txt">
-                  <h4>Consistency Streak</h4>
-                  <p>Completed Oct 12, 2023</p>
+                  <h4>{t('consistencyStreak')}</h4>
+                  <p>{t('completedDate').replace('{date}', lang === 'ar' ? '١٢ أكتوبر ٢٠٢٣' : 'Oct 12, 2023')}</p>
                 </div>
               </div>
               <Award size={20} color="#FFD54F" />
@@ -84,4 +94,4 @@ const Goals = () => {
   );
 };
 
-export default Goals;
+export default Goals;

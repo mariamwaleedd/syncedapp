@@ -11,7 +11,7 @@ import { useLanguage } from '../../common/LanguageContext';
 
 const AddMember = () => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [gender, setGender] = useState('');
   const [formData, setFormData] = useState({
     full_name: '',
@@ -26,6 +26,10 @@ const AddMember = () => {
 
   const handleInput = (e) => {
     setFormData({...formData, [e.target.name]: e.target.value});
+  };
+
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'am-root rtl-theme' : 'am-root ltr-theme';
   };
 
   const handleSubmit = async () => {
@@ -49,12 +53,14 @@ const AddMember = () => {
   const bloodTypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', 'Unknown'];
 
   return (
-    <div className="am-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="am-bg-gradient"></div>
       <div className="am-bg-image"></div>
       <div className="am-wrapper">
         <header className="am-header">
-          <button className="am-nav-btn" onClick={() => navigate(-1)}><ChevronLeft size={22} strokeWidth={2.5} /></button>
+          <button className="am-nav-btn" onClick={() => navigate(-1)}>
+            <ChevronLeft size={22} strokeWidth={2.5} className={lang === 'ar' ? 'rtl-flip' : ''} />
+          </button>
           <div className="am-stepper"><span className="am-dot"></span><span className="am-dot active"></span><span className="am-dot"></span></div>
           <button className="am-nav-btn" onClick={() => navigate('/familyhub')}><X size={22} strokeWidth={2.5} /></button>
         </header>
@@ -102,7 +108,7 @@ const AddMember = () => {
             <label className="am-label">{t('phoneNum')}</label>
             <div className="am-input-wrap am-glass">
               <Phone size={18} className="am-field-ico" />
-              <input type="text" name="phone" placeholder="+1 (555) 000-0000" onChange={handleInput}/>
+              <input type="text" name="phone" placeholder={lang === 'ar' ? '+٩٦٦ ٠٠٠-٠٠٠٠' : '+1 (555) 000-0000'} onChange={handleInput}/>
             </div>
           </div>
           <div className="am-field-group">
@@ -134,4 +140,4 @@ const AddMember = () => {
   );
 };
 
-export default AddMember;
+export default AddMember;

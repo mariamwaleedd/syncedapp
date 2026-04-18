@@ -4,13 +4,23 @@ import { motion } from 'framer-motion';
 import { ChevronLeft, Wind, Moon, Play, Clock, Sparkles } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import './Mindfulness.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const Mindfulness = () => {
   const navigate = useNavigate();
+  const { t, lang } = useLanguage();
   const [isBreathing, setIsBreathing] = useState(false);
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'mf-root rtl-theme' : 'mf-root ltr-theme';
+  };
+
+  const formatNumber = (num) => {
+    return lang === 'ar' ? new Intl.NumberFormat('ar-EG').format(num) : num.toLocaleString();
+  };
+
   return (
-    <div className="mf-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="mf-bg-gradient"></div>
       <div className="mf-bg-lines"></div>
 
@@ -18,9 +28,9 @@ const Mindfulness = () => {
 
         <header className="mf-header">
           <button className="mf-circ-btn" onClick={() => navigate(-1)}>
-            <ChevronLeft size={22} strokeWidth={2.5} />
+            <ChevronLeft size={22} strokeWidth={2.5} className={lang === 'ar' ? 'rtl-flip' : ''} />
           </button>
-          <h1 className="mf-title">Mindfulness</h1>
+          <h1 className="mf-title">{t('mindfulnessTitle')}</h1>
         </header>
 
         <section className="mf-hero">
@@ -38,43 +48,43 @@ const Mindfulness = () => {
               />
               <Wind className="mf-wind-ico" size={40} color="#FFF" />
             </div>
-            <h3>{isBreathing ? 'Breathe In...' : 'Guided Breathing'}</h3>
-            <p>Relieve stress and find your focus</p>
+            <h3>{isBreathing ? t('breatheIn') : t('guidedBreathing')}</h3>
+            <p>{t('mindfulnessSub')}</p>
             <button className="mf-start-btn" onClick={() => setIsBreathing(!isBreathing)}>
-              {isBreathing ? 'Stop Session' : 'Start 5 Min Session'}
+              {isBreathing ? t('stopSession') : t('startSession')}
             </button>
           </div>
         </section>
 
         <section className="mf-sec">
-          <h2 className="mf-sec-lbl">Meditation Library</h2>
+          <h2 className="mf-sec-lbl">{t('meditationLibrary')}</h2>
           <div className="mf-med-stack">
             <div className="mf-med-card mf-glass">
               <div className="mf-med-l">
                 <div className="mf-med-ico blue"><Moon size={20} /></div>
                 <div className="mf-med-txt">
-                  <h4>Deep Sleep</h4>
-                  <p>15 Minutes • Relaxing</p>
+                  <h4>{t('deepSleep')}</h4>
+                  <p>{t('minRelaxing').replace('15', formatNumber(15))}</p>
                 </div>
               </div>
-              <Play size={20} fill="#FFF" />
+              <Play size={20} fill="#FFF" className={lang === 'ar' ? 'rtl-flip' : ''} />
             </div>
             <div className="mf-med-card mf-glass">
               <div className="mf-med-l">
                 <div className="mf-med-ico purple"><Sparkles size={20} /></div>
                 <div className="mf-med-txt">
-                  <h4>Focus Mastery</h4>
-                  <p>10 Minutes • Concentration</p>
+                  <h4>{t('focusMastery')}</h4>
+                  <p>{t('minConcentration').replace('10', formatNumber(10))}</p>
                 </div>
               </div>
-              <Play size={20} fill="#FFF" />
+              <Play size={20} fill="#FFF" className={lang === 'ar' ? 'rtl-flip' : ''} />
             </div>
           </div>
         </section>
 
         <div className="mf-streak-box mf-glass">
           <Clock size={20} color="#64B5F6" />
-          <p>You've meditated for <strong>45 minutes</strong> this week. Keep it up!</p>
+          <p dangerouslySetInnerHTML={{ __html: t('meditationStreakMsg').replace('{x}', `<strong>${formatNumber(45)}</strong>`) }} />
         </div>
 
         <div className="mf-bottom-pad"></div>
@@ -84,4 +94,4 @@ const Mindfulness = () => {
   );
 };
 
-export default Mindfulness;
+export default Mindfulness;

@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import './Doctors.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const doctorsList = [
   {
@@ -58,13 +59,14 @@ const doctorsList = [
 
 const Doctors = () => {
   const navigate = useNavigate();
+  const { t, lang } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
 
   const filters = [
-    { name: 'Cardiology', count: 24, ico: <Heart size={14} /> },
-    { name: 'Neurology', count: 18, ico: <Brain size={14} /> },
-    { name: 'Orthopedics', count: 12, ico: <Activity size={14} /> }
+    { name: 'Cardiology', label: t('cardiology'), count: 24, ico: <Heart size={14} /> },
+    { name: 'Neurology', label: t('neurology'), count: 18, ico: <Brain size={14} /> },
+    { name: 'Orthopedics', label: t('orthopedics'), count: 12, ico: <Activity size={14} /> }
   ];
 
   const filteredDoctors = useMemo(() => {
@@ -76,8 +78,23 @@ const Doctors = () => {
     });
   }, [searchTerm, activeCategory]);
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'dr-root rtl-theme' : 'dr-root ltr-theme';
+  };
+
+  const translateStatus = (status) => {
+    if (status === 'Available Today') return t('availableToday');
+    if (status === 'Available Tomorrow') return t('availableTomorrow');
+    return status;
+  };
+
+  const translateSpec = (spec) => {
+    const key = spec.toLowerCase();
+    return t(key) || spec;
+  };
+
   return (
-    <div className="dr-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="dr-bg-grad"></div>
       <div className="dr-bg-lines"></div>
 
@@ -86,8 +103,8 @@ const Doctors = () => {
         <header className="dr-header">
           <div className="dr-header-top">
             <div className="dr-title-box">
-              <h1>Find Doctors</h1>
-              <p>Book appointments with specialists</p>
+              <h1>{t('findDoctors')}</h1>
+              <p>{t('bookSpecialists')}</p>
             </div>
             <button className="dr-close-btn" onClick={() => navigate(-1)}>
               <X size={24} />
@@ -99,7 +116,7 @@ const Doctors = () => {
               <Search size={20} opacity={0.4} />
               <input 
                 type="text" 
-                placeholder="Search doctors, specialties..." 
+                placeholder={t('searchDoctorsSpec')} 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -111,7 +128,7 @@ const Doctors = () => {
               className={`dr-filter-pill dr-glass ${activeCategory === 'All' ? 'active' : ''}`}
               onClick={() => setActiveCategory('All')}
             >
-              <span>All Specialties</span>
+              <span>{t('allSpecialties')}</span>
             </div>
             {filters.map((f, i) => (
               <div 
@@ -120,7 +137,7 @@ const Doctors = () => {
                 onClick={() => setActiveCategory(f.name)}
               >
                 {f.ico}
-                <span>{f.name}</span>
+                <span>{f.label}</span>
                 <span className="dr-filter-count">{f.count}</span>
               </div>
             ))}
@@ -129,8 +146,8 @@ const Doctors = () => {
 
         <main className="dr-scroll-area">
           <button className="dr-view-my-btn" onClick={() => navigate('/mydoctors')}>
-            <span>View My Doctors</span>
-            <ChevronRight size={18} />
+            <span>{t('viewMyDoctors')}</span>
+            <ChevronRight size={18} className={lang === 'ar' ? 'rtl-flip' : ''} />
           </button>
 
           <div className="dr-list-container">
@@ -164,19 +181,19 @@ const Doctors = () => {
                           <span className="review-cnt">({doc.reviews})</span>
                         </div>
                       </div>
-                      <p className="dr-card-spec">{doc.spec}</p>
+                      <p className="dr-card-spec">{translateSpec(doc.spec)}</p>
                       <div className="dr-card-meta">
                         <div className="dr-meta-item"><Activity size={14}/><span>{doc.exp}</span></div>
                         <div className="dr-meta-item"><MapPin size={14}/><span>{doc.loc}</span></div>
                       </div>
                       <div className="dr-card-status-row">
                         <span className={`dr-card-status ${doc.status.includes('Tomorrow') ? 'tmrw' : ''}`}>
-                          {doc.status}
+                          {translateStatus(doc.status)}
                         </span>
                         <Video size={16} opacity={0.6} />
                         <div className="dr-card-pricing">
                           <strong>{doc.price}</strong>
-                          <span>Next: {doc.next}</span>
+                          <span>{t('nextDoseTime')} {doc.next}</span>
                         </div>
                       </div>
                     </div>
@@ -186,12 +203,12 @@ const Doctors = () => {
             ) : (
               <div className="dr-empty-state">
                 <Search size={48} opacity={0.3} />
-                <p>No doctors found matching "{searchTerm}"</p>
+                <p>{t('noDoctorsFound').replace('{q}', searchTerm)}</p>
                 <button 
                   className="dr-reset-btn" 
                   onClick={() => {setSearchTerm(''); setActiveCategory('All');}}
                 >
-                  Reset Search
+                  {t('resetSearch')}
                 </button>
               </div>
             )}

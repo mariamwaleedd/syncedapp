@@ -13,7 +13,7 @@ import { useLanguage } from '../../common/LanguageContext';
 
 const QuickActions = () => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const container = {
     hidden: { opacity: 0 },
@@ -23,6 +23,10 @@ const QuickActions = () => {
   const item = {
     hidden: { y: 15, opacity: 0 },
     visible: { y: 0, opacity: 1 }
+  };
+
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'qa-root rtl-theme' : 'qa-root ltr-theme';
   };
 
   const categories = [
@@ -83,12 +87,12 @@ const QuickActions = () => {
   ];
 
   return (
-    <div className="qa-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="qa-fixed-header">
         
         <div className="qa-nav-row">
           <button className="qa-circle-btn" onClick={() => navigate(-1)}>
-            <ChevronLeft size={22} strokeWidth={2.5} />
+            <ChevronLeft size={22} strokeWidth={2.5} className={lang === 'ar' ? 'rtl-flip' : ''} />
           </button>
           
           <div className="qa-header-title">
@@ -127,7 +131,7 @@ const QuickActions = () => {
                     <h3>{action.title}</h3>
                     <p>{action.sub}</p>
                   </div>
-                  <ChevronRight size={18} className="qa-chevron" />
+                  <ChevronRight size={18} className={`qa-chevron ${lang === 'ar' ? 'rtl-flip' : ''}`} />
                 </motion.div>
               ))}
             </div>
@@ -140,6 +144,7 @@ const QuickActions = () => {
     </div>
   );
 };
+
 
 export default QuickActions;
 

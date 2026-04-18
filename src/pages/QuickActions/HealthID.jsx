@@ -13,21 +13,26 @@ import ShareModal from '../../common/ShareModal';
 import ActionMenu from '../../common/ActionMenu';
 import { supabase } from '../../supabaseClient';
 import './HealthID.css';
+import { useLanguage } from '../../common/LanguageContext';
 
-const SectionHeader = ({ title, showEdit = true, onEdit }) => (
-  <div className="hid-section-header">
-    <h2>{title}</h2>
-    {showEdit && (
-      <button className="hid-edit-pill" onClick={onEdit}>
-        <Edit3 size={12} />
-        <span>Edit</span>
-      </button>
-    )}
-  </div>
-);
+const SectionHeader = ({ title, showEdit = true, onEdit }) => {
+  const { t } = useLanguage();
+  return (
+    <div className="hid-section-header">
+      <h2>{title}</h2>
+      {showEdit && (
+        <button className="hid-edit-pill" onClick={onEdit}>
+          <Edit3 size={12} />
+          <span>{t('edit')}</span>
+        </button>
+      )}
+    </div>
+  );
+};
 
 const HealthID = () => {
   const navigate = useNavigate();
+  const { t, lang } = useLanguage();
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isDownloadOpen, setIsDownloadOpen] = useState(false);
   const [data, setData] = useState({});
@@ -68,22 +73,28 @@ const HealthID = () => {
     fetchHealthData();
   }, []);
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'hid-root rtl-theme' : 'hid-root ltr-theme';
+  };
+
   if (!data || Object.keys(data).length === 0 && loading === true) {
      // Return an empty shell while loading to prevent crashing layout, without blocking text
   }
 
   return (
-    <div className="hid-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="hid-fixed-header">
         <div className="hid-nav-actions">
-          <button className="hid-circle-btn" onClick={() => navigate(-1)}><ChevronLeft size={22} /></button>
+          <button className="hid-circle-btn" onClick={() => navigate(-1)}>
+            <ChevronLeft size={22} className={lang === 'ar' ? 'rtl-flip' : ''} />
+          </button>
           <div className="hid-verified-pill">
-            <Check size={14} color="#05FF91" strokeWidth={3} />
-            <span>Verified</span>
+            <div className="hid-v-ico"><Check size={14} color="#05FF91" strokeWidth={3} /></div>
+            <span>{t('verified')}</span>
           </div>
           <div className="hid-right-stack">
             <button className="hid-circle-btn" onClick={() => setIsShareOpen(true)}><Share2 size={20} /></button>
-            <button className="hid-circle-btn" onClick={() => navigate('/appointments')}><Bell size={20} /></button>
+            <button className="hid-circle-btn" onClick={() => navigate('/notifications')}><Bell size={20} /></button>
           </div>
         </div>
 
@@ -93,7 +104,7 @@ const HealthID = () => {
           </div>
           <div className="hid-hero-txt">
             <h1>{data.first_name} {data.last_name}</h1>
-            <p>Health ID • Verified Member</p>
+            <p>{t('healthIdSubtitle')}</p>
           </div>
         </div>
       </div>
@@ -106,9 +117,9 @@ const HealthID = () => {
       >
         <motion.div variants={itemVariants} className="hid-score-card hid-glass">
           <div className="hid-score-info">
-            <p>Overall Health Score</p>
+            <p>{t('overallHealthScore')}</p>
             <div className="hid-score-val">{data.health_score}</div>
-            <span className="hid-score-trend">Excellent Progress</span>
+            <span className="hid-score-trend">{t('excellentProgress')}</span>
           </div>
           <div className="hid-score-visual">
             <svg width="80" height="80" viewBox="0 0 80 80">
@@ -130,80 +141,80 @@ const HealthID = () => {
         </motion.div>
 
         <motion.div variants={itemVariants} className="hid-sec">
-          <SectionHeader title="Basic Information" onEdit={() => navigate('/personalinfo')} />
+          <SectionHeader title={t('basicInfo')} onEdit={() => navigate('/personalinfo')} />
           <div className="hid-card hid-glass">
-            <div className="hid-row"><div className="hid-label"><Calendar size={14} /> Date of Birth</div><span>{data.dob}</span></div>
-            <div className="hid-row"><div className="hid-label"><Users size={14} /> Gender</div><span>{data.gender}</span></div>
-            <div className="hid-row"><div className="hid-label"><Droplets size={14} /> Blood</div><span>{data.blood_type}</span></div>
-            <div className="hid-row"><div className="hid-label"><Ruler size={14} /> Height</div><span>{data.height} cm</span></div>
-            <div className="hid-row"><div className="hid-label"><Weight size={14} /> Weight</div><span>{data.weight} kg</span></div>
+            <div className="hid-row"><div className="hid-label"><Calendar size={14} /> {t('dob')}</div><span>{data.dob}</span></div>
+            <div className="hid-row"><div className="hid-label"><Users size={14} /> {t('gender')}</div><span>{data.gender}</span></div>
+            <div className="hid-row"><div className="hid-label"><Droplets size={14} /> {t('bloodType')}</div><span>{data.blood_type}</span></div>
+            <div className="hid-row"><div className="hid-label"><Ruler size={14} /> {t('height')}</div><span>{data.height} {lang === 'ar' ? 'سم' : 'cm'}</span></div>
+            <div className="hid-row"><div className="hid-label"><Weight size={14} /> {t('weight')}</div><span>{data.weight} {t('kg')}</span></div>
           </div>
         </motion.div>
 
         <motion.div variants={itemVariants} className="hid-sec">
-          <SectionHeader title="Current Vitals" onEdit={() => navigate('/wellness')} />
+          <SectionHeader title={t('currentVitals')} onEdit={() => navigate('/wellness')} />
           <div className="hid-vitals-grid">
             <div className="hid-vital-item hid-glass">
               <Heart size={18} color="#FF4B2B" />
-              <div className="hid-vital-data">{data.heart_rate}<span>bpm</span></div>
-              <p>Heart Rate</p>
+              <div className="hid-vital-data">{data.heart_rate}<span>{t('bpm')}</span></div>
+              <p>{t('heartRate')}</p>
             </div>
             <div className="hid-vital-item hid-glass">
               <Activity size={18} color="#05FF91" />
               <div className="hid-vital-data">{data.blood_pressure}</div>
-              <p>Blood Pressure</p>
+              <p>{t('bloodPressure')}</p>
             </div>
             <div className="hid-vital-item hid-glass">
               <Wind size={18} color="#64B5F6" />
               <div className="hid-vital-data">{data.spo2}%</div>
-              <p>SpO2</p>
+              <p>{t('spo2')}</p>
             </div>
             <div className="hid-vital-item hid-glass">
               <Thermometer size={18} color="#FFD54F" />
               <div className="hid-vital-data">{data.body_temp}<span>°C</span></div>
-              <p>Body Temp</p>
+              <p>{t('bodyTemp')}</p>
             </div>
           </div>
         </motion.div>
 
         <motion.div variants={itemVariants} className="hid-sec">
-          <SectionHeader title="Physical Statistics" onEdit={() => navigate('/physicalstats')} />
+          <SectionHeader title={t('physicalStats')} onEdit={() => navigate('/physicalstats')} />
           <div className="hid-stats-flex">
-            <div className="hid-pill-stat hid-glass">Height: <span>{data.height}cm</span></div>
-            <div className="hid-pill-stat hid-glass">Weight: <span>{data.weight}kg</span></div>
+            <div className="hid-pill-stat hid-glass">{t('height')}: <span>{data.height}{lang === 'ar' ? 'سم' : 'cm'}</span></div>
+            <div className="hid-pill-stat hid-glass">{t('weight')}: <span>{data.weight}{t('kg')}</span></div>
           </div>
           <div className="hid-bmi-card hid-glass" onClick={() => navigate('/physicalstats')} style={{ cursor: 'pointer' }}>
             <div className="hid-bmi-meta">
               <div className="hid-bmi-ico"><Activity size={14} /></div>
-              <span>Body Mass Index (BMI)</span>
+              <span>{t('bmi')}</span>
             </div>
             <div className="hid-bmi-vals">
               <span className="hid-bmi-num">22.5</span>
-              <span className="hid-bmi-status">Normal Range</span>
+              <span className="hid-bmi-status">{t('normalRange')}</span>
             </div>
           </div>
         </motion.div>
 
         <motion.div variants={itemVariants} className="hid-sec">
-          <SectionHeader title="Lifestyle Habits" onEdit={() => navigate('/lifestyle')} />
+          <SectionHeader title={t('lifestyleHabits')} onEdit={() => navigate('/lifestyle')} />
           <div className="hid-card hid-glass">
-            <div className="hid-row"><div className="hid-label">Exercise</div><span>{data.activity_level}</span></div>
-            <div className="hid-row"><div className="hid-label">Diet Type</div><span>{data.diet_type}</span></div>
-            <div className="hid-row"><div className="hid-label">Sleep Duration</div><span>{data.sleep_hours} Hours</span></div>
-            <div className="hid-row"><div className="hid-label">Smoking</div><span>{data.smoking_status}</span></div>
-            <div className="hid-row"><div className="hid-label">Alcohol Level</div><span>{data.alcohol_consumption}</span></div>
+            <div className="hid-row"><div className="hid-label">{t('exercise')}</div><span>{data.activity_level}</span></div>
+            <div className="hid-row"><div className="hid-label">{t('dietType')}</div><span>{data.diet_type}</span></div>
+            <div className="hid-row"><div className="hid-label">{t('sleepDuration')}</div><span>{data.sleep_hours} {t('hours')}</span></div>
+            <div className="hid-row"><div className="hid-label">{t('smoking')}</div><span>{data.smoking_status}</span></div>
+            <div className="hid-row"><div className="hid-label">{t('alcoholLevel')}</div><span>{data.alcohol_consumption}</span></div>
           </div>
         </motion.div>
 
         <motion.div variants={itemVariants} className="hid-sec">
-          <SectionHeader title="Medical Records" onEdit={() => navigate('/medicalhistory')} />
+          <SectionHeader title={t('medicalRecords')} onEdit={() => navigate('/medicalhistory')} />
           <div className="hid-med-card hid-glass" onClick={() => navigate('/medicalhistory')} style={{ cursor: 'pointer' }}>
             <div className="hid-emer-banner">
               <ShieldAlert size={16} />
-              <span>Emergency Priority Info</span>
+              <span>{t('emergencyPriorityInfo')}</span>
             </div>
             <div className="hid-rec-block">
-              <div className="hid-rec-lbl"><Droplets size={14} color="#FF4B2B" /> Allergies</div>
+              <div className="hid-rec-lbl"><Droplets size={14} color="#FF4B2B" /> {t('allergies')}</div>
               <div className="hid-tags">
                 {data.allergies?.split(',').map(a => (
                    <span key={a} className="hid-tag-red">{a.trim()}</span>
@@ -211,25 +222,25 @@ const HealthID = () => {
               </div>
             </div>
             <div className="hid-rec-block">
-              <div className="hid-rec-lbl"><Activity size={14} color="#64B5F6" /> Chronic Conditions</div>
+              <div className="hid-rec-lbl"><Activity size={14} color="#64B5F6" /> {t('chronicConditions')}</div>
               <div className="hid-text-box hid-glass">{data.chronic_conditions}</div>
             </div>
             <div className="hid-rec-block">
-              <div className="hid-rec-lbl"><ClipboardList size={14} color="#FFD54F" /> Past Surgeries</div>
+              <div className="hid-rec-lbl"><ClipboardList size={14} color="#FFD54F" /> {t('pastSurgeries')}</div>
               <div className="hid-text-box hid-glass">{data.surgeries}</div>
             </div>
           </div>
         </motion.div>
 
         <motion.div variants={itemVariants} className="hid-sec">
-          <SectionHeader title="Current Medications" onEdit={() => navigate('/medicine')} />
+          <SectionHeader title={t('currentMedications')} onEdit={() => navigate('/medicine')} />
           <div className="hid-meds-stack">
             {data.medications?.split(',').map((med, i) => (
               <div className="hid-med-box hid-glass" key={i}>
                 <div className="hid-med-ico"><Pill size={18} color="#64B5F6" /></div>
                 <div className="hid-med-txt">
                   <h4>{med.trim()}</h4>
-                  <p>As prescribed</p>
+                  <p>{t('asPrescribed')}</p>
                 </div>
               </div>
             ))}
@@ -237,25 +248,25 @@ const HealthID = () => {
         </motion.div>
 
         <motion.div variants={itemVariants} className="hid-sec">
-          <SectionHeader title="Genetics & DNA" onEdit={() => navigate('/geneticinfo')} />
+          <SectionHeader title={t('geneticsDna')} onEdit={() => navigate('/geneticinfo')} />
           <div className="hid-dna-card hid-glass">
             <div className="hid-dna-header">
               <Dna size={20} color="#FF416C" />
-              <span>DNA Sample Type: <strong>{data.dna_type}</strong></span>
+              <span>{t('dnaSampleType')} <strong>{data.dna_type}</strong></span>
             </div>
             <div className="hid-rec-block">
-              <div className="hid-rec-lbl">Genetic Risk Factors</div>
+              <div className="hid-rec-lbl">{t('geneticRiskFactors')}</div>
               {data.dna_factors?.map((f, i) => <div key={i} className="hid-mini-box hid-glass">{f}</div>)}
             </div>
             <div className="hid-rec-block">
-              <div className="hid-rec-lbl">Family Medical History</div>
+              <div className="hid-rec-lbl">{t('familyMedicalHistory')}</div>
               {data.family_history?.map((fh, i) => <div key={i} className="hid-mini-box hid-glass">{fh}</div>)}
             </div>
           </div>
         </motion.div>
 
         <motion.div variants={itemVariants} className="hid-sec">
-          <SectionHeader title="Emergency Contact" onEdit={() => navigate('/emergencycontacts')} />
+          <SectionHeader title={t('emergencyContact')} onEdit={() => navigate('/emergencycontacts')} />
           <div className="hid-emer-card hid-glass" onClick={() => navigate('/emergencycontacts')} style={{ cursor: 'pointer' }}>
             <div className="hid-contact-head">
               <div className="hid-contact-avatar"><Phone size={20} color="#FFF" /></div>
@@ -269,43 +280,43 @@ const HealthID = () => {
         </motion.div>
 
         <motion.div variants={itemVariants} className="hid-sec">
-          <SectionHeader title="Medical Reports & Files" />
+          <SectionHeader title={t('medicalReportsFiles')} />
           <div className="hid-files-list">
             <div className="hid-file-row hid-glass">
               <div className="hid-file-ico"><FileText size={18} color="#64B5F6" /></div>
               <div className="hid-file-info">
-                <h5>Annual Checkup 2023</h5>
-                <p>PDF • Oct 12, 2023 • 1.2 MB</p>
+                <h5>{lang === 'ar' ? 'الفحص السنوي ٢٠٢٣' : 'Annual Checkup 2023'}</h5>
+                <p>PDF • {lang === 'ar' ? '١٢ أكتوبر ٢٠٢٣' : 'Oct 12, 2023'} • 1.2 MB</p>
               </div>
               <button className="hid-down-btn" onClick={() => navigate('/reports/view')}><Upload size={14} className="rotate-180" /></button>
             </div>
           </div>
-          <button className="hid-all-btn" onClick={() => navigate('/reports')}> View All Reports</button>
+          <button className="hid-all-btn" onClick={() => navigate('/reports')}> {t('viewAllReports')}</button>
         </motion.div>
 
         <div className="hid-footer-status hid-glass">
           <div className="hid-foot-l">
             <Check size={16} color="#05FF91" />
             <div className="hid-foot-meta">
-              <h5>Profile Complete</h5>
-              <p>100% Data Verified</p>
+              <h5>{t('profileComplete')}</h5>
+              <p>{t('verifiedData')}</p>
             </div>
           </div>
-          <button className="hid-ref-btn" onClick={() => window.location.reload()}>Refresh</button>
+          <button className="hid-ref-btn" onClick={() => window.location.reload()}>{t('refresh')}</button>
         </div>
       </motion.div>
 
       <TouchBar />
-      <ShareModal isOpen={isShareOpen} onClose={() => setIsShareOpen(false)} title="Share Health ID" />
+      <ShareModal isOpen={isShareOpen} onClose={() => setIsShareOpen(false)} title={t('shareHealthID')} />
       <ActionMenu 
-        isOpen={isDownloadOpen} onClose={() => setIsDownloadOpen(false)} title="Export File"
+        isOpen={isDownloadOpen} onClose={() => setIsDownloadOpen(false)} title={t('exportFile')}
         options={[
-          { name: 'Download PDF', desc: 'Save to device', icon: <FileText size={24} />, color: '#FF5252' },
-          { name: 'Save to Gallery', desc: 'Save as image', icon: <Upload size={24} />, color: '#51A2FF' }
+          { name: t('downloadPDF'), desc: t('saveToDevice'), icon: <FileText size={24} />, color: '#FF5252' },
+          { name: t('saveToGallery'), desc: t('saveAsImage'), icon: <Upload size={24} />, color: '#51A2FF' }
         ]}
       />
     </div>
   );
 };
 
-export default HealthID;
+export default HealthID;

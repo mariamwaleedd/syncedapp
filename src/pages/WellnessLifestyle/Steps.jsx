@@ -8,27 +8,29 @@ import {
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import './Steps.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const Steps = () => {
   const navigate = useNavigate();
+  const { t, lang } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [goal, setGoal] = useState(10000);
   const [tempGoal, setTempGoal] = useState(goal);
   const currentSteps = 8544;
 
   const weeklyData = [
-    { day: 'Mon', val: 65, label: '6.5k' },
-    { day: 'Tue', val: 82, label: '8.2k' },
-    { day: 'Wed', val: 48, label: '4.8k' },
-    { day: 'Thu', val: 95, label: '9.5k' },
-    { day: 'Fri', val: 74, label: '7.4k' },
-    { day: 'Sat', val: 88, label: '8.8k' },
-    { day: 'Sun', val: 92, label: '9.2k' }
+    { day: lang === 'ar' ? 'اثن' : 'Mon', val: 65, label: lang === 'ar' ? '٦.٥ ألف' : '6.5k' },
+    { day: lang === 'ar' ? 'ثلا' : 'Tue', val: 82, label: lang === 'ar' ? '٨.٢ ألف' : '8.2k' },
+    { day: lang === 'ar' ? 'أرب' : 'Wed', val: 48, label: lang === 'ar' ? '٤.٨ ألف' : '4.8k' },
+    { day: lang === 'ar' ? 'خمي' : 'Thu', val: 95, label: lang === 'ar' ? '٩.٥ ألف' : '9.5k' },
+    { day: lang === 'ar' ? 'جمع' : 'Fri', val: 74, label: lang === 'ar' ? '٧.٤ ألف' : '7.4k' },
+    { day: lang === 'ar' ? 'سبت' : 'Sat', val: 88, label: lang === 'ar' ? '٨.٨ ألف' : '8.8k' },
+    { day: lang === 'ar' ? 'أحد' : 'Sun', val: 92, label: lang === 'ar' ? '٩.٢ ألف' : '9.2k' }
   ];
 
   const trips = [
-    { title: 'Morning Walk', time: '08:30 AM', dist: '2.4 km', steps: '3,120', type: 'Health' },
-    { title: 'Afternoon Trip', time: '02:15 PM', dist: '5.1 km', steps: '6,400', type: 'Travel' }
+    { title: t('morningWalk'), time: lang === 'ar' ? '٠٨:٣٠ ص' : '08:30 AM', dist: lang === 'ar' ? '٢.٤ كم' : '2.4 km', steps: lang === 'ar' ? '٣,١٢٠' : '3,120', type: t('healthType') },
+    { title: t('afternoonTrip'), time: lang === 'ar' ? '٠٢:١٥ م' : '02:15 PM', dist: lang === 'ar' ? '٥.١ كم' : '5.1 km', steps: lang === 'ar' ? '٦,٤٠٠' : '6,400', type: t('travelType') }
   ];
 
   const handleSaveGoal = () => {
@@ -36,10 +38,18 @@ const Steps = () => {
     setIsModalOpen(false);
   };
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'sp-root rtl-theme' : 'sp-root ltr-theme';
+  };
+
+  const formatNumber = (num) => {
+    return lang === 'ar' ? new Intl.NumberFormat('ar-EG').format(num) : num.toLocaleString();
+  };
+
   const progressOffset = 534 - (534 * (currentSteps / goal));
 
   return (
-    <div className="sp-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="sp-bg-gradient"></div>
       <div className="sp-bg-lines"></div>
 
@@ -47,11 +57,11 @@ const Steps = () => {
         
         <header className="sp-header">
           <button className="sp-circle-btn" onClick={() => navigate(-1)}>
-            <ChevronLeft size={22} strokeWidth={2.5} />
+            <ChevronLeft size={22} strokeWidth={2.5} className={lang === 'ar' ? 'rtl-flip' : ''} />
           </button>
           <div className="sp-active-pill">
             <Footprints size={18} />
-            <span>Active Now</span>
+            <span>{t('activeNow')}</span>
           </div>
           <button className="sp-circle-btn sp-add-goal" onClick={() => setIsModalOpen(true)}>
             <Plus size={22} />
@@ -59,8 +69,8 @@ const Steps = () => {
         </header>
 
         <div className="sp-hero">
-          <h1 className="sp-main-title">Steps Tracker</h1>
-          <p className="sp-subtitle">Monitor your daily movements & trips</p>
+          <h1 className="sp-main-title">{t('stepsTrackerTitle')}</h1>
+          <p className="sp-subtitle">{t('stepsTrackerSub')}</p>
         </div>
 
         <motion.section 
@@ -81,29 +91,29 @@ const Steps = () => {
               />
             </svg>
             <div className="sp-ring-content">
-              <span className="sp-hero-steps">{currentSteps.toLocaleString()}</span>
-              <span className="sp-hero-goal">Goal: {goal.toLocaleString()}</span>
+              <span className="sp-hero-steps">{formatNumber(currentSteps)}</span>
+              <span className="sp-hero-goal">{t('goalLabel')} {formatNumber(goal)}</span>
             </div>
           </div>
 
           <div className="sp-hero-grid">
             <div className="sp-hero-unit">
               <Clock size={16} color="#64B5F6" />
-              <span>45m Active</span>
+              <span>{formatNumber(45)}{t('minUnit')} {t('active')}</span>
             </div>
             <div className="sp-hero-unit">
               <Ruler size={16} color="#00E676" />
-              <span>6.2km Dist</span>
+              <span>{lang === 'ar' ? '٦.٢' : '6.2'}{lang === 'ar' ? 'كم' : 'km'} {t('distLabel')}</span>
             </div>
             <div className="sp-hero-unit">
               <Navigation size={16} color="#FF8A00" />
-              <span>{trips.length} Trips</span>
+              <span>{formatNumber(trips.length)} {t('tripsLabel')}</span>
             </div>
           </div>
         </motion.section>
 
         <section className="sp-sec">
-          <h2 className="sp-sec-title">Weekly Activity</h2>
+          <h2 className="sp-sec-title">{t('weeklyActivity')}</h2>
           <div className="sp-chart-card sp-glass">
             <div className="sp-chart-flex">
               {weeklyData.map((d, i) => (
@@ -126,8 +136,8 @@ const Steps = () => {
 
         <section className="sp-sec">
           <div className="sp-sec-head">
-            <h2 className="sp-sec-title no-m">Movement History</h2>
-            <span className="sp-view-all" onClick={() => navigate('/home')} style={{ cursor: 'pointer' }}>View Map</span>
+            <h2 className="sp-sec-title no-m">{t('movementHistory')}</h2>
+            <span className="sp-view-all" onClick={() => navigate('/home')} style={{ cursor: 'pointer' }}>{t('viewMap')}</span>
           </div>
           <div className="sp-trip-list">
             {trips.map((trip, i) => (
@@ -141,7 +151,7 @@ const Steps = () => {
                 </div>
                 <div className="sp-trip-r">
                   <strong>{trip.dist}</strong>
-                  <span>{trip.steps} steps</span>
+                  <span>{trip.steps} {t('stepCount').toLowerCase()}</span>
                 </div>
               </div>
             ))}
@@ -149,15 +159,15 @@ const Steps = () => {
         </section>
 
         <section className="sp-sec">
-          <h2 className="sp-sec-title">Achievements</h2>
+          <h2 className="sp-sec-title">{t('achievements')}</h2>
           <div className="sp-award-row">
             <div className="sp-award-box sp-glass" onClick={() => navigate('/familyhub/achievements')} style={{ cursor: 'pointer' }}>
               <div className="sp-award-ico gold"><Award size={20} /></div>
-              <p>Top Walker</p>
+              <p>{t('topWalker')}</p>
             </div>
             <div className="sp-award-box sp-glass" onClick={() => navigate('/familyhub/achievements')} style={{ cursor: 'pointer' }}>
               <div className="sp-award-ico blue"><Zap size={20} /></div>
-              <p>Peak Energy</p>
+              <p>{t('peakEnergy')}</p>
             </div>
           </div>
         </section>
@@ -182,13 +192,13 @@ const Steps = () => {
             >
               <div className="sp-modal-header">
                 <div className="sp-modal-icon"><Target size={24} color="#64B5F6" /></div>
-                <h3>Set Daily Goal</h3>
+                <h3>{t('setDailyGoal')}</h3>
                 <button className="sp-close-modal" onClick={() => setIsModalOpen(false)}>
                   <X size={20} />
                 </button>
               </div>
               <div className="sp-modal-body">
-                <label>Target Steps</label>
+                <label>{t('targetSteps')}</label>
                 <div className="sp-modal-input-row">
                   <input 
                     type="number" 
@@ -196,13 +206,13 @@ const Steps = () => {
                     onChange={(e) => setTempGoal(Number(e.target.value))}
                     placeholder="e.g. 10000"
                   />
-                  <span>Steps</span>
+                  <span>{t('stepCount')}</span>
                 </div>
-                <p>Setting a challenging but reachable goal helps you stay active.</p>
+                <p>{t('stepsGoalHint')}</p>
               </div>
               <div className="sp-modal-footer">
-                <button className="sp-cancel-btn" onClick={() => setIsModalOpen(false)}>Cancel</button>
-                <button className="sp-confirm-btn" onClick={handleSaveGoal}>Update Goal</button>
+                <button className="sp-cancel-btn" onClick={() => setIsModalOpen(false)}>{t('cancel')}</button>
+                <button className="sp-confirm-btn" onClick={handleSaveGoal}>{t('updateGoal')}</button>
               </div>
             </motion.div>
           </motion.div>
@@ -214,4 +224,4 @@ const Steps = () => {
   );
 };
 
-export default Steps;
+export default Steps;

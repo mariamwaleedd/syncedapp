@@ -8,9 +8,11 @@ import {
 import TouchBar from '../../common/TouchBar';
 import ShareModal from '../../common/ShareModal';
 import './UploadReport.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const UploadReport = () => {
   const navigate = useNavigate();
+  const { t, lang } = useLanguage();
   const [selectedMember, setSelectedMember] = useState('Me');
   const [category, setCategory] = useState('');
   const [fileName, setFileName] = useState('');
@@ -25,25 +27,29 @@ const UploadReport = () => {
   };
 
   const members = [
-    { name: 'Me', emoji: '😊' },
-    { name: 'Ahmed', emoji: '👦' },
-    { name: 'Maya', emoji: '😊' },
-    { name: 'Grandpa', emoji: '👴' },
-    { name: 'Grandma', emoji: '👵' },
-    { name: 'Omar', emoji: '👦' }
+    { name: 'Me', label: t('me'), emoji: '😊' },
+    { name: 'Ahmed', label: lang === 'ar' ? 'أحمد' : 'Ahmed', emoji: '👦' },
+    { name: 'Maya', label: lang === 'ar' ? 'مايا' : 'Maya', emoji: '😊' },
+    { name: 'Grandpa', label: t('relationships.Grandfather'), emoji: '👴' },
+    { name: 'Grandma', label: t('relationships.Grandmother'), emoji: '👵' },
+    { name: 'Omar', label: lang === 'ar' ? 'عمر' : 'Omar', emoji: '👦' }
   ];
 
   const categories = [
-    { id: 'lab', name: 'Lab Results', icon: <FileText size={20} /> },
-    { id: 'img', name: 'Imaging', icon: <Image size={20} /> },
-    { id: 'pre', name: 'Prescription', icon: <ClipboardList size={20} /> },
-    { id: 'chk', name: 'Checkup', icon: <Shield size={20} /> },
-    { id: 'vac', name: 'Vaccination', icon: <Calendar size={20} /> },
-    { id: 'oth', name: 'Other', icon: <Folder size={20} /> }
+    { id: 'lab', name: t('labResults'), icon: <FileText size={20} /> },
+    { id: 'img', name: t('imagingLabel'), icon: <Image size={20} /> },
+    { id: 'pre', name: t('prescription'), icon: <ClipboardList size={20} /> },
+    { id: 'chk', name: t('checkup'), icon: <Shield size={20} /> },
+    { id: 'vac', name: t('vaccination'), icon: <Calendar size={20} /> },
+    { id: 'oth', name: t('more'), icon: <Folder size={20} /> }
   ];
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'ur-root rtl-theme' : 'ur-root ltr-theme';
+  };
+
   return (
-    <div className="ur-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="ur-bg-gradient"></div>
       <div className="ur-bg-lines"></div>
 
@@ -52,15 +58,15 @@ const UploadReport = () => {
         <header className="ur-header">
           <div className="ur-nav-row">
             <button className="ur-circle-btn" onClick={() => navigate(-1)}>
-              <ChevronLeft size={22} strokeWidth={2.5} />
+              <ChevronLeft size={22} strokeWidth={2.5} className={lang === 'ar' ? 'rtl-flip' : ''} />
             </button>
             <button className="ur-circle-btn" onClick={() => setIsShareOpen(true)}>
               <Share2 size={20} />
             </button>
           </div>
           <div className="ur-title-box">
-            <h1 className="ur-main-title">Upload Report</h1>
-            <p className="ur-subtitle">Add medical documents and reports</p>
+            <h1 className="ur-main-title">{t('uploadReportTitle')}</h1>
+            <p className="ur-subtitle">{t('uploadReportSub')}</p>
           </div>
         </header>
 
@@ -68,7 +74,7 @@ const UploadReport = () => {
           <section className="ur-section">
             <div className="ur-sec-head">
               <User size={18} opacity={0.6} />
-              <span>Select Family Member</span>
+              <span>{t('selectFamilyMember')}</span>
             </div>
             <div className="ur-family-grid">
               {members.map((m) => (
@@ -78,35 +84,35 @@ const UploadReport = () => {
                   onClick={() => setSelectedMember(m.name)}
                 >
                   <span className="ur-emoji">{m.emoji}</span>
-                  <span className="ur-m-name">{m.name}</span>
+                  <span className="ur-m-name">{m.label}</span>
                 </div>
               ))}
             </div>
-            <button className="ur-view-all-btn ur-glass" onClick={() => navigate('/familyhub')}>View All Members</button>
+            <button className="ur-view-all-btn ur-glass" onClick={() => navigate('/familyhub')}>{t('viewAllMembers')}</button>
           </section>
 
           <section className="ur-section">
             <div className="ur-field-group">
               <div className="ur-sec-head">
                 <FileText size={18} opacity={0.6} />
-                <span>Report Title</span>
+                <span>{t('reportTitle')}</span>
               </div>
-              <input type="text" className="ur-input ur-glass" placeholder="e.g., Blood Test Results" />
+              <input type="text" className="ur-input ur-glass" placeholder={t('reportTitleExample')} />
             </div>
 
             <div className="ur-field-group">
               <div className="ur-sec-head">
                 <Calendar size={18} opacity={0.6} />
-                <span>Report Date</span>
+                <span>{t('reportDate')}</span>
               </div>
-              <input type="text" className="ur-input ur-glass" placeholder="Select Date" />
+              <input type="text" className="ur-input ur-glass" placeholder={t('selectDate')} />
             </div>
           </section>
 
           <section className="ur-section">
             <div className="ur-sec-head">
               <Folder size={18} opacity={0.6} />
-              <span>Category</span>
+              <span>{t('category')}</span>
             </div>
             <div className="ur-category-grid">
               {categories.map((c) => (
@@ -125,7 +131,7 @@ const UploadReport = () => {
           <section className="ur-section">
             <div className="ur-sec-head">
               <Upload size={18} opacity={0.6} />
-              <span>Upload Files</span>
+              <span>{t('uploadFiles')}</span>
             </div>
             <div className="ur-dropzone ur-glass">
               <input 
@@ -146,14 +152,14 @@ const UploadReport = () => {
               <div className="ur-up-circle">
                 <Upload size={32} color="#FFF" />
               </div>
-              <h3>{fileName || "Drop files here or click to upload"}</h3>
-              <p>{fileName ? "File selected successfully" : "PDF, JPG, PNG up to 10MB"}</p>
+              <h3>{fileName || t('dropFilesHint')}</h3>
+              <p>{fileName ? t('fileSelected') : t('uploadLimit')}</p>
               <div className="ur-up-actions">
                 <button className="ur-file-btn" onClick={() => fileInputRef.current.click()}>
-                  <Paperclip size={18} /> Browse Files
+                  <Paperclip size={18} /> {t('browseFiles')}
                 </button>
                 <button className="ur-cam-btn" onClick={() => camInputRef.current.click()}>
-                  <Camera size={18} /> Camera
+                  <Camera size={18} /> {t('camera')}
                 </button>
               </div>
             </div>
@@ -161,16 +167,16 @@ const UploadReport = () => {
 
           <section className="ur-section">
             <div className="ur-sec-head">
-              <span>Additional Notes (Optional)</span>
+              <span>{t('notesOptional')}</span>
             </div>
-            <textarea className="ur-textarea ur-glass" placeholder="Add any additional information about this report."></textarea>
+            <textarea className="ur-textarea ur-glass" placeholder={t('notesPlaceholderReport')}></textarea>
           </section>
 
           <div className="ur-footer-actions">
-            <button className="ur-btn-cancel ur-glass" onClick={() => navigate(-1)}>Cancel</button>
+            <button className="ur-btn-cancel ur-glass" onClick={() => navigate(-1)}>{t('cancel')}</button>
             <button className="ur-btn-submit" onClick={() => navigate('/reports')}>
               <Upload size={18} />
-              <span>Upload Report</span>
+              <span>{t('uploadReportAction')}</span>
             </button>
           </div>
 
@@ -181,10 +187,10 @@ const UploadReport = () => {
       <ShareModal 
         isOpen={isShareOpen} 
         onClose={() => setIsShareOpen(false)} 
-        title="Share Document" 
+        title={t('shareReport')} 
       />
     </div>
   );
 };
 
-export default UploadReport;
+export default UploadReport;

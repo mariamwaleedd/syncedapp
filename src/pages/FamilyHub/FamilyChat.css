@@ -286,8 +286,8 @@
 .fc-bottom-controls {
   padding: 15px var(--app-h-padding) 100px;
   position: fixed;
-  width: 430px;
-margin-top: 55%;
+  width: 45%;
+margin-top: 65%;
   backdrop-filter: blur(20px);
   border-top: 1px solid var(--glass-border);
 }

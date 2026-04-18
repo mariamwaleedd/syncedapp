@@ -10,7 +10,7 @@ import { useLanguage } from '../../common/LanguageContext';
 
 const HealthAI = () => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const scrollRef = useRef(null);
   const [inputText, setInputText] = useState('');
   const [chatLog, setChatLog] = useState([
@@ -18,7 +18,7 @@ const HealthAI = () => {
       id: 1,
       sender: 'ai',
       text: t('aiGreeting'),
-      time: '10:50 AM'
+      time: new Date().toLocaleTimeString(lang === 'ar' ? 'ar-EG' : 'en-US', { hour: '2-digit', minute: '2-digit' })
     }
   ]);
 
@@ -41,7 +41,7 @@ const HealthAI = () => {
     e.preventDefault();
     if (!inputText.trim()) return;
 
-    const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const time = new Date().toLocaleTimeString(lang === 'ar' ? 'ar-EG' : 'en-US', { hour: '2-digit', minute: '2-digit' });
     const userMsg = { id: Date.now(), sender: 'me', text: inputText, time };
     setChatLog([...chatLog, userMsg]);
     setInputText('');
@@ -51,22 +51,26 @@ const HealthAI = () => {
         id: Date.now() + 1,
         sender: 'ai',
         text: t('aiResponseMock'),
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        time: new Date().toLocaleTimeString(lang === 'ar' ? 'ar-EG' : 'en-US', { hour: '2-digit', minute: '2-digit' })
       };
       setChatLog(prev => [...prev, aiMsg]);
     }, 1200);
   };
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'hai-root rtl-theme' : 'hai-root ltr-theme';
+  };
+
   return (
-    <div className="hai-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="hai-bg-grad"></div>
       <div className="hai-bg-grid"></div>
 
       <div className="hai-wrapper">
         <div className="hai-fixed-top">
-                    <div className="hai-nav">
+          <div className="hai-nav">
             <button className="hai-circle-btn" onClick={() => navigate(-1)}>
-              <ChevronLeft size={22} strokeWidth={2.5} />
+              <ChevronLeft size={22} strokeWidth={2.5} className={lang === 'ar' ? 'rtl-flip' : ''} />
             </button>
             <div className="hai-ai-badge">
               <Sparkles size={20} color="#FFF" />
@@ -74,7 +78,7 @@ const HealthAI = () => {
           </div>
           <div className="hai-intro">
             <h1 className="hai-title">{t('healthAI')}</h1>
-            <p className="hai-sub">{t('aiSub')}</p>
+            <p className="hai-sub">{t('healthAISub')}</p>
           </div>
         </div>
 
@@ -130,7 +134,7 @@ const HealthAI = () => {
               onChange={(e) => setInputText(e.target.value)}
             />
             <button type="submit" className="hai-send-btn">
-              <Send size={20} color="#FFF" fill="#FFF" />
+              <Send size={20} color="#FFF" fill="#FFF" className={lang === 'ar' ? 'rtl-flip' : ''} />
             </button>
           </form>
           <div className="hai-ios-bar"></div>

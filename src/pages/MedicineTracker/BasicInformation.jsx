@@ -6,7 +6,7 @@ import { useLanguage } from '../../common/LanguageContext';
 
 const BasicInformation = () => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [selectedColor, setSelectedColor] = useState('#2196F3');
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const [capturedImage, setCapturedImage] = useState(null);
@@ -19,6 +19,10 @@ const BasicInformation = () => {
     '#2196F3', '#E91E63', '#FF4D6D',
     '#00E676', '#FF8A00', '#9C27B0'
   ];
+
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'bi-root rtl-theme' : 'bi-root ltr-theme';
+  };
 
   const startCamera = async () => {
     try {
@@ -64,7 +68,7 @@ const BasicInformation = () => {
   };
 
   return (
-    <div className="bi-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="bi-layer-grad"></div>
       <div className="bi-layer-lines"></div>
 
@@ -72,7 +76,7 @@ const BasicInformation = () => {
         
         <header className="bi-top-nav">
           <button className="bi-back-btn" onClick={() => navigate(-1)}>
-            <ChevronLeft size={22} color="#FFF" strokeWidth={2.5} />
+            <ChevronLeft size={22} color="#FFF" strokeWidth={2.5} className={lang === 'ar' ? 'rtl-flip' : ''} />
           </button>
           
           <div className="bi-stepper">
@@ -158,7 +162,7 @@ const BasicInformation = () => {
               <input 
                 className="bi-input bi-glass" 
                 type="text" 
-                placeholder="100" 
+                placeholder={lang === 'ar' ? '١٠٠' : '100'} 
               />
             </div>
             <div className="bi-field-wrap">

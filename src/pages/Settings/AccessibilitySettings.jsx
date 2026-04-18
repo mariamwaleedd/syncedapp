@@ -27,6 +27,37 @@ const Accessibility = () => {
     return lang === 'ar' ? 'ac-root rtl-theme' : 'ac-root ltr-theme';
   };
 
+  const getFontSizeLabel = (s) => {
+    switch(s) {
+      case 'Small': return t('fontSizeSmall');
+      case 'Medium': return t('fontSizeMedium');
+      case 'Large': return t('fontSizeLarge');
+      case 'Extra Large': return t('fontSizeExtraLarge');
+      default: return s;
+    }
+  };
+
+  const getColorModeLabel = (m) => {
+    switch(m) {
+      case 'None': return t('colorModeNone');
+      case 'Protanopia': return t('colorModeProtanopia');
+      case 'Deuteranopia': return t('colorModeDeuteranopia');
+      case 'Tritanopia': return t('colorModeTritanopia');
+      case 'Monochromacy': return t('colorModeMonochromacy');
+      default: return m;
+    }
+  };
+
+  const getCursorLabel = (id) => {
+    switch(id) {
+      case 'normal': return t('cursorNormal');
+      case 'medium': return t('cursorMedium');
+      case 'large': return t('cursorLarge');
+      case 'extra': return t('cursorExtra');
+      default: return id;
+    }
+  };
+
   return (
     <div className={getThemeClass()}>
       <div className="ac-bg-gradient"></div>
@@ -36,7 +67,7 @@ const Accessibility = () => {
         
         <header className="ac-header-nav">
           <button className="ac-back-btn" onClick={() => navigate(-1)}>
-            <ChevronLeft size={20} strokeWidth={2.5} />
+            <ChevronLeft size={20} strokeWidth={2.5} className={lang === 'ar' ? 'rtl-flip' : ''} />
             <span>{t('back')}</span>
           </button>
           <h1 className="ac-page-title">{t('accessibility')}</h1>
@@ -101,7 +132,7 @@ const Accessibility = () => {
                     className={`ac-size-row ${fontSize === s.toLowerCase().replace(' ', '') ? 'active' : ''}`}
                     onClick={() => setFontSize(s.toLowerCase().replace(' ', ''))}
                   >
-                    <span>Aa {s}</span>
+                    <span>Aa {getFontSizeLabel(s)}</span>
                     {fontSize === s.toLowerCase().replace(' ', '') && <Check size={16} color="#00E676" />}
                   </div>
                 ))}
@@ -145,7 +176,7 @@ const Accessibility = () => {
                     className={`ac-color-row ${colorMode === (m === 'Monochromacy' ? 'monochromacy' : m.toLowerCase()) ? 'active' : ''}`}
                     onClick={() => setColorMode(m === 'Monochromacy' ? 'monochromacy' : m.toLowerCase())}
                    >
-                     <span>{m}</span>
+                     <span>{getColorModeLabel(m)}</span>
                      {colorMode === (m === 'Monochromacy' ? 'monochromacy' : m.toLowerCase()) && <Check size={16} color="#64B5F6" />}
                    </div>
                 ))}
@@ -164,7 +195,7 @@ const Accessibility = () => {
                 ].map((c) => (
                   <div key={c.id} className={`ac-cursor-box ${cursorSize === c.id ? 'active' : ''}`} onClick={() => setCursorSize(c.id)}>
                     <div className="ac-dot-v" style={{ width: c.s, height: c.s }}></div>
-                    <span>{c.id.charAt(0).toUpperCase() + c.id.slice(1)}</span>
+                    <span>{getCursorLabel(c.id)}</span>
                   </div>
                 ))}
               </div>
@@ -175,9 +206,9 @@ const Accessibility = () => {
             <h2 className="ac-sec-lbl">{t('audioSpeech')}</h2>
             <div className="ac-card ac-glass">
               {[
-                { id: 'tts', h: t('tts') || 'Text to Speech', p: t('ttsDesc') || 'Read text aloud', ico: <Volume2 />, col: 'blue' },
-                { id: 'sounds', h: t('sounds') || 'Sound Effects', p: t('soundsDesc') || 'Button clicks & alerts', ico: <Volume2 />, col: 'purple' },
-                { id: 'autoRead', h: t('autoRead') || 'Auto Read Text', p: t('autoReadDesc') || 'Automatically read new content', ico: <Volume2 />, col: 'green' }
+                { id: 'tts', h: t('tts'), p: t('ttsDesc'), ico: <Volume2 />, col: 'blue' },
+                { id: 'sounds', h: t('sounds'), p: t('soundsDesc'), ico: <Volume2 />, col: 'purple' },
+                { id: 'autoRead', h: t('autoRead'), p: t('autoReadDesc'), ico: <Volume2 />, col: 'green' }
               ].map(item => (
                 <div className="ac-toggle-row" key={item.id}>
                   <div className="ac-toggle-l">
