@@ -139,9 +139,7 @@
   transition: transform 0.1s, box-shadow 0.2s;
 }
 
-.primary-login-btn:active {
-  transform: scale(0.98);
-}
+
 
 .skip-divider {
   display: flex;
@@ -178,7 +176,4 @@
   transition: background 0.2s, transform 0.1s;
 }
 
-.skip-quiz-btn:active {
-  transform: scale(0.98);
-  background: rgba(255, 255, 255, 0.1);
-}
+

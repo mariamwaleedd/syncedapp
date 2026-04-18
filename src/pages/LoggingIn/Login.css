@@ -231,9 +231,7 @@ form {
   transition: transform 0.1s;
 }
 
-.login-action-btn:active {
-  transform: scale(0.98);
-}
+
 
 .footer-links {
   text-align: center;

@@ -6,12 +6,14 @@ import { HashRouter as Router } from 'react-router-dom';
 import { LanguageProvider } from './common/LanguageContext';
 import { ThemeProvider } from './common/ThemeContext';
 import AppShell from './components/AppShell';
+import ScrollToTop from './common/ScrollToTop';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ThemeProvider>
     <LanguageProvider>
       <Router>
+        <ScrollToTop />
         <AppShell>
           <Routing />
         </AppShell>
@@ -19,4 +21,5 @@ root.render(
     </LanguageProvider>
   </ThemeProvider>
 );
+
 

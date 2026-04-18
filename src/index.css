@@ -124,8 +124,10 @@ button {
 }
 
 button:active {
-  transform: scale(0.97);
+  transform: scale(0.96);
+  filter: brightness(0.9);
 }
+
 
 /* Global Primary Action Button Style */
 .btn-primary {
