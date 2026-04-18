@@ -12,9 +12,11 @@ import TouchBar from '../../common/TouchBar';
 import ConfirmModal from '../../common/ConfirmModal';
 import { supabase } from '../../supabaseClient';
 import './FamilyHub.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const FamilyHub = () => {
   const navigate = useNavigate();
+  const { t, lang } = useLanguage();
   const [members, setMembers] = useState([]);
   const [isEditMode, setIsEditMode] = useState(false);
   const [modalConfig, setModalConfig] = useState({ isOpen: false, member: null });
@@ -51,59 +53,79 @@ const FamilyHub = () => {
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   };
 
+  const formattedDate = new Intl.DateTimeFormat(lang === 'ar' ? 'ar-EG' : 'en-US', {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric'
+  }).format(new Date());
+
+  const getDayLabel = (dayIndex) => {
+    const date = new Date();
+    date.setDate(date.getDate() - (date.getDay() - dayIndex));
+    return new Intl.DateTimeFormat(lang === 'ar' ? 'ar-EG' : 'en-US', { weekday: 'short' }).format(date);
+  };
+
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'fh-root rtl-theme' : 'fh-root ltr-theme';
+  };
+
   return (
-    <div className="fh-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="fh-bg-grad"></div>
       <div className="fh-bg-img"></div>
       <div className="fh-wrapper">
         <header className="fh-header">
           <div className="fh-nav-top">
-            <button className="fh-circ-btn" onClick={() => navigate(-1)}><ChevronLeft size={22} /></button>
+            <button className="fh-circ-btn" onClick={() => navigate(-1)}>
+              <ChevronLeft size={22} className={lang === 'ar' ? 'rtl-flip' : ''} />
+            </button>
             <div className="fh-pill-nav">
               <Users size={14} />
-              <span>Family Members</span>
+              <span>{t('familyMembers')}</span>
             </div>
-            <button className="fh-circ-btn fh-notif" onClick={() => navigate('/appointments')}><Bell size={20} /><div className="fh-dot-alert"></div></button>
+            <button className="fh-circ-btn fh-notif" onClick={() => navigate('/appointments')}>
+              <Bell size={20} /><div className="fh-dot-alert"></div>
+            </button>
           </div>
           <div className="fh-title-area">
-            <h1 className="fh-main-title">Family Health Hub</h1>
-            <p className="fh-date">Tuesday, March 11</p>
+            <h1 className="fh-main-title">{t('familyHubTitle')}</h1>
+            <p className="fh-date">{formattedDate}</p>
           </div>
         </header>
         <div className="fh-top-vitals">
           <div className="fh-vital-card fh-glass blue" onClick={() => navigate('/appointments')}>
             <Calendar size={20} />
             <div className="fh-vital-txt">
-              <h4>Appointments</h4>
-              <span>3 Upcoming</span>
+              <h4>{t('appointments')}</h4>
+              <span>3 {t('upcomingCount')}</span>
             </div>
           </div>
           <div className="fh-vital-card fh-glass purple" onClick={() => navigate('/medicine')}>
             <Pill size={20} />
             <div className="fh-vital-txt">
-              <h4>Medications</h4>
-              <span>2 reminders</span>
+              <h4>{t('medications')}</h4>
+              <span>2 {t('remindersCount')}</span>
             </div>
           </div>
           <div className="fh-vital-card fh-glass orange" onClick={() => navigate('/familyhub/achievements')}>
             <Trophy size={20} />
             <div className="fh-vital-txt">
-              <h4>Achievements</h4>
-              <span>Weekly Badges</span>
+              <h4>{t('achievements')}</h4>
+              <span>{t('weeklyBadges')}</span>
             </div>
           </div>
           <div className="fh-vital-card fh-glass green" onClick={() => navigate('/familyhub/chat')}>
             <MessageSquare size={20} />
             <div className="fh-vital-txt">
-              <h4>Family Chat</h4>
-              <span>5 new</span>
+              <h4>{t('familyChat')}</h4>
+              <span>5 {t('newMessagesCount')}</span>
             </div>
           </div>
         </div>
 
         <section className="fh-sec">
           <div className="fh-sec-head">
-            <h2 className="fh-sec-title">Family Members</h2>
+            <h2 className="fh-sec-title">{t('familyMembers')}</h2>
             <div style={{ display: 'flex', gap: '8px' }}>
               <button className={`fh-plus-btn ${isEditMode ? 'active' : ''}`} onClick={() => setIsEditMode(!isEditMode)} style={{ backgroundColor: isEditMode ? '#FF416C' : '' }}>
                 <Edit3 size={18} />
@@ -129,7 +151,7 @@ const FamilyHub = () => {
                   </div>
                   <div className="fh-m-info">
                     <h4>{m.full_name}</h4>
-                    <p>{m.relationship} • {calculateAge(m.dob)} years old</p>
+                    <p>{m.relationship} • {calculateAge(m.dob)} {t('yearsOld')}</p>
                     <div className="fh-stat-row">
                       <span className="fh-stat-pill"><Weight size={10}/> {m.weight}</span>
                       <span className="fh-stat-pill"><Moon size={10}/> {m.sleep_hours}</span>
@@ -143,7 +165,7 @@ const FamilyHub = () => {
                       <Trash2 size={18} />
                     </button>
                   ) : (
-                    <ChevronRight size={18} className="fh-arrow" />
+                    <ChevronRight size={18} className={lang === 'ar' ? 'rtl-flip fh-arrow' : 'fh-arrow'} />
                   )}
                 </div>
               </motion.div>
@@ -151,12 +173,12 @@ const FamilyHub = () => {
           </div>
         </section>
         <section className="fh-sec" onClick={() => navigate('/familyhub/achievements')} style={{ cursor: 'pointer' }}>
-          <h2 className="fh-sec-title">Family Wellness Score & Achievements</h2>
+          <h2 className="fh-sec-title">{t('wellnessScoreFull')}</h2>
           <div className="fh-score-card fh-glass">
             <div className="fh-score-row">
               <div className="fh-score-l">
                 <span className="fh-big-num">94</span>
-                <p>Excellent Health</p>
+                <p>{t('excellentHealth')}</p>
               </div>
               <div className="fh-score-r">
                 <div className="fh-circle-viz">
@@ -165,9 +187,9 @@ const FamilyHub = () => {
               </div>
             </div>
             <div className="fh-bar-chart">
-              {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, i) => (
-                <div key={day} className="fh-chart-row">
-                  <span className="fh-day-lbl">{day}</span>
+              {[1, 2, 3, 4, 5, 6, 0].map((dayCode, i) => (
+                <div key={dayCode} className="fh-chart-row">
+                  <span className="fh-day-lbl">{getDayLabel(dayCode)}</span>
                   <div className="fh-track"><div className="fh-fill" style={{ width: `${i === 2 ? '65' : '94'}%` }}></div></div>
                   <span className="fh-perc-lbl">{i === 2 ? '65' : '94'}</span>
                 </div>
@@ -181,11 +203,11 @@ const FamilyHub = () => {
       
       <ConfirmModal 
         isOpen={modalConfig.isOpen}
-        title="Remove Member?"
-        message={`Are you sure you want to remove ${modalConfig.member?.name}? This action will permanently delete their health records from your hub.`}
+        title={t('removeMemberTitle')}
+        message={t('removeMemberConfirm').replace('{name}', modalConfig.member?.name || '')}
         onConfirm={confirmDelete}
         onClose={() => setModalConfig({ isOpen: false, member: null })}
-        confirmText="Remove"
+        confirmText={t('remove')}
       />
     </div>
   );

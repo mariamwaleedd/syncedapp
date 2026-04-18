@@ -10,9 +10,11 @@ import {
 import TouchBar from '../../common/TouchBar';
 import GlassToast from '../../common/GlassToast';
 import './Emergency.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const Emergency = () => {
   const navigate = useNavigate();
+  const { t, lang } = useLanguage();
   const [toastMsg, setToastMsg] = useState('');
 
   const containerVariants = {
@@ -26,13 +28,22 @@ const Emergency = () => {
   };
 
   const contacts = [
-    { name: 'Sarah Johnson', rel: 'Wife', star: true, img: 'https://i.pravatar.cc/150?u=sarah' },
-    { name: 'Michael Johnson', rel: 'Brother', star: false, img: 'https://i.pravatar.cc/150?u=michael' },
-    { name: 'Dr. Emily Rodriguez', rel: 'Primary Doctor', star: false, img: 'https://i.pravatar.cc/150?u=emily' }
+    { name: 'Sarah Johnson', relKey: 'relWife', star: true, img: 'https://i.pravatar.cc/150?u=sarah' },
+    { name: 'Michael Johnson', relKey: 'relBrother', star: false, img: 'https://i.pravatar.cc/150?u=michael' },
+    { name: 'Dr. Emily Rodriguez', relKey: 'relDoctor', star: false, img: 'https://i.pravatar.cc/150?u=emily' }
   ];
 
+  const hospitals = [
+    { name: 'City General Hospital', addr: '123 Medical Center Drive', dist: '1.2 km', time: '4 min', rate: '4.8', theme: 'red' },
+    { name: "St. Mary's Medical Center", addr: '456 Healthcare Boulevard', dist: '2.5 km', time: '8 min', rate: '4.6', theme: 'blue' }
+  ];
+
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'em-root rtl-theme' : 'em-root ltr-theme';
+  };
+
   return (
-    <div className="em-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="em-bg-grad"></div>
       <div className="em-bg-img"></div>
 
@@ -41,15 +52,15 @@ const Emergency = () => {
         <header className="em-header">
           <div className="em-nav-row">
             <button className="em-circ-btn" onClick={() => navigate(-1)}>
-              <ChevronLeft size={22} strokeWidth={2.5} />
+              <ChevronLeft size={22} strokeWidth={2.5} className={lang === 'ar' ? 'rtl-flip' : ''} />
             </button>
             <div className="em-sos-ico">
               <AlertTriangle size={24} color="#FFF" strokeWidth={1.5} />
             </div>
           </div>
           <div className="em-title-box">
-            <h1 className="em-main-title">Emergency</h1>
-            <p className="em-subtitle">Quick access to emergency services</p>
+            <h1 className="em-main-title">{t('emergencyTitle')}</h1>
+            <p className="em-subtitle">{t('emergencySubtitle')}</p>
           </div>
         </header>
 
@@ -60,15 +71,15 @@ const Emergency = () => {
           animate="visible"
         >
           <motion.div variants={itemVariants} className="em-dial-grid">
-            <div className="em-dial-box red" onClick={() => setToastMsg('Calling 911...')}>
+            <div className="em-dial-box red" onClick={() => setToastMsg(lang === 'ar' ? 'جاري الاتصال بـ 911...' : 'Calling 911...')}>
               <Phone size={24} fill="white" stroke="none" />
               <strong>911</strong>
             </div>
-            <div className="em-dial-box orange" onClick={() => setToastMsg('Calling 122...')}>
+            <div className="em-dial-box orange" onClick={() => setToastMsg(lang === 'ar' ? 'جاري الاتصال بـ 122...' : 'Calling 122...')}>
               <Ambulance size={24} strokeWidth={1.5} />
               <strong>122</strong>
             </div>
-            <div className="em-dial-box purple" onClick={() => setToastMsg('Calling 108...')}>
+            <div className="em-dial-box purple" onClick={() => setToastMsg(lang === 'ar' ? 'جاري الاتصال بـ 108...' : 'Calling 108...')}>
               <Activity size={24} strokeWidth={1.5} />
               <strong>108</strong>
             </div>
@@ -78,11 +89,11 @@ const Emergency = () => {
             <div className="em-alert-card">
               <div className="em-alert-head">
                 <AlertCircle size={18} color="#FF4B2B" />
-                <span>Medical Alerts</span>
+                <span>{t('medicalAlerts')}</span>
               </div>
               <div className="em-alert-list">
-                <div className="em-alert-row"><Activity size={14} color="#FF4B2B" /> <span>Type 2 Diabetes</span></div>
-                <div className="em-alert-row"><Activity size={14} color="#FF4B2B" /> <span>Mild Hypertension</span></div>
+                <div className="em-alert-row"><Activity size={14} color="#FF4B2B" /> <span>{lang === 'ar' ? 'مرض السكري من النوع 2' : 'Type 2 Diabetes'}</span></div>
+                <div className="em-alert-row"><Activity size={14} color="#FF4B2B" /> <span>{lang === 'ar' ? 'ارتفاع ضغط الدم الخفيف' : 'Mild Hypertension'}</span></div>
               </div>
             </div>
           </motion.section>
@@ -92,52 +103,52 @@ const Emergency = () => {
               <div className="em-info-head">
                 <div className="em-info-l">
                   <Shield size={20} color="#64B5F6" />
-                  <h3>Critical Info</h3>
+                  <h3>{t('criticalInfo')}</h3>
                 </div>
-                <button className="em-id-btn"><IdCard size={14} /> ID</button>
+                <button className="em-id-btn"><IdCard size={14} /> {lang === 'ar' ? 'الهوية' : 'ID'}</button>
               </div>
 
               <div className="em-info-grid">
                 <div className="em-info-box">
-                  <label><Droplets size={12} color="#FF416C" /> Blood Type</label>
+                  <label><Droplets size={12} color="#FF416C" /> {t('bloodType')}</label>
                   <strong>O+</strong>
                 </div>
                 <div className="em-info-box">
-                  <label><Activity size={12} color="#B89FFF" /> DNA Type</label>
+                  <label><Activity size={12} color="#B89FFF" /> {t('dnaType')}</label>
                   <strong>AA</strong>
                 </div>
                 <div className="em-info-box">
-                  <label><User size={12} color="#64B5F6" /> Age</label>
-                  <strong>32 yrs</strong>
+                  <label><User size={12} color="#64B5F6" /> {t('age')}</label>
+                  <strong>32 {t('yearsOld')}</strong>
                 </div>
                 <div className="em-info-box">
-                  <label><Weight size={12} color="#00E676" /> Weight</label>
-                  <strong>75 kg</strong>
+                  <label><Weight size={12} color="#00E676" /> {t('weight')}</label>
+                  <strong>75 {t('kg')}</strong>
                 </div>
               </div>
 
               <div className="em-allergies">
-                <label><AlertCircle size={14} color="#FF4B2B" /> Allergies</label>
+                <label><AlertCircle size={14} color="#FF4B2B" /> {t('allergies')}</label>
                 <div className="em-tags">
-                  <span>Penicillin</span>
-                  <span>Peanuts</span>
-                  <span>Latex</span>
+                  <span>{lang === 'ar' ? 'بنسلين' : 'Penicillin'}</span>
+                  <span>{lang === 'ar' ? 'فول سوداني' : 'Peanuts'}</span>
+                  <span>{lang === 'ar' ? 'لاتكس' : 'Latex'}</span>
                 </div>
               </div>
 
               <div className="em-meds">
-                <label><Pill size={14} color="#64B5F6" /> Current Medications</label>
+                <label><Pill size={14} color="#64B5F6" /> {t('currentMedications')}</label>
                 <ul>
-                  <li>• Metformin 500mg</li>
-                  <li>• Lisinopril 10mg</li>
-                  <li>• Aspirin 81mg</li>
+                  <li>• {lang === 'ar' ? 'ميتفورمين 500 ملجم' : 'Metformin 500mg'}</li>
+                  <li>• {lang === 'ar' ? 'ليسينوبريل 10 ملجم' : 'Lisinopril 10mg'}</li>
+                  <li>• {lang === 'ar' ? 'أسبرين 81 ملجم' : 'Aspirin 81mg'}</li>
                 </ul>
               </div>
             </div>
           </motion.section>
 
           <motion.section variants={itemVariants} className="em-sec">
-            <h2 className="em-sec-lbl">Emergency Contacts</h2>
+            <h2 className="em-sec-lbl">{t('emergencyContacts')}</h2>
             <div className="em-contacts-stack">
               {contacts.map((c, i) => (
                 <div key={i} className="em-contact-row glass">
@@ -147,10 +158,10 @@ const Emergency = () => {
                     </div>
                     <div className="em-contact-txt">
                       <h4>{c.name} {c.star && <Star size={10} fill="#E91E63" stroke="none" />}</h4>
-                      <p>{c.rel}</p>
+                      <p>{t(c.relKey)}</p>
                     </div>
                   </div>
-                  <button className="em-call-btn" onClick={() => setToastMsg(`Calling ${c.name}...`)}>
+                  <button className="em-call-btn" onClick={() => setToastMsg(lang === 'ar' ? `جاري الاتصال بـ ${c.name}...` : `Calling ${c.name}...`)}>
                     <Phone size={18} fill="#FFF" stroke="none" />
                   </button>
                 </div>
@@ -159,19 +170,16 @@ const Emergency = () => {
           </motion.section>
 
           <motion.section variants={itemVariants} className="em-sec">
-            <h2 className="em-sec-lbl">Nearby Hospitals</h2>
+            <h2 className="em-sec-lbl">{t('nearbyHospitals')}</h2>
             <div className="em-hosp-stack">
-              {[
-                { name: 'City General Hospital', addr: '123 Medical Center Drive', dist: '1.2 km', time: '4 min', rate: '4.8', theme: 'red' },
-                { name: "St. Mary's Medical Center", addr: '456 Healthcare Boulevard', dist: '2.5 km', time: '8 min', rate: '4.6', theme: 'blue' }
-              ].map((h, i) => (
+              {hospitals.map((h, i) => (
                 <div key={i} className="em-hosp-card glass">
                   <div className="em-hosp-top">
                     <div className={`em-hosp-ico ${h.theme}`}><Ambulance size={20} strokeWidth={1.5} /></div>
                     <div className="em-hosp-info">
                       <div className="em-hosp-title-row">
                         <h4>{h.name}</h4>
-                        <span className="em-er-tag">ER</span>
+                        <span className="em-er-tag">{t('er')}</span>
                       </div>
                       <p className="em-hosp-addr">{h.addr}</p>
                       <div className="em-hosp-meta">
@@ -182,13 +190,24 @@ const Emergency = () => {
                     </div>
                   </div>
                   <div className="em-hosp-btns">
-                    <button className="em-h-btn call" onClick={() => setToastMsg(`Calling ${h.name}...`)}><Phone size={14} fill="white" stroke="none" /> Call</button>
-                    <button className="em-h-btn dir"><Navigation size={14} fill="white" stroke="none" /> Directions</button>
+                    <button className="em-h-btn call" onClick={() => setToastMsg(lang === 'ar' ? `جاري الاتصال بـ ${h.name}...` : `Calling ${h.name}...`)}><Phone size={14} fill="white" stroke="none" /> {t('callAction')}</button>
+                    <button className="em-h-btn dir"><Navigation size={14} fill="white" stroke="none" /> {t('directionsAction')}</button>
                   </div>
                 </div>
               ))}
             </div>
           </motion.section>
+
+          <div className="em-bottom-pad"></div>
+        </motion.div>
+      </div>
+      <TouchBar />
+      <GlassToast message={toastMsg} isOpen={!!toastMsg} onClose={() => setToastMsg('')} type="info" />
+    </div>
+  );
+};
+
+export default Emergency;
 
           <div className="em-bottom-pad"></div>
         </motion.div>

@@ -10,17 +10,21 @@ import { useLanguage } from '../../common/LanguageContext';
 
 const Medicine = () => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const meds = [
-    { name: 'Aspirin', dose: '100 mg', freq: t('twiceDaily'), time: '08:00 PM', supply: '28/30', status: t('upcoming'), theme: 'red' },
-    { name: 'Vitamin D', dose: '1000 IU', freq: t('onceDaily'), time: t('takenToday'), supply: '15/30', status: t('taken'), theme: 'orange' },
-    { name: 'Metformin', dose: '500 mg', freq: t('threeTimesDaily'), time: '02:00 PM', supply: '22/30', status: t('missed'), theme: 'blue' },
-    { name: 'Omega-3', dose: '1000 mg', freq: t('onceDaily'), time: t('tomorrow'), supply: '30/30', status: t('taken'), theme: 'purple' }
+    { name: lang === 'ar' ? 'أسبرين' : 'Aspirin', dose: lang === 'ar' ? '100 ملجم' : '100 mg', freq: t('twiceDaily'), time: '08:00 PM', supply: '28/30', status: t('upcoming'), theme: 'red' },
+    { name: lang === 'ar' ? 'فيتامين د' : 'Vitamin D', dose: lang === 'ar' ? '1000 وحدة' : '1000 IU', freq: t('onceDaily'), time: t('takenToday'), supply: '15/30', status: t('taken'), theme: 'orange' },
+    { name: lang === 'ar' ? 'ميتفورمين' : 'Metformin', dose: lang === 'ar' ? '500 ملجم' : '500 mg', freq: t('threeTimesDaily'), time: '02:00 PM', supply: '22/30', status: t('missed'), theme: 'blue' },
+    { name: lang === 'ar' ? 'أوميجا 3' : 'Omega-3', dose: lang === 'ar' ? '1000 ملجم' : '1000 mg', freq: t('onceDaily'), time: t('tomorrow'), supply: '30/30', status: t('taken'), theme: 'purple' }
   ];
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'mt-root rtl-theme' : 'mt-root ltr-theme';
+  };
+
   return (
-    <div className="mt-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="mt-gradient-layer"></div>
       <div className="mt-bg-lines"></div>
 
@@ -28,7 +32,9 @@ const Medicine = () => {
         
         <header className="mt-header">
           <div className="mt-nav-row">
-            <button className="mt-nav-btn" onClick={() => navigate(-1)}><ChevronLeft size={22} /></button>
+            <button className="mt-nav-btn" onClick={() => navigate(-1)}>
+              <ChevronLeft size={22} className={lang === 'ar' ? 'rtl-flip' : ''} />
+            </button>
             <button className="mt-nav-btn mt-add-btn" onClick={() => navigate('/medicinetracker/basic-information')}>
               <Plus size={22} />
             </button>

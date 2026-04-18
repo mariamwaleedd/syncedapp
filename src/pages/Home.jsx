@@ -19,13 +19,25 @@ const Home = () => {
   const navigate = useNavigate();
   const { t, lang } = useLanguage();
   const [data, setData] = useState({
+    user_name: '',
     family_members: [],
     goals: [],
     weekly_score: [],
     appointment: {},
     emergency_contact: {},
     recent_report: {},
-    steps: 0
+    steps: 0,
+    heart_rate: 0,
+    sleep_hours: 0,
+    hydration_perc: 0,
+    mood_index: 1,
+    badge_family: 0,
+    badge_medicine: 0,
+    badge_reports: 0,
+    badge_devices: 0,
+    overall_status: '',
+    overall_score: 0,
+    overall_change: ''
   });
   const [loading, setLoading] = useState(true);
 
@@ -47,7 +59,7 @@ const Home = () => {
         .single();
 
       if (error) throw error;
-      setData(homeData);
+      if (homeData) setData(homeData);
     } catch (error) {
       console.error('Error fetching data:', error.message);
     } finally {
@@ -55,8 +67,27 @@ const Home = () => {
     }
   };
 
+  const getThemeClass = () => {
+    return lang === 'ar' ? 'ha-root rtl-theme' : 'ha-root ltr-theme';
+  };
+
+  const formattedDate = new Intl.DateTimeFormat(lang === 'ar' ? 'ar-EG' : 'en-US', {
+    weekday: 'long',
+    month: 'short',
+    day: 'numeric'
+  }).format(new Date());
+
+  const formattedTime = new Intl.DateTimeFormat(lang === 'ar' ? 'ar-EG' : 'en-US', {
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true
+  }).format(new Date());
+
+  const moodEmojis = ['🤩', '😊', '😐', '😔', '😟'];
+  const moodKeys = ['feelingAmazing', 'feelingHappy', 'feelingNeutral', 'feelingSad', 'feelingWorried'];
+
   return (
-    <div className="ha-root ltr-theme">
+    <div className={getThemeClass()}>
       <div className="ha-fixed-header">
         <div className="ha-header-body">
           <div className="ha-logo-center">
@@ -66,10 +97,10 @@ const Home = () => {
           <div className="ha-greeting-row">
             <div className="ha-greeting-left">
               <h1>{t('hello')} {data.user_name}</h1>
-              <p className="ha-date">Wednesday, Mar 11</p>
+              <p className="ha-date">{formattedDate}</p>
               <div className="ha-live-indicator">
                 <span className="ha-pulse" />
-                <span>{t('liveIndicator')} • 11:56 AM</span>
+                <span>{t('liveIndicator')} • {formattedTime}</span>
               </div>
             </div>
             <button className="ha-notif-btn" onClick={() => navigate('/appointments')}>
@@ -94,12 +125,12 @@ const Home = () => {
           <div className="ha-tracker-grid">
             <div className="ha-tracker-item ha-glass" onClick={() => navigate('/reports')} style={{ cursor: 'pointer' }}>
               <div className="ha-ico-box red"><Heart size={20} fill="white" /></div>
-              <div className="ha-tracker-val">{data.heart_rate}<span>bpm</span></div>
+              <div className="ha-tracker-val">{data.heart_rate}<span>{t('bpm')}</span></div>
               <p>{t('heartRate')}</p>
             </div>
             <div className="ha-tracker-item ha-glass" onClick={() => navigate('/wellness/steps')} style={{ cursor: 'pointer' }}>
               <div className="ha-ico-box green"><Activity size={20} /></div>
-              <div className="ha-tracker-val">{data.steps.toLocaleString()}<span>{t('stepCount')}</span></div>
+              <div className="ha-tracker-val">{(data.steps || 0).toLocaleString()}<span>{t('stepCount')}</span></div>
               <p>{t('dailySteps')}</p>
             </div>
             <div className="ha-tracker-item ha-glass" onClick={() => navigate('/wellness/sleep')} style={{ cursor: 'pointer' }}>
@@ -118,15 +149,15 @@ const Home = () => {
         <section className="ha-section">
           <h2 className="ha-sec-lbl">{t('feelingToday')}</h2>
           <div className="ha-mood-card ha-glass">
-            {t('moods').map((m, i) => (
+            {moodKeys.map((key, i) => (
               <div 
-                key={m} 
+                key={key} 
                 className={`ha-mood-unit ${i === data.mood_index ? 'active' : ''}`}
                 onClick={() => navigate('/wellness')}
                 style={{ cursor: 'pointer' }}
               >
-                <span className="ha-emoji">{['🤩', '😊', '😐', '😔', '😟'][i]}</span>
-                <span className="ha-mood-name">{m}</span>
+                <span className="ha-emoji">{moodEmojis[i]}</span>
+                <span className="ha-mood-name">{t(key)}</span>
               </div>
             ))}
           </div>
@@ -136,12 +167,12 @@ const Home = () => {
           <div className="ha-section-title">
             <h2>{t('familyHealth')}</h2>
             <span className="ha-view-link" onClick={() => navigate('/familyhub')} style={{ cursor: 'pointer' }}>
-              {t('viewAll')} <ChevronRight size={14} className="ha-chevron-ar" />
+              {t('viewAll')} <ChevronRight size={14} className={lang === 'ar' ? 'rtl-flip ha-chevron-ar' : 'ha-chevron-ar'} />
             </span>
           </div>
           <div className="ha-family-card ha-glass">
             <div className="ha-family-grid">
-              {data.family_members.map((m) => (
+              {(data.family_members || []).map((m) => (
                 <div key={m.name} className="ha-family-member" onClick={() => navigate(`/familyhub/family-profile/${m.name.toLowerCase()}`)} style={{ cursor: 'pointer' }}>
                   <div className="ha-family-avatar-wrap">
                     <div className="ha-family-avatar">{m.emoji}</div>
@@ -212,7 +243,7 @@ const Home = () => {
         <section className="ha-section">
           <h2 className="ha-sec-lbl">{t('dailyGoals')}</h2>
           <div className="ha-goals-container">
-            {data.goals.map((g) => (
+            {(data.goals || []).map((g) => (
               <div 
                 className="ha-goal-card ha-glass" 
                 key={g.label} 
@@ -241,12 +272,11 @@ const Home = () => {
           <h2 className="ha-sec-lbl">{t('weeklyScore')}</h2>
           <div className="ha-weekly-card ha-glass" onClick={() => navigate('/wellness')} style={{ cursor: 'pointer' }}>
             <div className="ha-week-grid">
-              {data.weekly_score.map((d) => (
+              {(data.weekly_score || []).map((d) => (
                 <div key={d.day} className={`ha-week-day ${d.active ? 'current' : ''}`}>
                   <span className="ha-week-emoji">{d.emoji}</span>
-                  {d.active && <span className="ha-week-active-name">{d.day}</span>}
+                  {d.active ? <span className="ha-week-active-name">{d.day}</span> : <span className="ha-week-label">{d.day}</span>}
                   {d.active && <span className="ha-week-dot" />}
-                  {!d.active && <span className="ha-week-label">{d.day}</span>}
                 </div>
               ))}
             </div>
@@ -299,12 +329,12 @@ const Home = () => {
             <div className="ha-appt-row">
               <div className="ha-appt-avatar pink"><Calendar size={18}/></div>
               <div className="ha-appt-info">
-                <h4>{data.appointment.doctor}</h4>
-                <p>{data.appointment.specialty}</p>
+                <h4>{data.appointment?.doctor || '---'}</h4>
+                <p>{data.appointment?.specialty || '---'}</p>
               </div>
               <div className="ha-appt-timing">
-                <span className="ha-appt-date">{data.appointment.date}</span>
-                <span className="ha-appt-time">{data.appointment.time}</span>
+                <span className="ha-appt-date">{data.appointment?.date || '---'}</span>
+                <span className="ha-appt-time">{data.appointment?.time || '---'}</span>
               </div>
             </div>
           </div>
@@ -316,11 +346,11 @@ const Home = () => {
             <div className="ha-emerg-head">
               <div className="ha-emerg-avatar red"><Phone size={18} fill="white"/></div>
               <div className="ha-emerg-info">
-                <h4>{data.emergency_contact.name}</h4>
-                <p>{data.emergency_contact.type}</p>
+                <h4>{data.emergency_contact?.name || '---'}</h4>
+                <p>{data.emergency_contact?.type || '---'}</p>
               </div>
             </div>
-            <span className="ha-emerg-phone">{data.emergency_contact.phone}</span>
+            <span className="ha-emerg-phone">{data.emergency_contact?.phone || '---'}</span>
           </div>
         </section>
 
@@ -332,10 +362,10 @@ const Home = () => {
           <div className="ha-report-row ha-glass" onClick={() => navigate('/reports')} style={{ cursor: 'pointer' }}>
             <div className="ha-report-ico blue"><FileText size={18}/></div>
             <div className="ha-report-meta">
-              <h4>{data.recent_report.title}</h4>
-              <p>{data.recent_report.sub}</p>
+              <h4>{data.recent_report?.title || '---'}</h4>
+              <p>{data.recent_report?.sub || '---'}</p>
             </div>
-            <span className="ha-report-badge green">{data.recent_report.status}</span>
+            <span className="ha-report-badge green">{data.recent_report?.status || '---'}</span>
           </div>
         </section>
 
