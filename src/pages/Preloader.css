@@ -1,0 +1,20 @@
+.preloader-screen {
+  background-color: #010422; /* App dark background */
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.preloader-logo {
+  width: 140px;
+  height: auto;
+  z-index: 10;
+  filter: drop-shadow(0 0 20px rgba(100, 181, 246, 0.4));
+}

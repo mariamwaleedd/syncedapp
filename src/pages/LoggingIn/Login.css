@@ -209,6 +209,10 @@ form {
   text-decoration: none;
   font-size: 13px;
   opacity: 0.8;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 .login-action-btn {
@@ -240,11 +244,20 @@ form {
   font-size: 14px;
   margin-top: 100px;
   color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.footer-links a {
+.link-text-btn {
   color: #FFFFFF;
   text-decoration: none;
   font-weight: 700;
-  margin-left: 4px;
+  margin-left: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 14px;
+  font-family: inherit;
 }

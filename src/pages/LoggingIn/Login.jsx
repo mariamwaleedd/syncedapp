@@ -33,9 +33,8 @@ const Login = () => {
 
   const validate = () => {
     const newErrors = {};
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) newErrors.email = "Please enter a valid email address";
-    if (password.length < 8) newErrors.password = "Minimum 8 characters required";
+    if (email.trim().length === 0) newErrors.email = "Please enter any email to continue";
+    if (password.length === 0) newErrors.password = "Please enter a password";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -43,22 +42,11 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     if (validate()) {
-      const { data, error } = await supabase
-        .from('application_login')
-        .select('*')
-        .eq('email', email)
-        .eq('password', password)
-        .single();
-
-      if (error || !data) {
-        setErrors({ email: "Invalid email or password" });
+      localStorage.setItem('user_email', email);
+      if (localStorage.getItem('quiz_completed') !== 'true') {
+        navigate('/createhealth');
       } else {
-        localStorage.setItem('user_email', data.email);
-        if (localStorage.getItem('quiz_completed') !== 'true') {
-          navigate('/createhealth');
-        } else {
-          navigate('/home');
-        }
+        navigate('/home');
       }
     }
   };
