@@ -173,6 +173,194 @@
   transform: scale(1.02);
 }
 
+.bi-camera-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.bi-photo-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.bi-photo-container.has-image {
+  border-color: rgba(100, 181, 246, 0.4);
+}
+
+.bi-photo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.bi-icon-circle {
+  width: 64px;
+  height: 64px;
+  background: rgba(100, 181, 246, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.bi-photo-placeholder p {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: #FFF;
+}
+
+.bi-photo-placeholder span {
+  font-size: 13px;
+  opacity: 0.5;
+  margin-top: 4px;
+}
+
+/* Camera View Styles */
+.bi-camera-view {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.bi-video-feed {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bi-camera-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.bi-scan-guide {
+  width: 80%;
+  height: 70%;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.3);
+}
+
+.bi-capture-btn {
+  position: absolute;
+  bottom: 15px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 3px solid #FFF;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bi-capture-inner {
+  width: 100%;
+  height: 100%;
+  background: #FFF;
+  border-radius: 50%;
+  transition: transform 0.1s;
+}
+
+.bi-capture-btn:active .bi-capture-inner {
+  transform: scale(0.9);
+}
+
+.bi-close-camera {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+}
+
+/* Captured Preview Styles */
+.bi-captured-preview {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.bi-result-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bi-preview-actions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 15px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bi-retake-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFF;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+.bi-success-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 230, 118, 0.15);
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: #00E676;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid rgba(0, 230, 118, 0.3);
+}
+
 .bi-footer {
   margin-top: auto;
   padding-top: 40px;

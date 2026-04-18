@@ -1,16 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, Check } from 'lucide-react';
+import { ChevronLeft, Check, Camera, RotateCcw, X, ScanIcon } from 'lucide-react';
 import './BasicInformation.css';
 
 const BasicInformation = () => {
   const navigate = useNavigate();
   const [selectedColor, setSelectedColor] = useState('#2196F3');
+  const [isCameraOpen, setIsCameraOpen] = useState(false);
+  const [capturedImage, setCapturedImage] = useState(null);
+  
+  const videoRef = useRef(null);
+  const canvasRef = useRef(null);
+  const streamRef = useRef(null);
 
   const themes = [
     '#2196F3', '#E91E63', '#FF4D6D',
     '#00E676', '#FF8A00', '#9C27B0'
   ];
+
+  const startCamera = async () => {
+    try {
+      setIsCameraOpen(true);
+      const stream = await navigator.mediaDevices.getUserMedia({ 
+        video: { facingMode: 'environment' } 
+      });
+      streamRef.current = stream;
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+      }
+    } catch (err) {
+      console.error("Error accessing camera:", err);
+      setIsCameraOpen(false);
+      alert("Could not access camera. Please check permissions.");
+    }
+  };
+
+  const stopCamera = () => {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach(track => track.stop());
+    }
+    setIsCameraOpen(false);
+  };
+
+  const capturePhoto = () => {
+    const video = videoRef.current;
+    const canvas = canvasRef.current;
+    if (video && canvas) {
+      const context = canvas.getContext('2d');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const dataUrl = canvas.toDataURL('image/png');
+      setCapturedImage(dataUrl);
+      stopCamera();
+    }
+  };
+
+  const retakePhoto = () => {
+    setCapturedImage(null);
+    startCamera();
+  };
 
   return (
     <div className="bi-root ltr-theme">
@@ -39,6 +88,59 @@ const BasicInformation = () => {
         </div>
 
         <div className="bi-form">
+          {/* Camera Section */}
+          <div className="bi-camera-section">
+            <label className="bi-label">Medicine Box Photo</label>
+            <div className={`bi-photo-container ${capturedImage ? 'has-image' : ''} bi-glass`}>
+              {!isCameraOpen && !capturedImage && (
+                <div className="bi-photo-placeholder" onClick={startCamera}>
+                  <div className="bi-icon-circle">
+                    <Camera size={32} color="#64B5F6" />
+                  </div>
+                  <p>Take a picture of the box</p>
+                  <span>Helps identify medicine correctly</span>
+                </div>
+              )}
+
+              {isCameraOpen && (
+                <div className="bi-camera-view">
+                  <video 
+                    ref={videoRef} 
+                    autoPlay 
+                    playsInline 
+                    className="bi-video-feed"
+                  />
+                  <div className="bi-camera-overlay">
+                    <div className="bi-scan-guide"></div>
+                    <button className="bi-capture-btn" onClick={capturePhoto}>
+                      <div className="bi-capture-inner"></div>
+                    </button>
+                    <button className="bi-close-camera" onClick={stopCamera}>
+                      <X size={20} color="#FFF" />
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {capturedImage && (
+                <div className="bi-captured-preview">
+                  <img src={capturedImage} alt="Medicine Box" className="bi-result-img" />
+                  <div className="bi-preview-actions">
+                    <button className="bi-retake-btn" onClick={retakePhoto}>
+                      <RotateCcw size={18} />
+                      Retake
+                    </button>
+                    <div className="bi-success-badge">
+                      <Check size={16} color="#00E676" />
+                      Captured
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+            <canvas ref={canvasRef} style={{ display: 'none' }} />
+          </div>
+
           <div className="bi-field-wrap">
             <label className="bi-label">Medicine Name</label>
             <input 
