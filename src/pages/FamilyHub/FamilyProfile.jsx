@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { 
   ChevronLeft, Bell, Phone, Heart, Activity, 
   Thermometer, Wind, Shield, Calendar, 
-  Edit3, FileText, Download, Plus 
+  Edit3, FileText, Download, Plus, Zap, Lock 
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import GlassToast from '../../common/GlassToast';
@@ -17,6 +17,15 @@ const FamilyProfile = () => {
   const [activeMood, setActiveMood] = useState('Great');
   const [activeTab, setActiveTab] = useState('Allergies');
   const [toastMsg, setToastMsg] = useState('');
+  const [showPoke, setShowPoke] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
+  const [privacySettings, setPrivacySettings] = useState({ vitals: true, records: true, meds: true });
+  const [shareAudience, setShareAudience] = useState('Family members only');
+
+  const handlePoke = () => {
+    setShowPoke(true);
+    setTimeout(() => setShowPoke(false), 2500);
+  };
 
   useEffect(() => {
     if (id) fetchMember();
@@ -59,7 +68,15 @@ const FamilyProfile = () => {
               <h1>{member.full_name}</h1>
               <p>{member.relationship} • {calculateAge(member.dob)} years old</p>
             </div>
-            <button className="fp-call-btn" onClick={() => setToastMsg(`Calling ${member.full_name}...`)}><Phone size={20} fill="white" stroke="none" /></button>
+            <div className="fp-hero-actions">
+              <button className="fp-call-btn" onClick={() => setToastMsg(`Calling ${member.full_name}...`)}><Phone size={18} fill="white" stroke="none" /></button>
+              <button className="fp-poke-btn" onClick={handlePoke}><Zap size={18} fill="white" stroke="none" /></button>
+            </div>
+          </div>
+          <div className="fp-privacy-trigger">
+            <button className="fp-privacy-btn" onClick={() => setShowPrivacy(true)}>
+              <Lock size={14} /> <span>Manage Data Sharing & Privacy</span>
+            </button>
           </div>
         </header>
         <main className="fp-scroll">
@@ -154,6 +171,81 @@ const FamilyProfile = () => {
           </div>
         </main>
       </div>
+      
+      {showPrivacy && (
+        <div className="fp-privacy-overlay">
+          <div className="fp-privacy-modal fp-glass">
+            <div className="fp-modal-head">
+              <h3>Privacy & Sharing</h3>
+              <button onClick={() => setShowPrivacy(false)}>✕</button>
+            </div>
+            <div className="fp-modal-body">
+              <p className="fp-privacy-desc">Control what health data {member.full_name} can view from your profile.</p>
+              
+              <div className="fp-toggle-row">
+                <div className="fp-toggle-info">
+                  <h4>Vital Signs</h4>
+                  <p>Live health metrics</p>
+                </div>
+                <label className="fp-switch">
+                  <input type="checkbox" checked={privacySettings.vitals} onChange={(e) => setPrivacySettings({...privacySettings, vitals: e.target.checked})} />
+                  <span className="fp-slider"></span>
+                </label>
+              </div>
+              
+              <div className="fp-toggle-row">
+                <div className="fp-toggle-info">
+                  <h4>Medical Records</h4>
+                  <p>Files, allergies, history</p>
+                </div>
+                <label className="fp-switch">
+                  <input type="checkbox" checked={privacySettings.records} onChange={(e) => setPrivacySettings({...privacySettings, records: e.target.checked})} />
+                  <span className="fp-slider"></span>
+                </label>
+              </div>
+              
+              <div className="fp-toggle-row">
+                <div className="fp-toggle-info">
+                  <h4>Medications</h4>
+                  <p>Current prescriptions</p>
+                </div>
+                <label className="fp-switch">
+                  <input type="checkbox" checked={privacySettings.meds} onChange={(e) => setPrivacySettings({...privacySettings, meds: e.target.checked})} />
+                  <span className="fp-slider"></span>
+                </label>
+              </div>
+              
+              <div className="fp-audience-sec">
+                <label>Overall Sharing Level</label>
+                <select value={shareAudience} onChange={(e) => setShareAudience(e.target.value)}>
+                  <option>Family members only</option>
+                  <option>Emergency & Doctors</option>
+                  <option>Full Access</option>
+                  <option>No Access</option>
+                </select>
+              </div>
+              
+              <button className="fp-save-privacy-btn" onClick={() => {
+                setShowPrivacy(false);
+                setToastMsg("Privacy preferences updated!");
+              }}>Save Settings</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showPoke && (
+        <div className="fp-poke-screen">
+          <div className="fp-poke-anim-box">
+            <div className="fp-poke-circle">
+              <Zap size={40} fill="#FFD54F" stroke="none" />
+            </div>
+            <h2>You Poked {member.full_name}!</h2>
+            <p>They'll receive a notification shortly.</p>
+          </div>
+        </div>
+      )}
+
       <TouchBar />
       <GlassToast message={toastMsg} isOpen={!!toastMsg} onClose={() => setToastMsg('')} type="info" />
     </div>
