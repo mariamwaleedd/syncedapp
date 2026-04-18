@@ -284,12 +284,17 @@
 }
 
 .fc-bottom-controls {
-  padding: 15px var(--app-h-padding) 100px;
   position: fixed;
-  width: 45%;
-margin-top: 65%;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--app-max-width);
+  padding: 15px var(--app-h-padding) calc(30px + env(safe-area-inset-bottom, 0px));
   backdrop-filter: blur(20px);
   border-top: 1px solid var(--glass-border);
+  z-index: 100;
+  background: var(--glass-bg);
 }
 
 .fc-input-bar {

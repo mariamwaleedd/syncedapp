@@ -1,15 +1,16 @@
 .touchbar-fixed-wrapper {
   position: fixed;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
-  padding: 0 10px 10px;
+  max-width: var(--app-max-width);
+  padding: 0 10px calc(15px + env(safe-area-inset-bottom, 0px));
   z-index: 1000;
   display: flex;
   flex-direction: column;
   align-items: center;
   pointer-events: none;
-  top: 76%;
 }
 
 .touchbar-container {

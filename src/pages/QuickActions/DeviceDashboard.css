@@ -1,6 +1,6 @@
 /* Shared UI Patterns */
 .dv-root, .db-root, .pa-root, .sy-root {
-  background-color: var(--navy); width: 100%; max-width: 430px; height: 100vh;
+  background-color: var(--navy); width: 100%; max-width: var(--app-max-width); height: 100vh;
   margin: 0 auto; position: relative; overflow: hidden; font-family: var(--font-main); color: #FFF;
 }
 .dv-grad-layer, .db-grad-layer, .pa-grad-layer, .sy-grad-layer {

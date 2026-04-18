@@ -22,7 +22,7 @@
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 430px;
+  max-width: var(--app-max-width);
   background: rgba(28, 52, 91, 0.85);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);

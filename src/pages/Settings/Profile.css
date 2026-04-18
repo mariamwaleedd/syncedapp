@@ -1,7 +1,7 @@
 .pf-container {
   background-color: var(--bg-color);
   width: 100%;
-  max-width: 430px;
+  max-width: var(--app-max-width);
   min-height: 100vh;
   margin: 0 auto;
   position: relative;

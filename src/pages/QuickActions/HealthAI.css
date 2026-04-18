@@ -4,7 +4,7 @@
 .hai-root {
   background-color: #1E365E;
   width: 100%;
-  max-width: 430px;
+  max-width: var(--app-max-width);
   margin: 0 auto;
   position: relative;
   overflow: hidden;

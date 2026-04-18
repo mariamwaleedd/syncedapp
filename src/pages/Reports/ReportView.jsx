@@ -12,9 +12,11 @@ import ActionMenu from '../../common/ActionMenu';
 import { FileText, Share, Upload } from 'lucide-react';
 import GlassToast from '../../common/GlassToast';
 import './ReportView.css';
+import { useLanguage } from '../../common/LanguageContext';
 
 const ReportView = () => {
   const navigate = useNavigate();
+  const { t, lang } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -22,7 +24,7 @@ const ReportView = () => {
   const [toastMsg, setToastMsg] = useState('');
 
   return (
-    <div className="rv-root ltr-theme">
+    <div className={`rv-root ${lang === 'ar' ? 'rtl-theme' : 'ltr-theme'}`}>
       <div className="rv-bg-grad"></div>
       <div className="rv-bg-lines"></div>
 
@@ -31,9 +33,9 @@ const ReportView = () => {
         <header className="rv-header">
           <div className="rv-nav-top">
             <button className="rv-circle-btn" onClick={() => navigate(-1)}>
-              <ChevronLeft size={22} strokeWidth={2.5} />
+              <ChevronLeft size={22} strokeWidth={2.5} className={lang === 'ar' ? 'rtl-flip' : ''} />
             </button>
-            <h1 className="rv-main-title">Report Preview</h1>
+            <h1 className="rv-main-title">{t('reportPreview')}</h1>
             <button className="rv-circle-btn" onClick={() => setIsFilterOpen(true)}>
               <Filter size={20} />
             </button>
@@ -43,7 +45,7 @@ const ReportView = () => {
             <Search size={18} opacity={0.4} />
             <input 
               type="text" 
-              placeholder="Search in report..." 
+              placeholder={t('searchInReport')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -52,7 +54,7 @@ const ReportView = () => {
 
         <main className="rv-scroll-area">
           <div className="rv-info-header">
-            <h2>Annual Physical Examination</h2>
+            <h2>{t('reportPhysical')}</h2>
             <div className="rv-meta-row">
               <div className="rv-dr-info">
                 <div className="rv-mini-avatar"><User size={12} /></div>
@@ -66,8 +68,8 @@ const ReportView = () => {
           </div>
 
           <div className="rv-diagnosis-box rv-glass">
-            <label>Diagnosis</label>
-            <p>Mild Hypertension</p>
+            <label>{t('diag')}</label>
+            <p>{t('diagHypertension')}</p>
           </div>
 
           <motion.div 
@@ -75,43 +77,43 @@ const ReportView = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <h1 className="rv-report-heading">GENERAL CHECK-UP REPORT</h1>
+            <h1 className="rv-report-heading">{t('generalCheckupReport').toUpperCase()}</h1>
             
             <div className="rv-report-sec">
-              <h4 className="rv-sec-label">PATIENT DETAILS</h4>
+              <h4 className="rv-sec-label">{t('patientDetails').toUpperCase()}</h4>
               <div className="rv-report-grid">
-                <div><label>Name:</label><span>Jane Doe</span></div>
-                <div><label>DOB:</label><span>50</span></div>
-                <div><label>Age:</label><span>1975-04-30</span></div>
-                <div><label>Gender:</label><span>Female</span></div>
+                <div><label>{t('name')}:</label><span>Jane Doe</span></div>
+                <div><label>{t('dob')}:</label><span>1975-04-30</span></div>
+                <div><label>{t('age')}:</label><span>50</span></div>
+                <div><label>{t('gender')}:</label><span>{t('female')}</span></div>
               </div>
             </div>
 
             <div className="rv-report-divider"></div>
 
             <div className="rv-report-sec">
-              <h4 className="rv-sec-label">MEDICAL HISTORY</h4>
+              <h4 className="rv-sec-label">{t('medicalHist').toUpperCase()}</h4>
               <p>Hypertension, start 2015</p>
-              <p>Surgeries; Appendectomy</p>
+              <p>Surgeries: Appendectomy</p>
               <p>Allergies: No known allergies</p>
             </div>
 
             <div className="rv-report-divider"></div>
 
             <div className="rv-report-sec">
-              <h4 className="rv-sec-label">VITALS</h4>
+              <h4 className="rv-sec-label">{t('vitals').toUpperCase()}</h4>
               <div className="rv-report-grid">
-                <div><label>• Blood pressure</label><span>140/mmHg</span></div>
-                <div><label>Pulse:</label><span>76 bpm</span></div>
-                <div><label>• Temperature</label><span>36,8 °C</span></div>
-                <div><label>Respiratory rt:</label><span>16 / min</span></div>
+                <div><label>• {t('bloodPressureLabel')}</label><span>140/mmHg</span></div>
+                <div><label>{t('pulseLabel')}:</label><span>76 bpm</span></div>
+                <div><label>• {t('tempLabel')}</label><span>36,8 °C</span></div>
+                <div><label>{t('respiratoryRate')}:</label><span>16 / min</span></div>
               </div>
             </div>
 
             <div className="rv-report-divider"></div>
 
             <div className="rv-report-sec">
-              <h4 className="rv-sec-label">DOCTOR'S OBSERVATIONS</h4>
+              <h4 className="rv-sec-label">{t('docObservations').toUpperCase()}</h4>
               <p>• Alert, and in no distress</p>
               <p>• Regular heart sounds</p>
             </div>
@@ -119,7 +121,7 @@ const ReportView = () => {
             <div className="rv-report-divider"></div>
 
             <div className="rv-report-sec">
-              <h4 className="rv-sec-label">NOTES AND NEXT STEPS</h4>
+              <h4 className="rv-sec-label">{t('notesNextSteps').toUpperCase()}</h4>
               <p>• Continuation of hydrochlorthiqzide/25 mg, atsem daily</p>
               <p>• Lifestyle modifications. Follow-up check-up</p>
             </div>
@@ -135,11 +137,11 @@ const ReportView = () => {
           <div className="rv-actions-footer">
             <button className="rv-btn-action rv-glass" onClick={() => setIsDownloadOpen(true)}>
               <Download size={18} />
-              <span>Download</span>
+              <span>{t('download')}</span>
             </button>
             <button className="rv-btn-action rv-glass" onClick={() => setIsShareOpen(true)}>
               <Share2 size={18} />
-              <span>Share</span>
+              <span>{t('share')}</span>
             </button>
           </div>
           

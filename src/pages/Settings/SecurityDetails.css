@@ -4,7 +4,7 @@
 .sd-root {
   background-color: var(--bg-color);
   width: 100%;
-  max-width: 430px;
+  max-width: var(--app-max-width);
   margin: 0 auto;
   position: relative;
   overflow-x: hidden;

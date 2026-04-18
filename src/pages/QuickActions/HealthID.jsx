@@ -198,11 +198,11 @@ const HealthID = () => {
         <motion.div variants={itemVariants} className="hid-sec">
           <SectionHeader title={t('lifestyleHabits')} onEdit={() => navigate('/lifestyle')} />
           <div className="hid-card hid-glass">
-            <div className="hid-row"><div className="hid-label">{t('exercise')}</div><span>{data.activity_level}</span></div>
-            <div className="hid-row"><div className="hid-label">{t('dietType')}</div><span>{data.diet_type}</span></div>
+            <div className="hid-row"><div className="hid-label">{t('exercise')}</div><span>{t(data.activity_level?.toLowerCase())}</span></div>
+            <div className="hid-row"><div className="hid-label">{t('dietType')}</div><span>{t(data.diet_type?.toLowerCase())}</span></div>
             <div className="hid-row"><div className="hid-label">{t('sleepDuration')}</div><span>{data.sleep_hours} {t('hours')}</span></div>
-            <div className="hid-row"><div className="hid-label">{t('smoking')}</div><span>{data.smoking_status}</span></div>
-            <div className="hid-row"><div className="hid-label">{t('alcoholLevel')}</div><span>{data.alcohol_consumption}</span></div>
+            <div className="hid-row"><div className="hid-label">{t('smoking')}</div><span>{t(data.smoking_status?.toLowerCase())}</span></div>
+            <div className="hid-row"><div className="hid-label">{t('alcoholLevel')}</div><span>{t(data.alcohol_consumption?.toLowerCase())}</span></div>
           </div>
         </motion.div>
 
@@ -252,7 +252,7 @@ const HealthID = () => {
           <div className="hid-dna-card hid-glass">
             <div className="hid-dna-header">
               <Dna size={20} color="#FF416C" />
-              <span>{t('dnaSampleType')} <strong>{data.dna_type}</strong></span>
+              <span>{t('dnaSampleType')} <strong>{t(data.dna_type?.toLowerCase())}</strong></span>
             </div>
             <div className="hid-rec-block">
               <div className="hid-rec-lbl">{t('geneticRiskFactors')}</div>

@@ -4,7 +4,7 @@
 .arn-root {
   background-color: #010422;
   width: 100%;
-  max-width: 430px;
+  max-width: var(--app-max-width);
   min-height: 100vh;
   margin: 0 auto;
   position: relative;

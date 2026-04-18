@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useLanguage } from './LanguageContext';
 import { 
   ClipboardCheck, 
   User, 
@@ -12,15 +13,16 @@ import './TouchBar.css';
 const TouchBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState('home');
 
   const navItems = useMemo(() => [
-    { id: 'reports', label: 'Reports', icon: <ClipboardCheck size={22} />, path: '/reports' },
-    { id: 'healthid', label: 'Health ID', icon: <User size={22} />, path: '/healthid' },
-    { id: 'home', label: 'Home', icon: <Home size={22} />, path: '/home' },
-    { id: 'familyhub', label: 'Family Hub', icon: <Network size={22} />, path: '/familyhub' },
-    { id: 'quickactions', label: 'Quick Actions', icon: <ShieldPlus size={22} />, path: '/quickactions' },
-  ], []);
+    { id: 'reports', label: t('reportsTab'), icon: <ClipboardCheck size={22} />, path: '/reports' },
+    { id: 'healthid', label: t('healthIdTab'), icon: <User size={22} />, path: '/healthid' },
+    { id: 'home', label: t('homeTab'), icon: <Home size={22} />, path: '/home' },
+    { id: 'familyhub', label: t('familyHubTab'), icon: <Network size={22} />, path: '/familyhub' },
+    { id: 'quickactions', label: t('quickActionsTab'), icon: <ShieldPlus size={22} />, path: '/quickactions' },
+  ], [t]);
 
   useEffect(() => {
     const currentPath = location.pathname;

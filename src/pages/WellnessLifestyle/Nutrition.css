@@ -2,15 +2,15 @@
 @import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
 
 .nt-root {
-  background-color: #010422;
+  background-color: var(--bg-color);
   width: 100%;
-  max-width: 430px;
+  max-width: var(--app-max-width);
   min-height: 100vh;
   margin: 0 auto;
   position: relative;
   overflow-x: hidden;
-  font-family: 'General Sans', sans-serif;
-  color: #FFFFFF;
+  font-family: var(--font-main);
+  color: var(--text-main);
 }
 
 .nt-bg-grad {
@@ -50,8 +50,8 @@
 
 .nt-header-ico-btn { background: #64B5F6; border: none; }
 
-.nt-main-title { font-family: 'Instrument Serif', serif; font-size: 42px; margin: 0; font-weight: 400; }
-.nt-subtitle { font-size: 16px; opacity: 0.5; margin-top: 10px; }
+.nt-main-title { font-family: var(--font-title); font-size: clamp(2rem, 8vw, var(--size-hero)); margin: 0; font-weight: 400; }
+.nt-subtitle { font-size: clamp(0.875rem, 3vw, var(--size-body)); opacity: 0.5; margin-top: 10px; }
 
 .nt-hero-section { margin-bottom: 40px; }
 .nt-hero-card { padding: 35px 24px; text-align: center; }

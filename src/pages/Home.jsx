@@ -255,7 +255,7 @@ const Home = () => {
                     <span className="ha-goal-icon" style={{color: g.color}}>
                        {g.label.includes('Steps') ? <Footprints size={16}/> : g.label.includes('Water') ? <Droplet size={16}/> : <Activity size={16}/>}
                     </span>
-                    <span className="ha-goal-name">{g.label}</span>
+                    <span className="ha-goal-name">{t(g.label)}</span>
                   </div>
                   <span className="ha-goal-perc" style={{color: g.color}}>{g.perc}%</span>
                 </div>
@@ -362,10 +362,10 @@ const Home = () => {
           <div className="ha-report-row ha-glass" onClick={() => navigate('/reports')} style={{ cursor: 'pointer' }}>
             <div className="ha-report-ico blue"><FileText size={18}/></div>
             <div className="ha-report-meta">
-              <h4>{data.recent_report?.title || '---'}</h4>
-              <p>{data.recent_report?.sub || '---'}</p>
+              <h4>{t(data.recent_report?.title) || '---'}</h4>
+              <p>{t(data.recent_report?.sub) || '---'}</p>
             </div>
-            <span className="ha-report-badge green">{data.recent_report?.status || '---'}</span>
+            <span className="ha-report-badge green">{t(data.recent_report?.status) || '---'}</span>
           </div>
         </section>
 
@@ -373,9 +373,9 @@ const Home = () => {
           <h2 className="ha-sec-lbl">{t('overallScore')}</h2>
           <div className="ha-final-score ha-glass" onClick={() => navigate('/reports')} style={{ cursor: 'pointer' }}>
             <div className="ha-score-content">
-              <p className="ha-score-tag">{data.overall_status}</p>
+              <p className="ha-score-tag">{t(data.overall_status)}</p>
               <div className="ha-score-main">{data.overall_score}<span>/100</span></div>
-              <p className="ha-score-change">{data.overall_change}</p>
+              <p className="ha-score-change">{t(data.overall_change)}</p>
             </div>
             <div className="ha-score-visual">
               <Target size={32} color="#010422" />

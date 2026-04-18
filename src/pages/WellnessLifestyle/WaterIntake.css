@@ -2,15 +2,15 @@
 @import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
 
 .wi-root {
-  background-color: #010422;
+  background-color: var(--bg-color);
   width: 100%;
-  max-width: 430px;
+  max-width: var(--app-max-width);
   min-height: 100vh;
   margin: 0 auto;
   position: relative;
   overflow-x: hidden;
-  font-family: 'General Sans', sans-serif;
-  color: #FFFFFF;
+  font-family: var(--font-main);
+  color: var(--text-main);
 }
 
 .wi-grad-bg {
@@ -32,7 +32,7 @@
 .wi-container {
   position: relative;
   z-index: 3;
-  padding: 10px 24px 110px;
+  padding: clamp(10px, 5vw, 24px) clamp(16px, 8vw, 24px) 110px;
 }
 
 .wi-header { display: flex; justify-content: space-between; padding: 15px 0 35px; }
@@ -48,8 +48,8 @@
 
 .wi-active-droplet { background: #64B5F6; border: none; }
 
-.wi-main-title { font-family: 'Instrument Serif', serif; font-size: 42px; margin: 0; font-weight: 400; }
-.wi-subtitle { font-size: 16px; opacity: 0.5; margin-top: 10px; }
+.wi-main-title { font-family: var(--font-title); font-size: clamp(2rem, 8vw, var(--size-hero)); margin: 0; font-weight: 400; }
+.wi-subtitle { font-size: clamp(0.875rem, 3vw, var(--size-body)); opacity: 0.5; margin-top: 10px; }
 
 .wi-sec { margin-bottom: 35px; }
 .wi-sec-lbl { font-size: 18px; font-weight: 600; margin-bottom: 18px; opacity: 0.9; }
