@@ -94,9 +94,10 @@ const QuickActions = () => {
             <p>Access all features in one place</p>
           </div>
 
-          <button className="qa-circle-btn">
+          <button className="qa-circle-btn" onClick={() => navigate('/healthai')}>
             <Sparkles size={20} />
           </button>
+
         </div>
       </div>
 

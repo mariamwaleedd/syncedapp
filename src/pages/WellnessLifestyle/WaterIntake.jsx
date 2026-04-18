@@ -33,7 +33,7 @@ const WaterIntake = () => {
           <button className="wi-circle-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} />
           </button>
-          <button className="wi-circle-btn wi-active-droplet">
+          <button className="wi-circle-btn wi-active-droplet" onClick={() => navigate('/wellness')}>
             <Droplets size={20} fill="#FFF" />
           </button>
         </header>
@@ -44,7 +44,7 @@ const WaterIntake = () => {
         </div>
 
         <section className="wi-hero-section">
-          <div className="wi-glass-card wi-glass">
+          <div className="wi-glass-card wi-glass" onClick={() => navigate('/wellness')}>
             <div className="wi-glass-viz">
               <div className="wi-glass-outline">
                 <div className="wi-water-fill" style={{ height: `${percentage}%` }}>
@@ -103,7 +103,7 @@ const WaterIntake = () => {
 
         <section className="wi-sec">
           <h2 className="wi-sec-lbl">Today's Log</h2>
-          <div className="wi-log-card wi-glass">
+          <div className="wi-log-card wi-glass" onClick={() => navigate('/reports')} style={{ cursor: 'pointer' }}>
             {logs.map((log, i) => (
               <div key={i} className="wi-log-row">
                 <div className="wi-log-l">
@@ -121,7 +121,7 @@ const WaterIntake = () => {
             <TrendingUp size={18} color="#00E676" />
             <h2 className="wi-sec-lbl no-m">Weekly Progress</h2>
           </div>
-          <div className="wi-stats-card wi-glass">
+          <div className="wi-stats-card wi-glass" onClick={() => navigate('/reports')} style={{ cursor: 'pointer' }}>
             <div className="wi-stat-unit">
               <h4>2.3L</h4>
               <p>Avg Daily</p>
@@ -137,7 +137,7 @@ const WaterIntake = () => {
           </div>
         </section>
 
-        <div className="wi-tip-card wi-glass">
+        <div className="wi-tip-card wi-glass" onClick={() => navigate('/helpcenter')} style={{ cursor: 'pointer' }}>
           <div className="wi-tip-ico">
             <Award size={22} color="#64B5F6" />
           </div>
@@ -146,6 +146,7 @@ const WaterIntake = () => {
             <p>Drink water first thing in the morning to kickstart your metabolism and rehydrate after sleep.</p>
           </div>
         </div>
+
 
         <div className="wi-bottom-pad"></div>
       </div>

@@ -56,9 +56,14 @@ const Reminders = () => {
             <label className="rm-field-label">You'll receive reminders at:</label>
             <div className="rm-time-input rm-glass">
               <Clock size={20} color="#64B5F6" />
-              <span className="rm-time-val">08:00</span>
+              <input 
+                type="time" 
+                defaultValue="08:00" 
+                className="rm-time-picker-input"
+              />
             </div>
           </div>
+
 
           <div className="rm-hero-illustration">
             <div className="rm-big-bell-box">

@@ -87,15 +87,15 @@ const Home = () => {
         <section className="ha-section">
           <div className="ha-section-title">
             <h2>Live Health Tracker</h2>
-            <Plus size={18} color="#FFD54F" />
+            <Plus size={18} color="#FFD54F" onClick={() => navigate('/addreminder')} style={{ cursor: 'pointer' }} />
           </div>
           <div className="ha-tracker-grid">
-            <div className="ha-tracker-item ha-glass">
+            <div className="ha-tracker-item ha-glass" onClick={() => navigate('/reports')} style={{ cursor: 'pointer' }}>
               <div className="ha-ico-box red"><Heart size={20} fill="white" /></div>
               <div className="ha-tracker-val">{data.heart_rate}<span>bpm</span></div>
               <p>Heart Rate</p>
             </div>
-            <div className="ha-tracker-item ha-glass">
+            <div className="ha-tracker-item ha-glass" onClick={() => navigate('/wellness/steps')} style={{ cursor: 'pointer' }}>
               <div className="ha-ico-box green"><Activity size={20} /></div>
               <div className="ha-tracker-val">{data.steps.toLocaleString()}<span>Steps</span></div>
               <p>Daily Steps</p>
@@ -117,7 +117,12 @@ const Home = () => {
           <h2 className="ha-sec-lbl">How are you feeling today?</h2>
           <div className="ha-mood-card ha-glass">
             {['Amazing', 'Good', 'Okay', 'Low', 'Stressed'].map((m, i) => (
-              <div key={m} className={`ha-mood-unit ${i === data.mood_index ? 'active' : ''}`}>
+              <div 
+                key={m} 
+                className={`ha-mood-unit ${i === data.mood_index ? 'active' : ''}`}
+                onClick={() => navigate('/wellness')}
+                style={{ cursor: 'pointer' }}
+              >
                 <span className="ha-emoji">{['🤩', '😊', '😐', '😔', '😟'][i]}</span>
                 <span className="ha-mood-name">{m}</span>
               </div>
@@ -135,7 +140,7 @@ const Home = () => {
           <div className="ha-family-card ha-glass">
             <div className="ha-family-grid">
               {data.family_members.map((m) => (
-                <div key={m.name} className="ha-family-member" onClick={() => navigate('/familyhub')} style={{ cursor: 'pointer' }}>
+                <div key={m.name} className="ha-family-member" onClick={() => navigate(`/familyhub/family-profile/${m.name.toLowerCase()}`)} style={{ cursor: 'pointer' }}>
                   <div className="ha-family-avatar-wrap">
                     <div className="ha-family-avatar">{m.emoji}</div>
                     <div className={`ha-family-status ${m.status}`}>
@@ -232,7 +237,7 @@ const Home = () => {
 
         <section className="ha-section">
           <h2 className="ha-sec-lbl">Weekly Health Score</h2>
-          <div className="ha-weekly-card ha-glass">
+          <div className="ha-weekly-card ha-glass" onClick={() => navigate('/wellness')} style={{ cursor: 'pointer' }}>
             <div className="ha-week-grid">
               {data.weekly_score.map((d) => (
                 <div key={d.day} className={`ha-week-day ${d.active ? 'current' : ''}`}>
@@ -244,7 +249,7 @@ const Home = () => {
               ))}
             </div>
           </div>
-          <div className="ha-week-legend">
+          <div className="ha-week-legend" onClick={() => navigate('/wellness')} style={{ cursor: 'pointer' }}>
             <div className="ha-legend-item"><span>🔥</span><span>Excellent</span></div>
             <div className="ha-legend-item"><span>😁</span><span>Great</span></div>
             <div className="ha-legend-item"><span>😊</span><span>Good</span></div>
@@ -254,15 +259,15 @@ const Home = () => {
         <section className="ha-section">
           <h2 className="ha-sec-lbl">Achievements</h2>
           <div className="ha-achieve-flex">
-            <div className="ha-ach-box ha-glass">
+            <div className="ha-ach-box ha-glass" onClick={() => navigate('/familyhub/achievements')} style={{ cursor: 'pointer' }}>
               <div className="ha-ach-icon gold"><Trophy size={20}/></div>
               <span>7-Day Streak</span>
             </div>
-            <div className="ha-ach-box ha-glass">
+            <div className="ha-ach-box ha-glass" onClick={() => navigate('/familyhub/achievements')} style={{ cursor: 'pointer' }}>
               <div className="ha-ach-icon blue"><Footprints size={20}/></div>
               <span>10k Steps</span>
             </div>
-            <div className="ha-ach-box ha-glass">
+            <div className="ha-ach-box ha-glass" onClick={() => navigate('/familyhub/achievements')} style={{ cursor: 'pointer' }}>
               <div className="ha-ach-icon green"><Droplet size={20}/></div>
               <span>Hydration</span>
             </div>
@@ -272,11 +277,11 @@ const Home = () => {
         <section className="ha-section">
           <h2 className="ha-sec-lbl">Health Tips For You</h2>
           <div className="ha-tips-list">
-            <div className="ha-tip-item ha-glass">
+            <div className="ha-tip-item ha-glass" onClick={() => navigate('/wellness')} style={{ cursor: 'pointer' }}>
               <div className="ha-tip-icon blue"><Lightbulb size={18}/></div>
               <p>Stay hydrated! Drink water every hour.</p>
             </div>
-            <div className="ha-tip-item ha-glass">
+            <div className="ha-tip-item ha-glass" onClick={() => navigate('/wellness')} style={{ cursor: 'pointer' }}>
               <div className="ha-tip-icon green"><Salad size={18}/></div>
               <p>Add more fruits to your diet today.</p>
             </div>
@@ -286,9 +291,9 @@ const Home = () => {
         <section className="ha-section">
           <div className="ha-section-title">
             <h2>Upcoming Appointments</h2>
-            <span className="ha-view-link" onClick={() => navigate('/appointments')}>View All</span>
+            <span className="ha-view-link" onClick={() => navigate('/appointments')} style={{ cursor: 'pointer' }}>View All</span>
           </div>
-          <div className="ha-appt-card ha-glass" onClick={() => navigate('/appointments')}>
+          <div className="ha-appt-card ha-glass" onClick={() => navigate('/appointments')} style={{ cursor: 'pointer' }}>
             <div className="ha-appt-row">
               <div className="ha-appt-avatar pink"><Calendar size={18}/></div>
               <div className="ha-appt-info">
@@ -305,7 +310,7 @@ const Home = () => {
 
         <section className="ha-section">
           <h2 className="ha-sec-lbl">Emergency Contacts</h2>
-          <div className="ha-emerg-card ha-glass" onClick={() => navigate('/emergency')}>
+          <div className="ha-emerg-card ha-glass" onClick={() => navigate('/emergency')} style={{ cursor: 'pointer' }}>
             <div className="ha-emerg-head">
               <div className="ha-emerg-avatar red"><Phone size={18} fill="white"/></div>
               <div className="ha-emerg-info">
@@ -320,9 +325,9 @@ const Home = () => {
         <section className="ha-section">
           <div className="ha-section-title">
             <h2>Recent Reports</h2>
-            <span className="ha-view-link" onClick={() => navigate('/reports')}>View All</span>
+            <span className="ha-view-link" onClick={() => navigate('/reports')} style={{ cursor: 'pointer' }}>View All</span>
           </div>
-          <div className="ha-report-row ha-glass" onClick={() => navigate('/reports')}>
+          <div className="ha-report-row ha-glass" onClick={() => navigate('/reports')} style={{ cursor: 'pointer' }}>
             <div className="ha-report-ico blue"><FileText size={18}/></div>
             <div className="ha-report-meta">
               <h4>{data.recent_report.title}</h4>
@@ -334,7 +339,7 @@ const Home = () => {
 
         <section className="ha-section">
           <h2 className="ha-sec-lbl">Overall Health Score</h2>
-          <div className="ha-final-score ha-glass">
+          <div className="ha-final-score ha-glass" onClick={() => navigate('/reports')} style={{ cursor: 'pointer' }}>
             <div className="ha-score-content">
               <p className="ha-score-tag">{data.overall_status}</p>
               <div className="ha-score-main">{data.overall_score}<span>/100</span></div>
@@ -345,6 +350,7 @@ const Home = () => {
             </div>
           </div>
         </section>
+
 
         <div className="ha-complete-card ha-glass">
           <div className="ha-complete-left">

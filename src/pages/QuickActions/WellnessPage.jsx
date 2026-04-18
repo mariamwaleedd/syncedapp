@@ -38,7 +38,7 @@ const WellnessPage = () => {
             <button className="wh-circle-btn" onClick={() => navigate(-1)}>
               <ChevronLeft size={22} />
             </button>
-            <button className="wh-circle-btn active-hub">
+            <button className="wh-circle-btn active-hub" onClick={() => navigate('/healthid')}>
               <Heart size={20} fill="#FFF" />
             </button>
           </div>
@@ -49,7 +49,7 @@ const WellnessPage = () => {
         </header>
 
         <section className="wh-section">
-          <div className="wh-date-row">
+          <div className="wh-date-row" onClick={() => navigate('/appointments')} style={{ cursor: 'pointer' }}>
             <Calendar size={18} opacity={0.6} />
             <span>Friday, March 13</span>
           </div>
@@ -87,7 +87,7 @@ const WellnessPage = () => {
           <h2 className="wh-sec-lbl">Wellness Categories</h2>
           <div className="wh-cat-stack">
             {categories.map((cat, i) => (
-              <div key={i} className="wh-cat-card wh-glass" onClick={() => navigate(cat.path)}>
+              <div key={i} className="wh-cat-card wh-glass" onClick={() => navigate(cat.path)} style={{ cursor: 'pointer' }}>
                 <div className="wh-cat-ico-box" style={{ backgroundColor: cat.color }}>
                   {cat.ico}
                 </div>
@@ -110,22 +110,22 @@ const WellnessPage = () => {
             <h2 className="wh-sec-lbl no-m">Recent Achievements</h2>
           </div>
           <div className="wh-ach-flex">
-            <div className="wh-ach-box wh-glass">
+            <div className="wh-ach-box wh-glass" onClick={() => navigate('/familyhub/achievements')} style={{ cursor: 'pointer' }}>
               <div className="wh-ach-ico gold"><Target size={20} /></div>
               <span>7-Day Streak</span>
             </div>
-            <div className="wh-ach-box wh-glass">
+            <div className="wh-ach-box wh-glass" onClick={() => navigate('/familyhub/achievements')} style={{ cursor: 'pointer' }}>
               <div className="wh-ach-ico blue"><Droplets size={20} /></div>
               <span>Water Champion</span>
             </div>
-            <div className="wh-ach-box wh-glass">
+            <div className="wh-ach-box wh-glass" onClick={() => navigate('/familyhub/achievements')} style={{ cursor: 'pointer' }}>
               <div className="wh-ach-ico purple"><Moon size={20} /></div>
               <span>Early Bird</span>
             </div>
           </div>
         </section>
 
-        <div className="wh-tip-card wh-glass">
+        <div className="wh-tip-card wh-glass" onClick={() => navigate('/helpcenter')} style={{ cursor: 'pointer' }}>
           <div className="wh-tip-ico">
             <Lightbulb size={24} color="#64B5F6" />
           </div>
@@ -134,6 +134,7 @@ const WellnessPage = () => {
             <p>Stay hydrated! Aim for 8 glasses of water throughout the day. Your body performs best when properly hydrated.</p>
           </div>
         </div>
+
 
         <div className="wh-bottom-pad"></div>
       </div>

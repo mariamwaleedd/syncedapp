@@ -127,11 +127,11 @@ const Steps = () => {
         <section className="sp-sec">
           <div className="sp-sec-head">
             <h2 className="sp-sec-title no-m">Movement History</h2>
-            <span className="sp-view-all">View Map</span>
+            <span className="sp-view-all" onClick={() => navigate('/home')} style={{ cursor: 'pointer' }}>View Map</span>
           </div>
           <div className="sp-trip-list">
             {trips.map((trip, i) => (
-              <div key={i} className="sp-trip-item sp-glass">
+              <div key={i} className="sp-trip-item sp-glass" onClick={() => navigate('/wellness')} style={{ cursor: 'pointer' }}>
                 <div className="sp-trip-l">
                   <div className="sp-trip-icon"><MapPin size={20} color="#64B5F6" /></div>
                   <div className="sp-trip-info">
@@ -151,16 +151,17 @@ const Steps = () => {
         <section className="sp-sec">
           <h2 className="sp-sec-title">Achievements</h2>
           <div className="sp-award-row">
-            <div className="sp-award-box sp-glass">
+            <div className="sp-award-box sp-glass" onClick={() => navigate('/familyhub/achievements')} style={{ cursor: 'pointer' }}>
               <div className="sp-award-ico gold"><Award size={20} /></div>
               <p>Top Walker</p>
             </div>
-            <div className="sp-award-box sp-glass">
+            <div className="sp-award-box sp-glass" onClick={() => navigate('/familyhub/achievements')} style={{ cursor: 'pointer' }}>
               <div className="sp-award-ico blue"><Zap size={20} /></div>
               <p>Peak Energy</p>
             </div>
           </div>
         </section>
+
 
         <div className="sp-bottom-pad"></div>
       </div>

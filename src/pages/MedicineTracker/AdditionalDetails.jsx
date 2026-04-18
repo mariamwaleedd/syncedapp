@@ -82,11 +82,12 @@ const AdditionalDetails = () => {
         </main>
 
         <footer className="ad-bottom-action">
-          <button className="ad-submit-button" onClick={() => navigate('/medicine-tracker')}>
+          <button className="ad-submit-button" onClick={() => navigate('/medicine')}>
             Add Medicine
           </button>
           <div className="ad-ios-indicator"></div>
         </footer>
+
       </div>
     </div>
   );

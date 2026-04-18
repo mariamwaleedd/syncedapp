@@ -62,11 +62,11 @@ const DosageSchedule = () => {
             <label className="ds-label">Time Slots</label>
             <input 
               className="ds-input ds-glass" 
-              type="text" 
-              placeholder="" 
-              readOnly
+              type="time" 
+              defaultValue="08:00"
             />
           </div>
+
 
           <div className="ds-group">
             <label className="ds-label">Treatment Duration (days)</label>

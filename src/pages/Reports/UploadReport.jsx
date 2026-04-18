@@ -6,6 +6,7 @@ import {
   Image, Shield, Folder, Camera, Paperclip 
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
+import ShareModal from '../../common/ShareModal';
 import './UploadReport.css';
 
 const UploadReport = () => {
@@ -13,6 +14,7 @@ const UploadReport = () => {
   const [selectedMember, setSelectedMember] = useState('Me');
   const [category, setCategory] = useState('');
   const [fileName, setFileName] = useState('');
+  const [isShareOpen, setIsShareOpen] = useState(false);
   const fileInputRef = useRef(null);
   const camInputRef = useRef(null);
 
@@ -52,7 +54,7 @@ const UploadReport = () => {
             <button className="ur-circle-btn" onClick={() => navigate(-1)}>
               <ChevronLeft size={22} strokeWidth={2.5} />
             </button>
-            <button className="ur-circle-btn">
+            <button className="ur-circle-btn" onClick={() => setIsShareOpen(true)}>
               <Share2 size={20} />
             </button>
           </div>
@@ -80,7 +82,7 @@ const UploadReport = () => {
                 </div>
               ))}
             </div>
-            <button className="ur-view-all-btn ur-glass">View All Members</button>
+            <button className="ur-view-all-btn ur-glass" onClick={() => navigate('/familyhub')}>View All Members</button>
           </section>
 
           <section className="ur-section">
@@ -176,8 +178,13 @@ const UploadReport = () => {
         </div>
       </div>
       <TouchBar />
+      <ShareModal 
+        isOpen={isShareOpen} 
+        onClose={() => setIsShareOpen(false)} 
+        title="Share Document" 
+      />
     </div>
   );
 };
 
-export default UploadReport;
+export default UploadReport;
