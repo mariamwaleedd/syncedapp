@@ -30,7 +30,7 @@ const HealthID = () => {
   const navigate = useNavigate();
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isDownloadOpen, setIsDownloadOpen] = useState(false);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
 
   const containerVariants = {
@@ -68,8 +68,9 @@ const HealthID = () => {
     fetchHealthData();
   }, []);
 
-  if (loading) return <div className="hid-root ltr-theme" style={{display:'flex', justifyContent:'center', alignItems:'center', color:'white'}}>Loading...</div>;
-  if (!data) return <div className="hid-root ltr-theme" style={{display:'flex', justifyContent:'center', alignItems:'center', color:'white'}}>No Data Found</div>;
+  if (!data || Object.keys(data).length === 0 && loading === true) {
+     // Return an empty shell while loading to prevent crashing layout, without blocking text
+  }
 
   return (
     <div className="hid-root ltr-theme">

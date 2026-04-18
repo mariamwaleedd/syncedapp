@@ -8,6 +8,7 @@ import TouchBar from '../../common/TouchBar';
 import ShareModal from '../../common/ShareModal';
 import FilterMenu from '../../common/FilterMenu';
 import ActionMenu from '../../common/ActionMenu';
+import GlassToast from '../../common/GlassToast';
 import './MedicalRecords.css';
 
 const records = [
@@ -31,6 +32,7 @@ const MedicalRecords = () => {
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isDownloadOpen, setIsDownloadOpen] = useState(false);
+  const [toastMsg, setToastMsg] = useState('');
 
   const filteredRecords = useMemo(() => {
     return records.filter(rec => {
@@ -170,21 +172,21 @@ const MedicalRecords = () => {
             desc: 'Best for printing and sharing', 
             icon: <FileText size={24} />, 
             color: '#FF5252',
-            action: () => alert('Downloading PDF...')
+            action: () => { setToastMsg('Downloading PDF...'); setIsDownloadOpen(false); }
           },
           { 
             name: 'Save as Image', 
             desc: 'Save to your device gallery', 
             icon: <Upload size={24} />, 
             color: '#51A2FF',
-            action: () => alert('Saving as Image...')
+            action: () => { setToastMsg('Saving as Image...'); setIsDownloadOpen(false); }
           },
           { 
             name: 'Export CSV', 
             desc: 'Raw data for spreadsheet', 
             icon: <FileText size={24} opacity={0.5} />, 
             color: '#00E676',
-            action: () => alert('Exporting CSV...')
+            action: () => { setToastMsg('Exporting CSV...'); setIsDownloadOpen(false); }
           }
         ]}
       />
@@ -199,6 +201,7 @@ const MedicalRecords = () => {
           ...categories
         ]}
       />
+      <GlassToast message={toastMsg} isOpen={!!toastMsg} onClose={() => setToastMsg('')} type="info" />
     </div>
   );
 };

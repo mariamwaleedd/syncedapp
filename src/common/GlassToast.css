@@ -1,0 +1,41 @@
+.glass-toast-root {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%) !important;
+  z-index: 9999;
+  width: max-content;
+  max-width: 90%;
+  pointer-events: none;
+}
+
+.glass-toast-content {
+  background: rgba(1, 4, 34, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 14px 24px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(100, 181, 246, 0.1);
+}
+
+.glass-toast-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.glass-toast-text {
+  color: #FFFFFF;
+  font-family: var(--font-main, 'Inter', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}

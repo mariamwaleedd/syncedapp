@@ -10,12 +10,14 @@ import {
 import TouchBar from '../../common/TouchBar';
 import ShareModal from '../../common/ShareModal';
 import ActionMenu from '../../common/ActionMenu';
+import GlassToast from '../../common/GlassToast';
 import './Profile.css';
 
 const Profile = () => {
   const navigate = useNavigate();
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isDownloadOpen, setIsDownloadOpen] = useState(false);
+  const [toastMsg, setToastMsg] = useState('');
   return (
     <div className="pf-container ltr-theme">
       <div className="pf-layer-gradient"></div>
@@ -185,24 +187,25 @@ const Profile = () => {
             desc: 'Complete medical history (PDF)', 
             icon: <FileText size={24} />, 
             color: '#FF5252',
-            action: () => alert('Generating Full Report...')
+            action: () => { setToastMsg('Generating Full Report...'); setIsDownloadOpen(false); }
           },
           { 
             name: 'Vaccination Record', 
             desc: 'Official travel document', 
             icon: <ShieldAlert size={24} />, 
             color: '#51A2FF',
-            action: () => alert('Downloading Vaccination Record...')
+            action: () => { setToastMsg('Downloading Vaccination Record...'); setIsDownloadOpen(false); }
           },
           { 
             name: 'Emergency Card', 
             desc: 'Wallet-sized overview', 
             icon: <Heart size={24} />, 
             color: '#00E676',
-            action: () => alert('Generating Emergency Card...')
+            action: () => { setToastMsg('Generating Emergency Card...'); setIsDownloadOpen(false); }
           }
         ]}
       />
+      <GlassToast message={toastMsg} isOpen={!!toastMsg} onClose={() => setToastMsg('')} type="info" />
     </div>
   );
 };

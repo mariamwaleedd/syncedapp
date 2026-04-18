@@ -16,7 +16,15 @@ import './Home.css';
 
 const Home = () => {
   const navigate = useNavigate();
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({
+    family_members: [],
+    goals: [],
+    weekly_score: [],
+    appointment: {},
+    emergency_contact: {},
+    recent_report: {},
+    steps: 0
+  });
   const [loading, setLoading] = useState(true);
 
   const container = {
@@ -44,10 +52,6 @@ const Home = () => {
       setLoading(false);
     }
   };
-
-  if (loading || !data) {
-    return <div className="ha-root ltr-theme" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', color: 'white' }}>Loading...</div>;
-  }
 
   return (
     <div className="ha-root ltr-theme">

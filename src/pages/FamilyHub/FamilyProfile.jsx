@@ -13,6 +13,8 @@ const FamilyProfile = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [member, setMember] = useState(null);
+  const [activeMood, setActiveMood] = useState('Great');
+  const [activeTab, setActiveTab] = useState('Allergies');
 
   useEffect(() => {
     if (id) fetchMember();
@@ -21,7 +23,12 @@ const FamilyProfile = () => {
 
   const fetchMember = async () => {
     const { data, error } = await supabase.from('application_family').select('*').eq('id', id).single();
-    if (!error) setMember(data);
+    if (!error && data) {
+      setMember(data);
+      if (data.mood) setActiveMood(data.mood);
+    } else {
+      setMember({}); // Fallback for rapid load
+    }
   };
 
   const calculateAge = (dob) => {
@@ -83,7 +90,7 @@ const FamilyProfile = () => {
             <h2 className="fp-sec-title">Today's Mood</h2>
             <div className="fp-mood-row">
               {['Great', 'Okay', 'Sad'].map((m) => (
-                <div key={m} className={`fp-mood-box fp-glass ${member.mood === m ? 'active' : ''}`}>
+                <div key={m} className={`fp-mood-box fp-glass ${activeMood === m ? 'active' : ''}`} onClick={() => setActiveMood(m)}>
                   <span>{m === 'Great' ? '😊' : m === 'Okay' ? '😐' : '😔'}</span>{m}
                 </div>
               ))}
@@ -95,11 +102,11 @@ const FamilyProfile = () => {
               <button className="fp-edit-btn" onClick={() => navigate('/reports')}><Edit3 size={12} /> Edit</button>
             </div>
             <div className="fp-tabs-grid">
-              <div className="fp-tab active"><Shield size={14} /><span>Allergies</span></div>
-              <div className="fp-tab"><Activity size={14} /><span>Health ID</span></div>
-              <div className="fp-tab"><Calendar size={14} /><span>History</span></div>
-              <div className="fp-tab"><FileText size={14} /><span>Family</span></div>
-              <div className="fp-tab"><Shield size={14} /><span>Insurance</span></div>
+              <div className={`fp-tab ${activeTab === 'Allergies' ? 'active' : ''}`} onClick={() => setActiveTab('Allergies')}><Shield size={14} /><span>Allergies</span></div>
+              <div className={`fp-tab ${activeTab === 'Health ID' ? 'active' : ''}`} onClick={() => setActiveTab('Health ID')}><Activity size={14} /><span>Health ID</span></div>
+              <div className={`fp-tab ${activeTab === 'History' ? 'active' : ''}`} onClick={() => setActiveTab('History')}><Calendar size={14} /><span>History</span></div>
+              <div className={`fp-tab ${activeTab === 'Family' ? 'active' : ''}`} onClick={() => setActiveTab('Family')}><FileText size={14} /><span>Family</span></div>
+              <div className={`fp-tab ${activeTab === 'Insurance' ? 'active' : ''}`} onClick={() => setActiveTab('Insurance')}><Shield size={14} /><span>Insurance</span></div>
             </div>
             <div className="fp-record-box fp-glass">
               <label>Allergies</label>

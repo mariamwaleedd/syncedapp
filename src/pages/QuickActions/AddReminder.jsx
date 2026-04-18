@@ -6,6 +6,7 @@ import {
   ChevronRight, Check 
 } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
+import GlassToast from '../../common/GlassToast';
 import './AddReminder.css';
 
 const AddReminder = () => {
@@ -16,6 +17,7 @@ const AddReminder = () => {
   const [description, setDescription] = useState('');
   const [time, setTime] = useState('08:00 AM');
   const [priority, setPriority] = useState('Standard');
+  const [toastMsg, setToastMsg] = useState('');
 
   const types = [
     { id: 'med', label: 'Medicine', icon: <Pill size={18} />, color: 'green' },
@@ -32,7 +34,7 @@ const AddReminder = () => {
   ];
 
   const handleCreate = async () => {
-    if (!title) return alert("Please enter a title");
+    if (!title) return setToastMsg("Please enter a title");
 
     const typeObj = types.find(t => t.id === selectedType);
     const finalType = selectedMember !== 'Me' ? 'family' : selectedType;
@@ -153,6 +155,7 @@ const AddReminder = () => {
           <div className="arn-ios-bar"></div>
         </footer>
       </div>
+      <GlassToast message={toastMsg} isOpen={!!toastMsg} onClose={() => setToastMsg('')} type="error" />
     </div>
   );
 };

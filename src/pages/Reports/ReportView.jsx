@@ -10,6 +10,7 @@ import ShareModal from '../../common/ShareModal';
 import FilterMenu from '../../common/FilterMenu';
 import ActionMenu from '../../common/ActionMenu';
 import { FileText, Share, Upload } from 'lucide-react';
+import GlassToast from '../../common/GlassToast';
 import './ReportView.css';
 
 const ReportView = () => {
@@ -18,6 +19,7 @@ const ReportView = () => {
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isDownloadOpen, setIsDownloadOpen] = useState(false);
+  const [toastMsg, setToastMsg] = useState('');
 
   return (
     <div className="rv-root ltr-theme">
@@ -162,21 +164,21 @@ const ReportView = () => {
             desc: 'High resolution document', 
             icon: <FileText size={24} />, 
             color: '#FF5252',
-            action: () => alert('Downloading PDF...')
+            action: () => { setToastMsg('Downloading PDF...'); setIsDownloadOpen(false); }
           },
           { 
             name: 'Save to Gallery', 
             desc: 'Save as high quality image', 
             icon: <Upload size={24} />, 
             color: '#51A2FF',
-            action: () => alert('Saving to Gallery...')
+            action: () => { setToastMsg('Saving to Gallery...'); setIsDownloadOpen(false); }
           },
           { 
             name: 'Send to Doctor', 
             desc: 'Secure sharing within network', 
             icon: <Share size={24} />, 
             color: '#00E676',
-            action: () => alert('Sending to Doctor...')
+            action: () => { setToastMsg('Sending to Doctor...'); setIsDownloadOpen(false); }
           }
         ]}
       />
@@ -192,6 +194,7 @@ const ReportView = () => {
           { id: 'doc', name: 'Doctor Summary' }
         ]}
       />
+      <GlassToast message={toastMsg} isOpen={!!toastMsg} onClose={() => setToastMsg('')} type="info" />
     </div>
   );
 };

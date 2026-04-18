@@ -5,6 +5,7 @@ import {
   Mail, Phone, Droplets, AlertCircle 
 } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
+import GlassToast from '../../common/GlassToast';
 import './AddMember.css';
 
 const AddMember = () => {
@@ -19,6 +20,7 @@ const AddMember = () => {
     blood_type: '',
     allergies: ''
   });
+  const [toastMsg, setToastMsg] = useState('');
 
   const handleInput = (e) => {
     setFormData({...formData, [e.target.name]: e.target.value});
@@ -26,7 +28,7 @@ const AddMember = () => {
 
   const handleSubmit = async () => {
     if (!formData.full_name || !formData.relationship || !formData.dob || !gender) {
-      alert("Please fill in all required fields");
+      setToastMsg("Please fill in all required fields");
       return;
     }
 
@@ -125,6 +127,7 @@ const AddMember = () => {
           <div className="am-home-bar"></div>
         </footer>
       </div>
+      <GlassToast message={toastMsg} isOpen={!!toastMsg} onClose={() => setToastMsg('')} type="error" />
     </div>
   );
 };
