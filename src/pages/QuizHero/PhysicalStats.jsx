@@ -1,17 +1,31 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Activity, ArrowRight, ArrowLeft, ChevronDown } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
 import './PhysicalStats.css';
+import SkipQuizModal from '../../common/SkipQuizModal';
 
 const PhysicalStats = () => {
   const navigate = useNavigate();
+  const [isSkipOpen, setIsSkipOpen] = useState(false);
   const [height, setHeight] = useState('170');
   const [weight, setWeight] = useState('70');
   const [showHeightList, setShowHeightList] = useState(false);
   const [showWeightList, setShowWeightList] = useState(false);
   const heightRef = useRef(null);
   const weightRef = useRef(null);
+
+  useEffect(() => {
+    const id = localStorage.getItem('health_id');
+    if (id) {
+      supabase.from('application_healthId').select('height, weight').eq('id', id).single().then(({ data, error }) => {
+        if (data && !error) {
+          if (data.height) setHeight(data.height.toString());
+          if (data.weight) setWeight(data.weight.toString());
+        }
+      });
+    }
+  }, []);
 
   const handleContinue = async () => {
     const id = localStorage.getItem('health_id');
@@ -29,7 +43,7 @@ const PhysicalStats = () => {
         <div className="ps-nav-header">
           <div className="ps-progress-info"><span className="ps-step-label">Step 3 of 8</span><span className="ps-percent-label">38%</span></div>
           <div className="ps-track"><div className="ps-fill" style={{ width: '38%' }}></div></div>
-          <button className="ps-skip-btn" onClick={() => navigate('/')}>Skip</button>
+          <button className="ps-skip-btn" onClick={() => setIsSkipOpen(true)}>Skip</button>
         </div>
         <div className="ps-hero">
           <div className="ps-icon-box"><Activity size={50} color="#FFFFFF" strokeWidth={2} /></div>
@@ -51,6 +65,7 @@ const PhysicalStats = () => {
           <button className="ps-back-btn" onClick={() => navigate(-1)}><ArrowLeft size={18} /><span>Back</span></button>
           <button className="ps-continue-btn" onClick={handleContinue}><span>Continue</span><ArrowRight size={18} /></button>
         </div>
+        <SkipQuizModal isOpen={isSkipOpen} onClose={() => setIsSkipOpen(false)} />
       </div>
     </div>
   );

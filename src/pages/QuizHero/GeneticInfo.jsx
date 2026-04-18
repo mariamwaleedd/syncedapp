@@ -1,13 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Droplets, Dna } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
 import './GeneticInfo.css';
+import SkipQuizModal from '../../common/SkipQuizModal';
 
 const GeneticInfo = () => {
   const navigate = useNavigate();
+  const [isSkipOpen, setIsSkipOpen] = useState(false);
   const [selectedBlood, setSelectedBlood] = useState(null);
   const bloodTypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+
+  useEffect(() => {
+    const id = localStorage.getItem('health_id');
+    if (id) {
+      supabase.from('application_healthId').select('blood_type').eq('id', id).single().then(({ data, error }) => {
+        if (data && !error && data.blood_type) {
+          setSelectedBlood(data.blood_type);
+        }
+      });
+    }
+  }, []);
 
   const handleContinue = async () => {
     const id = localStorage.getItem('health_id');
@@ -22,7 +35,7 @@ const GeneticInfo = () => {
         <div className="gi-nav-header">
           <div className="gi-progress-info"><span className="gi-step-label">Step 6 of 8</span><span className="gi-percent-label">75%</span></div>
           <div className="gi-track"><div className="gi-fill" style={{ width: '75%' }}></div></div>
-          <button className="gi-skip-btn" onClick={() => navigate('/')}>Skip</button>
+          <button className="gi-skip-btn" onClick={() => setIsSkipOpen(true)}>Skip</button>
         </div>
         <div className="gi-hero">
           <div className="gi-icon-box"><Dna size={50} color="#FFFFFF" strokeWidth={2} /></div>
@@ -36,6 +49,7 @@ const GeneticInfo = () => {
           <button className="gi-back-btn" onClick={() => navigate(-1)}><ArrowLeft size={18} /><span>Back</span></button>
           <button className="gi-continue-btn" onClick={handleContinue}><span>Continue</span><ArrowRight size={18} /></button>
         </div>
+        <SkipQuizModal isOpen={isSkipOpen} onClose={() => setIsSkipOpen(false)} />
       </div>
     </div>
   );

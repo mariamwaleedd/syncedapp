@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Check, ArrowLeft, Sparkles } from 'lucide-react';
 import './AllSet.css';
 
 const AllSet = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.setItem('quiz_completed', 'true');
+  }, []);
 
   return (
     <div className="as-root">

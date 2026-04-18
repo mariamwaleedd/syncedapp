@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Heart, ShieldAlert, Activity, ArrowRight } from 'lucide-react';
 import './CreateHealthID.css';
 import starIcon from '../../imgs/star.png'; 
+import SkipQuizModal from '../../common/SkipQuizModal'; 
 
 const CreateHealthID = () => {
   const navigate = useNavigate();
+  const [isSkipOpen, setIsSkipOpen] = useState(false);
 
   return (
     <div className="chi-screen">
@@ -22,7 +24,7 @@ const CreateHealthID = () => {
           <div className="chi-track">
             <div className="chi-fill" style={{ width: '13%' }}></div>
           </div>
-          <button className="chi-skip-btn" onClick={() => navigate('/')}>Skip</button>
+          <button className="chi-skip-btn" onClick={() => setIsSkipOpen(true)}>Skip</button>
         </div>
 
         <div className="chi-hero">
@@ -73,6 +75,7 @@ const CreateHealthID = () => {
           </button>
           <div className="chi-home-pill"></div>
         </div>
+        <SkipQuizModal isOpen={isSkipOpen} onClose={() => setIsSkipOpen(false)} />
       </div>
     </div>
   );

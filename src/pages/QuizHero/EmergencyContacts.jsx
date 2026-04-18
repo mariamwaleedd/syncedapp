@@ -1,14 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Phone, ArrowLeft, ArrowRight } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
 import './EmergencyContacts.css';
+import SkipQuizModal from '../../common/SkipQuizModal';
 
 const EmergencyContact = () => {
   const navigate = useNavigate();
+  const [isSkipOpen, setIsSkipOpen] = useState(false);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [relation, setRelation] = useState('');
+
+  useEffect(() => {
+    const id = localStorage.getItem('health_id');
+    if (id) {
+      supabase.from('application_healthId').select('emergency_name, emergency_phone, emergency_relation').eq('id', id).single().then(({ data, error }) => {
+        if (data && !error) {
+          if (data.emergency_name) setName(data.emergency_name);
+          if (data.emergency_phone) setPhone(data.emergency_phone);
+          if (data.emergency_relation) setRelation(data.emergency_relation);
+        }
+      });
+    }
+  }, []);
 
   const handleContinue = async () => {
     const id = localStorage.getItem('health_id');
@@ -23,7 +38,7 @@ const EmergencyContact = () => {
         <div className="ec-nav-header">
           <div className="ec-progress-info"><span className="ec-step-label">Step 7 of 8</span><span className="ec-percent-label">88%</span></div>
           <div className="ec-track"><div className="ec-fill" style={{ width: '88%' }}></div></div>
-          <button className="ec-skip-btn" onClick={() => navigate('/')}>Skip</button>
+          <button className="ec-skip-btn" onClick={() => setIsSkipOpen(true)}>Skip</button>
         </div>
         <div className="ec-hero">
           <div className="ec-icon-box"><Phone size={50} color="#FFFFFF" fill="#FFFFFF" /></div>
@@ -42,6 +57,7 @@ const EmergencyContact = () => {
           <button className="ec-back-btn" onClick={() => navigate(-1)}><ArrowLeft size={18} /><span>Back</span></button>
           <button className="ec-continue-btn" onClick={handleContinue}><span>Continue</span><ArrowRight size={18} /></button>
         </div>
+        <SkipQuizModal isOpen={isSkipOpen} onClose={() => setIsSkipOpen(false)} />
       </div>
     </div>
   );

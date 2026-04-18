@@ -54,7 +54,11 @@ const Login = () => {
         setErrors({ email: "Invalid email or password" });
       } else {
         localStorage.setItem('user_email', data.email);
-        navigate('/home');
+        if (localStorage.getItem('quiz_completed') !== 'true') {
+          navigate('/createhealth');
+        } else {
+          navigate('/home');
+        }
       }
     }
   };

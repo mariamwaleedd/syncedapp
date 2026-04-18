@@ -6,6 +6,7 @@ import {
   Edit3, FileText, Download, Plus 
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
+import GlassToast from '../../common/GlassToast';
 import { supabase } from '../../supabaseClient';
 import './FamilyProfile.css';
 
@@ -15,6 +16,7 @@ const FamilyProfile = () => {
   const [member, setMember] = useState(null);
   const [activeMood, setActiveMood] = useState('Great');
   const [activeTab, setActiveTab] = useState('Allergies');
+  const [toastMsg, setToastMsg] = useState('');
 
   useEffect(() => {
     if (id) fetchMember();
@@ -57,7 +59,7 @@ const FamilyProfile = () => {
               <h1>{member.full_name}</h1>
               <p>{member.relationship} • {calculateAge(member.dob)} years old</p>
             </div>
-            <button className="fp-call-btn"><Phone size={20} fill="white" stroke="none" /></button>
+            <button className="fp-call-btn" onClick={() => setToastMsg(`Calling ${member.full_name}...`)}><Phone size={20} fill="white" stroke="none" /></button>
           </div>
         </header>
         <main className="fp-scroll">
@@ -153,6 +155,7 @@ const FamilyProfile = () => {
         </main>
       </div>
       <TouchBar />
+      <GlassToast message={toastMsg} isOpen={!!toastMsg} onClose={() => setToastMsg('')} type="info" />
     </div>
   );
 };

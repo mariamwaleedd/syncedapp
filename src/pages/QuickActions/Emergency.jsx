@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
@@ -8,10 +8,12 @@ import {
   Pill, AlertCircle 
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
+import GlassToast from '../../common/GlassToast';
 import './Emergency.css';
 
 const Emergency = () => {
   const navigate = useNavigate();
+  const [toastMsg, setToastMsg] = useState('');
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -58,15 +60,15 @@ const Emergency = () => {
           animate="visible"
         >
           <motion.div variants={itemVariants} className="em-dial-grid">
-            <div className="em-dial-box red">
+            <div className="em-dial-box red" onClick={() => setToastMsg('Calling 911...')}>
               <Phone size={24} fill="white" stroke="none" />
               <strong>911</strong>
             </div>
-            <div className="em-dial-box orange">
+            <div className="em-dial-box orange" onClick={() => setToastMsg('Calling 122...')}>
               <Ambulance size={24} strokeWidth={1.5} />
               <strong>122</strong>
             </div>
-            <div className="em-dial-box purple">
+            <div className="em-dial-box purple" onClick={() => setToastMsg('Calling 108...')}>
               <Activity size={24} strokeWidth={1.5} />
               <strong>108</strong>
             </div>
@@ -148,7 +150,7 @@ const Emergency = () => {
                       <p>{c.rel}</p>
                     </div>
                   </div>
-                  <button className="em-call-btn">
+                  <button className="em-call-btn" onClick={() => setToastMsg(`Calling ${c.name}...`)}>
                     <Phone size={18} fill="#FFF" stroke="none" />
                   </button>
                 </div>
@@ -180,7 +182,7 @@ const Emergency = () => {
                     </div>
                   </div>
                   <div className="em-hosp-btns">
-                    <button className="em-h-btn call"><Phone size={14} fill="white" stroke="none" /> Call</button>
+                    <button className="em-h-btn call" onClick={() => setToastMsg(`Calling ${h.name}...`)}><Phone size={14} fill="white" stroke="none" /> Call</button>
                     <button className="em-h-btn dir"><Navigation size={14} fill="white" stroke="none" /> Directions</button>
                   </div>
                 </div>
@@ -192,6 +194,7 @@ const Emergency = () => {
         </motion.div>
       </div>
       <TouchBar />
+      <GlassToast message={toastMsg} isOpen={!!toastMsg} onClose={() => setToastMsg('')} type="info" />
     </div>
   );
 };

@@ -1,14 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Heart, AlertCircle, Pill, Activity, ArrowRight, ArrowLeft, AlertTriangle } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
 import './MedicalHistory.css';
+import SkipQuizModal from '../../common/SkipQuizModal';
 
 const MedicalHistory = () => {
   const navigate = useNavigate();
+  const [isSkipOpen, setIsSkipOpen] = useState(false);
   const [allergies, setAllergies] = useState('');
   const [conditions, setConditions] = useState('');
   const [meds, setMeds] = useState('');
+
+  useEffect(() => {
+    const id = localStorage.getItem('health_id');
+    if (id) {
+      supabase.from('application_healthId').select('allergies, chronic_conditions, medications').eq('id', id).single().then(({ data, error }) => {
+        if (data && !error) {
+          if (data.allergies) setAllergies(data.allergies);
+          if (data.chronic_conditions) setConditions(data.chronic_conditions);
+          if (data.medications) setMeds(data.medications);
+        }
+      });
+    }
+  }, []);
 
   const handleContinue = async () => {
     const id = localStorage.getItem('health_id');
@@ -23,7 +38,7 @@ const MedicalHistory = () => {
         <div className="mh-nav-header">
           <div className="mh-progress-info"><span className="mh-step-label">Step 4 of 8</span><span className="mh-percent-label">50%</span></div>
           <div className="mh-track"><div className="mh-fill" style={{ width: '50%' }}></div></div>
-          <button className="mh-skip-btn" onClick={() => navigate('/')}>Skip</button>
+          <button className="mh-skip-btn" onClick={() => setIsSkipOpen(true)}>Skip</button>
         </div>
         <div className="mh-hero">
           <div className="mh-icon-box"><Heart size={50} fill="white" color="white" /></div>
@@ -39,6 +54,7 @@ const MedicalHistory = () => {
           <button className="mh-back-btn" onClick={() => navigate(-1)}><ArrowLeft size={18} /><span>Back</span></button>
           <button className="mh-continue-btn" onClick={handleContinue}><span>Continue</span><ArrowRight size={18} /></button>
         </div>
+        <SkipQuizModal isOpen={isSkipOpen} onClose={() => setIsSkipOpen(false)} />
       </div>
     </div>
   );
