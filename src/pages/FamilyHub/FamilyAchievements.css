@@ -1,13 +1,13 @@
 .fa-root {
-  background-color: #010422;
+  background-color: var(--bg-color);
   width: 100%;
-  max-width: 430px;
+  max-width: 480px;
   min-height: 100vh;
   margin: 0 auto;
   position: relative;
   overflow-x: hidden;
-  font-family: 'General Sans', sans-serif;
-  color: #FFFFFF;
+  font-family: var(--font-main);
+  color: var(--text-main);
   display: flex;
   flex-direction: column;
 }
@@ -15,7 +15,8 @@
 .fa-bg-grad {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(180deg, rgba(100, 181, 246, 0.1) 0%, #010422 100%);
+  background: linear-gradient(180deg, var(--accent-blue), transparent);
+  opacity: 0.1;
   z-index: 1;
 }
 
@@ -24,14 +25,14 @@
   top: 0; left: 0; width: 100%; height: 100%;
   background-image: url('../../imgs/bg.png');
   background-size: cover;
-  opacity: 0.2;
+  opacity: 0.1;
   z-index: 2;
 }
 
 .fa-header {
   position: relative;
   z-index: 3;
-  padding: 24px 24px 10px;
+  padding: 24px var(--app-h-padding) 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -40,10 +41,10 @@
 .fa-back-btn {
   width: 44px;
   height: 44px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--btn-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 50%;
-  color: #FFF;
+  color: var(--text-main);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,8 +52,8 @@
 }
 
 .fa-header h1 {
-  font-family: 'Instrument Serif', serif;
-  font-size: 28px;
+  font-family: var(--font-title);
+  font-size: var(--size-title);
   font-weight: 400;
   margin: 0;
 }
@@ -61,15 +62,15 @@
   position: relative;
   z-index: 3;
   flex: 1;
-  padding: 20px 24px 120px;
+  padding: 20px var(--app-h-padding) 100px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: var(--section-gap);
 }
 
 .fa-glass {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 24px;
   backdrop-filter: blur(14px);
 }
@@ -82,14 +83,14 @@
 }
 
 .fa-sec-head h2, .fa-sec-title {
-  font-family: 'Instrument Serif', serif;
+  font-family: var(--font-title);
   font-size: 24px;
   font-weight: 400;
   margin: 0;
 }
 
 .fa-chart-container {
-  padding: 24px;
+  padding: var(--card-padding);
   height: 220px;
   display: flex;
   flex-direction: column;
@@ -116,7 +117,7 @@
 .fa-bar-track {
   width: 8px;
   height: 120px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--btn-bg);
   border-radius: 4px;
   position: relative;
   overflow: hidden;
@@ -126,7 +127,7 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  background: #64B5F6;
+  background: var(--accent-blue);
   border-radius: 4px;
 }
 
@@ -142,7 +143,7 @@
 .fa-chart-legend {
   text-align: center;
   font-size: 11px;
-  opacity: 0.4;
+  color: var(--sub-text);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -174,7 +175,7 @@
 .fa-m-avatar {
   width: 52px;
   height: 52px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--btn-bg);
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -186,7 +187,7 @@
   position: absolute;
   top: -6px;
   right: -6px;
-  background: #010422;
+  background: var(--bg-color);
   border: 1px solid #FFD54F;
   width: 20px;
   height: 20px;
@@ -212,8 +213,8 @@
 }
 
 .fa-badge {
-  background: rgba(100, 181, 246, 0.1);
-  color: #64B5F6;
+  background: var(--glass-bg);
+  color: var(--accent-blue);
   font-size: 10px;
   font-weight: 700;
   padding: 4px 8px;
@@ -221,15 +222,16 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  border: 1px solid var(--glass-border);
 }
 
-.fa-badge.gym { background: rgba(0, 230, 118, 0.1); color: #00E676; }
-.fa-badge.energy { background: rgba(255, 213, 79, 0.1); color: #FFD54F; }
+.fa-badge.gym { color: #00E676; }
+.fa-badge.energy { color: #FFD54F; }
 
 .fa-congrat-btn {
-  background: rgba(100, 181, 246, 0.1);
-  border: 1px solid rgba(100, 181, 246, 0.2);
-  color: #64B5F6;
+  background: var(--btn-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--accent-blue);
   padding: 8px 12px;
   border-radius: 12px;
   font-size: 12px;
