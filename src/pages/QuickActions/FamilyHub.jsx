@@ -6,7 +6,7 @@ import {
   Plus, ChevronRight, Activity, 
   Target, Users, Weight, 
   Moon, Footprints, AlertCircle, Trash2, Edit3, 
-  Trophy, MessageSquare
+  Trophy, MessageSquare, Box
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import ConfirmModal from '../../common/ConfirmModal';
@@ -119,6 +119,13 @@ const FamilyHub = () => {
             <div className="fh-vital-txt">
               <h4>{t('familyChat')}</h4>
               <span>5 {t('newMessagesCount')}</span>
+            </div>
+          </div>
+          <div className="fh-vital-card fh-glass cyan" onClick={() => navigate('/familyhub/ar')}>
+            <Box size={20} />
+            <div className="fh-vital-txt">
+              <h4>AR Experience</h4>
+              <span>{t('previewAR') || 'Explore AR'}</span>
             </div>
           </div>
         </div>

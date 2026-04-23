@@ -87,6 +87,7 @@ import ChooseAvatar from './pages/FamilyHub/ChooseAvatar';
 import FamilyProfile from './pages/FamilyHub/FamilyProfile';
 import FamilyAchievements from './pages/FamilyHub/FamilyAchievements';
 import FamilyChat from './pages/FamilyHub/FamilyChat';
+import SyncedAR from './pages/FamilyHub/SyncedAR';
 import AddReminder from './pages/QuickActions/AddReminder';
 import Goals from './pages/WellnessLifestyle/Goals';
 import Exercise from './pages/WellnessLifestyle/Exercise';
@@ -246,6 +247,7 @@ const Routing = () => {
         <Route path="/familyhub/achievements" element={<FamilyAchievements/>} />
         <Route path="/familyhub/chat" element={<FamilyChat/>} />
         <Route path="/familyhub/chat/:id" element={<FamilyChat/>} />
+        <Route path="/familyhub/ar" element={<SyncedAR/>} />
 
 
         <Route path="/*" element={<ErrorPage />} />

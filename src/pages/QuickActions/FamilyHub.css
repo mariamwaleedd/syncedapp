@@ -95,6 +95,7 @@
 .fh-vital-card.purple { background: rgba(184, 159, 255, 0.1); color: #B89FFF; }
 .fh-vital-card.orange { background: rgba(255, 138, 0, 0.1); color: #FF8A00; }
 .fh-vital-card.green { background: rgba(0, 230, 118, 0.1); color: #00E676; }
+.fh-vital-card.cyan { background: rgba(0, 255, 255, 0.1); color: #00FFFF; }
 .fh-vital-txt h4 { margin: 0; font-size: 15px; font-weight: 600; color: #FFF; }
 .fh-vital-txt span { font-size: 12px; opacity: 0.5; font-weight: 600; }
 
