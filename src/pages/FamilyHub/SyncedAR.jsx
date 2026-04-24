@@ -2,17 +2,30 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Camera, RefreshCw } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
+import WelcomeModel from '../../ar/welcome.glb';
 import MenuModel from '../../ar/MENU.glb';
 import './SyncedAR.css';
 
 const SyncedAR = () => {
   const navigate = useNavigate();
   const modelRef = useRef(null);
+  const [currentStage, setCurrentStage] = useState('welcome');
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
   useEffect(() => {
-    // Ensure Model Viewer is loaded
     if (!customElements.get('model-viewer')) {
       import('@google/model-viewer');
     }
+
+    const timer = setTimeout(() => {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentStage('menu'); 
+        setIsTransitioning(false);
+      }, 400);
+    }, 5000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const handleARClick = () => {
@@ -32,7 +45,7 @@ const SyncedAR = () => {
           </button>
           <div className="header-text">
             <h1 className="ar-main-title">Synced AR</h1>
-            <span className="ar-badge">MENU</span>
+            <span className="ar-badge">{currentStage === 'welcome' ? 'WELCOME' : 'MENU'}</span>
           </div>
           <button className="ar-reset-btn" onClick={() => window.location.reload()}>
             <RefreshCw size={18} />
@@ -41,21 +54,26 @@ const SyncedAR = () => {
 
         <main className="ar-content">
           <div className="ar-welcome-card">
-            <h2>Menu Unlocked</h2>
-            <p>The menu is ready. Use the button below to view in AR.</p>
+            <h2>{currentStage === 'welcome' ? 'Initializing Experience...' : 'Menu Unlocked'}</h2>
+            <p>
+              {currentStage === 'welcome' 
+                ? "System syncing... please wait." 
+                : "The menu is ready. Use the button below to view in AR."}
+            </p>
           </div>
 
-          <div className="ar-viewer-container">
+          <div className={`ar-viewer-container ${isTransitioning ? 'switching' : ''}`}>
             <model-viewer
+              key={currentStage} 
               ref={modelRef}
-              src={MenuModel}
+              src={currentStage === 'welcome' ? WelcomeModel : MenuModel}
               ar
               ar-modes="webxr scene-viewer quick-look"
               camera-controls
               auto-rotate
               shadow-intensity="2"
               environment-image="neutral"
-              camera-orbit="0deg 75deg 2.5m"
+              camera-orbit={currentStage === 'welcome' ? "0deg 75deg 2m" : "0deg 75deg 2.5m"}
               min-camera-orbit="auto auto 1.5m"
               max-camera-orbit="auto auto 10m"
               max-field-of-view="40deg"
