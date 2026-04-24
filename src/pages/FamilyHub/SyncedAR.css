@@ -1,16 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
-@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
-
 .ar-root {
-  background-color: #010422;
+  background-color: var(--bg-color);
   width: 100%;
-  max-width: var(--app-max-width);
-  min-height: 100vh;
-  margin: 0 auto;
+  height: 100vh;
   position: relative;
-  overflow-x: hidden;
-  font-family: 'General Sans', sans-serif;
-  color: #FFFFFF;
+  overflow: hidden;
+  color: var(--text-main);
+  font-family: var(--font-main);
   display: flex;
   flex-direction: column;
 }
@@ -18,152 +13,160 @@
 .ar-bg-grad {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(180deg, rgba(100, 181, 246, 0.15) 0%, #010422 100%);
+  background: linear-gradient(180deg, var(--accent-blue), transparent);
+  opacity: 0.1;
   z-index: 1;
+}
+
+.ar-bg-lines {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('../../imgs/bg.png');
+  background-size: cover;
+  opacity: 0.1;
+  z-index: 2;
 }
 
 .ar-wrapper {
   position: relative;
-  z-index: 3;
-  padding: 10px 24px 120px;
+  z-index: 5;
+  padding: 24px var(--app-h-padding) 100px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  flex: 1;
 }
 
 .ar-header {
-  padding: 15px 0 25px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .ar-circ-btn {
-  width: 44px; height: 44px;
-  background: var(--primary-action);
-  box-shadow: var(--primary-glow);
-  border: none;
+  width: 44px;
+  height: 44px;
+  background: var(--btn-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  color: #FFF;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
 
+.header-text {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 16px;
+}
+
 .ar-main-title {
-  font-family: 'Instrument Serif', serif;
-  font-size: 32px;
-  margin: 0;
+  font-family: var(--font-title);
+  font-size: var(--size-title);
   font-weight: 400;
+  margin: 0;
+}
+
+.ar-badge {
+  background: rgba(81, 162, 255, 0.15);
+  color: var(--accent-blue);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 800;
+  border: 1px solid var(--glass-border);
+  text-transform: uppercase;
+}
+
+.ar-reset-btn {
+  width: 40px;
+  height: 40px;
+  background: var(--btn-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .ar-content {
   flex: 1;
   display: flex;
   flex-direction: column;
+  gap: 20px;
   align-items: center;
-  gap: 30px;
-  margin-top: 20px;
 }
 
 .ar-welcome-card {
-  text-align: center;
-  padding: 24px;
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
   width: 100%;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  backdrop-filter: blur(14px);
+  padding: 20px;
+  text-align: left;
 }
 
 .ar-welcome-card h2 {
-  font-family: 'Instrument Serif', serif;
-  font-size: 28px;
-  margin-bottom: 12px;
+  font-family: var(--font-title);
+  font-size: 22px;
   font-weight: 400;
+  margin: 0 0 6px;
 }
 
 .ar-welcome-card p {
   font-size: 14px;
-  opacity: 0.6;
-  line-height: 1.6;
+  color: var(--sub-text);
+  margin: 0;
 }
 
 .ar-viewer-container {
   width: 100%;
-  height: 45vh;
+  flex: 1;
+  min-height: 300px;
   position: relative;
-  border-radius: 32px;
+  background: radial-gradient(circle, rgba(81, 162, 255, 0.08) 0%, transparent 70%);
+  border-radius: 28px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
 }
 
 model-viewer {
   width: 100%;
   height: 100%;
-  --poster-color: transparent;
+  display: block;
+  outline: none;
 }
 
-.ar-action-btn {
+#ar-button {
   width: 100%;
-  padding: 16px;
-  border-radius: 16px;
-  background: var(--primary-action);
-  box-shadow: var(--primary-glow);
+  max-width: 240px;
+  background: #FFFFFF;
+  color: #010422;
   border: none;
-  color: white;
-  font-weight: 600;
+  border-radius: 16px;
+  padding: 18px;
+  font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  font-size: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
   cursor: pointer;
+  margin-top: 10px;
   transition: transform 0.2s ease;
 }
 
-.ar-action-btn:active {
-  transform: scale(0.98);
+#ar-button:active {
+  transform: scale(0.96);
 }
 
-#ar-button {
-  display: none; /* We will trigger AR from our custom button */
-}
-
-.ar-hint {
-  font-size: 13px;
-  opacity: 0.5;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: -10px;
-}
-
-.progress-bar {
-  display: block;
-  width: 33%;
-  height: 4px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.progress-bar.hide {
+model-viewer::part(interaction-prompt) {
   display: none;
-}
-
-.update-bar {
-  background-color: #64B5F6;
-  width: 0%;
-  height: 100%;
-  border-radius: 25px;
-  transition: width 0.3s;
-}
-
-.ar-footer {
-  padding-bottom: 20px;
 }

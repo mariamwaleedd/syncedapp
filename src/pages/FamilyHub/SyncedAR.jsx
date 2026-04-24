@@ -1,22 +1,21 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, Maximize, Box, Info, Zap } from 'lucide-react';
+import { ChevronLeft, Camera, RefreshCw } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
-import { useLanguage } from '../../common/LanguageContext';
+import MenuModel from '../../ar/MENU.glb';
 import './SyncedAR.css';
 
 const SyncedAR = () => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
   const modelRef = useRef(null);
-
   useEffect(() => {
-    if (!window.customElements.get('model-viewer')) {
-      console.warn('model-viewer not yet registered');
+    // Ensure Model Viewer is loaded
+    if (!customElements.get('model-viewer')) {
+      import('@google/model-viewer');
     }
   }, []);
 
-  const handleActivateAR = () => {
+  const handleARClick = () => {
     if (modelRef.current) {
       modelRef.current.activateAR();
     }
@@ -25,61 +24,54 @@ const SyncedAR = () => {
   return (
     <div className="ar-root">
       <div className="ar-bg-grad"></div>
+      <div className="ar-bg-lines"></div>
       <div className="ar-wrapper">
         <header className="ar-header">
           <button className="ar-circ-btn" onClick={() => navigate(-1)}>
             <ChevronLeft size={22} />
           </button>
-          <h1 className="ar-main-title">Synced AR</h1>
+          <div className="header-text">
+            <h1 className="ar-main-title">Synced AR</h1>
+            <span className="ar-badge">MENU</span>
+          </div>
+          <button className="ar-reset-btn" onClick={() => window.location.reload()}>
+            <RefreshCw size={18} />
+          </button>
         </header>
 
         <main className="ar-content">
           <div className="ar-welcome-card">
-            <Box size={40} color="#64B5F6" style={{ marginBottom: '16px' }} />
-            <h2>{t('welcomeAR')}</h2>
-            <p>Experience the future of health management in your own space. Preview our interactive health modules in Augmented Reality.</p>
+            <h2>Menu Unlocked</h2>
+            <p>The menu is ready. Use the button below to view in AR.</p>
           </div>
 
           <div className="ar-viewer-container">
-            <model-viewer 
+            <model-viewer
               ref={modelRef}
-              src="ss.glb" 
-              ar 
-              ar-modes="webxr scene-viewer quick-look" 
-              camera-controls 
-              tone-mapping="neutral" 
-              shadow-intensity="1" 
-              auto-rotate 
-              min-camera-orbit="auto auto 11.44m" 
-              min-field-of-view="30deg"
-              alt="A 3D model of Synced AR Experience"
+              src={MenuModel}
+              ar
+              ar-modes="webxr scene-viewer quick-look"
+              camera-controls
+              auto-rotate
+              shadow-intensity="2"
+              environment-image="neutral"
+              camera-orbit="0deg 75deg 2.5m"
+              min-camera-orbit="auto auto 1.5m"
+              max-camera-orbit="auto auto 10m"
+              max-field-of-view="40deg"
+              touch-action="pan-y"
             >
               <div className="progress-bar hide" slot="progress-bar">
                 <div className="update-bar"></div>
               </div>
-              <button slot="ar-button" id="ar-button">
-                {/* Hidden original button, we use our custom one below */}
-              </button>
-              <div id="ar-prompt">
-                <img src="https://modelviewer.dev/shared-assets/icons/hand.png" alt="AR Hand Gesture" />
-              </div>
             </model-viewer>
           </div>
 
-          <button className="ar-action-btn" onClick={handleActivateAR}>
-            <Zap size={20} fill="white" />
-            <span>{t('viewInSpace')}</span>
+          <button id="ar-button" onClick={handleARClick}>
+            <Camera size={20} />
+            ACTIVATE SPACE
           </button>
-
-          <div className="ar-hint">
-            <Info size={16} />
-            <span>Move your phone to detect the floor</span>
-          </div>
         </main>
-
-        <div className="ar-footer">
-          <div className="fp-ios-bar"></div>
-        </div>
       </div>
       <TouchBar />
     </div>
@@ -87,3 +79,5 @@ const SyncedAR = () => {
 };
 
 export default SyncedAR;
+
+
