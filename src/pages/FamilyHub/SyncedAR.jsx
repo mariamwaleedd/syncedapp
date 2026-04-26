@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, Camera, RefreshCw } from 'lucide-react';
+import { ChevronLeft, Camera, RefreshCw, Activity, Trophy } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import WelcomeModel from '../../ar/welcome.glb';
-import MenuModel from '../../ar/MENU.glb';
+import MenuModel from '../../ar/Main_Menu.glb';
 import './SyncedAR.css';
 
 const SyncedAR = () => {
@@ -20,7 +20,7 @@ const SyncedAR = () => {
     const timer = setTimeout(() => {
       setIsTransitioning(true);
       setTimeout(() => {
-        setCurrentStage('menu'); 
+        setCurrentStage('MAIN_MENU'); 
         setIsTransitioning(false);
       }, 400);
     }, 5000);
@@ -33,6 +33,7 @@ const SyncedAR = () => {
       modelRef.current.activateAR();
     }
   };
+
 
   return (
     <div className="ar-root">
@@ -85,10 +86,33 @@ const SyncedAR = () => {
             </model-viewer>
           </div>
 
-          <button id="ar-button" onClick={handleARClick}>
-            <Camera size={20} />
-            ACTIVATE SPACE
-          </button>
+          {currentStage === 'MAIN_MENU' && (
+            <div className="ar-actions">
+              <button id="ar-button" onClick={handleARClick}>
+                <Camera size={20} />
+                ACTIVATE SPACE
+              </button>
+              <button className="ar-scan-trigger" onClick={() => window.location.href = "https://www.kivicube.com/face-scenes/kFmzrpsDBtHMBI12AHkoOmf6unAezSnT"}>
+                <Camera size={20} />
+                FACE DETECTION
+              </button>
+              <button className="ar-scan-trigger" onClick={() => console.log('Quick Diagnosis')}>
+                <Activity size={20} />
+                QUICK DIAGNOSIS
+              </button>
+              <button className="ar-scan-trigger" onClick={() => console.log('Score Board')}>
+                <Trophy size={20} />
+                SCORE BOARD
+              </button>
+            </div>
+          )}
+
+          {currentStage !== 'MAIN_MENU' && (
+            <button id="ar-button" onClick={handleARClick}>
+              <Camera size={20} />
+              ACTIVATE SPACE
+            </button>
+          )}
         </main>
       </div>
       <TouchBar />
