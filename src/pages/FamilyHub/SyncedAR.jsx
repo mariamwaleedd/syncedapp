@@ -96,11 +96,11 @@ const SyncedAR = () => {
                 <Camera size={20} />
                 FACE DETECTION
               </button>
-              <button className="ar-scan-trigger" onClick={() => console.log('Quick Diagnosis')}>
+              <button className="ar-scan-trigger" onClick={() => window.location.href = "https://www.kivicube.com/face-scenes/Rqpjtg9Gec84Ptm9NhozRp97RyKkJDoD"}>
                 <Activity size={20} />
                 QUICK DIAGNOSIS
               </button>
-              <button className="ar-scan-trigger" onClick={() => console.log('Score Board')}>
+              <button className="ar-scan-trigger" onClick={() => window.location.href = "https://www.kivicube.com/face-scenes/xYnP5FPj8FZLvtKpZuDxlaNNUtagLBCm"}>
                 <Trophy size={20} />
                 SCORE BOARD
               </button>
