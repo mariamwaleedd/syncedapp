@@ -3,7 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { 
   ChevronLeft, Bell, Phone, Heart, Activity, 
   Thermometer, Wind, Shield, Calendar, 
-  Edit3, FileText, Download, Plus, Zap, Lock, MessageSquare 
+  Edit3, FileText, Download, Plus, Zap, Lock, MessageSquare,
+  Battery
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import GlassToast from '../../common/GlassToast';
@@ -20,6 +21,7 @@ const FamilyProfile = () => {
   const [activeTab, setActiveTab] = useState('Allergies');
   const [toastMsg, setToastMsg] = useState('');
   const [showPoke, setShowPoke] = useState(false);
+  const [showChargeAlert, setShowChargeAlert] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [privacySettings, setPrivacySettings] = useState({ vitals: true, records: true, meds: true });
   const [shareAudience, setShareAudience] = useState(t('familyOnly'));
@@ -27,6 +29,11 @@ const FamilyProfile = () => {
   const handlePoke = () => {
     setShowPoke(true);
     setTimeout(() => setShowPoke(false), 2500);
+  };
+
+  const handleChargeAlert = () => {
+    setShowChargeAlert(true);
+    setTimeout(() => setShowChargeAlert(false), 2500);
   };
 
   useEffect(() => {
@@ -37,7 +44,30 @@ const FamilyProfile = () => {
   const fetchMember = async () => {
     const { data, error } = await supabase.from('application_family').select('*').eq('id', id).single();
     if (!error && data) {
-      setMember(data);
+      let battery = 85;
+      try {
+        const storedBatteries = JSON.parse(localStorage.getItem('family_batteries') || '{}');
+        battery = storedBatteries[data.id];
+        if (battery === undefined) {
+          const nameLower = data.full_name.toLowerCase();
+          if (nameLower.includes('ahmed')) {
+            battery = 12;
+          } else if (nameLower.includes('mona')) {
+            battery = 78;
+          } else if (nameLower.includes('maya')) {
+            battery = 45;
+          } else {
+            battery = Math.floor(Math.random() * (98 - 25 + 1)) + 25;
+          }
+          storedBatteries[data.id] = battery;
+          localStorage.setItem('family_batteries', JSON.stringify(storedBatteries));
+        }
+      } catch (e) {}
+
+      setMember({
+        ...data,
+        battery_percentage: battery
+      });
       if (data.mood) setActiveMood(data.mood);
     } else {
       setMember({}); // Fallback for rapid load
@@ -105,6 +135,46 @@ const FamilyProfile = () => {
                 <div className="fp-v-top"><Wind size={16} color="#00E676" /> <span>{t('oxygen')}</span></div>
                 <div className="fp-v-val">{member.oxygen}<span>%</span></div>
                 <div className="fp-status-tag green">{t('good')}</div>
+              </div>
+              <div className="fp-vital-box fp-glass" style={{ gridColumn: 'span 2', marginTop: '4px' }}>
+                <div className="fp-v-top">
+                  <Battery size={16} color={member.battery_percentage <= 20 ? '#FF416C' : '#00E676'} />
+                  <span>{lang === 'ar' ? 'بطارية الهاتف' : 'Phone Battery'}</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '4px' }}>
+                  <div className="fp-v-val" style={{ margin: 0, color: member.battery_percentage <= 20 ? '#FF416C' : '#FFF' }}>
+                    {member.battery_percentage}<span>%</span>
+                  </div>
+                  <div className="fp-status-tag" style={{ backgroundColor: member.battery_percentage <= 20 ? 'rgba(255, 65, 108, 0.15)' : 'rgba(0, 230, 118, 0.15)', color: member.battery_percentage <= 20 ? '#FF416C' : '#00E676', fontWeight: 700 }}>
+                    {member.battery_percentage <= 20 
+                      ? (lang === 'ar' ? 'ضعيفة جداً' : 'Critically Low') 
+                      : (lang === 'ar' ? 'جيدة' : 'Healthy')}
+                  </div>
+                </div>
+                {member.battery_percentage <= 20 && (
+                  <button 
+                    onClick={handleChargeAlert}
+                    className="fp-battery-alert-btn"
+                    style={{
+                      marginTop: '10px',
+                      background: 'linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%)',
+                      border: 'none',
+                      borderRadius: '10px',
+                      color: '#FFF',
+                      padding: '8px 12px',
+                      fontSize: '11px',
+                      fontWeight: '700',
+                      cursor: 'pointer',
+                      boxShadow: '0 4px 10px rgba(255, 65, 108, 0.3)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '6px'
+                    }}
+                  >
+                    <span>⚡ {lang === 'ar' ? 'تنبيه العضو بالشحن' : 'Alert Member to Charge'}</span>
+                  </button>
+                )}
               </div>
             </div>
           </section>
@@ -245,6 +315,18 @@ const FamilyProfile = () => {
             </div>
             <h2>{t('youPoked')} {member.full_name}!</h2>
             <p>{t('pokeNote')}</p>
+          </div>
+        </div>
+      )}
+
+      {showChargeAlert && (
+        <div className="fp-poke-screen" style={{ background: 'linear-gradient(135deg, rgba(255, 65, 108, 0.95) 0%, rgba(1, 4, 34, 0.98) 100%)' }}>
+          <div className="fp-poke-anim-box">
+            <div className="fp-poke-circle" style={{ background: 'rgba(255, 65, 108, 0.2)', borderColor: 'rgba(255, 65, 108, 0.4)', boxShadow: '0 0 50px rgba(255, 65, 108, 0.3)' }}>
+              <Battery size={40} style={{ fill: '#FF416C', stroke: 'none' }} />
+            </div>
+            <h2>{lang === 'ar' ? 'تم تنبيه العضو!' : 'Member Alerted!'}</h2>
+            <p style={{ color: '#FFF' }}>{lang === 'ar' ? `تم إرسال تنبيه شحن البطارية إلى ${member.full_name}.` : `Charge alert successfully sent to ${member.full_name}.`}</p>
           </div>
         </div>
       )}

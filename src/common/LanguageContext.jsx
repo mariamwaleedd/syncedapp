@@ -55,7 +55,7 @@ const translations = {
     medicine: 'Medicine',
     reports: 'Reports',
     devices: 'Devices',
-    healthAI: 'Health AI',
+    healthAI: 'AI Assistant',
     settings: 'Settings',
     dailyGoals: 'Daily Goals',
     weeklyScore: 'Weekly Health Score',
@@ -118,8 +118,8 @@ const translations = {
     myProfileSub: 'Your personalized health ID',
     medTrack: 'Medicine Tracker',
     medTrackSub: 'Track medications and schedules',
-    healthAI: 'AI Health Assistant',
-    healthAISub: 'Chat with our AI health bot',
+    healthAI: 'AI Assistant',
+    healthAISub: 'Chat with our AI assistant',
     wellness: 'Wellness & Lifestyle',
     wellnessSub: 'Track your daily health',
     familyMon: 'Family & Monitoring',
@@ -310,7 +310,7 @@ const translations = {
     dailyStreak: 'Daily Streak',
 
     // Health AI
-    aiGreeting: "Hello! I'm your personal AI Health Assistant. I'm here to help you with questions about your diet, nutrition, fitness, wellness, and overall health. How can I assist you today?",
+    aiGreeting: "Hello! I'm your personal AI Assistant. I'm here to help you with questions about your diet, nutrition, fitness, wellness, and overall health. How can I assist you today?",
     quickQsLabel: 'Quick questions:',
     q1: 'What should I eat for breakfast?',
     q2: 'How many calories should I consume?',
@@ -318,7 +318,7 @@ const translations = {
     q4: 'How can I improve my heart health?',
     q5: 'Foods that boost brain function?',
     q6: 'Tips for better sleep?',
-    aiPlaceholder: 'Ask me about your health...',
+    aiPlaceholder: 'Ask our AI assistant...',
     aiResponseMock: "That's a great question! Based on your health profile, I recommend focusing on protein-rich meals and maintaining consistent hydration. Would you like a detailed plan?",
 
     // Reports
@@ -635,7 +635,7 @@ const translations = {
     welcomeDesc: 'Your comprehensive health and wellness ecosystem. Everything you need, centralized in one intelligent platform.',
     trackTitle: 'Track & Monitor',
     trackDesc: 'Log your medicines, monitor your daily vitals, and keep all your medical records securely in your pocket.',
-    aiTitle: 'AI Health Assistant',
+    aiTitle: 'AI Assistant',
     aiDesc: 'Chat with our smart AI for instant symptom analysis and seamlessly connect with top medical professionals.',
     familyTitle: 'Family & Emergency',
     familyDesc: 'Link your loved ones to a shared Family Hub, and get immediate access to one-tap emergency support.',
@@ -1144,6 +1144,25 @@ const translations = {
     save: 'Save',
     cancel: 'Cancel',
     next: 'Next',
+
+    // Add Reminder
+    addReminder: 'Add Reminder',
+    reminderType: 'Reminder Type',
+    reminderDetails: 'Reminder Details',
+    descriptionOptional: 'Description (Optional)',
+    titlePlaceholder: 'Enter reminder title...',
+    descriptionPlaceholder: 'Add a description...',
+    assignToMember: 'Assign To Member',
+    notificationPriority: 'Notification Priority',
+    everyDay: 'Every Day',
+    vitals: 'Vitals',
+    custom: 'Custom',
+    appointment: 'Appointment',
+    standard: 'Standard',
+    high: 'High',
+    urgent: 'Urgent',
+    createReminder: 'Create Reminder',
+    enterTitleError: 'Please enter a title for the reminder.',
   },
   ar: {
     // Auth
@@ -1205,7 +1224,7 @@ const translations = {
     medicine: 'الأدوية',
     reports: 'التقارير',
     devices: 'الأجهزة',
-    healthAI: 'مساعد الصحة',
+    healthAI: 'المساعد الذكي',
     settings: 'الإعدادات',
     dailyGoals: 'الأهداف اليومية',
     weeklyScore: 'النتيجة الصحية الأسبوعية',
@@ -1268,8 +1287,8 @@ const translations = {
     myProfileSub: 'هوية صحية مخصصة لك',
     medTrack: 'متتبع الأدوية',
     medTrackSub: 'تتبع الأدوية والجداول الزمنية',
-    healthAI: 'مساعد الصحة الذكي',
-    healthAISub: 'تحدث مع بوت الصحة الذكي',
+    healthAI: 'المساعد الذكي',
+    healthAISub: 'تحدث مع المساعد الذكي',
     wellness: 'العافية ونمط الحياة',
     wellnessSub: 'تتبع صحتك اليومية',
     familyMon: 'العائلة والمراقبة',
@@ -1437,7 +1456,7 @@ const translations = {
     dailyStreak: 'الاستمرارية اليومية',
 
     // Health AI
-    aiGreeting: "مرحباً! أنا مساعدك الصحي الذكي. أنا هنا لمساعدتك في الاستفسارات المتعلقة بالنظام الغذائي والتغذية واللياقة البدنية والعافية والصحة العامة. كيف يمكنني مساعدتك اليوم؟",
+    aiGreeting: "مرحباً! أنا مساعدك الذكي. أنا هنا لمساعدتك في الاستفسارات المتعلقة بالنظام الغذائي والتغذية واللياقة البدنية والعافية والصحة العامة. كيف يمكنني مساعدتك اليوم؟",
     quickQsLabel: 'أسئلة سريعة:',
     q1: 'ماذا يجب أن آكل في الفطور؟',
     q2: 'كم عدد السعرات التي يجب تناولها؟',
@@ -1445,7 +1464,7 @@ const translations = {
     q4: 'كيف يمكنني تحسين صحة قلبي؟',
     q5: 'أطعمة تعزز وظائف الدماغ؟',
     q6: 'نصائح لنوم أفضل؟',
-    aiPlaceholder: 'اسألني عن صحتك...',
+    aiPlaceholder: 'اسأل مساعدنا الذكي...',
     aiResponseMock: "هذا سؤال رائع! بناءً على ملفك الصحي، أنصحك بالتركيز على الوجبات الغنية بالبروتين والحفاظ على ترطيب دائم. هل تريد خطة مفصلة؟",
 
     // Medicine Tracker
@@ -1750,7 +1769,7 @@ const translations = {
     welcomeDesc: 'منظومتك الشاملة للصحة والعافية. كل ما تحتاجه، مجمع في منصة ذكية واحدة.',
     trackTitle: 'التتبع والمراقبة',
     trackDesc: 'سجل أدويتك، وراقب علاماتك الحيوية اليومية، واحتفظ بجميع سجلاتك الطبية بأمان في جيبك.',
-    aiTitle: 'مساعد الصحة بالذكاء الاصطناعي',
+    aiTitle: 'المساعد الذكي بالذكاء الاصطناعي',
     aiDesc: 'دردش مع ذكائنا الاصطناعي الذكي لتحليل الأعراض فوراً والتواصل بسلاسة مع أفضل المهنيين الطبيين.',
     familyTitle: 'العائلة والطوارئ',
     familyDesc: 'اربط أحباءك بمركز عائلي مشترك، واحصل على وصول فوري لدعم الطوارئ بضغطة واحدة.',
@@ -2259,6 +2278,25 @@ const translations = {
     save: 'حفظ',
     cancel: 'إلغاء',
     next: 'التالي',
+
+    // Add Reminder
+    addReminder: 'إضافة تذكير',
+    reminderType: 'نوع التذكير',
+    reminderDetails: 'تفاصيل التذكير',
+    descriptionOptional: 'الوصف (اختياري)',
+    titlePlaceholder: 'أدخل عنوان التذكير...',
+    descriptionPlaceholder: 'أضف وصفاً...',
+    assignToMember: 'تعيين لعضو',
+    notificationPriority: 'أولوية الإشعار',
+    everyDay: 'كل يوم',
+    vitals: 'العلامات الحيوية',
+    custom: 'مخصص',
+    appointment: 'موعد',
+    standard: 'عادي',
+    high: 'عالية',
+    urgent: 'عاجل',
+    createReminder: 'إنشاء تذكير',
+    enterTitleError: 'يرجى إدخال عنوان للتذكير.',
   }
 };
 

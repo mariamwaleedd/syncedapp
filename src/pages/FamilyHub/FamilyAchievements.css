@@ -199,6 +199,7 @@
 
 .fa-m-info {
   flex: 1;
+  min-width: 0;
 }
 
 .fa-m-info h3 {
@@ -209,6 +210,7 @@
 
 .fa-badge-row {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px;
 }
 
@@ -227,6 +229,10 @@
 
 .fa-badge.gym { color: #00E676; }
 .fa-badge.energy { color: #FFD54F; }
+
+.fa-action-area {
+  flex-shrink: 0;
+}
 
 .fa-congrat-btn {
   background: var(--btn-bg);

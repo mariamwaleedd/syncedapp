@@ -30,8 +30,8 @@ const UploadReport = () => {
     { name: 'Me', label: t('me'), emoji: '😊' },
     { name: 'Ahmed', label: lang === 'ar' ? 'أحمد' : 'Ahmed', emoji: '👦' },
     { name: 'Maya', label: lang === 'ar' ? 'مايا' : 'Maya', emoji: '😊' },
-    { name: 'Grandpa', label: t('relationships.Grandfather'), emoji: '👴' },
-    { name: 'Grandma', label: t('relationships.Grandmother'), emoji: '👵' },
+    { name: 'Grandpa', label: t('relationships')?.Grandfather || 'Grandpa', emoji: '👴' },
+    { name: 'Grandma', label: t('relationships')?.Grandmother || 'Grandma', emoji: '👵' },
     { name: 'Omar', label: lang === 'ar' ? 'عمر' : 'Omar', emoji: '👦' }
   ];
 

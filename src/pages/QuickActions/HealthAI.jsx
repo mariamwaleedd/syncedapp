@@ -24,7 +24,12 @@ const HealthAI = () => {
 
   useEffect(() => {
     if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+      const scrollContainer = scrollRef.current;
+      scrollContainer.scrollTop = scrollContainer.scrollHeight;
+      const timer = setTimeout(() => {
+        scrollContainer.scrollTop = scrollContainer.scrollHeight;
+      }, 100);
+      return () => clearTimeout(timer);
     }
   }, [chatLog]);
 

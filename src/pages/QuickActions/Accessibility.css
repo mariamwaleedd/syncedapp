@@ -104,3 +104,143 @@
   line-height: 1.6;
   margin: 0;
 }
+
+.acc-intro-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 30px 24px;
+  backdrop-filter: blur(15px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.acc-intro-card h2 {
+  font-family: var(--font-title);
+  font-size: 28px;
+  margin: 0;
+}
+
+.acc-intro-card p {
+  opacity: 0.6;
+  line-height: 1.5;
+  margin: 0;
+  font-size: 14px;
+}
+
+.acc-section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.acc-sec-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-title);
+  font-size: 22px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.acc-modes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.acc-mode-card {
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.acc-mode-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.acc-mode-card.active {
+  border-color: var(--accent-blue);
+  background: rgba(81, 162, 255, 0.12);
+  box-shadow: 0 4px 20px rgba(81, 162, 255, 0.2);
+}
+
+.acc-mode-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.acc-mode-icon.normal {
+  color: #64B5F6;
+  background: rgba(100, 181, 246, 0.1);
+}
+
+.acc-mode-icon.elderly {
+  color: #FFB74D;
+  background: rgba(255, 183, 77, 0.1);
+}
+
+.acc-mode-icon.kids {
+  color: #FF8A00;
+  background: rgba(255, 138, 0, 0.1);
+}
+
+.acc-mode-details {
+  flex: 1;
+}
+
+.acc-mode-details h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.acc-mode-details p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  opacity: 0.5;
+  line-height: 1.4;
+}
+
+.acc-radio-outer {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.acc-mode-card.active .acc-radio-outer {
+  border-color: var(--accent-blue);
+}
+
+.acc-radio-inner {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.acc-mode-card.active .acc-radio-inner {
+  background: var(--accent-blue);
+}

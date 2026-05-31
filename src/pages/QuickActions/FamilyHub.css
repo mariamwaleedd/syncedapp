@@ -132,8 +132,24 @@
 .fh-stat-row { display: flex; flex-wrap: wrap; gap: 8px; }
 .fh-stat-pill { background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 8px; font-size: 11px; font-weight: 600; display: flex; align-items: center; gap: 4px; opacity: 0.7; }
 .fh-stat-pill.mood { color: #00E676; background: rgba(0, 230, 118, 0.08); opacity: 1; }
+.fh-stat-pill.battery { background: rgba(0, 230, 118, 0.08); color: #00E676; opacity: 1; }
+.fh-stat-pill.battery.critical { background: rgba(255, 65, 108, 0.15); color: #FF416C; border: 1px solid rgba(255, 65, 108, 0.3); animation: fh-pulse-critical 1.5s infinite ease-in-out; }
 
 .fh-alert-pill { background: rgba(255, 138, 0, 0.1); color: #FF8A00; font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 10px; margin-top: 12px; display: inline-flex; align-items: center; gap: 6px; }
+
+@keyframes fh-pulse-critical {
+  0% { box-shadow: 0 0 0 0 rgba(255, 65, 108, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(255, 65, 108, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 65, 108, 0); }
+}
+
+.pulse-icon {
+  animation: fh-heartbeat 1.2s infinite alternate;
+}
+
+@keyframes fh-heartbeat {
+  to { transform: scale(1.2); }
+}
 
 .fh-arrow { opacity: 0.2; }
 

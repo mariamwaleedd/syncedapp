@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ChevronLeft, Bell, Calendar, Pill, 
   Plus, ChevronRight, Activity, 
   Target, Users, Weight, 
   Moon, Footprints, AlertCircle, Trash2, Edit3, 
-  Trophy, MessageSquare, Box
+  Trophy, MessageSquare, Box, Battery, X
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
 import ConfirmModal from '../../common/ConfirmModal';
+import GlassToast from '../../common/GlassToast';
 import { supabase } from '../../supabaseClient';
 import './FamilyHub.css';
 import { useLanguage } from '../../common/LanguageContext';
@@ -20,6 +21,8 @@ const FamilyHub = () => {
   const [members, setMembers] = useState([]);
   const [isEditMode, setIsEditMode] = useState(false);
   const [modalConfig, setModalConfig] = useState({ isOpen: false, member: null });
+  const [lowBatteryMember, setLowBatteryMember] = useState(null);
+  const [toastMsg, setToastMsg] = useState('');
 
   useEffect(() => {
     fetchMembers();
@@ -27,7 +30,60 @@ const FamilyHub = () => {
 
   const fetchMembers = async () => {
     const { data, error } = await supabase.from('application_family').select('*');
-    if (!error) setMembers(data);
+    if (!error && data) {
+      let storedBatteries = {};
+      try {
+        storedBatteries = JSON.parse(localStorage.getItem('family_batteries') || '{}');
+      } catch (e) {
+        storedBatteries = {};
+      }
+
+      let hasDyingBattery = false;
+      const updatedData = data.map(m => {
+        let battery = storedBatteries[m.id];
+        if (battery === undefined) {
+          const nameLower = m.full_name.toLowerCase();
+          if (nameLower.includes('ahmed')) {
+            battery = 12;
+          } else if (nameLower.includes('mona')) {
+            battery = 78;
+          } else if (nameLower.includes('maya')) {
+            battery = 45;
+          } else {
+            battery = Math.floor(Math.random() * (98 - 25 + 1)) + 25;
+          }
+          storedBatteries[m.id] = battery;
+        }
+
+        if (battery <= 20) {
+          hasDyingBattery = true;
+        }
+
+        return {
+          ...m,
+          battery_percentage: battery
+        };
+      });
+
+      localStorage.setItem('family_batteries', JSON.stringify(storedBatteries));
+      setMembers(updatedData);
+
+      const sessionAlerted = sessionStorage.getItem('low_battery_alerted');
+      if (hasDyingBattery && !sessionAlerted) {
+        const lowBatMember = updatedData.find(m => m.battery_percentage <= 20);
+        if (lowBatMember) {
+          setLowBatteryMember(lowBatMember);
+        }
+      }
+    }
+  };
+
+  const handleAlertMemberCharge = (member) => {
+    setToastMsg(lang === 'ar' 
+      ? `⚡ تم إرسال تنبيه الشحن إلى ${member.full_name}!` 
+      : `⚡ Charge alert sent to ${member.full_name}!`);
+    sessionStorage.setItem('low_battery_alerted', 'true');
+    setLowBatteryMember(null);
   };
 
   const handleDeleteClick = (id, name, e) => {
@@ -164,6 +220,17 @@ const FamilyHub = () => {
                       <span className="fh-stat-pill"><Moon size={10}/> {m.sleep_hours}</span>
                       <span className="fh-stat-pill"><Footprints size={10}/> {m.steps}</span>
                       <span className="fh-stat-pill mood"><Activity size={10}/> {m.mood}</span>
+                      <span 
+                        className={`fh-stat-pill battery ${m.battery_percentage <= 20 ? 'critical' : ''}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setLowBatteryMember(m);
+                        }}
+                        style={{ cursor: 'pointer', transition: 'all 0.3s ease' }}
+                        title={lang === 'ar' ? 'اضغط لتنبيه العضو بالشحن' : 'Click to alert member to charge phone'}
+                      >
+                        <Battery size={10} className={m.battery_percentage <= 20 ? 'pulse-icon' : ''} /> {m.battery_percentage}%
+                      </span>
                     </div>
                     {m.alert_text && <div className="fh-alert-pill"><AlertCircle size={10}/> {m.alert_text}</div>}
                   </div>
@@ -216,6 +283,113 @@ const FamilyHub = () => {
         onClose={() => setModalConfig({ isOpen: false, member: null })}
         confirmText={t('remove')}
       />
+
+      {/* Low Battery Alert Popup */}
+      <AnimatePresence>
+        {lowBatteryMember && (
+          <>
+            <motion.div 
+              className="cm-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setLowBatteryMember(null)}
+              style={{ zIndex: 9999 }}
+            />
+            <div className="cm-wrapper" style={{ zIndex: 10000 }}>
+              <motion.div 
+                className="cm-content ha-glass low-battery-alert"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 65, 108, 0.15) 0%, rgba(1, 4, 34, 0.95) 100%)',
+                  border: '1px solid rgba(255, 65, 108, 0.3)',
+                  boxShadow: '0 8px 32px rgba(255, 65, 108, 0.25)',
+                  padding: '24px',
+                  borderRadius: '28px',
+                  textAlign: 'center',
+                  maxWidth: '360px',
+                  width: '90%'
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '-10px' }}>
+                  <button 
+                    onClick={() => setLowBatteryMember(null)}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: 'rgba(255,255,255,0.6)',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
+                
+                <div className="lb-icon-container" style={{ margin: '15px auto', width: '80px', height: '80px', borderRadius: '50%', background: 'rgba(255, 65, 108, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+                  <div className="lb-pulse-ring" style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', border: '2px dashed rgba(255, 65, 108, 0.5)', animation: 'spin 12s linear infinite' }}></div>
+                  <span style={{ fontSize: '32px' }}>{lowBatteryMember.emoji}</span>
+                  <div style={{ position: 'absolute', bottom: '0', right: '0', background: '#FF416C', color: '#FFF', borderRadius: '50%', width: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.3)' }}>
+                    <Battery size={14} style={{ animation: 'fh-heartbeat 0.8s infinite alternate' }} />
+                  </div>
+                </div>
+
+                <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#FFF', margin: '10px 0 5px' }}>
+                  {lang === 'ar' ? '⚠️ تنبيه انخفاض البطارية!' : '⚠️ Low Battery Alert!'}
+                </h3>
+                
+                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)', lineHeight: '1.5', margin: '10px 0 20px' }}>
+                  {lang === 'ar' 
+                    ? `بطارية هاتف ${lowBatteryMember.full_name} على وشك النفاد (${lowBatteryMember.battery_percentage}%). الرجاء تنبيه العضو لشحن الهاتف.` 
+                    : `${lowBatteryMember.full_name}'s phone battery is about to die (${lowBatteryMember.battery_percentage}%). Alert member to charge phone.`}
+                </p>
+
+                <div style={{ display: 'flex', gap: '12px' }}>
+                  <button 
+                    onClick={() => setLowBatteryMember(null)}
+                    style={{
+                      flex: 1,
+                      background: 'rgba(255,255,255,0.08)',
+                      border: '1px solid rgba(255,255,255,0.12)',
+                      borderRadius: '14px',
+                      color: '#FFF',
+                      padding: '12px',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s'
+                    }}
+                  >
+                    {lang === 'ar' ? 'إلغاء' : 'Cancel'}
+                  </button>
+                  <button 
+                    onClick={() => handleAlertMemberCharge(lowBatteryMember)}
+                    style={{
+                      flex: 1,
+                      background: 'linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%)',
+                      border: 'none',
+                      borderRadius: '14px',
+                      color: '#FFF',
+                      padding: '12px',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      boxShadow: '0 4px 15px rgba(255, 65, 108, 0.4)',
+                      transition: 'all 0.2s'
+                    }}
+                  >
+                    {lang === 'ar' ? 'تنبيه العضو' : 'Alert Member'}
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          </>
+        )}
+      </AnimatePresence>
+
+      <GlassToast message={toastMsg} isOpen={!!toastMsg} onClose={() => setToastMsg('')} type="info" />
     </div>
   );
 };

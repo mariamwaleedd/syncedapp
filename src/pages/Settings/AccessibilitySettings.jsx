@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   ChevronLeft, Moon, Sun, Type, 
   Eye, MousePointer2, Volume2, 
-  Check, RefreshCw 
+  Check, RefreshCw, Smile, UserCheck, Settings
 } from 'lucide-react';
 import TouchBar from '../../common/TouchBar';
+import GlassToast from '../../common/GlassToast';
 import './AccessibilitySettings.css';
 import { useTheme } from '../../common/ThemeContext';
 import { useLanguage } from '../../common/LanguageContext';
@@ -22,6 +23,24 @@ const Accessibility = () => {
     resetSettings
   } = useTheme();
   const { lang, toggleLanguage, t } = useLanguage();
+  const [activeMode, setActiveMode] = useState(localStorage.getItem('interface_mode') || 'normal');
+  const [toastMsg, setToastMsg] = useState('');
+
+  const handleModeChange = (mode) => {
+    setActiveMode(mode);
+    localStorage.setItem('interface_mode', mode);
+    window.dispatchEvent(new Event('interfaceModeChanged'));
+    
+    const modeName = mode === 'normal' 
+      ? (lang === 'ar' ? 'الواجهة العادية' : 'Normal Interface')
+      : mode === 'elderly'
+        ? (lang === 'ar' ? 'وضع كبار السن' : 'Elderly Mode')
+        : (lang === 'ar' ? 'وضع الأطفال' : 'Kids Mode');
+
+    setToastMsg(lang === 'ar' 
+      ? `⚡ تم تفعيل ${modeName} بنجاح!` 
+      : `⚡ ${modeName} activated successfully!`);
+  };
 
   const getThemeClass = () => {
     return lang === 'ar' ? 'ac-root rtl-theme' : 'ac-root ltr-theme';
@@ -91,6 +110,74 @@ const Accessibility = () => {
                    <div className="ac-lang-circle">ع</div>
                    <span>العربية</span>
                    {lang === 'ar' && <div className="ac-check-abs"><Check size={12} strokeWidth={4} /></div>}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="ac-section">
+            <div className="ac-section-label">
+              <Eye size={18} />
+              <h2>{lang === 'ar' ? 'وضع واجهة التطبيق' : 'Interface Mode'}</h2>
+            </div>
+            <div className="ac-card ac-glass">
+              <div className="ac-label-min">{lang === 'ar' ? 'اختر الواجهة' : 'Select Interface'}</div>
+              <div className="ac-modes-list">
+                {/* Normal Interface */}
+                <div 
+                  className={`acc-mode-card ${activeMode === 'normal' ? 'active' : ''}`}
+                  onClick={() => handleModeChange('normal')}
+                >
+                  <div className="acc-mode-icon normal"><Settings size={22} /></div>
+                  <div className="acc-mode-details">
+                    <h4>{lang === 'ar' ? 'الواجهة العادية' : 'Normal Interface'}</h4>
+                    <p>
+                      {lang === 'ar' 
+                        ? 'الواجهة الافتراضية كاملة الميزات.'
+                        : 'The standard full-featured experience.'}
+                    </p>
+                  </div>
+                  <div className="acc-radio-outer">
+                    <div className="acc-radio-inner"></div>
+                  </div>
+                </div>
+
+                {/* Elderly Mode */}
+                <div 
+                  className={`acc-mode-card ${activeMode === 'elderly' ? 'active' : ''}`}
+                  onClick={() => handleModeChange('elderly')}
+                >
+                  <div className="acc-mode-icon elderly"><UserCheck size={22} /></div>
+                  <div className="acc-mode-details">
+                    <h4>{lang === 'ar' ? 'وضع كبار السن' : 'Elderly Mode'}</h4>
+                    <p>
+                      {lang === 'ar' 
+                        ? 'واجهة مبسطة بنصوص وأيقونات ضخمة تركز على العائلة.'
+                        : 'Simplified layout with giant text & icons.'}
+                    </p>
+                  </div>
+                  <div className="acc-radio-outer">
+                    <div className="acc-radio-inner"></div>
+                  </div>
+                </div>
+
+                {/* Kids Mode */}
+                <div 
+                  className={`acc-mode-card ${activeMode === 'kids' ? 'active' : ''}`}
+                  onClick={() => handleModeChange('kids')}
+                >
+                  <div className="acc-mode-icon kids"><Smile size={22} /></div>
+                  <div className="acc-mode-details">
+                    <h4>{lang === 'ar' ? 'وضع الأطفال' : 'Kids Mode'}</h4>
+                    <p>
+                      {lang === 'ar' 
+                        ? 'واجهة ممتعة، مليئة بالألوان والرسومات والألعاب.'
+                        : 'Fun and colorful wonderland with simple layouts.'}
+                    </p>
+                  </div>
+                  <div className="acc-radio-outer">
+                    <div className="acc-radio-inner"></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -233,6 +320,7 @@ const Accessibility = () => {
         </div>
       </div>
       <TouchBar />
+      <GlassToast message={toastMsg} isOpen={!!toastMsg} onClose={() => setToastMsg('')} type="info" />
     </div>
   );
 };

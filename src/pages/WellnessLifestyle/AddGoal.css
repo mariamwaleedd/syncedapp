@@ -22,7 +22,7 @@
 .ag-gap { width: 44px; }
 .ag-scroll { flex: 1; overflow-y: auto; }
 .ag-sec { margin-bottom: 30px; }
-.ag-sec-lbl { font-size: 15px; font-weight: 600; opacity: 0.5; margin-bottom: 15px; padding-left: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+.ag-sec-lbl { font-size: 11px; font-weight: 700; opacity: 0.45; margin-bottom: 15px; padding-left: 2px; text-transform: uppercase; letter-spacing: 1.5px; }
 .ag-glass { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; backdrop-filter: blur(15px); }
 .ag-cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .ag-cat-card { padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 12px; cursor: pointer; transition: 0.3s; }

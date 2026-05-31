@@ -144,3 +144,103 @@
 .ac-disclaimer p { font-size: 13px; text-align: center; opacity: 0.4; line-height: 1.5; color: var(--accent-blue); font-weight: 500; }
 
 .ac-bottom-pad { height: 60px; }
+
+/* Interface Mode Styles */
+.ac-modes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.acc-mode-card {
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.acc-mode-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.acc-mode-card.active {
+  border-color: var(--accent-blue);
+  background: rgba(81, 162, 255, 0.12);
+  box-shadow: 0 4px 20px rgba(81, 162, 255, 0.2);
+}
+
+.acc-mode-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.acc-mode-icon.normal {
+  color: #64B5F6;
+  background: rgba(100, 181, 246, 0.1);
+}
+
+.acc-mode-icon.elderly {
+  color: #FFB74D;
+  background: rgba(255, 183, 77, 0.1);
+}
+
+.acc-mode-icon.kids {
+  color: #FF8A00;
+  background: rgba(255, 138, 0, 0.1);
+}
+
+.acc-mode-details {
+  flex: 1;
+}
+
+.acc-mode-details h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.acc-mode-details p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  opacity: 0.5;
+  line-height: 1.4;
+}
+
+.acc-radio-outer {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.acc-mode-card.active .acc-radio-outer {
+  border-color: var(--accent-blue);
+}
+
+.acc-radio-inner {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.acc-mode-card.active .acc-radio-inner {
+  background: var(--accent-blue);
+}

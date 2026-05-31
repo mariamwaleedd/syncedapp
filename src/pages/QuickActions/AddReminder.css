@@ -66,7 +66,7 @@
 .arn-scroll { flex: 1; overflow-y: auto; padding-bottom: 20px; }
 
 .arn-sec { margin-bottom: 30px; }
-.arn-sec-lbl { font-size: 15px; font-weight: 600; opacity: 0.5; margin-bottom: 15px; padding-left: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+.arn-sec-lbl { font-size: 11px; font-weight: 700; opacity: 0.45; margin-bottom: 15px; padding-left: 2px; text-transform: uppercase; letter-spacing: 1.5px; }
 
 .arn-glass {
   background: rgba(255, 255, 255, 0.05);
@@ -97,11 +97,85 @@
 .arn-time-val, .arn-repeat-val { font-weight: 700; color: #FFF; font-size: 14px; display: flex; align-items: center; gap: 8px; }
 .arn-repeat-val { opacity: 0.5; }
 
-.arn-member-row { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; }
-.arn-member-row::-webkit-scrollbar { display: none; }
-.arn-member-pill { flex-shrink: 0; padding: 8px 16px; display: flex; align-items: center; gap: 10px; border-radius: 14px; font-size: 14px; font-weight: 600; cursor: pointer; border-color: transparent; }
-.arn-member-pill.active { border-color: #64B5F6; background: rgba(100, 181, 246, 0.1); }
-.arn-m-emoji { font-size: 18px; }
+/* ── Assign To Member — section header row ── */
+.arn-sec-head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.arn-sec-head-row .arn-sec-lbl { margin-bottom: 0; }
+
+.arn-selected-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(100, 181, 246, 0.15);
+  border: 1px solid rgba(100, 181, 246, 0.4);
+  color: #64B5F6;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.arn-member-hint {
+  font-size: 12px;
+  opacity: 0.4;
+  margin: 0 0 14px 2px;
+  font-weight: 500;
+}
+
+/* ── Member grid (3 per row) ── */
+.arn-member-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.arn-member-card {
+  position: relative;
+  padding: 16px 10px 14px;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1.5px solid rgba(255,255,255,0.08);
+}
+.arn-member-card:active { transform: scale(0.95); }
+.arn-member-card.active {
+  border-color: #64B5F6;
+  background: rgba(100, 181, 246, 0.12);
+  box-shadow: 0 0 14px rgba(100, 181, 246, 0.15);
+}
+
+.arn-m-avatar { font-size: 28px; line-height: 1; }
+.arn-m-name   { font-size: 12px; font-weight: 600; text-align: center; opacity: 0.9; }
+
+.arn-m-check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 18px;
+  height: 18px;
+  background: #64B5F6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #010422;
+  animation: arn-pop 0.18s ease;
+}
+
+@keyframes arn-pop {
+  0%   { transform: scale(0); }
+  70%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
 .arn-add-m-btn { width: 44px; height: 44px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #64B5F6; border-radius: 14px; }
 
 .arn-prio-row { display: flex; gap: 10px; }
@@ -117,7 +191,9 @@
   color: #FFF; font-size: 17px; font-weight: 700;
   box-shadow: 0 8px 25px rgba(100, 181, 246, 0.35);
   margin-bottom: 25px;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
 }
+.arn-submit-badge { font-size: 14px; opacity: 0.85; font-weight: 600; }
 
 .arn-ios-bar {
   width: 135px; height: 5px;

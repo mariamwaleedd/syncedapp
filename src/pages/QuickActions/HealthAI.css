@@ -10,6 +10,7 @@
   overflow: hidden;
   font-family: 'General Sans', sans-serif;
   color: #FFFFFF;
+  height: 100vh;
 }
 
 .hai-bg-grad {
@@ -145,12 +146,14 @@
 .hai-timestamp { font-size: 11px; opacity: 0.3; font-weight: 600; }
 
 .hai-input-sticky {
-  position: fixed;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   padding: 15px 20px 10px;
-  width: 430px;
-  margin-top: 66%;
   background: #010422;
   backdrop-filter: blur(20px);
+  z-index: 30;
 }
 
 .hai-input-bar {
@@ -185,4 +188,7 @@
   margin: 0 auto 5px;
 }
 
-.hai-bottom-spacer { height: 40px; }
+.hai-bottom-spacer {
+  height: 150px;
+  flex-shrink: 0;
+}
